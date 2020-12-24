@@ -3,11 +3,11 @@ using SpecialFunctions
 
 function _H(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
     if (x <= 1)
-        return gamma(a+b)/(gamma(c-a)*gamma(a+d)) * x^a
-               *_₂F₁(a+b,1.0+a-c,a+d,x)
+        return gamma(a+b)/(gamma(c-a)*gamma(a+d)) * x^a *
+               _₂F₁(a+b,1.0+a-c,a+d,x)
     else
-        return gamma(a+b)/(gamma(d-b)*gamma(b+c)) * 1.0/x^b
-               *_₂F₁(a+b,1.0+b-d,b+c,1.0/x)
+        return gamma(a+b)/(gamma(d-b)*gamma(b+c)) * 1.0/x^b *
+               _₂F₁(a+b,1.0+b-d,b+c,1.0/x)
     end
 end
 

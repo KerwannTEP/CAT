@@ -89,7 +89,7 @@ function radiusBounds(E::Float64, L::Float64)
         rmin = sqrt(rmin)
         rmax = sqrt(rmax)    
         return rmin, rmax
-    else
+    end
 end
 
 ##################################################
@@ -98,8 +98,25 @@ end
 
 function periodOrbit(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
-    period = quadgk(r->sqrt(2.0*abs((psiEff(r,L)-E)),rmin,rmax))[1]
+    period = quadgk(r->sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
     return period
+end
+
+##################################################
+# Control the error on the period due to uncertainty on the boundaries
+##################################################
+
+function periodUncertainty(E::Float64, L::Float64)
+    rmin, rmax = radiusBounds(E,L)
+    dt = sqrt(abs(psiEff(rmin,L)-E))/abs(dpsiEffdr(rmin,L)) + 
+         sqrt(abs(psiEff(rmax,L)-E))/abs(dpsiEffdr(rmax,L))
+    return dt
+end
+
+function relativePeriodUncertainty(E::Float64, L::Float64)
+    t = periodOrbit(E,L)
+    dt = periodUncertainty(E,L)
+    return abs(dt/t)
 end
 
 ##################################################

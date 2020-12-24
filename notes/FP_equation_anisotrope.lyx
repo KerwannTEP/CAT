@@ -1920,7 +1920,7 @@ v_{r}^{2}(r_{\max}-\epsilon)=\frac{2r_{\max}}{(1+r_{\max}^{2})^{3/2}}\epsilon-\f
 Thus
 \begin_inset Formula 
 \[
-\frac{1}{v_{r}(r_{\max}-\epsilon)}=\left(\underbrace{\frac{2r_{\max}}{(1+r_{\max}^{2})^{3/2}}-\frac{2L^{2}}{r_{\max}^{3}}}_{\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
+\frac{1}{v_{r}(r_{\max}-\epsilon)}=\left(\underbrace{\frac{2r_{\max}}{(1+r_{\max}^{2})^{3/2}}-\frac{2L^{2}}{r_{\max}^{3}}}_{=-2\psi_{{\rm eff}}'(r_{\max})\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
 \]
 
 \end_inset
@@ -1928,7 +1928,7 @@ Thus
 A similar calculation yields
 \begin_inset Formula 
 \[
-\frac{1}{v_{r}(r_{\min}+\epsilon)}=\left(\underbrace{-\frac{2r_{\min}}{(1+r_{\min}^{2})^{3/2}}+\frac{2L^{2}}{r_{\min}^{3}}}_{\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
+\frac{1}{v_{r}(r_{\min}+\epsilon)}=\left(\underbrace{-\frac{2r_{\min}}{(1+r_{\min}^{2})^{3/2}}+\frac{2L^{2}}{r_{\min}^{3}}}_{=2\psi_{{\rm eff}}'(r_{\min})\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
 \]
 
 \end_inset
@@ -1966,7 +1966,60 @@ rosette-like
 
 \end_inset
 
-As for the angle, its derivative 
+Note that given an uncertainty 
+\begin_inset Formula $\delta r$
+\end_inset
+
+ on 
+\begin_inset Formula $r_{\min},r_{\max}$
+\end_inset
+
+, because of the 
+\begin_inset Formula $1/\sqrt{\epsilon}$
+\end_inset
+
+ uncertaintly on the edges, the uncertainty on 
+\begin_inset Formula $\tau$
+\end_inset
+
+ is about 
+\begin_inset Formula $(2|\psi_{{\rm eff}}'(r_{\min}))^{-1/2}|\sqrt{2\delta r_{\min}},(2|\psi_{{\rm eff}}'(r_{\max})|^{-1/2}\sqrt{2\delta r_{\max}}$
+\end_inset
+
+.
+ Because we have that 
+\begin_inset Formula 
+\[
+\delta\psi_{{\rm eff}}(r_{\min})\simeq|\psi_{{\rm eff}}'(r_{\min})|\delta r_{\min};\quad\delta\psi_{{\rm eff}}(r_{\max})\simeq|\psi_{{\rm eff}}'(r_{\max})|\delta r_{\max},
+\]
+
+\end_inset
+
+it follows that the period uncertainty is about
+\begin_inset Formula 
+\[
+\delta\tau\simeq(2|\psi_{{\rm eff}}(r_{\min}))^{-1/2}|\sqrt{2\frac{\delta\psi_{{\rm eff}}(r_{\min})}{|\psi_{{\rm eff}}'(r_{\min})|}}+(2|\psi_{{\rm eff}}(r_{\max})|^{-1/2}\sqrt{2\frac{\delta\psi_{{\rm eff}}(r_{\max})}{|\psi_{{\rm eff}}'(r_{\max})|}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\delta\tau\simeq\frac{\sqrt{\delta\psi_{{\rm eff}}(r_{\min})}}{|\psi_{{\rm eff}}'(r_{\min})|}+\frac{\sqrt{\delta\psi_{{\rm eff}}(r_{\max})}}{|\psi_{{\rm eff}}'(r_{\max})|}
+\]
+
+\end_inset
+
+Applying this, we obtain (using the function relativePeriodUncertainty(E,L)):
+\begin_inset Formula 
+\[
+\frac{\delta\tau}{\tau}=4.247977\cdot10^{-7}.
+\]
+
+\end_inset
+
+ As for the angle, its derivative 
 \begin_inset Formula $\dot{\theta}$
 \end_inset
 

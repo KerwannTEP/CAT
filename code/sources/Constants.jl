@@ -4,6 +4,6 @@
 
 const nbGlobularCluster = 10^5
 const parameterCoulomb = 0.4
-const logCoulomb = ln(parameterCoulomb*N)
+const logCoulomb = log(parameterCoulomb*nbGlobularCluster)
 
 const G = 1
