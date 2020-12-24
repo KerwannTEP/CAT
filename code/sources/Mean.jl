@@ -43,6 +43,9 @@ end
 
 # Binding energy (per unit mass) for the circular orbit given an angular momentum L (per unit mass)
 function Ec(L::Float64)
+    if (L == 0.0)
+        return 1.0
+    end
     return psiEff(newton(L),L)
 end
 

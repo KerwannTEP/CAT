@@ -2136,7 +2136,7 @@ we have that
 \begin_inset Formula $X_{i}=Y_{i}-\frac{\beta}{3\alpha}.$
 \end_inset
 
- As for the discriminant of the 
+ As for the determinant of the 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -2190,24 +2190,57 @@ If
 , then there are three real roots given by
 \begin_inset Formula 
 \[
-Y_{k}=2\sqrt{-\frac{p}{3}}\cos\left[\frac{1}{3}\arccos\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right)-\frac{2\pi k}{3}\right],\quad k\in\{0,1,2\}.
+Y_{k}=2\sqrt{\frac{-p}{3}}
 \]
 
 \end_inset
 
-Note that when 
-\begin_inset Formula $\Delta=0$
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
 \end_inset
 
-, this reduces to the two roots 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+, which is defined bywhere 
 \begin_inset Formula 
 \[
-Y_{0}=2\sqrt{-\frac{p}{3}},\quad Y_{1,2}=-\sqrt{-\frac{p}{3}}.
+\alpha=4E^{2};\quad\beta=4(E^{2}-1+EL^{2});\quad\gamma=4EL^{2}+L^{4};\quad\delta=L^{4}
 \]
 
 \end_inset
 
- Recall 
+The roots are given by
+\begin_inset Formula 
+\[
+X_{k}=-\frac{1}{3\alpha}\left(\beta+\xi^{k}C+\frac{\Delta_{0}}{\xi^{k}C}\right);\quad\xi=e^{\frac{2\pi i}{3}}=\frac{-1+i\sqrt{3}}{2};\quad C=\left(\frac{\Delta_{1}\pm\sqrt{\Delta_{1}^{2}-4\Delta_{0}}}{2}\right)^{1/3},
+\]
+
+\end_inset
+
+where we defined
+\begin_inset Formula 
+\[
+\Delta_{0}=\beta^{2}-3\alpha\gamma;\quad\Delta_{1}=2\beta^{3}-9\alpha\beta\gamma+27\alpha^{2}\delta.
+\]
+
+\end_inset
+
+Recall 
 \begin_inset Formula $\dot{r}^{2}/2=\psi_{{\rm eff}}(r;L)-E$
 \end_inset
 
