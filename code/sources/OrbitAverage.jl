@@ -49,24 +49,26 @@ end
 function rootX(E::Float64, L::Float64)
     if (E <= 0.0)
         return (0,"Unbounded orbit")
+    else
+        a = _alpha(E,L)
+        b = _beta(E,L)
+        p = _p(E,L)
+        q = _q(E,L)
+        disc = discriminantY(p,q)
+        if (disc < 0.0)
+            rt = cbrt(-q/2+sqrt(q^2/4+p^3/27)) + cbrt(-q/2-sqrt(q^2/4+p^3/27))
+            rt += b/(3.0*a)
+            return (1,rt)
+        else
+            rt1 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p)))
+            rt1 -= b/(3.0*a)
+            rt2 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p))-2.0*pi/3)
+            rt2 -= b/(3.0*a)
+            rt3 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p))-2.0*pi*2.0/3)
+            rt3 -= b/(3.0*a)
+            return (3, [rt1, rt2, rt3])
+        end
     end
-    a = _alpha(E,L)
-    b = _beta(E,L)
-    p = _p(E,L)
-    q = _q(E,L)
-    disc = discriminantY(p,q)
-    if (disc < 0.0)
-        rt = cbrt(-q/2+sqrt(q^2/4+p^3/27)) + cbrt(-q/2-sqrt(q^2/4+p^3/27))
-        rt += b/(3.0*a)
-        return (1,rt)
-    end
-    rt1 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p)))
-    rt1 -= b/(3.0*a)
-    rt2 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p))-2.0*pi/3)
-    rt2 -= b/(3.0*a)
-    rt3 = 2*sqrt(-p/3.0)*cos(1.0/3 * acos(3.0*q/(2.0*p) * sqrt(-3.0/p))-2.0*pi*2.0/3)
-    rt3 -= b/(3.0*a)
-    return (3, [rt1, rt2, rt3])
 end
 
 # Returns "Unbounded orbit" if E<=0 and (rmin,rmax) if the parameters are allowed
@@ -77,17 +79,17 @@ function radiusBounds(E::Float64, L::Float64)
     nbRoots, rts = rootX(E,L)
     if (nbRoots == 0)
         return rts
-    end
-    disc = discriminantY(E,L)
-
-    # Check if the parameters (E,L) can describe an orbit
-    @assert nbRoots == 3 "radiusBounds: Forbidden parameters (E,L)"
+    else
+        disc = discriminantY(E,L)
+        # Check if the parameters (E,L) can describe an orbit
+        @assert nbRoots == 3 "radiusBounds: Forbidden parameters (E,L)"
     
-    rts = sort(rts)  # Sort the roots
-    rmin, rmax = rts[2], rts[3] # Lowest root is regative which the two other are positive
-    rmin = sqrt(rmin)
-    rmax = sqrt(rmax)    
-    return rmin, rmax
+        rts = sort(rts)  # Sort the roots
+        rmin, rmax = rts[2], rts[3] # Lowest root is regative which the two other are positive
+        rmin = sqrt(rmin)
+        rmax = sqrt(rmax)    
+        return rmin, rmax
+    else
 end
 
 ##################################################
@@ -96,7 +98,7 @@ end
 
 function periodOrbit(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
-    period = quadgk(r->sqrt(2.0*(psiEff(r,L)-E)),rmin,rmax)[1]
+    period = quadgk(r->sqrt(2.0*abs((psiEff(r,L)-E)),rmin,rmax))[1]
     return period
 end
 

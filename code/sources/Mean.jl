@@ -45,8 +45,9 @@ end
 function Ec(L::Float64)
     if (L == 0.0)
         return 1.0
+    else
+        return psiEff(newton(L),L)
     end
-    return psiEff(newton(L),L)
 end
 
 ##################################################
@@ -67,7 +68,7 @@ end
 ##################################################
 
 function radialVelocity(E::Float64, L::Float64, r::Float64)
-    return sqrt(2*(psiEff(r,L) - E))
+    return sqrt(2*abs((psiEff(r,L) - E)))
 end
 
 function tangentVelocity(E::Float64, L::Float64, r::Float64)
