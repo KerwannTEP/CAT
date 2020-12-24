@@ -1386,7 +1386,7 @@ With the change of variable
 \[
 K(v'|r)=\int_{-1}^{1}{\rm d}x\int_{0}^{2\pi}{\rm d}\phi f_{a}\left(\begin{array}{ccl}
 v_{ar} & = & v_{r}-v'x\\
-v_{at} & = & \sqrt{v_{t}^{2}+v'^{2}(1-x^{2})-2v_{t}v'\sqrt{1-x^{2}}\cos\phi}
+v_{at} & = & \sqrt{(v_{t}-v'\sqrt{1-x^{2}}\cos\phi)^{2}+(v'\sqrt{1-x^{2}}\sin\phi)^{2}}
 \end{array}\bigg|r\right)
 \]
 
