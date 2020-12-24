@@ -2119,7 +2119,7 @@ Then the polynomial has the form
  Setting 
 \begin_inset Formula 
 \[
-Y=X-\frac{\beta}{3\alpha};\quad p=\frac{3\alpha\gamma-\beta^{2}}{3\alpha^{2}};\quad q=\frac{2\beta^{3}-9\alpha\beta\gamma+27\alpha^{2}\delta}{27\alpha^{3}},
+X=Y-\frac{\beta}{3\alpha};\quad p=\frac{3\alpha\gamma-\beta^{2}}{3\alpha^{2}};\quad q=\frac{2\beta^{3}-9\alpha\beta\gamma+27\alpha^{2}\delta}{27\alpha^{3}},
 \]
 
 \end_inset
