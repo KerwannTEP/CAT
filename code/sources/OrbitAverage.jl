@@ -2,6 +2,8 @@
 # Orbit-averagering
 ##################################################
 
+using QuadGK
+
 ##################################################
 # Determine the nature of the orbit
 # Use positive binding energy
@@ -87,3 +89,18 @@ function radiusBounds(E::Float64, L::Float64)
     rmax = sqrt(rmax)    
     return rmin, rmax
 end
+
+##################################################
+# Compute the period of an orbit
+##################################################
+
+function periodOrbit(E::Float64, L::Float64)
+    rmin, rmax = radiusBounds(E,L)
+    period = quadgk(r->sqrt(2.0*(psiEff(r,L)-E)),rmin,rmax)[1]
+    return period
+end
+
+##################################################
+# Compute the orbit-averaged NR diffusion coefficients
+# interpolate them beforehand
+##################################################

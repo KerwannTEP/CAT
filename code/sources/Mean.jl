@@ -35,7 +35,7 @@ end
 # Finding the maximum of the effective potential with a Newton method applied on its derivative
 function newton(L::Float64, eps::Float64=4.0*eps(Float64))
     r = L^(2/3)
-    while(dpsidr(r+eps,L) > 0)
+    while(dpsiEffdr(r+eps,L) > 0)
         r = r - dpsiEffdr(r,L)/d2psiEffdr2(r,L)
     end
     return r+eps/2

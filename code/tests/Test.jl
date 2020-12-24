@@ -1,6 +1,6 @@
 include("../sources/Main.jl")
 
-E = 0.4
+E = 0.1
 L = 0.1
 
 p = _p(E,L)
@@ -10,3 +10,6 @@ println("Discriminant =  ",disc)
 
 @time rts = radiusBounds(E,L)
 println("Radius bounds : ",rts)
+
+@time p = periodOrbit(E,L)
+println("Period = ",p)
