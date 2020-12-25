@@ -88,7 +88,7 @@ function localOrbitChange(r::Float64, E::Float64, L::Float64,
 
     dE   = dvPar       + dvPar2*(-1/2)    + dvTan2*(-1/2)
     dE2  =               dvPar2*(v^2)
-    dL   = dvPar*(-L/v)                   + dvTan2*(r^2/(4.0*L)
+    dL   = dvPar*(-L/v)                   + dvTan2*(r^2/(4.0*L))
     dL2  =               dvPar2*(L^2/v^2) + dvTan2*(1/2 * (r^2 - L^2/v^2))
     dEdL =               dvPar2*(-L)
     return dE, dE2, dL, dL2, dEdL
