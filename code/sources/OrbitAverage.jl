@@ -3,6 +3,7 @@
 ##################################################
 
 using QuadGK
+using Interpolations
 
 ##################################################
 # Determine the nature of the orbit
@@ -96,26 +97,26 @@ end
 # Compute the period of an orbit
 ##################################################
 
-function periodOrbit(E::Float64, L::Float64)
+function halfPeriodOrbit(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
-    period = quadgk(r->sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    return period
+    halfperiod = quadgk(r->sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    return halfperiod
 end
 
 ##################################################
 # Control the error on the period due to uncertainty on the boundaries
 ##################################################
 
-function periodUncertainty(E::Float64, L::Float64)
+function halfPeriodUncertainty(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
     dt = sqrt(abs(psiEff(rmin,L)-E))/abs(dpsiEffdr(rmin,L)) + 
          sqrt(abs(psiEff(rmax,L)-E))/abs(dpsiEffdr(rmax,L))
     return dt
 end
 
-function relativePeriodUncertainty(E::Float64, L::Float64)
-    t = periodOrbit(E,L)
-    dt = periodUncertainty(E,L)
+function relativeHalfPeriodUncertainty(E::Float64, L::Float64)
+    t = halfPeriodOrbit(E,L)
+    dt = halfPeriodUncertainty(E,L)
     return abs(dt/t)
 end
 
@@ -123,3 +124,56 @@ end
 # Compute the orbit-averaged NR diffusion coefficients
 # interpolate them beforehand
 ##################################################
+
+nbrInt = 100
+
+function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
+                           m_field::Float64)
+
+    @assert (E>0.0 && L>0.0) "averageDiffCoeffs: E and L must be non-negative"
+
+    halfperiod = halfPeriodOrbit(E,L)
+    rmin, rmax = radiusBounds(E,L)
+
+    rangerInt = range(rmin,length=nbrInt,rmax)
+    tabrInt = collect(rangerInt)
+    tabDiffCoeffsInt = zeros(Float64,5,nbrInt) # E,E2,L,L2,EL
+
+    # Sample
+    for indr=1:nbrInt
+        rloc = tabrInt[indr]
+        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rloc,E,L,q,m_field)
+        tabDiffCoeffsInt[1][indr] = dEloc
+        tabDiffCoeffsInt[2][indr] = dE2loc
+        tabDiffCoeffsInt[3][indr] = dLloc
+        tabDiffCoeffsInt[4][indr] = dL2loc
+        tabDiffCoeffsInt[5][indr] = dEdLloc
+    end
+
+    # Interpolate
+    intdEloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[1], 
+                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
+    intdE2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[2], 
+                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
+    intdLloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[3], 
+                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
+    intdL2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[4], 
+                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
+    intdEdLloc = Interpolations.scale(interpolate(tabDiffCoeffsInt[5], 
+                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
+
+    # Orbit-average
+    dE   = quadgk(r->intdEloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+    dE2  = quadgk(r->intdE2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+    dL   = quadgk(r->intdLloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+    dL2  = quadgk(r->intdL2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+    dEdL = quadgk(r->intdEdLloc(r)/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+
+    dE   /= halfperiod
+    dE2  /= halfperiod
+    dL   /= halfperiod
+    dL2  /= halfperiod
+    dEdL /= halfperiod
+    
+    return dE, dE2, dL, dL2, dEdL
+end
