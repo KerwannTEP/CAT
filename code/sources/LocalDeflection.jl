@@ -2,18 +2,22 @@
 # Computation of the local velocity deflections
 ##################################################
 
-#using HCubature
 using StaticArrays # To have access to static arrays
 
 nbPhi = 100
 nbX = 100
 nbResPoints = 100
 
+##################################################
+# Integration midpoints for the phi and x integrals
+##################################################
+
 tab_phi = SVector{nbPhi,Float64}([(pi/nbPhi)*(k-0.5) for k=1:nbPhi])
 tab_x = SVector{nbX,Float64}([-1+(2/nbX)*(k-0.5) for k=1:nbX])
 
-# Define a Coulomb logarithm
-# logCoulomb
+##################################################
+# Actual Computation
+##################################################
 
 function _vmax(r::Float64, vr::Float64, vt::Float64)
     return vt + vr + sqrt(2.0*(vr*vt + psi(r)))
