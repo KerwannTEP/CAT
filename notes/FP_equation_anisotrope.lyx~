@@ -1424,6 +1424,14 @@ ath/HCubature.jl).
 \end_layout
 
 \begin_layout Standard
+Use midpoint rule for the 
+\begin_inset Formula $\phi$
+\end_inset
+
+-integral, which is over a periodic interval for the analytic periodic function.
+\end_layout
+
+\begin_layout Standard
 Now, switch to 
 \begin_inset Formula $(E,L)$
 \end_inset
@@ -2011,46 +2019,14 @@ it follows that the period uncertainty is about
 
 \end_inset
 
-For example, for 
+Applying this for 
 \begin_inset Formula $E=L=0.1$
 \end_inset
 
-,
+, we obtain (using the function relativePeriodUncertainty(E,L) ):
 \begin_inset Formula 
 \[
-r_{\min}=0.074651;\quad r_{\max}9.944796,
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\delta\psi_{{\rm eff}}(r_{\min})=2.704246\cdot10^{-9};\quad\delta\psi_{{\rm eff}}(r_{\max})=0
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-|\psi_{{\rm eff}}'(r_{\min})|=23.963907;\quad|\psi_{{\rm eff}}'(r_{\max})|=9.949719\cdot10^{-3}
-\]
-
-\end_inset
-
-hence
-\begin_inset Formula 
-\[
-\delta\tau=1.062293\cdot10^{-5}
-\]
-
-\end_inset
-
-where the computed period with quadgk is
-\begin_inset Formula 
-\[
-\tau=5.108382.
+\frac{\delta\tau}{\tau}=4.247977\cdot10^{-7}.
 \]
 
 \end_inset

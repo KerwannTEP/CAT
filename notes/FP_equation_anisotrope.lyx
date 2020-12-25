@@ -1424,6 +1424,15 @@ ath/HCubature.jl).
 \end_layout
 
 \begin_layout Standard
+Use midpoint rule for the 
+\begin_inset Formula $\phi$
+\end_inset
+
+-integral, which is over a periodic interval for the analytic periodic function.
+ Exponential convergence!
+\end_layout
+
+\begin_layout Standard
 Now, switch to 
 \begin_inset Formula $(E,L)$
 \end_inset
@@ -2011,7 +2020,11 @@ it follows that the period uncertainty is about
 
 \end_inset
 
-Applying this, we obtain (using the function relativePeriodUncertainty(E,L)):
+Applying this for 
+\begin_inset Formula $E=L=0.1$
+\end_inset
+
+, we obtain (using the function relativePeriodUncertainty(E,L) ):
 \begin_inset Formula 
 \[
 \frac{\delta\tau}{\tau}=4.247977\cdot10^{-7}.
