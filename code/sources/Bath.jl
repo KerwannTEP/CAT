@@ -27,7 +27,7 @@ function DistFunction(E::Float64, L::Float64, q::Float64=0.0)
             else # Case q<2    
                 @assert q < 2.0 "DistFunction: q > 2" # check that q <= 2
                 return 3.0*gamma(6.0-q)/(2.0*(2.0*pi)* (5/2)*gamma(q/2.0)) *
-                       E^(7/2-q) * _H(0.0,q/2.0,9.2-q,L^2/(2.0*E))
+                       E^(7/2-q) * _H(0.0,q/2.0,9.2-q,1.0,L^2/(2.0*E))
             end
         end
     end
