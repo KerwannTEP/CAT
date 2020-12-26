@@ -50,6 +50,40 @@ end
 # Compute the period of an orbit
 ##################################################
 
+nbT = 150
+nbR = 150
+
+function halfPeriodOrbit(E::Float64, L::Float64)
+    rmin, rmax = radiusBounds(E,L)
+    rc = maximizerPsiEff(L)
+    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
+    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
+    dth1 = th1/nbT
+    dth2 = th2/nbT
+    dr = (r2-r1)/nbR
+    halfperiod = 0.0
+    for iTh=1:nbT
+        thp1 = (iTh-0.5)*dth1
+        thp2 = (iTh-0.5)*dth2
+        rp1 = _orbitRadius(thp1,E,L,true) # min value (left of rc)
+        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
+        halfPeriod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))+dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
+    end
+    halfPeriod *= sqrt(2)
+
+    for iR=1:nbR
+        rp = r1 + (iR-0.5)*dr
+        halfPeriod += dr/sqrt(2*(psiEff(rp,L)-E))
+    end
+    return halfPeriod
+end
+
+##################################################
+# Compute the orbit-averaged NR diffusion coefficients
+# interpolate them beforehand
+##################################################
+
+# Transformation theta->r(theta)
 function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
     a = 4.0*(E+sin(th)^2)^2
     b = 4.0*((E+sin(th)^2)^2-1.0+(E+sin(th)^2)*L^2)
@@ -81,77 +115,6 @@ function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
     end
 end
 
-
-nbT = 100
-nbR = 100
-
-function testChangeVar(E::Float64, L::Float64)
-    rmin, rmax = radiusBounds(E,L)
-    rc = maximizerPsiEff(L)
-    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
-    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
-    dth1 = th1/nbT
-    dth2 = th2/nbT
-    dr = (r2-r1)/nbR
-    t1, t2, t3 = 0.0, 0.0, 0.0
-    for iTh=1:nbT
-        thp1 = (iTh-0.5)*dth1
-        thp2 = (iTh-0.5)*dth2
-       rp1 = _orbitRadius(thp1,E,L,true) # min value (left of rc)
-       rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
-        t1 += cos(thp1)/abs(dpsiEffdr(rp1,L))
-        t2 += cos(thp2)/abs(dpsiEffdr(rp2,L))
-    end
-    t1 *= dth1*sqrt(2)
-    t2 *= dth2*sqrt(2)
-
-    for iR=1:nbR
-        rp = r1 + (iR-0.5)*dr
-        t3 += 1/sqrt(2*(psiEff(rp,L)-E))
-    end
-    t3 *= dr
-  #  t3 = quadgk(r->1/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
- #   println(t1)
-  #  println(t2)
-   # println(t3)
-    return t1+t2+t3
-end
-
-function halfPeriodOrbit(E::Float64, L::Float64)
-    rmin, rmax = radiusBounds(E,L)
-    t3 = quadgk(r->1/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    return t3
-end
-
-##################################################
-# Control the error on the period due to uncertainty on the boundaries
-##################################################
-
-# warning: something quadgk says
-#ERROR: DomainError with [r where pb happens]:
-# integrand produced Inf in the interval [r-interval]
-#
-# testChangeVar works fine
-# find something other than quadgk ?
-#
-function halfPeriodUncertainty(E::Float64, L::Float64)
-    rmin, rmax = radiusBounds(E,L)
-    dt = sqrt(abs(psiEff(rmin,L)-E))/abs(dpsiEffdr(rmin,L)) + 
-         sqrt(abs(psiEff(rmax,L)-E))/abs(dpsiEffdr(rmax,L))
-    return dt
-end
-
-function relativeHalfPeriodUncertainty(E::Float64, L::Float64)
-    t = halfPeriodOrbit(E,L)
-    dt = halfPeriodUncertainty(E,L)
-    return abs(dt/t)
-end
-
-##################################################
-# Compute the orbit-averaged NR diffusion coefficients
-# interpolate them beforehand
-##################################################
-
 nbrInt = 50
 
 function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
@@ -159,15 +122,13 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
 
     @assert (E>0.0 && L>0.0) "averageDiffCoeffs: E and L must be non-negative"
 
-    halfperiod = halfPeriodOrbit(E,L)
+    halfperiod = 0.0
     rmin, rmax = radiusBounds(E,L)
 
     rangerInt = range(rmin,length=nbrInt,rmax)
     tabrInt = collect(rangerInt)
     tabDiffCoeffsInt = zeros(Float64,5,nbrInt) # E,E2,L,L2,EL
     
-#    dEloc, dE2loc, dLloc, dL2loc, dEdLloc = 0.0, 0.0, 0.0, 0.0, 0.0
-
     # Sample
     for indr=1:nbrInt
         rloc = tabrInt[indr]
@@ -191,12 +152,45 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
     intdEdLloc = Interpolations.scale(interpolate(tabDiffCoeffsInt[5,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
 
-    # Orbit-average
-    dE   = quadgk(r->intdEloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    dE2  = quadgk(r->intdE2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    dL   = quadgk(r->intdLloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    dL2  = quadgk(r->intdL2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    dEdL = quadgk(r->intdEdLloc(r)/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    rc = maximizerPsiEff(L)
+    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
+    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
+    dth1 = th1/nbT
+    dth2 = th2/nbT
+    dr = (r2-r1)/nbR
+    dE, dE2, dL, dL2, dEdL = 0.0, 0.0, 0.0, 0.0, 0.0
+
+    # Orbit-average and computation of halfperiod
+    for iTh=1:nbT
+        thp1 = (iTh-0.5)*dth1
+        thp2 = (iTh-0.5)*dth2
+        rp1 = _orbitRadius(thp1,E,L,true)  # min value (left of rc)
+        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
+        halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))
+        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
+        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdEloc(rp1)   + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdEloc(rp2)
+        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdE2loc(rp1)  + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdE2loc(rp2)
+        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdLloc(rp1)   + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdLloc(rp2)
+        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdL2loc(rp1)  + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdL2loc(rp2)
+        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdEdLloc(rp1) + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdEdLloc(rp2)
+    end
+
+    halfperiod *= sqrt(2)
+    dE   *= sqrt(2)
+    dE2  *= sqrt(2)
+    dL   *= sqrt(2)
+    dL2  *= sqrt(2)
+    dEdL *= sqrt(2)
+
+    for iR=1:nbR
+        rp = r1 + (iR-0.5)*dr
+        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
+        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*intdEloc(rp)
+        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*intdE2loc(rp)
+        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*intdLloc(rp)
+        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*intdL2loc(rp)
+        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*intdEdLloc(rp)
+    end
 
     dE   /= halfperiod
     dE2  /= halfperiod
