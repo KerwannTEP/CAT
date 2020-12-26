@@ -2,10 +2,11 @@
 # Computation of the local velocity deflections
 ##################################################
 
+using HCubature
 using StaticArrays # To have access to static arrays
 
-nbPhi = 100
-nbX = 100
+nbPhi = 500
+nbX = 500
 nbResPoints = 100
 
 ##################################################
@@ -42,7 +43,8 @@ function _integralPhi(r::Float64, vr::Float64, vt::Float64, vp::Float64,
         fa = dfSpherical(r,vr,vt,vp,x,tab_phi[k],q) 
         intPhi += fa
     end
-    return intPhi/(nbPhi)
+    intPhi *= 2*pi/nbPhi
+    return intPhi
 end
 
 function _K(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
@@ -52,7 +54,14 @@ function _K(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
  #       xk = tab_x[k]
         K += _integralPhi(r,vr,vt,vp,tab_x[k],q) 
     end
-    return K/(nbX)
+    K *= 2/nbX
+    return K
+end
+
+function _Kcubature(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
+#integral over X = (x,phi) , -1<x<1 and 0<phi<2pi
+    K = hcubature(x->dfSpherical(r,vr,vt,vp,x[1],x[2],q),[-1,0],[1,2*pi])
+    return K[1]
 end
 
 function _I(r::Float64, vr::Float64, vt::Float64, q::Float64)
@@ -71,6 +80,14 @@ function _I(r::Float64, vr::Float64, vt::Float64, q::Float64)
     return I1*dvp, I2*dvp
 end
 
+function _ICubature(r::Float64, vr::Float64, vt::Float64, q::Float64)
+    #X = (v',x,phi) 
+    vmax = _vmax(r,vr,vt)
+    I1 = hcubature(x->dfSpherical(r,vr,vt,x[1],x[2],x[3],q),[0,-1,0],[vmax,1,2*pi])
+    I2 = hcubature(x->x[1]*dfSpherical(r,vr,vt,x[1],x[2],x[3],q),[0,-1,0],[vmax,1,2*pi])
+    return I1[1], I2[1]
+end
+
 function localVelChange(r::Float64, vr::Float64, vt::Float64,
                         q::Float64, m_field::Float64, m_test::Float64=0.0)
 
@@ -78,7 +95,7 @@ function localVelChange(r::Float64, vr::Float64, vt::Float64,
     dvPar  = cst*(m_field+m_test)*logCoulomb
     dvPar2 = cst* m_field 
     dvTan2 = cst* m_field        *(2.0*logCoulomb-1.0)
-    I1, I2 = _I(r,vr,vt,q)
+    I1, I2 = _ICubature(r,vr,vt,q)
     dvPar  *= I1
     dvPar2 *= I2
     dvTan2 *= I2
