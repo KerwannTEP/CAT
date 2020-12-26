@@ -127,6 +127,13 @@ end
 # Control the error on the period due to uncertainty on the boundaries
 ##################################################
 
+# warning: something quadgk says
+#ERROR: DomainError with [r where pb happens]:
+# integrand produced Inf in the interval [r-interval]
+#
+# testChangeVar works fine
+# find something other than quadgk ?
+#
 function halfPeriodUncertainty(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
     dt = sqrt(abs(psiEff(rmin,L)-E))/abs(dpsiEffdr(rmin,L)) + 
