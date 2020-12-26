@@ -50,7 +50,6 @@ end
 # Compute the period of an orbit
 ##################################################
 
-# issue here !!! bad radius
 function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
     a = 4.0*(E+sin(th)^2)^2
     b = 4.0*((E+sin(th)^2)^2-1.0+(E+sin(th)^2)*L^2)
@@ -146,7 +145,7 @@ end
 # interpolate them beforehand
 ##################################################
 
-nbrInt = 10
+nbrInt = 50
 
 function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
                            m_field::Float64)
@@ -156,15 +155,11 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
     halfperiod = halfPeriodOrbit(E,L)
     rmin, rmax = radiusBounds(E,L)
 
-    println(halfperiod)
-    println(rmin)
-    println(rmax)
-
     rangerInt = range(rmin,length=nbrInt,rmax)
     tabrInt = collect(rangerInt)
     tabDiffCoeffsInt = zeros(Float64,5,nbrInt) # E,E2,L,L2,EL
-
-    println(tabrInt)
+    
+#    dEloc, dE2loc, dLloc, dL2loc, dEdLloc = 0.0, 0.0, 0.0, 0.0, 0.0
 
     # Sample
     for indr=1:nbrInt
@@ -176,9 +171,7 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
         tabDiffCoeffsInt[4,indr] = dL2loc
         tabDiffCoeffsInt[5,indr] = dEdLloc
     end
- 
-    println(tabDiffCoeffsInt)
-    
+
     # Interpolate
     intdEloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[1,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
