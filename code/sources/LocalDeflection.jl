@@ -2,6 +2,10 @@
 # Computation of the local velocity deflections
 ##################################################
 
+
+# /!\ Impose a limit in Cubature
+
+
 using HCubature
 using StaticArrays # To have access to static arrays
 
@@ -58,7 +62,7 @@ function _K(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
     return K
 end
 
-function _Kcubature(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
+function _KCubature(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
 #integral over X = (x,phi) , -1<x<1 and 0<phi<2pi
     K = hcubature(x->dfSpherical(r,vr,vt,vp,x[1],x[2],q),[-1,0],[1,2*pi])
     return K[1]
