@@ -8,6 +8,7 @@
 
 using HCubature
 using StaticArrays # To have access to static arrays
+using Cuba
 
 nbPhi = 500
 nbX = 500
@@ -84,12 +85,33 @@ function _I(r::Float64, vr::Float64, vt::Float64, q::Float64)
     return I1*dvp, I2*dvp
 end
 
+function DF_Cuba(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                 th::Float64, phi::Float64, q::Float64)
+    v  = sqrt(vr^2  + vt^2)
+    csth = cos(th)
+    snth = sin(th)
+    csph = cos(phi)
+    Ea = psi(r) - 1/2*(v^2 + vp^2 - 2.0*vp*(vr*csth + vt*snth*csph))
+    La = r*sqrt(vt^2 + vp^2*snth^2 - 2*vt*vp*snth*csph)
+    DF = DistFunction(Ea, La, q)
+    return DF
+end
+
 function _ICubature(r::Float64, vr::Float64, vt::Float64, q::Float64)
     #X = (v',x,phi) 
     vmax = _vmax(r,vr,vt)
     I1 = hcubature(x->dfSpherical(r,vr,vt,x[1],x[2],x[3],q),[0,-1,0],[vmax,1,2*pi])
     I2 = hcubature(x->x[1]*dfSpherical(r,vr,vt,x[1],x[2],x[3],q),[0,-1,0],[vmax,1,2*pi])
     return I1[1], I2[1]
+end
+
+function _ICuba(r::Float64, vr::Float64, vt::Float64, q::Float64)
+    #X = (v',x,phi) 
+    vmax = _vmax(r,vr,vt)
+    I1 = 2*pi^2*vmax*cuhre((x, f) -> f[1] = sin(pi*x[2])*DF_Cuba(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q) ,3,1)[1][1]
+    I2 = 2*pi^2*vmax^2*cuhre((x, f) -> f[1] = x[1]*sin(pi*x[2])*DF_Cuba(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q) ,3,1)[1][1]
+
+    return I1, I2
 end
 
 function localVelChange(r::Float64, vr::Float64, vt::Float64,
@@ -99,7 +121,7 @@ function localVelChange(r::Float64, vr::Float64, vt::Float64,
     dvPar  = cst*(m_field+m_test)*logCoulomb
     dvPar2 = cst* m_field 
     dvTan2 = cst* m_field        *(2.0*logCoulomb-1.0)
-    I1, I2 = _ICubature(r,vr,vt,q)
+    I1, I2 = _ICuba(r,vr,vt,q)
     dvPar  *= I1
     dvPar2 *= I2
     dvTan2 *= I2
