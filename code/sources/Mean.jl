@@ -33,7 +33,7 @@ function d2psiEffdr2(r::Float64, L::Float64)
 end
 
 # Finding the maximum of the effective potential with a Newton method applied on its derivative
-function newton(L::Float64, eps::Float64=4.0*eps(Float64))
+function maximizerPsiEff(L::Float64, eps::Float64=4.0*eps(Float64))
     r = L^(2/3)
     while(dpsiEffdr(r+eps,L) > 0)
         r = r - dpsiEffdr(r,L)/d2psiEffdr2(r,L)
@@ -46,7 +46,7 @@ function Ec(L::Float64)
     if (L == 0.0)
         return 1.0
     else
-        return psiEff(newton(L),L)
+        return psiEff(maximizerPsiEff(L),L)
     end
 end
 

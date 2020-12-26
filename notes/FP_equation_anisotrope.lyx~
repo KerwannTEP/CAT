@@ -1989,14 +1989,41 @@ Maybe isolate the borders and use change of variable
 \end_inset
 
 with 
-\begin_inset Formula 
-\[
-\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)
-\]
-
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)$
 \end_inset
 
+.
+ This change of variable is posible because 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)\geq E$
+\end_inset
 
+ and 
+\begin_inset Formula $E>0$
+\end_inset
+
+, hence 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E\leq\psi_{{\rm eff}}(r;L)\leq1$
+\end_inset
+
+.
+ This transformation is bijective on 
+\begin_inset Formula $r\in[r_{\min},r_{*}^{L}]$
+\end_inset
+
+ and 
+\begin_inset Formula $r\in[r_{*}^{L},r_{\max}]$
+\end_inset
+
+ where 
+\begin_inset Formula $\psi_{{\rm eff}}'(r_{*}^{L};L)=0$
+\end_inset
+
+.
+ This way we have
 \begin_inset Formula 
 \[
 \frac{1}{\sqrt{1+r^{2}}}=\frac{L^{2}}{2r^{2}}+E+\sin^{2}\theta=\frac{L^{2}+2r^{2}(E+\sin^{2}\theta)}{2r^{2}}
@@ -2042,15 +2069,6 @@ degree-3 equation hence with the roots
 \begin_inset Formula $r_{*}^{L}$
 \end_inset
 
- such that 
-\begin_inset Formula $\psi_{{\rm eff}}'(r_{*}^{L};L)=0$
-\end_inset
-
-, i.e.
- 
-\begin_inset Formula $\psi_{{\rm eff}}(r_{*}^{L};L)=E_{c}(L)$
-\end_inset
-
 .
  Therefore, letting 
 \begin_inset Formula $r_{\min}<r_{1}<r_{*}^{L}$
@@ -2085,6 +2103,7 @@ where
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Standard

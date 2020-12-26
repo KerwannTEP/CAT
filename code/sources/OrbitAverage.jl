@@ -10,41 +10,6 @@ using Interpolations
 # Use positive binding energy
 ##################################################
 
-function _alpha(E::Float64, L::Float64)
-    return 4.0*E^2
-end
-
-function _beta(E::Float64, L::Float64)
-    return 4.0*(E^2-1.0+E*L^2)
-end
-
-function _gamma(E::Float64, L::Float64)
-    return 4.0*E*L^2+L^4
-end
-
-function _delta(E::Float64, L::Float64)
-    return L^4
-end
-
-function _p(E::Float64, L::Float64)
-    a = _alpha(E,L)
-    b = _beta(E,L)
-    c = _gamma(E,L)
-    return (3.0*a*c-b^2)/(3.0*a^2)
-end
-
-function _q(E::Float64, L::Float64)
-    a = _alpha(E,L)
-    b = _beta(E,L)
-    c = _gamma(E,L)
-    d = _delta(E,L)
-    return (2.0*b^3-9.0*a*b*c+27.0*a^2*d)/(27.0*a^3)
-end
-
-function discriminantY(p::Float64, q::Float64)
-    return -(4.0*p^3+27*q^2)
-end
-
 # Returns "Unbounded orbit" if E<=0 and (rmin,rmax) if the parameters are allowed
 # Check beforehands that the parameters are allowed, i.e!
 # -> E,L are positive
@@ -85,10 +50,78 @@ end
 # Compute the period of an orbit
 ##################################################
 
+# issue here !!! bad radius
+function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
+    a = 4.0*(E+sin(th)^2)^2
+    b = 4.0*((E+sin(th)^2)^2-1.0+(E+sin(th)^2)*L^2)
+    c = 4.0*(E+sin(th)^2)*L^2+L^4
+    d = L^4
+    solver = solveRealPoly3(a,b,c,d)
+    @assert (solver[1] == 3) "_orbitRadius: Forbidden angle theta" 
+    rt1, rt2, rt3 = solver[2], solver[3], solver[4]
+    if (rt1 < 0.0)
+        rmin = rt2
+        rmax = rt3
+    else
+        rmin = rt1
+        if (rt2 < 0.0)
+            rmax = rt3
+        else
+            rmax = rt2
+        end
+    end
+    if (rmax < rmin)
+        rmin, rmax = rmax, rmin
+    end
+    rmin = sqrt(rmin)
+    rmax = sqrt(rmax)
+    if (left)
+        return rmin
+    else
+        return rmax
+    end
+end
+
+
+nbT = 100
+nbR = 100
+
+function testChangeVar(E::Float64, L::Float64)
+    rmin, rmax = radiusBounds(E,L)
+    rc = maximizerPsiEff(L)
+    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
+    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
+    dth1 = th1/nbT
+    dth2 = th2/nbT
+    dr = (r2-r1)/nbR
+    t1, t2, t3 = 0.0, 0.0, 0.0
+    for iTh=1:nbT
+        thp1 = (iTh-0.5)*dth1
+        thp2 = (iTh-0.5)*dth2
+       rp1 = _orbitRadius(thp1,E,L,true) # min value (left of rc)
+       rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
+        t1 += cos(thp1)/abs(dpsiEffdr(rp1,L))
+        t2 += cos(thp2)/abs(dpsiEffdr(rp2,L))
+    end
+    t1 *= dth1*sqrt(2)
+    t2 *= dth2*sqrt(2)
+
+    for iR=1:nbR
+        rp = r1 + (iR-0.5)*dr
+        t3 += 1/sqrt(2*(psiEff(rp,L)-E))
+    end
+    t3 *= dr
+  #  t3 = quadgk(r->1/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+ #   println(t1)
+  #  println(t2)
+   # println(t3)
+    return t1+t2+t3
+end
+
 function halfPeriodOrbit(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
-    halfperiod = quadgk(r->sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
-    return halfperiod
+    t3 = quadgk(r->1/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    return t3
 end
 
 ##################################################

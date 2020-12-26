@@ -2107,6 +2107,11 @@ where
 \end_layout
 
 \begin_layout Standard
+The two methods (change of variable and quadgk) yields the same result,
+ though quadgk is slightly faster and needs less affectations.
+\end_layout
+
+\begin_layout Standard
 Note that given an uncertainty 
 \begin_inset Formula $\delta r$
 \end_inset
