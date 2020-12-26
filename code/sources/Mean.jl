@@ -85,14 +85,14 @@ function solveRealPoly3(a::Float64, b::Float64, c::Float64, d::Float64)
     q = (2*b^3 - 9*a*b*c + 27*a^2*d)/(27*a^3)
     disc = -(4*p^3 + 27*q^2)
     if (disc < 0.0)
-        rt1 = cbrt(-q/2 + sqrt(q^2/4 + p^3/27)) + cbrt(-q/2 - sqrt(q^2/4 + p^3/27))
+        rt1 = cbrt(-q/2 + sqrt((q^2)/4 + (p^3)/27)) + cbrt(-q/2 - sqrt((q^2)/4 + (p^3)/27))
         rt1 -= b/(3*a)
         nbRoot = 1
         return nbRoot, rt1
     else
-        rt1 = 2*sqrt(-p/3)*((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)))
-        rt2 = 2*sqrt(-p/3)*((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 2*pi/3)
-        rt3 = 2*sqrt(-p/3)*((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 4*pi/3) 
+        rt1 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)))
+        rt2 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 2*pi/3)
+        rt3 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 4*pi/3) 
         rt1 -= b/(3*a)
         rt2 -= b/(3*a)
         rt3 -= b/(3*a)

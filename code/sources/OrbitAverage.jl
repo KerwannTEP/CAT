@@ -57,13 +57,26 @@ function radiusBounds(E::Float64, L::Float64)
         b = 4.0*(E^2-1.0+E*L^2)
         c = 4.0*E*L^2+L^4
         d = L^4
-        nbRoot, rts = solveRealPoly3(a,b,c,d)
+        solver = solveRealPoly3(a,b,c,d)
 
-        @assert (nbRoot == 3) "radiusBounds: Forbidden parameters (E,L)"       
-        rts = collect(rts)
-        rts = sort(rts)
-        rmin = sqrt(rts[2])
-        rmax = sqrt(rts[3])
+        @assert (solver[1] == 3) "radiusBounds: Forbidden parameters (E,L)" 
+        rt1, rt2, rt3 = solver[2], solver[3], solver[4]
+        if (rt1 < 0.0)
+            rmin = rt2
+            rmax = rt3
+        else
+            rmin = rt1
+            if (rt2 < 0.0)
+                rmax = rt3
+            else
+                rmax = rt2
+            end
+        end
+        if (rmax < rmin)
+            rmin, rmax = rmax, rmin
+        end
+        rmin = sqrt(rmin)
+        rmax = sqrt(rmax)
         return rmin, rmax
     end
 end
