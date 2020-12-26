@@ -1975,6 +1975,138 @@ rosette-like
 
 \end_inset
 
+Maybe isolate the borders and use change of variable 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\[
+\int_{r_{\min}}\frac{{\rm d}r}{v_{r}(r)}=\int_{0}\frac{2\cos\theta\sin\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r;L)\sqrt{2\sin^{2}\theta}}=\int_{0}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r;L)}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)$
+\end_inset
+
+.
+ This change of variable is posible because 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)\geq E$
+\end_inset
+
+ and 
+\begin_inset Formula $E>0$
+\end_inset
+
+, hence 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\psi_{{\rm eff}}(r;L)-E\leq\psi_{{\rm eff}}(r;L)\leq1$
+\end_inset
+
+.
+ This transformation is bijective on 
+\begin_inset Formula $r\in[r_{\min},r_{*}^{L}]$
+\end_inset
+
+ and 
+\begin_inset Formula $r\in[r_{*}^{L},r_{\max}]$
+\end_inset
+
+ where 
+\begin_inset Formula $\psi_{{\rm eff}}'(r_{*}^{L};L)=0$
+\end_inset
+
+.
+ This way we have
+\begin_inset Formula 
+\[
+\frac{1}{\sqrt{1+r^{2}}}=\frac{L^{2}}{2r^{2}}+E+\sin^{2}\theta=\frac{L^{2}+2r^{2}(E+\sin^{2}\theta)}{2r^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{1}{1+r^{2}}=\frac{(L^{2}+2r^{2}(E+\sin^{2}\theta))^{2}}{4r^{4}}
+\]
+
+\end_inset
+
+Let 
+\begin_inset Formula $X=r^{2}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula 
+\[
+4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2},
+\]
+
+\end_inset
+
+degree-3 equation hence with the roots 
+\begin_inset Formula $X$
+\end_inset
+
+ with an analytical expression.
+ Two solution between 
+\begin_inset Formula $r_{\min}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{\max}$
+\end_inset
+
+, each separated by 
+\begin_inset Formula $r_{*}^{L}$
+\end_inset
+
+.
+ Therefore, letting 
+\begin_inset Formula $r_{\min}<r_{1}<r_{*}^{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{*}^{L}<r_{2}<r_{\max}$
+\end_inset
+
+, decompose the integral into
+\begin_inset Formula 
+\[
+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}=\int_{r_{{\rm min}}}^{r_{1}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{1}}^{r_{*}^{L}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{*}^{L}}^{r_{2}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}=\int_{0}^{\theta_{1}}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r(\theta);L)}+\int_{r_{1}}^{r_{*}^{L}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{*}^{L}}^{r_{2}}\frac{{\rm d}r}{v_{r}(r)}+\int_{0}^{\theta_{2}}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{|\psi_{{\rm eff}}'(r(\theta);L)|}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\psi_{{\rm eff}}(r_{1};L)-E=\sin^{2}(\theta_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $\psi_{{\rm eff}}(r_{2};L)-E=\sin^{2}(\theta_{2})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
 Note that given an uncertainty 
 \begin_inset Formula $\delta r$
 \end_inset

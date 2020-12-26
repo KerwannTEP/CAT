@@ -29,7 +29,8 @@ function dfSpherical(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     v  = sqrt(vr^2  + vt^2)
     Ea = psi(r) - 1/2*(v^2 + vp^2 - 2.0*vp*(vr*x + vt*sqrt(1.0-x^2)*cos(phi)))
     La = r*sqrt(vt^2 + vp^2*(1.0-x^2) - 2*vt*vp*sqrt(1.0-x^2)*cos(phi))
-    return DistFunction(Ea, La, q)
+    DF = DistFunction(Ea, La, q)
+    return DF
 end
 
 function _integralPhi(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -37,8 +38,9 @@ function _integralPhi(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 # integral over phi from 0 to 2pi
     intPhi = 0.0
     for k=1:nbX
-        phik = tab_phi[k]
-        intPhi += dfSpherical(r,vr,vt,vp,x,phik,q) 
+ #       phik = tab_phi[k]
+        fa = dfSpherical(r,vr,vt,vp,x,tab_phi[k],q) 
+        intPhi += fa
     end
     return intPhi/(nbPhi)
 end
@@ -47,8 +49,8 @@ function _K(r::Float64, vr::Float64, vt::Float64, vp::Float64, q::Float64)
 # integral over x from -1 to 1
     K = 0.0
     for k=1:nbX
-        xk = tab_x[k]
-        K += _integralPhi(r,vr,vt,vp,xk,q) 
+ #       xk = tab_x[k]
+        K += _integralPhi(r,vr,vt,vp,tab_x[k],q) 
     end
     return K/(nbX)
 end
@@ -61,11 +63,12 @@ function _I(r::Float64, vr::Float64, vt::Float64, q::Float64)
     dvp = vmax/(nbResPoints)
     I1 = 0.0
     I2 = 0.0
-    for vp = range(0.0,length=nbResPoints,vmax-dvp)
-        I1 += dvp             *_K(r,vr,vt,vp+0.5*dvp,q)
-        I2 += dvp*(vp+0.5*dvp)*_K(r,vr,vt,vp+0.5*dvp,q)
+    for k=1:nbResPoints
+        K = _K(r,vr,vt,(k-0.5)*dvp,q)
+        I1 += K
+        I2 += K *(k-0.5)*dvp
     end
-    return I1, I2
+    return I1*dvp, I2*dvp
 end
 
 function localVelChange(r::Float64, vr::Float64, vt::Float64,
@@ -88,7 +91,7 @@ function localOrbitChange(r::Float64, E::Float64, L::Float64,
     vr = radialVelocity(E,L,r)
     vt = tangentVelocity(E,L,r)
     v = sqrt(vr^2+vt^2)
-    dvPar, dvPar2, dvTan2 = localVelChange(r,vr,vt,m_field,q,m_test)
+    dvPar, dvPar2, dvTan2 = localVelChange(r,vr,vt,q,m_field,m_test)
 
     dE   = dvPar       + dvPar2*(-1/2)    + dvTan2*(-1/2)
     dE2  =               dvPar2*(v^2)

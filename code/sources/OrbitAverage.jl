@@ -125,7 +125,7 @@ end
 # interpolate them beforehand
 ##################################################
 
-nbrInt = 100
+nbrInt = 10
 
 function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
                            m_field::Float64)
@@ -135,39 +135,47 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
     halfperiod = halfPeriodOrbit(E,L)
     rmin, rmax = radiusBounds(E,L)
 
+    println(halfperiod)
+    println(rmin)
+    println(rmax)
+
     rangerInt = range(rmin,length=nbrInt,rmax)
     tabrInt = collect(rangerInt)
     tabDiffCoeffsInt = zeros(Float64,5,nbrInt) # E,E2,L,L2,EL
+
+    println(tabrInt)
 
     # Sample
     for indr=1:nbrInt
         rloc = tabrInt[indr]
         dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rloc,E,L,q,m_field)
-        tabDiffCoeffsInt[1][indr] = dEloc
-        tabDiffCoeffsInt[2][indr] = dE2loc
-        tabDiffCoeffsInt[3][indr] = dLloc
-        tabDiffCoeffsInt[4][indr] = dL2loc
-        tabDiffCoeffsInt[5][indr] = dEdLloc
+        tabDiffCoeffsInt[1,indr] = dEloc
+        tabDiffCoeffsInt[2,indr] = dE2loc
+        tabDiffCoeffsInt[3,indr] = dLloc
+        tabDiffCoeffsInt[4,indr] = dL2loc
+        tabDiffCoeffsInt[5,indr] = dEdLloc
     end
-
+ 
+    println(tabDiffCoeffsInt)
+    
     # Interpolate
-    intdEloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[1], 
+    intdEloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[1,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdE2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[2], 
+    intdE2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[2,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdLloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[3], 
+    intdLloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[3,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdL2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[4], 
+    intdL2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[4,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdEdLloc = Interpolations.scale(interpolate(tabDiffCoeffsInt[5], 
+    intdEdLloc = Interpolations.scale(interpolate(tabDiffCoeffsInt[5,:], 
                                      BSpline(Cubic(Line(OnGrid())))),rangerInt)
 
     # Orbit-average
-    dE   = quadgk(r->intdEloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
-    dE2  = quadgk(r->intdE2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
-    dL   = quadgk(r->intdLloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
-    dL2  = quadgk(r->intdL2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
-    dEdL = quadgk(r->intdEdLloc(r)/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)
+    dE   = quadgk(r->intdEloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    dE2  = quadgk(r->intdE2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    dL   = quadgk(r->intdLloc(r)  /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    dL2  = quadgk(r->intdL2loc(r) /sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
+    dEdL = quadgk(r->intdEdLloc(r)/sqrt(2.0*abs(psiEff(r,L)-E)),rmin,rmax)[1]
 
     dE   /= halfperiod
     dE2  /= halfperiod
