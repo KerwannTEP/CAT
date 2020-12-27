@@ -16,15 +16,15 @@ using HDF5
 include("../sources/Main.jl") # Loading the main code
 ########################################
 
-EminMeasure, EmaxMeasure = 0.01, Ec(L)-0.0001
-nbEMeasure = 30
+EminMeasure, EmaxMeasure = 0.01, Ec(LMeasure)-0.0001
+nbEMeasure = 10
 tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
 
-const tabDNRE  = zeros(Float64,nbjMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid
-const tabDNREE = zeros(Float64,nbjMeasure) # Values of the DRR_EE coefficients on the (a,j)-grid
-const tabDNRL  = zeros(Float64,nbjMeasure) # Values of the DRR_L  coefficients on the (a,j)-grid
-const tabDNRLL = zeros(Float64,nbjMeasure) # Values of the DRR_LL coefficients on the (a,j)-grid
-const tabDNREL = zeros(Float64,nbjMeasure) # Values of the DRR_EL coefficients on the (a,j)-grid
+const tabDNRE  = zeros(Float64,nbEMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid
+const tabDNREE = zeros(Float64,nbEMeasure) # Values of the DRR_EE coefficients on the (a,j)-grid
+const tabDNRL  = zeros(Float64,nbEMeasure) # Values of the DRR_L  coefficients on the (a,j)-grid
+const tabDNRLL = zeros(Float64,nbEMeasure) # Values of the DRR_LL coefficients on the (a,j)-grid
+const tabDNREL = zeros(Float64,nbEMeasure) # Values of the DRR_EL coefficients on the (a,j)-grid
 
 function tabDNR!()
     if (PARALLEL == "yes") 
@@ -49,7 +49,7 @@ function tabDNR!()
             tabDNRL[iE] = DL 
             tabDNRLL[iE] = DLL 
             tabDNREL[iE] = DEL
-
+            
         end
     end
 end
