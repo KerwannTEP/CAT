@@ -2,9 +2,6 @@
 # Orbit-averagering
 ##################################################
 
-using QuadGK
-using Interpolations
-
 ##################################################
 # Determine the nature of the orbit
 # Use positive binding energy
@@ -50,8 +47,8 @@ end
 # Compute the period of an orbit
 ##################################################
 
-nbT = 150
-nbR = 150
+nbT = 100
+nbR = 100
 
 function halfPeriodOrbit(E::Float64, L::Float64)
     rmin, rmax = radiusBounds(E,L)
@@ -80,7 +77,6 @@ end
 
 ##################################################
 # Compute the orbit-averaged NR diffusion coefficients
-# interpolate them beforehand
 ##################################################
 
 # Transformation theta->r(theta)
@@ -115,8 +111,6 @@ function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
     end
 end
 
-nbrInt = 50
-
 function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
                            m_field::Float64)
 
@@ -124,57 +118,46 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
 
     halfperiod = 0.0
     rmin, rmax = radiusBounds(E,L)
-
-    rangerInt = range(rmin,length=nbrInt,rmax)
-    tabrInt = collect(rangerInt)
-    tabDiffCoeffsInt = zeros(Float64,5,nbrInt) # E,E2,L,L2,EL
-    
-    # Sample
-    for indr=1:nbrInt
-        rloc = tabrInt[indr]
-        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rloc,E,L,q,m_field)
-        tabDiffCoeffsInt[1,indr] = dEloc
-        tabDiffCoeffsInt[2,indr] = dE2loc
-        tabDiffCoeffsInt[3,indr] = dLloc
-        tabDiffCoeffsInt[4,indr] = dL2loc
-        tabDiffCoeffsInt[5,indr] = dEdLloc
-    end
-
-    # Interpolate
-    intdEloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[1,:], 
-                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdE2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[2,:], 
-                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdLloc   = Interpolations.scale(interpolate(tabDiffCoeffsInt[3,:], 
-                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdL2loc  = Interpolations.scale(interpolate(tabDiffCoeffsInt[4,:], 
-                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
-    intdEdLloc = Interpolations.scale(interpolate(tabDiffCoeffsInt[5,:], 
-                                     BSpline(Cubic(Line(OnGrid())))),rangerInt)
-
     rc = maximizerPsiEff(L)
     r1, r2 = (rmin+rc)/2, (rc+rmax)/2
-    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
-    dth1 = th1/nbT
-    dth2 = th2/nbT
-    dr = (r2-r1)/nbR
+    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))   
+
+    nbT1 = 20
+    nbT2 = 20
+    nbr = 30
+
+    dth1 = th1/nbT1
+    dth2 = th2/nbT2
+    dr = (r2-r1)/nbr
     dE, dE2, dL, dL2, dEdL = 0.0, 0.0, 0.0, 0.0, 0.0
 
     # Orbit-average and computation of halfperiod
-    for iTh=1:nbT
+    for iTh=1:nbT1
         thp1 = (iTh-0.5)*dth1
-        thp2 = (iTh-0.5)*dth2
         rp1 = _orbitRadius(thp1,E,L,true)  # min value (left of rc)
-        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
         halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))
-        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
-        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdEloc(rp1)   + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdEloc(rp2)
-        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdE2loc(rp1)  + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdE2loc(rp2)
-        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdLloc(rp1)   + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdLloc(rp2)
-        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdL2loc(rp1)  + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdL2loc(rp2)
-        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*intdEdLloc(rp1) + dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))*intdEdLloc(rp2)
+
+        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp1,E,L,q,m_field)
+
+        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dEloc 
+        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dE2loc 
+        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dLloc  
+        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dL2loc
+        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dEdLloc
     end
 
+    for iTh=1:nbT2
+        thp2 = (iTh-0.5)*dth2
+        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
+        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
+        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp2,E,L,q,m_field)
+
+        dE   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dEloc 
+        dE2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dE2loc 
+        dL   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dLloc  
+        dL2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dL2loc
+        dEdL += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dEdLloc
+    end
     halfperiod *= sqrt(2)
     dE   *= sqrt(2)
     dE2  *= sqrt(2)
@@ -182,21 +165,21 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
     dL2  *= sqrt(2)
     dEdL *= sqrt(2)
 
-    for iR=1:nbR
+    for iR=1:nbr
         rp = r1 + (iR-0.5)*dr
         halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
-        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*intdEloc(rp)
-        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*intdE2loc(rp)
-        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*intdLloc(rp)
-        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*intdL2loc(rp)
-        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*intdEdLloc(rp)
-    end
+        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp,E,L,q,m_field)
 
+        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*dEloc
+        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*dE2loc
+        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*dLloc
+        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*dL2loc
+        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*dEdLloc
+    end
     dE   /= halfperiod
     dE2  /= halfperiod
     dL   /= halfperiod
     dL2  /= halfperiod
     dEdL /= halfperiod
-    
     return dE, dE2, dL, dL2, dEdL
 end
