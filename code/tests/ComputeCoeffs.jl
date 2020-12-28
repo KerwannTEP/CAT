@@ -1,4 +1,4 @@
-include("../sources/Main.jl")
+include("../sources/julia/Main.jl")
 
 E = 0.5
 L = 0.1

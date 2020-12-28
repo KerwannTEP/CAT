@@ -13,7 +13,7 @@ PARALLEL = "no"
 using HDF5
 
 ########################################
-include("../sources/Main.jl") # Loading the main code
+include("../sources/julia/Main.jl") # Loading the main code
 ########################################
 
 LminMeasure, LmaxMeasure = 0.001,2.2

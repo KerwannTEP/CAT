@@ -13,7 +13,7 @@ PARALLEL = "no"
 using HDF5
 
 ########################################
-include("../sources/Main.jl") # Loading the main code
+include("../sources/julia/Main.jl") # Loading the main code
 ########################################
 
 EminMeasure, EmaxMeasure = 0.001, Ec(LMeasure)-0.00001
