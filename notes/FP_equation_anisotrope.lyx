@@ -384,7 +384,8 @@ Determination of the local diffusion coefficients
 \begin_layout Standard
 The local diffusion coefficients are the average velocity changes per unit
  time.
- We are interested in computing 
+ We are interested in computing (bad notation: those are relative to the
+ test star velocity, as opposed to the relative velocity!!!)
 \begin_inset Formula 
 \[
 \langle\Delta v_{||}\rangle(r,v_{r},v_{t})=\frac{\langle\Delta v_{||}\rangle_{\delta t}}{\delta t}
@@ -433,7 +434,8 @@ Consider a test star at position
 \end_inset
 
 , Binney et Tremaine (2008, eq.
- (L.7) page 834) gives , with the convention 
+ (L.7) page 834) gives , with the convention (here, parallel and perpudicular
+ to relative velocity)
 \begin_inset Formula 
 \[
 \Delta\boldsymbol{v}=-\Delta v_{\parallel}\boldsymbol{e_{1}'}+\Delta v_{\perp}(-\boldsymbol{e_{2}'}\cos\phi+\boldsymbol{e_{3}'}\sin\phi),
@@ -505,7 +507,15 @@ Furthermore, after averaging over the equiprobable angles
 \begin_inset Formula $\phi$
 \end_inset
 
-, we obtain
+ (test star can be on either 
+\begin_inset Quotes eld
+\end_inset
+
+side
+\begin_inset Quotes erd
+\end_inset
+
+ of the field star), we obtain
 \begin_inset Formula 
 \[
 \langle\Delta v_{i}\rangle_{\phi}=-\Delta v_{\parallel}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
@@ -609,61 +619,6 @@ We sum up over the velocities and the impact parameters.
 \end_inset
 
 , traditionally given approximately by the radius of the subject star orbit.
- This yields
-\begin_inset Formula 
-\[
-\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi\frac{m_{a}}{m+m_{a}}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{2}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align*}
-\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi\left(\frac{m_{a}}{m+m_{a}}\right)^{2}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{3}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\\
-\times & \left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
-\end{align*}
-
-\end_inset
-
-where we defined the Coulomb parameter 
-\begin_inset Formula $\Lambda=b_{{\rm max}}/b_{90}$
-\end_inset
-
-.
- Then, using 
-\begin_inset Formula 
-\[
-\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle=\frac{V_{0i}}{V_{0}};\quad\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle=\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}
-\]
-
-\end_inset
-
-we obtain
-\begin_inset Formula 
-\[
-\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})\frac{V_{0i}}{V_{0}^{3}}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align*}
-\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi G^{2}m_{a}^{2}\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{V_{0}}\left(\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}\right)
-\end{align*}
-
-\end_inset
-
- Take 
-\begin_inset Formula $\Lambda=\lambda N$
-\end_inset
-
- (Binney et Tremaine, page 581) with 
-\begin_inset Formula $N\sim10^{5}$
-\end_inset
-
- for a globular cluster.
  
 \end_layout
 
@@ -698,7 +653,104 @@ Recall that
 
 \end_inset
 
+ This yields (Binney & Tremaine, eq.
+ L14)
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi\frac{m_{a}}{m+m_{a}}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{2}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
+\]
 
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi\left(\frac{m_{a}}{m+m_{a}}\right)^{2}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{3}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\\
+\times & \left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
+\end{align*}
+
+\end_inset
+
+where we defined the Coulomb parameter 
+\begin_inset Formula $\Lambda=b_{{\rm max}}/b_{90}$
+\end_inset
+
+.
+ Then, using (Binney & Tremaine, eq.
+ L17)
+\begin_inset Formula 
+\[
+\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle=\frac{V_{0i}}{V_{0}};\quad\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle=\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}
+\]
+
+\end_inset
+
+we obtain
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})\frac{V_{0i}}{V_{0}^{3}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi G^{2}m_{a}^{2}\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{V_{0}}\left(\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}\right)
+\end{align*}
+
+\end_inset
+
+which can be written as (Binney & Tremaine, eq.
+ L18)
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\frac{\partial h}{\partial v_{i}}(r,\boldsymbol{v})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}^{2}\ln\Lambda\frac{\partial g}{\partial v_{i}\partial v_{j}}(r,\boldsymbol{v})
+\]
+
+\end_inset
+
+where the Rosenbluth potentials are defined as (Binney & Tremaine, eq.
+ L19)
+\begin_inset Formula 
+\[
+h(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+g(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})|\boldsymbol{v}-\boldsymbol{v_{a}}|
+\]
+
+\end_inset
+
+ Take 
+\begin_inset Formula $\Lambda=\lambda N$
+\end_inset
+
+ (Binney et Tremaine, page 581) with 
+\begin_inset Formula $N\sim10^{5}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda=0.059$
+\end_inset
+
+ (Hamilton et al.
+ (2018), eq.
+ (B37)) for a globular cluster.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -4272,6 +4324,14 @@ h(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a
 
 \end_inset
 
+
+\begin_inset Formula 
+\[
+h(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})|\boldsymbol{v}-\boldsymbol{v_{a}}|=\int{\rm d}^{3}\boldsymbol{v'}f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})v'=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+
+\end_inset
+
 with
 \begin_inset Formula 
 \[
@@ -4308,7 +4368,26 @@ where (at fixed
 
 \end_inset
 
+ More generaly, consider the derivative of 
+\begin_inset Formula $f_{E}(E,L)$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula 
+\[
+f_{E}(E,L)=0\forall E,L<0
+\]
+
+\end_inset
+
+hence its partial derivatives also vanish for 
+\begin_inset Formula $E,L<0$
+\end_inset
+
+.
  Do the same analysis as before to bound the integral.
+ 
 \end_layout
 
 \end_body
