@@ -153,10 +153,6 @@ where
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Therefore, in those units the potential (per unit mass) is given by
 \begin_inset Formula 
 \[
@@ -165,6 +161,26 @@ Therefore, in those units the potential (per unit mass) is given by
 
 \end_inset
 
+Furthermore, letting 
+\begin_inset Formula $\tilde{c}=299792458$
+\end_inset
+
+ and 
+\begin_inset Formula $c=\tilde{c\,}{\rm m}.{\rm s}^{-1}$
+\end_inset
+
+ be the light speed in vacuum, we can express it in the new units by
+\begin_inset Formula 
+\[
+c=\tilde{c}\frac{{\rm m}}{r_{s}}\frac{\bar{\tau}}{{\rm s}}\,r_{s}.\bar{\tau}^{-1}=\bar{c}\,r_{s}.\bar{\tau}^{-1};\quad\bar{c}=\tilde{c}\frac{{\rm m}}{r_{s}}\frac{\bar{\tau}}{{\rm s}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 We use those units from now on.
  For example, M3 has total mass 
 \begin_inset Formula $M=4.5\cdot10^{5}M_{\odot}$
@@ -176,6 +192,11 @@ We use those units from now on.
 
 , hence 
 \begin_inset Formula $\bar{\tau}=1.0167\cdot10^{14}\,{\rm s}=3.2218\,{\rm Myr}$
+\end_inset
+
+.
+ In those units, and 
+\begin_inset Formula $c=36\cdot10^{3}\,r_{s}.\bar{\tau}^{-1}$
 \end_inset
 
 .
@@ -412,7 +433,27 @@ Consider a test star at position
 \end_inset
 
 , Binney et Tremaine (2008, eq.
- (L.7) page 834) gives 
+ (L.7) page 834) gives , with the convention 
+\begin_inset Formula 
+\[
+\Delta\boldsymbol{v}=-\Delta v_{\parallel}\boldsymbol{e_{1}'}+\Delta v_{\perp}(-\boldsymbol{e_{2}'}\cos\phi+\boldsymbol{e_{3}'}\sin\phi),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{e_{1}'}\parallel\boldsymbol{V_{0}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is the angle between the plane of the relative orbit and 
+\begin_inset Formula $\boldsymbol{e_{2}'}$
+\end_inset
+
+,
 \begin_inset Formula 
 \[
 \Delta v_{\perp}=\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}}
@@ -457,6 +498,31 @@ Remember that in our units,
 \end_inset
 
  of the cluster.
+\end_layout
+
+\begin_layout Standard
+Furthermore, after averaging over the equiprobable angles 
+\begin_inset Formula $\phi$
+\end_inset
+
+, we obtain
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\rangle_{\phi}=-\Delta v_{\parallel}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle_{\phi} & =(\Delta v_{\parallel})^{2}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{1}'}\rangle\\
++ & \frac{1}{2}(\Delta v_{\perp})^{2}\left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -546,24 +612,17 @@ We sum up over the velocities and the impact parameters.
  This yields
 \begin_inset Formula 
 \[
-\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=2\pi\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})\frac{m_{a}V_{0}^{2}b_{90}^{2}}{m+m_{a}}\ln(1+\Lambda^{2})
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi\frac{m_{a}}{m+m_{a}}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{2}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
 \]
 
 \end_inset
 
 
 \begin_inset Formula 
-\[
-\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=2\pi\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})2V_{0}\left(\frac{m_{a}V_{0}b_{90}}{m+m_{a}}\right)^{2}\left(1-\frac{1}{1+\Lambda^{2}}\right)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=2\pi\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})2V_{0}\left(\frac{m_{a}V_{0}b_{90}}{m+m_{a}}\right)^{2}\left(\ln(1+\Lambda^{2})+\frac{1}{1+\Lambda^{2}}-1\right)
-\]
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi\left(\frac{m_{a}}{m+m_{a}}\right)^{2}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{3}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\\
+\times & \left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
+\end{align*}
 
 \end_inset
 
@@ -572,6 +631,30 @@ where we defined the Coulomb parameter
 \end_inset
 
 .
+ Then, using 
+\begin_inset Formula 
+\[
+\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle=\frac{V_{0i}}{V_{0}};\quad\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle=\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}
+\]
+
+\end_inset
+
+we obtain
+\begin_inset Formula 
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})\frac{V_{0i}}{V_{0}^{3}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi G^{2}m_{a}^{2}\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{V_{0}}\left(\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}\right)
+\end{align*}
+
+\end_inset
+
  Take 
 \begin_inset Formula $\Lambda=\lambda N$
 \end_inset
@@ -615,6 +698,14 @@ Recall that
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Subsubsection
+Anisotropic case
+\end_layout
+
+\begin_layout Standard
 Doing all the replacement gives and applying the change of variable 
 \begin_inset Formula $\boldsymbol{v'}=\boldsymbol{v}-\boldsymbol{v_{a}}=\boldsymbol{V_{0}}$
 \end_inset
@@ -1445,8 +1536,158 @@ May be interesting to find how to free memory to avoid getting millions
 
 \end_layout
 
+\begin_layout Subsubsection
+Isotropic case
+\end_layout
+
 \begin_layout Standard
-e
+We may want to check that the integrals yield the correct result.
+ To that end, it can be of interest to consider the simple case 
+\begin_inset Formula $q=0$
+\end_inset
+
+, where 
+\begin_inset Formula $f(E,L)=f(E)$
+\end_inset
+
+, i.e.
+ 
+\begin_inset Formula $f(r,\boldsymbol{v})=f(r,v)$
+\end_inset
+
+.
+ Then according Binney & Tremaine, eq.
+ (L26), (using reverse convention for 
+\begin_inset Formula $v_{||}$
+\end_inset
+
+), we obtain
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=4\pi\ln\Lambda G^{2}m_{a}(m_{a}+m)\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}^{2}\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=4\pi(2\ln\Lambda-1)G^{2}m_{a}^{2}\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I_{1}(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|^{2}}=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,v_{a})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|^{2}},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I_{2}(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,v_{a})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}.
+\]
+
+\end_inset
+
+Use the Legendre expansion 
+\begin_inset Formula 
+\[
+\frac{1}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}=\sum_{\ell=0}^{\infty}\frac{\min(v,v_{a})^{\ell}}{\max(v,v_{a})^{\ell+1}}P_{\ell}(\cos\theta)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the angle between 
+\begin_inset Formula $\boldsymbol{v}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{v_{a}}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $I_{2}$
+\end_inset
+
+ becomes
+\begin_inset Formula 
+\[
+I_{2}(r,\boldsymbol{v})=2\pi\int_{0}^{\infty}{\rm d}v_{a}v_{a}^{2}f_{a}(r,v_{a})\sum_{\ell=0}^{\infty}\frac{\min(v,v_{a})^{\ell}}{\max(v,v_{a})^{\ell+1}}\underbrace{\int_{0}^{\pi}{\rm d}\theta\sin\theta P_{\ell}(\cos\theta)}_{=2\delta_{0\ell}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I_{2}(r,\boldsymbol{v})=4\pi\int_{0}^{\infty}{\rm d}v_{a}\frac{v_{a}^{2}f_{a}(r,v_{a})}{\max(v,v_{a})}=\frac{4\pi}{v}\int_{0}^{v}{\rm d}v_{a}v_{a}^{2}f_{a}(r,v_{a})+4\pi\int_{v}^{\infty}{\rm d}v_{a}v_{a}f_{a}(r,v_{a})
+\]
+
+\end_inset
+
+while 
+\begin_inset Formula $I_{1}$
+\end_inset
+
+ becomes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I_{1}(r,\boldsymbol{v})=2\pi\int_{0}^{\infty}{\rm d}v_{a}v_{a}^{2}f_{a}(r,v_{a})\left(\sum_{m=0}^{\infty}\frac{\min(v,v_{a})^{m}}{\max(v,v_{a})^{m+1}}\right)\left(\sum_{\ell=0}^{\infty}\frac{\min(v,v_{a})^{\ell}}{\max(v,v_{a})^{\ell+1}}\right)\underbrace{\int_{0}^{\pi}{\rm d}\theta\sin\theta P_{m}(\cos\theta)P_{\ell}(\cos\theta)}_{=\frac{2}{2m+1}\delta_{m\ell}}
+\]
+
+\end_inset
+
+Using 
+\begin_inset Formula ${\rm d}E_{a}=-v_{a}{\rm d}v_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $f(E)=0$
+\end_inset
+
+ for 
+\begin_inset Formula $E<0$
+\end_inset
+
+, we obtain
+\begin_inset Formula 
+\[
+I_{2}(r,\boldsymbol{v})=\frac{4\pi}{v(E)}\int_{E}^{\psi(r)}{\rm d}E'v_{a}(r,E_{a})f(E_{a})+4\pi\int_{0}^{E}{\rm d}E_{a}f(E_{a})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Local orbital parameter changes
 \end_layout
 
 \begin_layout Standard
@@ -3468,119 +3709,329 @@ HCuba, with its function cuhre((x,f)->f[1] = integrand, 3, 1), to integrable
 \end_layout
 
 \begin_layout Section
-Constant anisotropy parameter
+Brouillon
 \end_layout
 
 \begin_layout Standard
-Consider an anisotropy parameter 
-\begin_inset Formula $\beta(r)=1-\frac{\sigma_{\theta}^{2}(r)+\sigma_{\phi}^{2}(r)}{2\sigma_{r}^{2}(r)}$
+Axe 
+\begin_inset Formula $e_{1}=(Oz)$
+\end_inset
+
+, 
+\begin_inset Formula $e_{2},e_{3}$
 \end_inset
 
 .
- The different behavior are:
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $\beta>0$
+ Vecteur 
+\begin_inset Formula $\boldsymbol{r}=(r,\theta,\phi)$
 \end_inset
 
-: radially based.
-\end_layout
+, fixé.
+ 
+\begin_inset Formula 
+\[
+r_{1}=r\cos\theta
+\]
 
-\begin_layout Itemize
-\begin_inset Formula $\beta=0$
 \end_inset
 
-: isotropic.
-\end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $\beta<0$
+\begin_inset Formula 
+\[
+r_{2}=r\sin\theta\cos\phi
+\]
+
 \end_inset
 
-: tangentially biased.
+
+\begin_inset Formula 
+\[
+r_{3}=r\sin\theta\sin\phi
+\]
+
+\end_inset
+
+Vecteur vitesse de la particule test 
+\begin_inset Formula $\boldsymbol{v}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{1}=v\cos\theta_{v}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{2}=v\sin\theta_{v}\cos\phi_{v}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{3}=v\sin\theta_{v}\sin\phi_{v}
+\]
+
+\end_inset
+
+en cylindrique avec 
+\begin_inset Formula $\theta_{v}$
+\end_inset
+
+ l'angle entre 
+\begin_inset Formula $\hat{e_{1}}$
+\end_inset
+
+ et 
+\begin_inset Formula $\boldsymbol{v}$
+\end_inset
+
+, et 
+\begin_inset Formula $\phi_{v}$
+\end_inset
+
+ l'angle entre 
+\begin_inset Formula $\hat{e_{2}}$
+\end_inset
+
+ et le projeté de 
+\begin_inset Formula $\boldsymbol{v}$
+\end_inset
+
+ sur le plan equatorial.
+ On a 
+\begin_inset Formula $\boldsymbol{v}=v_{r}\hat{r}+\boldsymbol{v_{t}}=\boldsymbol{v_{r}}+\boldsymbol{v_{t}}$
+\end_inset
+
+.
+\begin_inset Formula 
+\[
+v_{r}=\boldsymbol{v}\cdot\hat{r}=v_{1}\hat{r}_{1}+v_{2}\hat{r}_{2}+v_{3}\hat{r}_{3}=v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Consider a simple toy model in which the anisotropy parameter takes some
- fixed non-zero value 
-\begin_inset Formula $\beta$
-\end_inset
-
- for all radii.
- This can be generated by the DF of the form (Binney & Tremaine, eq.
- 4.62)
 \begin_inset Formula 
 \[
-f(E,L)=L^{-2\beta}f_{1}(E)
+v_{t}^{2}=v^{2}-(v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi)
 \]
 
 \end_inset
 
-where 
-\begin_inset Formula $f_{1}(E)$
-\end_inset
 
- is any arbitration non-negative function.
- Consider the Jaffe, Hernquist and NFW models.
- Eq.
- (2.66) gives 
 \begin_inset Formula 
 \[
-M(<r)=\begin{cases}
-\frac{r/a}{1+r/a} & {\rm Jaffe}\\
-\frac{(r/a)^{2}}{2(1+r/a)^{2}} & {\rm Hernquist}\\
-\ln(1+\frac{r}{a})-\frac{r/a}{1+r/a} & {\rm NFW}
-\end{cases}
+v_{t}^{2}=v^{2}-v_{r}^{2}=(\underbrace{v_{1}^{2}+v_{2}^{2}+v_{3}^{2}}_{=v^{2}})-(\underbrace{v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi}_{=v_{r}})^{2}
 \]
 
 \end_inset
 
-which yields (eq.
- (2.67))
+
+\end_layout
+
+\begin_layout Standard
+Fixed 
+\begin_inset Formula $\boldsymbol{r}$
+\end_inset
+
+ mean fixed 
+\begin_inset Formula $r,\theta,\phi$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $h(\boldsymbol{r},\boldsymbol{v})=h(\boldsymbol{r},v_{r},v_{t})$
+\end_inset
+
+
 \begin_inset Formula 
 \[
-\Phi(r)=-4\pi G\rho_{0}a^{2}\times\begin{cases}
-\ln(1+a/r) & {\rm Jaffe}\\
-\frac{1}{2(1+r/a)} & {\rm Hernquist}\\
-\frac{\ln(1+r/a)}{r/a} & {\rm NFW}
-\end{cases}
+\frac{\partial h}{\partial v_{1}}=\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial h}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial h}{\partial v_{t}}
 \]
 
 \end_inset
 
-For Hernquist, eq.
- (4.50) and (4.51) give, for 
-\begin_inset Formula $\tilde{E}=-Ea/(GM)$
+We have, (at fixed 
+\begin_inset Formula $\boldsymbol{r})$
 \end_inset
 
 
 \begin_inset Formula 
-\begin{align*}
-f_{H}(E) & =\frac{1}{\sqrt{2}(2\pi)^{3}(GMa)^{3/2}}\frac{\sqrt{\tilde{E}}}{(1-\tilde{E})^{2}}\\
-\times & \left[(1-2\tilde{E})(8\tilde{E}^{2}-8\tilde{E}-3)+\frac{3\sin^{-1}\sqrt{\tilde{E}}}{\sqrt{\tilde{E}(1-\tilde{E})}}\right]
-\end{align*}
+\[
+\frac{\partial v_{r}}{\partial v_{1}}=\cos\theta
+\]
 
 \end_inset
 
-For Jaffe, eq.
- (4.52) and (4.53) give
+and 
 \begin_inset Formula 
-\begin{align*}
-F_{J}(E) & =\frac{1}{(2\pi)^{3}(GMa)^{3/2}}\bigg[F_{-}(\sqrt{2\tilde{E}})-\sqrt{2}F_{-}(\sqrt{\tilde{E}})\\
-- & \sqrt{2}F_{+}(\sqrt{\tilde{E}})+F_{+}(\sqrt{2\tilde{E}})\bigg]
-\end{align*}
+\[
+\frac{\partial(v_{t}^{2})}{\partial v_{1}}=2v_{t}\frac{\partial v_{t}}{\partial v_{1}}=\frac{\partial(v^{2})}{\partial v_{1}}-\frac{\partial(v_{r}^{2})}{\partial v_{1}}=2v_{1}-2v_{r}\frac{\partial v_{r}}{\partial v_{1}}=2v_{1}-2v_{r}\cos\theta
+\]
+
+\end_inset
+
+hence
+\begin_inset Formula 
+\[
+\frac{\partial v_{t}}{\partial v_{1}}=\frac{v_{1}-v_{r}\cos\theta}{v_{t}}
+\]
+
+\end_inset
+
+In the coordinate system where 
+\begin_inset Formula $\hat{e_{1}}=\hat{v}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{e_{2}}$
+\end_inset
+
+ is the projection of 
+\begin_inset Formula $\hat{r}$
+\end_inset
+
+ on the equatorial plane (
+\begin_inset Formula $\phi=0$
+\end_inset
+
+), we have that 
+\begin_inset Formula $\Delta v_{1}=\Delta v_{||}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Delta v_{2}^{2}+\Delta v_{3}^{2}=\Delta v_{\perp}^{2}$
+\end_inset
+
+, meaning that 
+\begin_inset Formula 
+\[
+\langle\Delta v_{||}\rangle=\langle\Delta v_{1}\rangle
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{||})^{2}\rangle=\langle(\Delta v_{1})^{2}\rangle
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{\perp})^{2}\rangle=\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle
+\]
+
+\end_inset
+
+In that system, we have that 
+\begin_inset Formula $\theta_{v}=0$
+\end_inset
+
+, 
+\begin_inset Formula $v_{1}=v$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+We also have that 
+\begin_inset Formula $\cos\theta=v_{r}/v$
+\end_inset
+
+ because 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the angle between 
+\begin_inset Formula $\hat{r}$
+\end_inset
+
+ and 
+\begin_inset Formula $(Oz)=\hat{e_{1}}=\hat{v}$
+\end_inset
+
+, and 
+\begin_inset Formula $v_{r}$
+\end_inset
+
+ is the orthogonal projection of 
+\begin_inset Formula $\boldsymbol{v}$
+\end_inset
+
+ on 
+\begin_inset Formula $\hat{r}$
+\end_inset
+
+.
+ For the same reason, 
+\begin_inset Formula $\sin\theta=v_{t}/v$
+\end_inset
+
+.
+ Therefore, in that coordinate system:
+\begin_inset Formula 
+\[
+\frac{\partial v_{r}}{\partial v_{1}}=\frac{v_{r}}{v};\quad\frac{\partial v_{t}}{\partial v_{1}}=\frac{v-v_{r}^{2}/v}{v_{t}}
+\]
+
+\end_inset
+
+and we have
+\begin_inset Formula 
+\[
+\frac{\partial h}{\partial v_{1}}=\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v-v_{r}^{2}/v}{v_{t}}\frac{\partial h}{\partial v_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As for second order:
+\begin_inset Formula 
+\[
+\frac{\partial^{2}g}{\partial v_{1}^{2}}=\frac{\partial}{\partial v_{1}}\left(\frac{\partial g}{\partial v_{1}}\right)=\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial g}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial g}{\partial v_{t}}\right)
+\]
 
 \end_inset
 
 with 
-\begin_inset Formula $F_{\pm}(z)$
+\begin_inset Formula $\frac{\partial v_{r}}{\partial v_{1}}=\cos\theta$
 \end_inset
 
- the Dawson's integral
+ and 
+\begin_inset Formula $\frac{\partial v_{t}}{\partial v_{1}}=\frac{v_{1}-v_{r}\cos\theta}{v_{t}}$
+\end_inset
+
+.
+ Then
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}\\
++ & \frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\left(\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\end{align*}
+
+\end_inset
+
+where 
 \begin_inset Formula 
 \[
-F_{-}(z)=\frac{1}{2}\sqrt{\pi}e^{z^{2}}{\rm erf}(z)
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{1}}\left(\cos\theta\right)\frac{\partial g}{\partial v_{r}}=0
 \]
 
 \end_inset
@@ -3588,15 +4039,7 @@ F_{-}(z)=\frac{1}{2}\sqrt{\pi}e^{z^{2}}{\rm erf}(z)
 
 \begin_inset Formula 
 \[
-F_{+}(z)=-\frac{1}{2}\sqrt{\pi}ie^{-z^{2}}{\rm erf}(iz)
-\]
-
-\end_inset
-
-The main remark is that 
-\begin_inset Formula 
-\[
-f(\tilde{E},L)=f_{1}(\tilde{E})g(L)
+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}=\cos^{2}\theta\frac{\partial^{2}g}{\partial v_{r}^{2}}
 \]
 
 \end_inset
@@ -3604,7 +4047,36 @@ f(\tilde{E},L)=f_{1}(\tilde{E})g(L)
 
 \begin_inset Formula 
 \[
-\tilde{E}=\psi(r)-\frac{1}{2}v^{2}
+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}=\left(\cos\theta\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}} & =\frac{\partial}{\partial v_{1}}\left(\cos\theta\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)\frac{\partial g}{\partial v_{t}}=\cos\theta\left(\frac{(1-\frac{\partial v_{r}}{\partial v_{1}}\cos\theta)v_{t}-(v_{1}-v_{r}\cos\theta)\frac{\partial v_{t}}{\partial v_{1}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}\\
+ & =\cos\theta\left(\frac{(1-\cos^{2}\theta)v_{t}-(v_{1}-v_{r}\cos\theta)\frac{v_{1}-v_{r}\cos\theta}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}\\
+ & =\cos\theta\left(\frac{\sin^{2}\theta v_{t}-(v_{1}-v_{r}\cos\theta)\frac{v_{1}-v_{r}\cos\theta}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}=\left(\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\]
+
+\end_inset
+
+Which in the special coordinate system gives
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}=0
 \]
 
 \end_inset
@@ -3612,12 +4084,195 @@ f(\tilde{E},L)=f_{1}(\tilde{E})g(L)
 
 \begin_inset Formula 
 \[
-L=rv_{t}
+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}=\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}
 \]
 
 \end_inset
 
 
+\begin_inset Formula 
+\[
+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}=\left(\frac{v_{r}}{v}\frac{v-v_{r}^{2}/v}{v_{t}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}} & =\frac{v_{r}}{v}\left(\frac{v_{t}^{3}/v^{2}-(v-v_{r}^{2}/v)\frac{v-v_{r}^{2}/v}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}=\left(\frac{v-v_{r}^{2}/v}{v_{t}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial^{2}g}{\partial v_{2}^{2}}=\frac{\partial}{\partial v_{2}}\left(\frac{\partial g}{\partial v_{2}}\right)=\frac{\partial}{\partial v_{2}}\left(\frac{\partial v_{r}}{\partial v_{2}}\frac{\partial g}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{2}}\frac{\partial g}{\partial v_{t}}\right)
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula 
+\[
+\frac{\partial v_{r}}{\partial v_{2}}=\sin\theta\cos\phi
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial(v_{t}^{2})}{\partial v_{2}}=2v_{t}\frac{\partial v_{t}}{\partial v_{2}}=\frac{\partial(v^{2})}{\partial v_{2}}-\frac{\partial(v_{r}^{2})}{\partial v_{2}}=2v_{2}-2v_{r}\frac{\partial v_{r}}{\partial v_{2}}=2v_{2}-2v_{r}\sin\theta\cos\phi
+\]
+
+\end_inset
+
+thus
+\begin_inset Formula 
+\[
+\frac{\partial v_{t}}{\partial v_{2}}=\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A la fin, on a bien 
+\begin_inset Formula 
+\[
+\langle\Delta v_{||}\rangle=\langle\Delta v_{1}\rangle
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{||})^{2}\rangle=\langle(\Delta v_{1})^{2}\rangle
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\langle(\Delta v_{\perp})^{2}\rangle=\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle
+\]
+
+\end_inset
+
+which can be expressed as functions of 
+\begin_inset Formula $h(v_{r},v_{t})$
+\end_inset
+
+, 
+\begin_inset Formula $g(v_{r},v_{t})$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial h}{\partial v_{r}}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial h}{\partial v_{t}}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial^{2}g}{\partial v_{r}^{2}}$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial^{2}g}{\partial v_{t}^{2}}$
+\end_inset
+
+ and
+\begin_inset Formula $\frac{\partial^{2}g}{\partial v_{r}\partial v_{t}}$
+\end_inset
+
+.
+ Consider 
+\begin_inset Formula 
+\[
+h(v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}=\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'}
+\]
+
+\end_inset
+
+Do the same analysis as before to bound the integral.
 \end_layout
 
 \end_body
