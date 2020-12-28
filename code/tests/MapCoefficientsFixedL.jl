@@ -17,7 +17,7 @@ include("../sources/Main.jl") # Loading the main code
 ########################################
 
 EminMeasure, EmaxMeasure = 0.01, Ec(LMeasure)-0.0001
-nbEMeasure = 10
+nbEMeasure = 50
 tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
 
 const tabDNRE  = zeros(Float64,nbEMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid
