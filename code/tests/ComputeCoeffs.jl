@@ -1,6 +1,6 @@
 include("../sources/Main.jl")
 
-E = 0.1
+E = 0.5
 L = 0.1
 q = 0.0
 m = 0.1

@@ -1424,7 +1424,29 @@ I_{2}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{
 
 \end_inset
 
+Note that the Cuba.jl Julia library calls the Cuba C library.
+ The cuhre function can be found:
+\end_layout
 
+\begin_layout Itemize
+https://github.com/JohannesBuchner/cuba/blob/master/src/cuhre
+\end_layout
+
+\begin_layout Standard
+May be interesting to find how to free memory to avoid getting millions
+ (or billions) of allocations.
+ Maybe go to C?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+e
 \end_layout
 
 \begin_layout Standard
@@ -3442,6 +3464,7 @@ HCuba, with its function cuhre((x,f)->f[1] = integrand, 3, 1), to integrable
  multidimensional integrals (here 3D) over the unit hypercube.
  May be useful to compute the local diffusion coefficients since all integration
  bounds are finite.
+ The cuhre() function is deterministic, fast and globally adaptive.
 \end_layout
 
 \begin_layout Section

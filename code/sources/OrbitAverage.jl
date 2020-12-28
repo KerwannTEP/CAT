@@ -64,15 +64,15 @@ function halfPeriodOrbit(E::Float64, L::Float64)
         thp2 = (iTh-0.5)*dth2
         rp1 = _orbitRadius(thp1,E,L,true) # min value (left of rc)
         rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
-        halfPeriod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))+dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
+        halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))+dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
     end
-    halfPeriod *= sqrt(2)
+    halfperiod *= sqrt(2)
 
     for iR=1:nbR
         rp = r1 + (iR-0.5)*dr
-        halfPeriod += dr/sqrt(2*(psiEff(rp,L)-E))
+        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
     end
-    return halfPeriod
+    return halfperiod
 end
 
 ##################################################
