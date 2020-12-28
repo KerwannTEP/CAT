@@ -16,8 +16,8 @@ using HDF5
 include("../sources/Main.jl") # Loading the main code
 ########################################
 
-LminMeasure, LmaxMeasure = 0.1,2.2
-nbLMeasure = 50
+LminMeasure, LmaxMeasure = 0.001,2.2
+nbLMeasure = 200
 tabLMeasure = exp.(range(log(LminMeasure),length=nbLMeasure,log(LmaxMeasure)))
 
 const tabDNRE  = zeros(Float64,nbLMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid

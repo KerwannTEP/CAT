@@ -16,8 +16,8 @@ using HDF5
 include("../sources/Main.jl") # Loading the main code
 ########################################
 
-EminMeasure, EmaxMeasure = 0.01, Ec(LMeasure)-0.0001
-nbEMeasure = 50
+EminMeasure, EmaxMeasure = 0.001, Ec(LMeasure)-0.00001
+nbEMeasure = 200
 tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
 
 const tabDNRE  = zeros(Float64,nbEMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid
@@ -30,8 +30,11 @@ function tabDNR!()
     if (PARALLEL == "yes") 
         Threads.@threads for iE=1:nbEMeasure 
             EMeasure = tabEMeasure[iE] 
-            DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
-
+            if (EMeasure <= Ec(LMeasure))
+                DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
+            else
+                DE, DEE, DL, DLL, DEL = 0.0, 0.0, 0.0, 0.0, 0.0
+            end
             tabDNRE[iE] = DE 
             tabDNREE[iE] = DEE 
             tabDNRL[iE] = DL 
@@ -42,8 +45,11 @@ function tabDNR!()
     else # Computation is not made in parallel
         for iE=1:nbEMeasure 
             EMeasure = tabEMeasure[iE] 
-            DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
-
+            if (EMeasure <= Ec(LMeasure))
+                DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
+            else
+                DE, DEE, DL, DLL, DEL = 0.0, 0.0, 0.0, 0.0, 0.0
+            end
             tabDNRE[iE] = DE 
             tabDNREE[iE] = DEE 
             tabDNRL[iE] = DL 
