@@ -1123,7 +1123,7 @@ rtial derivatives of
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{\partial}{\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E'}
+\frac{\partial}{\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E}
 \]
 
 \end_inset
@@ -1131,7 +1131,7 @@ rtial derivatives of
 
 \begin_inset Formula 
 \[
-\frac{\partial}{\partial v_{t}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial E'}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}
+\frac{\partial}{\partial v_{t}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial F}{\partial E}-\frac{r}{L'}\frac{\partial F}{\partial L}\right)
 \]
 
 \end_inset
@@ -1139,7 +1139,7 @@ rtial derivatives of
 
 \begin_inset Formula 
 \begin{align*}
-\frac{\partial^{2}}{\partial v_{r}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E'}+\left(-v_{r}+v'\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E'^{2}}
+\frac{\partial^{2}}{\partial v_{r}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E}+\left(-v_{r}+v'\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E{}^{2}}
 \end{align*}
 
 \end_inset
@@ -1147,7 +1147,7 @@ rtial derivatives of
 
 \begin_inset Formula 
 \begin{align*}
-\frac{\partial^{2}}{\partial v_{t}\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =\left(-v_{r}+v'\cos\theta\right)\left[\left(v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'^{2}}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'\partial E'}\right]
+\frac{\partial^{2}}{\partial v_{t}\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =\left(-v_{r}+v'\cos\theta\right)\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L\partial E}\right)
 \end{align*}
 
 \end_inset
@@ -5001,7 +5001,7 @@ First order:
 \begin{align*}
 \frac{\partial^{2}}{\partial v_{t}\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =\frac{\partial}{\partial v_{t}}\left[\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E'}\right]=\left(-v_{r}+v'\cos\theta\right)\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial E'}\right]\\
  & =\left(-v_{r}+v'\cos\theta\right)\left(\frac{\partial E'}{\partial v_{t}}\frac{\partial^{2}F}{\partial E'^{2}}+\frac{\partial L'}{\partial v_{t}}\frac{\partial^{2}F}{\partial L'\partial E'}\right)\\
- & =\left(-v_{r}+v'\cos\theta\right)\left[\left(v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'^{2}}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'\partial E'}\right]
+ & =\left(-v_{r}+v'\cos\theta\right)\left[\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'^{2}}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'\partial E'}\right]
 \end{align*}
 
 \end_inset
@@ -5017,7 +5017,53 @@ First order:
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial^{2}}{\partial v_{t}^{2}}F(E',L') & =\frac{\partial}{\partial v_{t}}\left[\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial E'}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]\\
- & =\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial}{\partial v_{t}}\frac{\partial F}{\partial E'}+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]
+ & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial}{\partial v_{t}}\frac{\partial F}{\partial E'}+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]
+\end{align*}
+
+\end_inset
+
+with
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial v_{t}}\frac{\partial F}{\partial E'}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'^{2}}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'\partial E'}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]=\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\right]\frac{\partial F}{\partial L'}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial L'}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\right] & =\frac{rL'-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial L'}{\partial v_{t}}}{L'^{2}}=\frac{rL'-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)}{L'^{2}}\\
+ & =\frac{rL'-\frac{r^{2}}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L'^{2}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial L'}\right] & =\frac{\partial E'}{\partial v_{t}}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{\partial L'}{\partial v_{t}}\frac{\partial^{2}F}{\partial L'^{2}}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'^{2}}\\
+ & =\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E'\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\end{align*}
+
+\end_inset
+
+thus
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}F(E',L') & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}\right)+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]\\
+ & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}\right)+\frac{rL'-\frac{r^{2}}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L'^{2}}\frac{\partial F}{\partial L'}\\
+ & +\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E'\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'^{2}}\right)\\
+ & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}\right)+\frac{r}{L'}\frac{\partial F}{\partial L'}+\frac{-\frac{r^{2}}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L'^{2}}\frac{\partial F}{\partial L'}\\
+ & +\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}\left(-\frac{r}{L'}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
 \end{align*}
 
 \end_inset

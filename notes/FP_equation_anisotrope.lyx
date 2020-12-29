@@ -1153,6 +1153,14 @@ rtial derivatives of
 \end_inset
 
 
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1449,7 +1457,7 @@ If we want to use the Cuba.jl package with the Cuhre method (cuhre() in Julia),
  We must compute the two integrals
 \begin_inset Formula 
 \[
-I_{1}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+I_{1}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
 \]
 
 \end_inset
@@ -1457,7 +1465,7 @@ I_{1}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'\int_{0}^{\pi}{\rm d}\theta\
 
 \begin_inset Formula 
 \[
-I_{2}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+I_{2}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
 \]
 
 \end_inset
@@ -1473,7 +1481,7 @@ I_{2}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\thet
 Then 
 \begin_inset Formula 
 \[
-I_{1}(r,\boldsymbol{v})=2\pi^{2}v_{\max}\int_{0}^{1}{\rm d}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+I_{1}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
 \]
 
 \end_inset
@@ -1481,7 +1489,7 @@ I_{1}(r,\boldsymbol{v})=2\pi^{2}v_{\max}\int_{0}^{1}{\rm d}\tilde{v'}\int_{0}^{1
 
 \begin_inset Formula 
 \[
-I_{2}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'}\int_{0}^{\pi}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+I_{2}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{4}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
 \]
 
 \end_inset
@@ -1498,13 +1506,6 @@ https://github.com/JohannesBuchner/cuba/blob/master/src/cuhre
 May be interesting to find how to free memory to avoid getting millions
  (or billions) of allocations.
  Maybe go to C?
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
@@ -3640,6 +3641,10 @@ HCuba, with its function cuhre((x,f)->f[1] = integrand, 3, 1), to integrable
 Brouillon
 \end_layout
 
+\begin_layout Subsection
+Local diffusion coefficients
+\end_layout
+
 \begin_layout Standard
 Repère fixé quelconque 
 \begin_inset Formula $e_{1}=(Oz)$
@@ -5040,9 +5045,31 @@ with
 
 
 \begin_inset Formula 
-\[
-\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\right]=\frac{rL'-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial L'}{\partial v_{t}}}{L'^{2}}
-\]
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\right] & =\frac{rL'-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial L'}{\partial v_{t}}}{L'^{2}}=\frac{rL'-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)}{L'^{2}}\\
+ & =\frac{rL'-\frac{r^{2}}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L'^{2}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial L'}\right] & =\frac{\partial E'}{\partial v_{t}}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{\partial L'}{\partial v_{t}}\frac{\partial^{2}F}{\partial L'^{2}}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L'^{2}}\\
+ & =\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E'\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\end{align*}
+
+\end_inset
+
+thus
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}F(E',L') & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}\right)+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L'}\right]\\
+ & =-\frac{\partial F}{\partial E'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}\right)+\frac{rL'-\frac{r^{2}}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L'^{2}}\frac{\partial F}{\partial L'}\\
+ & +\frac{r}{L'}\left(v_{t}-v'\sin\theta\cos\phi\right)\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E'\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'^{2}}\right)\\
+ & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)\\
+ & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\end{align*}
 
 \end_inset
 
