@@ -4742,6 +4742,27 @@ hence its partial derivatives also vanish for
 \end_inset
 
 
+\begin_inset Formula 
+\[
+\frac{\partial^{2}f_{a}}{\partial v_{t}\partial v_{r}}=\frac{\partial}{\partial v_{t}}\left(-v_{r}\frac{\partial f}{\partial E}\right)=-v_{r}\left(\frac{\partial E}{\partial v_{t}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{t}}\frac{\partial^{2}f}{\partial L\partial E}\right)=v_{r}v_{t}\frac{\partial^{2}f}{\partial E^{2}}-rv_{r}\frac{\partial^{2}f}{\partial L\partial E}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}f_{a}}{\partial v_{r}\partial v_{t}} & =\frac{\partial}{\partial v_{r}}\left(-v_{t}\frac{\partial f}{\partial E}+r\frac{\partial f}{\partial L}\right)=-v_{t}\left(\frac{\partial E}{\partial v_{r}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{r}}\frac{\partial^{2}f}{\partial E\partial L}\right)+r\left(\frac{\partial E}{\partial v_{r}}\frac{\partial^{2}f}{\partial E\partial L}+\frac{\partial L}{\partial v_{r}}\frac{\partial^{2}f}{\partial L^{2}}\right)\\
+ & =v_{t}v_{r}\frac{\partial^{2}f}{\partial E^{2}}-rv_{r}\frac{\partial^{2}f}{\partial E\partial L}
+\end{align*}
+
+\end_inset
+
+OK
+\end_layout
+
+\begin_layout Subsubsection
+Recap
 \end_layout
 
 \end_body
