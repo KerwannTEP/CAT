@@ -80,6 +80,49 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
              -r^2/La^3 *dDFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
 end
 
+function RosenbluthPotentials(r::Float64, vr::Float64, vt::Float64, q::Float64)
+    #X = (v',x,phi) 
+    vmax = _vmax(r,vr,vt)
+    dhdvr     = 2*pi^2*vmax^2*cuhre((x, f) -> f[1] = x[1]  *sin(pi*x[2])    *dfadvr(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+    dhdvt     = 2*pi^2*vmax^2*cuhre((x, f) -> f[1] = x[1]  *sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+    dgdvt     = 2*pi^2*vmax^4*cuhre((x, f) -> f[1] = x[1]^3*sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+    d2gdvr2   = 2*pi^2*vmax^4*cuhre((x, f) -> f[1] = x[1]^3*sin(pi*x[2])  *d2fadvr2(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+    d2gdvrdvt = 2*pi^2*vmax^4*cuhre((x, f) -> f[1] = x[1]^3*sin(pi*x[2])*d2fadvrdvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+    d2gdvt2   = 2*pi^2*vmax^4*cuhre((x, f) -> f[1] = x[1]^3*sin(pi*x[2])  *d2fadvt2(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q),3,1)[1][1]
+
+    return dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2
+end
+
+function localVelChange(r::Float64, vr::Float64, vt::Float64,
+                        q::Float64, m_field::Float64, m_test::Float64=0.0)
+
+    dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2 = RosenbluthPotentials(r,vr,vt,q)
+    cst = 4.0*pi*G^2*logCoulomb*m_field
+
+    dvPar  = cst*(m_field+m_test) *((vr/v)*dhdvr+(vt/v)*dhdvt
+    dvPar2 = cst* m_field         *((vr/v)^2*d2gdvr2+(2*vr*vt/v^2)*d2gdvrdvt
+                                    +(vt/v)^2*d2gdvt2)
+    dvTan2 = cst* m_field         *((vt/v)^2*d2gdvr2-(2*vr*vt/v^2)*d2gdvrdvt
+                                    +(vr/v)^2*d2gdvt2+(1/vt)*dgdvt)
+
+    return dvPar, dvPar2, dvTan2
+end
+
+function localOrbitChange(r::Float64, E::Float64, L::Float64, 
+                          q::Float64, m_field::Float64, m_test::Float64=0.0)
+
+    vr = radialVelocity(E,L,r)
+    vt = tangentVelocity(E,L,r)
+    v = sqrt(vr^2+vt^2)
+    dvPar, dvPar2, dvTan2 = localVelChange(r,vr,vt,q,m_field,m_test)
+
+    dE   = dvPar*(-v)  + dvPar2*(-1/2)    + dvTan2*(-1/2)
+    dE2  =               dvPar2*(v^2)
+    dL   = dvPar*(L/v)                    + dvTan2*(r^2/(4.0*L))
+    dL2  =               dvPar2*(L^2/v^2) + dvTan2*(1/2 * (r^2 - L^2/v^2))
+    dEdL =               dvPar2*(-L)
+    return dE, dE2, dL, dL2, dEdL
+end
 
 function _ICuhre(r::Float64, vr::Float64, vt::Float64, q::Float64)
     #X = (v',x,phi) 
@@ -90,7 +133,7 @@ function _ICuhre(r::Float64, vr::Float64, vt::Float64, q::Float64)
     return I1, I2
 end
 
-function localVelChange(r::Float64, vr::Float64, vt::Float64,
+function localVelChangeOld(r::Float64, vr::Float64, vt::Float64,
                         q::Float64, m_field::Float64, m_test::Float64=0.0)
 
     cst = 4.0*pi*G^2*m_field
@@ -104,7 +147,7 @@ function localVelChange(r::Float64, vr::Float64, vt::Float64,
     return dvPar, dvPar2, dvTan2
 end
 
-function localOrbitChange(r::Float64, E::Float64, L::Float64, 
+function localOrbitChangeOld(r::Float64, E::Float64, L::Float64, 
                           q::Float64, m_field::Float64, m_test::Float64=0.0)
 
     vr = radialVelocity(E,L,r)

@@ -965,7 +965,7 @@ of the field stars cover the whole
 We need to compute 
 \begin_inset Formula 
 \[
-I_{1}(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+h(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
 \]
 
 \end_inset
@@ -973,7 +973,7 @@ I_{1}(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\
 
 \begin_inset Formula 
 \[
-I_{2}(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+g(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
 \]
 
 \end_inset
@@ -1457,7 +1457,7 @@ If we want to use the Cuba.jl package with the Cuhre method (cuhre() in Julia),
  We must compute the two integrals
 \begin_inset Formula 
 \[
-I_{1}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+h(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
 \]
 
 \end_inset
@@ -1465,7 +1465,7 @@ I_{1}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\thet
 
 \begin_inset Formula 
 \[
-I_{2}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+g(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
 \]
 
 \end_inset
@@ -1481,7 +1481,7 @@ I_{2}(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\
 Then 
 \begin_inset Formula 
 \[
-I_{1}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+h(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
 \]
 
 \end_inset
@@ -1489,7 +1489,7 @@ I_{1}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\int_{0
 
 \begin_inset Formula 
 \[
-I_{2}(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{4}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+g(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{4}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'^{3}}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
 \]
 
 \end_inset
