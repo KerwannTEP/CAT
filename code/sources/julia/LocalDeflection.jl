@@ -25,6 +25,61 @@ function dfPlummer(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     return DF
 end
 
+function _Ea(r::Float64 vr::Float64, vt::Float64, 
+             vp::Float64, th::Float64, phi::Float64)
+
+    return psi(r) - (1/2)*(v^2+vp^2-2*vp*(vr*cos(th)+vt*sin(th)*cos(phi)))
+end
+
+function _La(r::Float64 vr::Float64, vt::Float64, 
+             vp::Float64, th::Float64, phi::Float64)
+
+    return r*sqrt(vt^2+vp^2*sin(th)^2-2*vt*vp*sin(th)*cos(phi))
+end
+
+function dfadvr(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vt,vt,vp,th,phi)
+    La = _La(r,vt,vt,vp,th,phi)
+    return (-vr+vp*cos(th))*dDFdE(Ea,La,q)
+end
+
+function dfadvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vt,vt,vp,th,phi)
+    La = _La(r,vt,vt,vp,th,phi)
+    return (-vt+vp*sin(th)*cos(phi))*(dDFdE(Ea,La,q)-r/La *dDFdL(Ea,La,q))
+end
+
+function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                  th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vt,vt,vp,th,phi)
+    La = _La(r,vt,vt,vp,th,phi)
+    return -dDFdE(Ea,La,q) + (-vr+vp*cos(th))*d2DFdE2(Ea,La,q)
+end
+
+function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                    th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vt,vt,vp,th,phi)
+    La = _La(r,vt,vt,vp,th,phi)
+    return (-vr+vp*cos(th))*(-vt+vp*sin(th)*cos(phi))
+           *(d2DFdE2(Ea,La,q) - r/La *d2DFdEdL(Ea,La,q))
+end
+
+function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                  th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vt,vt,vp,th,phi)
+    La = _La(r,vt,vt,vp,th,phi)
+    return -dDFdE(Ea,La,q) + r/La *-dDFdL (Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
+           *(d2DFdE2(Ea,La,q) - 2*r/La *d2DFdEdL(Ea,La,q)
+             -r^2/La^3 *dDFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
+end
+
 
 function _ICuhre(r::Float64, vr::Float64, vt::Float64, q::Float64)
     #X = (v',x,phi) 
