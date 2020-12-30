@@ -54,132 +54,152 @@ function DF_prefactor_beta(q::Float64)
 end
 
 function dDFdE(E::Float64, L::Float64, q::Float64)
-    x = L^2/(2*E)
-    if (q == 0.0) # Isotropic case
-        return 3/(pi^3) * (2*E)^(5/2)
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
     else
-        if (q == 2.0)
-            if (x <= 1.0)
-                return 18/(2*pi)^3 * (2*E-L^2)^(1/2)
-            else
-                return 0.0
-            end
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 3/(pi^3) * (2*E)^(5/2)
         else
-            if (x <= 1.0)
-                diff = 1/4 *E^(3/2-q)*(7/2-q)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                     + E^(5/2-q)*(7/2-q)*_₂F₁(q/2,q-7/2,1,x)
-                return DF_prefactor_alpha(q) * diff
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return 18/(2*pi)^3 * (2*E-L^2)^(1/2)
+                else
+                    return 0.0
+                end
             else
-                diff = (2^(q/2))/(9-q) *E^(7/2-q)*(L^2)^(-1-q/2)*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     + 2^(q/2) *E^(5/2-q)*(L^2)^(-q/2)*(7/2-q)*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                return DF_prefactor_beta(q) * diff
+                if (x <= 1.0)
+                    diff = 1/4 *E^(3/2-q)*(7/2-q)*q*_₂F₁(1+q/2,q-5/2,2,x)
+                         + E^(5/2-q)*(7/2-q)*_₂F₁(q/2,q-7/2,1,x)
+                    return DF_prefactor_alpha(q) * diff
+                else
+                    diff = (2^(q/2))/(9-q) *E^(7/2-q)*(L^2)^(-1-q/2)*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         + 2^(q/2) *E^(5/2-q)*(L^2)^(-q/2)*(7/2-q)*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                    return DF_prefactor_beta(q) * diff
+                end
             end
         end
     end
 end
 
 function dDFdL(E::Float64, L::Float64, q::Float64)
-    x = L^2/(2*E)
-    if (q == 0.0) # Isotropic case
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
         return 0.0
     else
-        if (q == 2.0)
-            if (x <= 1.0)
-                return -(18*L)/(2*pi)^3 * (2*E-L^2)^(1/2)
-            else
-                return 0.0
-            end
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 0.0
         else
-            if (x <= 1.0)
-                diff = 1/2 *E^(5/2-q)*L*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                return DF_prefactor_alpha(q) * diff
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return -(18*L)/(2*pi)^3 * (2*E-L^2)^(1/2)
+                else
+                    return 0.0
+                end
             else
-                diff = -(2^(1+q/2))/(L^3*(9-q)) * E^(9/2-q)*(L^2)^(-q/2)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     - 2^(q/2)*E^(7/2-q)*L*(L^2)^(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                return DF_prefactor_beta(q) * diff
+                if (x <= 1.0)
+                    diff = 1/2 *E^(5/2-q)*L*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
+                    return DF_prefactor_alpha(q) * diff
+                else
+                    diff = -(2^(1+q/2))/(L^3*(9-q)) * E^(9/2-q)*(L^2)^(-q/2)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         - 2^(q/2)*E^(7/2-q)*L*(L^2)^(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                    return DF_prefactor_beta(q) * diff
+                end
             end
         end
     end
 end
 
 function d2DFdE2(E::Float64, L::Float64, q::Float64)
-    x = L^2/(2*E)
-    if (q == 0.0) # Isotropic case
-        return 15/(pi^3) * (2*E)^(3/2)
-    else
-        if (q == 2.0)
-            if (x <= 1.0)
-                return 18/(2*pi)^3 * (2*E-L^2)^(-1/2)
-            else
-                return 0.0
-            end
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
+    end
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 15/(pi^3) * (2*E)^(3/2)
         else
-            if (x <= 1.0)
-                diff = -1/4 *E^(1/2-q)*L^2*(3/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                     + 1/4 *E^(1/2-q)*L^2*(7/2-q)^2*q*_₂F₁(1+q/2,q-5/2,2,x)
-                     + 1/16 *E^(-1/2-q)*L^4*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
-                     + E^(3/2-q)*(5/2-q)*(7/2-q)*_₂F₁(q/2,q-7/2,1,x)                     
-                return DF_prefactor_alpha(q) * diff
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return 18/(2*pi)^3 * (2*E-L^2)^(-1/2)
+                else
+                    return 0.0
+                end
             else
-                diff = (2^(1+q/2))/(9-q) *E^(5/2-q)*(L^2)^(-1-q/2)*(7/2-q)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     + (2^(1+q/2) *E^(7/2-q)*(L^2)^(-2-q/2)*(1+q/2)^2*q^2)/((1+(9-q)/2)*(9-q))*_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
-                     + 2^(q/2) *E^(3/2-q)*(L^2)^(-q/2)*(5/2-q)*(7/2-q)*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                return DF_prefactor_beta(q) * diff
+                if (x <= 1.0)
+                    diff = -1/4 *E^(1/2-q)*L^2*(3/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
+                         + 1/4 *E^(1/2-q)*L^2*(7/2-q)^2*q*_₂F₁(1+q/2,q-5/2,2,x)
+                         + 1/16 *E^(-1/2-q)*L^4*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
+                         + E^(3/2-q)*(5/2-q)*(7/2-q)*_₂F₁(q/2,q-7/2,1,x)                     
+                    return DF_prefactor_alpha(q) * diff
+                else
+                    diff = (2^(1+q/2))/(9-q) *E^(5/2-q)*(L^2)^(-1-q/2)*(7/2-q)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         + (2^(1+q/2) *E^(7/2-q)*(L^2)^(-2-q/2)*(1+q/2)^2*q^2)/((1+(9-q)/2)*(9-q))*_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
+                         + 2^(q/2) *E^(3/2-q)*(L^2)^(-q/2)*(5/2-q)*(7/2-q)*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                    return DF_prefactor_beta(q) * diff
+                end
             end
         end
     end
 end
 
 function d2DFdEdL(E::Float64, L::Float64, q::Float64)
-    x = L^2/(2*E)
-    if (q == 0.0) # Isotropic case
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
         return 0.0
     else
-        if (q == 2.0)
-            if (x <= 1.0)
-                return -(18*L)/(2*pi)^3 * (2*E-L^2)^(-1/2)
-            else
-                return 0.0
-            end
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 0.0
         else
-            if (x <= 1.0)
-                diff = 1/2 *E^(3/2-q)*L*(5/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                     - 1/8 *E^(1/2-q)*L^3*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
-                return DF_prefactor_alpha(q) * diff
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return -(18*L)/(2*pi)^3 * (2*E-L^2)^(-1/2)
+                else
+                    return 0.0
+                end
             else
-                diff = -(2^(1+q/2))/(L^3*(9-q)) *E^(7/2-q)*(L^2)^(-q/2)*(9/2-q)*q^2*_₂F₁1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     - (2^(q/2))/(L*(9-q)) *E^(7/2-q)*(L^2)^(-1-q/2)*q^3*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     - (2^(2+q/2) *E^(9/2-q)*(L^2)^(-q/2)*(1+q/2)^2*q^2)/(L^5*(1+(9-q)/2)*(9-q)) *_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
-                     - 2^(q/2) *E^(5/2-q)*L*(L^2)^(-1-q/2)*(7/2-q)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                return DF_prefactor_beta(q) * diff
+                if (x <= 1.0)
+                    diff = 1/2 *E^(3/2-q)*L*(5/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
+                         - 1/8 *E^(1/2-q)*L^3*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
+                    return DF_prefactor_alpha(q) * diff
+                else
+                    diff = -(2^(1+q/2))/(L^3*(9-q)) *E^(7/2-q)*(L^2)^(-q/2)*(9/2-q)*q^2*_₂F₁1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         - (2^(q/2))/(L*(9-q)) *E^(7/2-q)*(L^2)^(-1-q/2)*q^3*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         - (2^(2+q/2) *E^(9/2-q)*(L^2)^(-q/2)*(1+q/2)^2*q^2)/(L^5*(1+(9-q)/2)*(9-q)) *_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
+                         - 2^(q/2) *E^(5/2-q)*L*(L^2)^(-1-q/2)*(7/2-q)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                    return DF_prefactor_beta(q) * diff
+                end
             end
         end
     end
 end
 
 function d2DFdL2(E::Float64, L::Float64, q::Float64)
-    x = L^2/(2*E)
-    if (q == 0.0) # Isotropic case
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
         return 0.0
     else
-        if (q == 2.0)
-            if (x <= 1.0)
-                return -18/(2*pi)^3 *(2*E-L^2)^(1/2)+(18*L^2)/(2*pi)^3 *(2*E-L^2)^(-1/2)
-            else
-                return 0.0
-            end
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 0.0
         else
-            if (x <= 1.0)
-                diff = 1/2 *E^(5/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                     + 1/4 *E^(3/2-q)*L^2*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
-                return DF_prefactor_alpha(q) * diff
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return -18/(2*pi)^3 *(2*E-L^2)^(1/2)+(18*L^2)/(2*pi)^3 *(2*E-L^2)^(-1/2)
+                else
+                    return 0.0
+                end
             else
-                diff = (3*2^(1+q/2))/(L^4*(9-q)) *E^(9/2-q)*(L^2)^(-q/2)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     + (2^(2+q/2))/(9-q) *E^(9/2-q)*(L^2)^(-2-q/2)*q^3*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                     + (2^(3+q/2) *E^(11/2-q)*(L^2)^(-q/2)*(1+q/2)^2*q^2)/(L^6*(1+(9-q)/2)*(9-q)) *_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
-                     - 2^(q/2) *E^(7/2-q)*(L^2)^(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                     - 2^(1+q/2) *E^(7/2-q)*(L^2)^(-1-q/2)*(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                return DF_prefactor_beta(q) * diff
+                if (x <= 1.0)
+                    diff = 1/2 *E^(5/2-q)*(q-7/2)*q*_₂F₁(1+q/2,q-5/2,2,x)
+                         + 1/4 *E^(3/2-q)*L^2*(1+q/2)*(q-7/2)*(q-5/2)*q*_₂F₁(2+q/2,q-3/2,3,x)
+                    return DF_prefactor_alpha(q) * diff
+                else
+                    diff = (3*2^(1+q/2))/(L^4*(9-q)) *E^(9/2-q)*(L^2)^(-q/2)*q^2*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         + (2^(2+q/2))/(9-q) *E^(9/2-q)*(L^2)^(-2-q/2)*q^3*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
+                         + (2^(3+q/2) *E^(11/2-q)*(L^2)^(-q/2)*(1+q/2)^2*q^2)/(L^6*(1+(9-q)/2)*(9-q)) *_₂F₁(2+q/2,2+q/2,2+(9-q)/2,1/x)
+                         - 2^(q/2) *E^(7/2-q)*(L^2)^(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                         - 2^(1+q/2) *E^(7/2-q)*(L^2)^(-1-q/2)*(-1-q/2)*q*_₂F₁(q/2,q/2,(9-q)/2,1/x)
+                    return DF_prefactor_beta(q) * diff
+                end
             end
         end
     end
