@@ -1155,7 +1155,7 @@ rtial derivatives of
 
 \begin_inset Formula 
 \begin{align*}
-\frac{\partial^{2}}{\partial v_{t}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\frac{\partial^{2}}{\partial v_{t}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E}+\frac{r}{L'}\frac{\partial F}{\partial L}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)
 \end{align*}
 
 \end_inset
@@ -1175,13 +1175,13 @@ Let
 , and consider
 \begin_inset Formula 
 \[
-g(r,v',\theta,\phi)=v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)
+Q(r,v',\theta,\phi)=v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)
 \]
 
 \end_inset
 
 Then 
-\begin_inset Formula $g(r,v',\theta,\phi)\geq v^{2}+v'^{2}-2v'(v_{t}+|v_{r}|)$
+\begin_inset Formula $Q(r,v',\theta,\phi)\geq v^{2}+v'^{2}-2v'(v_{t}+|v_{r}|)$
 \end_inset
 
  for all 
@@ -1189,7 +1189,7 @@ Then
 \end_inset
 
  in range, meaning that 
-\begin_inset Formula $g(r,v',\theta,\phi)\rightarrow+\infty$
+\begin_inset Formula $Q(r,v',\theta,\phi)\rightarrow+\infty$
 \end_inset
 
  as 
@@ -1204,7 +1204,7 @@ Then
  such that 
 \begin_inset Formula 
 \[
-\forall v'>v'_{{\rm max}},\forall\theta\in[0,\pi],\forall\phi\in[0,2\pi];g(r,v',\theta,\phi)>2\psi(r)
+\forall v'>v'_{{\rm max}},\forall\theta\in[0,\pi],\forall\phi\in[0,2\pi];Q(r,v',\theta,\phi)>2\psi(r)
 \]
 
 \end_inset
@@ -1508,13 +1508,6 @@ May be interesting to find how to free memory to avoid getting millions
  Maybe go to C?
 \end_layout
 
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Isotropic case
 \end_layout
@@ -1627,7 +1620,20 @@ We can obviously compute the
 
 \end_inset
 
+In the appendix, we recompute the formulae of the isotropic case from the
+ arbitrary anisotropic case, with 
+\begin_inset Formula $v^{2}=v_{r}^{2}+v_{t}^{2}$
+\end_inset
 
+, 
+\begin_inset Formula $h(r,v_{r},v_{t})=h(r,v)$
+\end_inset
+
+ and 
+\begin_inset Formula $g(r,v_{r},v_{t})=g(r,v)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3648,6 +3654,10 @@ HCuba, with its function cuhre((x,f)->f[1] = integrand, 3, 1), to integrable
 Brouillon
 \end_layout
 
+\begin_layout Subsection
+Local diffusion coefficients
+\end_layout
+
 \begin_layout Standard
 Repère fixé quelconque 
 \begin_inset Formula $e_{1}=(Oz)$
@@ -4367,6 +4377,88 @@ therefore
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $h(v_{r},v_{t})=h(v)$
+\end_inset
+
+, 
+\begin_inset Formula $v^{2}=v_{r}^{2}+v_{t}^{2}\rightarrow v\frac{\partial v}{\partial v_{i}}=2v_{i}\rightarrow\frac{\partial v}{\partial v_{i}}=\frac{v_{i}}{v}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}}=\frac{v_{r}}{v}\frac{\partial v}{\partial v_{r}}h'+\frac{v_{t}}{v}\frac{\partial v}{\partial v_{t}}h'=\frac{v_{r}^{2}}{v^{2}}h'+\frac{v_{t}^{2}}{v^{2}}h'=h'
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{r}^{2}} & =\frac{\partial}{\partial v_{r}}\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{r}}(\frac{\partial v}{\partial v_{r}}g'(v))=\frac{\partial}{\partial v_{r}}(\frac{v_{r}}{v}g'(v))=\frac{v-v_{r}^{2}/v}{v^{2}}g'(v)+\frac{v_{r}}{v}\frac{\partial v}{\partial v_{r}}g''(v)\\
+ & =\frac{v_{t}^{2}}{v^{3}}g'(v)+\frac{v_{r}^{2}}{v^{2}}g''(v)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}} & =\frac{\partial}{\partial v_{t}}\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{t}}(\frac{\partial v}{\partial v_{r}}g')=\frac{\partial}{\partial v_{t}}(\frac{v_{r}}{v}g')=\frac{-v_{r}v_{t}/v}{v^{2}}g'+\frac{v_{r}}{v}\frac{\partial v}{\partial v_{t}}g''\\
+ & =\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{t}^{2}} & =\frac{\partial}{\partial v_{t}}\frac{\partial g}{\partial v_{t}}=\frac{\partial}{\partial v_{t}}(\frac{\partial v}{\partial v_{t}}g')=\frac{\partial}{\partial v_{t}}(\frac{v_{t}}{v}g')=\frac{v-v_{t}^{2}/v}{v^{2}}g'+\frac{v_{t}}{v}\frac{\partial v}{\partial v_{t}}g'\\
+ & =\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial g}{\partial v_{t}}=\frac{\partial v}{\partial v_{t}}g'=\frac{v_{t}}{v}g'
+\]
+
+\end_inset
+
+hence
+\begin_inset Formula 
+\begin{align*}
+\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}} & =\frac{v_{r}^{2}}{v^{2}}\left(\frac{v_{t}^{2}}{v^{3}}g'+\frac{v_{r}^{2}}{v^{2}}g''\right)+\frac{2v_{r}v_{t}}{v^{2}}\left(\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''\right)+\left(\frac{v_{t}}{v}\right)^{2}\left(\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''\right)\\
+ & =\left(\frac{v_{r}^{2}v_{t}^{2}}{v^{5}}-\frac{2v_{r}^{2}v_{t}^{2}}{v^{5}}+\frac{v_{r}^{2}v_{t}^{2}}{v^{5}}\right)g'+\left(\frac{v_{r}^{4}}{v^{4}}+\frac{2v_{r}^{2}v_{t}^{2}}{v^{4}}+\frac{v_{t}^{4}}{v^{4}}\right)g''\\
+ & =\left(\frac{v_{r}^{2}}{v^{2}}+\frac{v_{t}^{2}}{v^{2}}\right)^{2}g''=g''
+\end{align*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{align*}
+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}} & =\left(\frac{v_{t}}{v}\right)^{2}\left(\frac{v_{t}^{2}}{v^{3}}g'+\frac{v_{r}^{2}}{v^{2}}g''\right)-\frac{2v_{r}v_{t}}{v^{2}}\left(\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''\right)\\
+ & +\left(\frac{v_{r}}{v}\right)^{2}\left(\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''\right)+\frac{1}{v_{t}}\frac{v_{t}}{v}g'\\
+ & =\left(\frac{v_{t}^{4}}{v^{5}}+\frac{2v_{r}^{2}v_{t}^{2}}{v^{5}}+\frac{v_{r}^{4}}{v^{5}}+\frac{1}{v}\right)g'+\left(\frac{v_{r}^{2}v_{t}^{2}}{v^{4}}-\frac{2v_{r}^{2}v_{t}^{2}}{v^{4}}+\frac{v_{r}^{2}v_{t}^{2}}{v^{4}}\right)g''\\
+ & =\frac{1}{v}\left(\left(\frac{v_{t}^{2}}{v^{2}}+\frac{v_{r}^{2}}{v^{2}}\right)^{2}+1\right)g'=\frac{2}{v}g'
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Derivatives in the special referential frame
 \end_layout
@@ -5073,6 +5165,178 @@ thus
  & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)\\
  & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
 \end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now compute the partial derivatives of 
+\begin_inset Formula $F(E,L)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+F_{q}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbb{H}(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}._{2}F_{1}(a+b,1+a-c,a+d;x) & x\leq1\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x}) & x\geq1
+\end{cases}
+\]
+
+\end_inset
+
+For 
+\begin_inset Formula $L^{2}\leq2E$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})=\begin{cases}
+\frac{\Gamma(\frac{q}{2})}{\Gamma(\frac{9}{2}-q)\Gamma(1)}._{2}F_{1}(\frac{q}{2},q+1-\frac{9}{2},1;\frac{L^{2}}{2E}) & \frac{L^{2}}{2E}\leq1\\
+\frac{\Gamma(\frac{q}{2})}{\Gamma(1-\frac{q}{2})\Gamma(\frac{q}{2}+\frac{9}{2}-q)}(\frac{L^{2}}{2E})^{-\frac{q}{2}}._{2}F_{1}(\frac{q}{2},\frac{q}{2},+\frac{9}{2}-\frac{q}{2};\frac{2E}{L^{2}}) & \frac{L^{2}}{2E}\geq1
+\end{cases}
+\]
+
+\end_inset
+
+thus
+\begin_inset Formula 
+\[
+F_{q}(E,L)=\begin{cases}
+\overbrace{\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}\frac{\Gamma(\frac{q}{2})}{\Gamma(\frac{9}{2}-q)\Gamma(1)}}^{=\alpha}E^{7/2-q}._{2}F_{1}(\frac{q}{2},q+1-\frac{9}{2},1;\frac{L^{2}}{2E}) & \frac{L^{2}}{2E}\leq1\\
+\underbrace{\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}\frac{\Gamma(\frac{q}{2})}{\Gamma(1-\frac{q}{2})\Gamma(\frac{q}{2}+\frac{9}{2}-q)}}_{=\beta}E^{7/2-\frac{q}{2}}(\frac{L^{2}}{2})^{-\frac{q}{2}}._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9}{2}-\frac{q}{2};\frac{2E}{L^{2}}) & \frac{L^{2}}{2E}\geq1
+\end{cases}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+F_{q}(E,L)=\begin{cases}
+\alpha E^{7/2-q}._{2}F_{1}(\frac{q}{2},q-\frac{7}{2},1;\frac{L^{2}}{2E}) & \frac{L^{2}}{2E}\leq1\\
+\beta E^{7/2-\frac{q}{2}}(\frac{L^{2}}{2})^{-\frac{q}{2}}._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2};\frac{2E}{L^{2}}) & \frac{L^{2}}{2E}\geq1
+\end{cases}
+\]
+
+\end_inset
+
+Note that 
+\begin_inset Formula $\frac{\partial}{\partial x}\left[._{2}F_{1}(a,b,c;x)\right]=\frac{ab}{c}._{2}F_{1}(a+1,b+1,c+1;x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $\frac{L^{2}}{2E}\leq1$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\alpha}\frac{\partial F_{q}}{\partial E}(E,L) & =-\frac{1}{4}E^{\frac{3}{2}-q}L^{2}\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})\\
+ & +E^{\frac{5}{2}-q}\left(\frac{7}{2}-q\right)._{2}F_{1}(\frac{q}{2},q-\frac{7}{2},1,\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{1}{\alpha}\frac{\partial F_{q}}{\partial L}(E,L)=\frac{1}{2}E^{\frac{5}{2}-q}L\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\alpha}\frac{\partial^{2}F_{q}}{\partial E^{2}}(E,L) & =-\frac{1}{4}E^{\frac{1}{2}-q}L^{2}\left(\frac{3}{2}-q\right)\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})\\
+ & -\frac{1}{4}E^{\frac{1}{2}-q}L^{2}\left(\frac{7}{2}-q\right)\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})\\
+ & +\frac{1}{16}E^{-\frac{1}{2}-q}L^{4}\left(1+\frac{q}{2}\right)\left(q-\frac{7}{2}\right)\left(q-\frac{5}{2}\right)q._{2}F_{1}(2+\frac{q}{2},q-\frac{3}{2},3,\frac{L^{2}}{2E})\\
+ & +E^{\frac{3}{2}-q}\left(\frac{5}{2}-q\right)\left(\frac{7}{2}-q\right)._{2}F_{1}(\frac{q}{2},q-\frac{7}{2},1,\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\alpha}\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =\frac{1}{2}E^{\frac{3}{2}-q}L\left(\frac{5}{2}-q\right)\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})\\
+ & -\frac{1}{8}E^{\frac{1}{2}-q}L^{3}\left(1+\frac{q}{2}\right)\left(q-\frac{7}{2}\right)\left(q-\frac{5}{2}\right)q._{2}F_{1}(2+\frac{q}{2},q-\frac{3}{2},3,\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\alpha}\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{1}{2}E^{\frac{5}{2}-q}\left(q-\frac{7}{2}\right)q._{2}F_{1}(1+\frac{q}{2},q-\frac{5}{2},2,\frac{L^{2}}{2E})\\
+ & +\frac{1}{4}E^{\frac{3}{2}-q}L^{2}\left(1+\frac{q}{2}\right)\left(q-\frac{7}{2}\right)\left(q-\frac{5}{2}\right)q._{2}F_{1}(2+\frac{q}{2},q-\frac{3}{2},3,\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $\frac{L^{2}}{2E}\geq1$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\beta}\frac{\partial F_{q}}{\partial E}(E,L) & =\frac{2^{\frac{q}{2}}}{9-q}E^{\frac{7}{2}-q}(L^{2})^{-1-\frac{q}{2}}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & +2^{\frac{q}{2}}E^{\frac{5}{2}-q}(L^{2})^{-\frac{q}{2}}\left(\frac{7}{2}-q\right)._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\beta}\frac{\partial F_{q}}{\partial L}(E,L) & =-\frac{2^{1+\frac{q}{2}}}{L^{3}(9-q)}E^{\frac{9}{2}-q}(L^{2})^{-\frac{q}{2}}q^{2}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -2^{\frac{q}{2}}E^{\frac{7}{2}-q}L(L^{2})^{-1-\frac{q}{2}}q._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{\beta}\frac{\partial^{2}F_{q}}{\partial E^{2}}(E,L)=
+\]
 
 \end_inset
 
