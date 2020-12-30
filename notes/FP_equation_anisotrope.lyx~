@@ -5334,8 +5334,144 @@ For
 
 \begin_layout Standard
 \begin_inset Formula 
+\begin{align*}
+\frac{1}{\beta}\frac{\partial^{2}F_{q}}{\partial E^{2}}(E,L) & =\frac{2^{1+\frac{q}{2}}}{9-q}E^{\frac{5}{2}-q}(L^{2})^{-1-\frac{q}{2}}\left(\frac{7}{2}-q\right)q^{2}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & +\frac{2^{1+\frac{q}{2}}E^{\frac{7}{2}-q}(L^{2})^{-2-\frac{q}{2}}\left(1+\frac{q}{2}\right)^{2}q^{2}}{\left(1+\frac{9-q}{2}\right)\left(9-q\right)}._{2}F_{1}(2+\frac{q}{2},2+\frac{q}{2},2+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & +2^{q/2}E^{\frac{3}{2}-q}(L^{2})^{-\frac{q}{2}}\left(\frac{5}{2}-q\right)\left(\frac{7}{2}-q\right)._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\beta}\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =-\frac{2^{1+\frac{q}{2}}}{L^{3}(9-q)}E^{\frac{7}{2}-q}(L^{2})^{-\frac{q}{2}}\left(\frac{9}{2}-q\right)q^{2}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -\frac{2^{\frac{q}{2}}}{L(9-q)}E^{\frac{7}{2}-q}(L^{2})^{-1-\frac{q}{2}}q^{3}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -\frac{2^{2+\frac{q}{2}}E^{\frac{9}{2}-q}(L^{2})^{-\frac{q}{2}}\left(1+\frac{q}{2}\right)^{2}q^{2}}{L^{5}\left(1+\frac{9-q}{2}\right)\left(9-q\right)}._{2}F_{1}(2+\frac{q}{2},2+\frac{q}{2},2+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -2^{\frac{q}{2}}E^{\frac{5}{2}-q}L(L^{2})^{-1-\frac{q}{2}}\left(\frac{7}{2}-q\right)q._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\beta}\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{3\times2^{1+\frac{q}{2}}}{L^{4}(9-q)}E^{\frac{9}{2}-q}(L^{2})^{-\frac{q}{2}}q^{2}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & +\frac{2^{2+\frac{q}{2}}}{9-q}E^{\frac{9}{2}-q}(L^{2})^{-2-\frac{q}{2}}q^{3}._{2}F_{1}(1+\frac{q}{2},1+\frac{q}{2},1+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & +\frac{2^{3+\frac{q}{2}}E^{\frac{11}{2}-q}(L^{2})^{-\frac{q}{2}}\left(1+\frac{q}{2}\right)^{2}q^{2}}{L^{6}\left(1+\frac{9-q}{2}\right)\left(9-q\right)}._{2}F_{1}(2+\frac{q}{2},2+\frac{q}{2},2+\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -2^{\frac{q}{2}}E^{\frac{7}{2}-q}(L^{2})^{-1-\frac{q}{2}}q._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})\\
+ & -2^{1+\frac{q}{2}}E^{\frac{7}{2}-q}(L^{2})^{-1-\frac{q}{2}}\left(-1-\frac{q}{2}\right)q._{2}F_{1}(\frac{q}{2},\frac{q}{2},\frac{9-q}{2},\frac{2E}{L^{2}})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 
+\begin_inset Formula $q=0$
+\end_inset
+
+
+\begin_inset Formula 
 \[
-\frac{1}{\beta}\frac{\partial^{2}F_{q}}{\partial E^{2}}(E,L)=
+F_{0}(E)=\frac{3}{7\pi^{3}}(2E)^{7/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{0}}{\partial E}(E)=\frac{3}{\pi^{3}}(2E)^{5/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial^{2}F_{0}}{\partial E^{2}}(E)=\frac{15}{\pi^{3}}(2E)^{3/2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 
+\begin_inset Formula $q=2$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+F_{2}(E,L)=\begin{cases}
+\frac{6}{(2\pi)^{3}}(2E-L^{2})^{3/2} & L^{2}/(2E)\leq1\\
+0 & L^{2}/(2E)\geq0
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial E}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial L}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial^{2}F_{2}}{\partial E^{2}}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial L\partial E}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial E\partial L}(E,L)=\frac{-2L1/2}{(2\pi)^{3}}(2E-L^{2})^{1/2}
 \]
 
 \end_inset

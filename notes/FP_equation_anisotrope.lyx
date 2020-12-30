@@ -5374,5 +5374,110 @@ For
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 
+\begin_inset Formula $q=0$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+F_{0}(E)=\frac{3}{7\pi^{3}}(2E)^{7/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{0}}{\partial E}(E)=\frac{3}{\pi^{3}}(2E)^{5/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial^{2}F_{0}}{\partial E^{2}}(E)=\frac{15}{\pi^{3}}(2E)^{3/2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 
+\begin_inset Formula $q=2$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+F_{2}(E,L)=\begin{cases}
+\frac{6}{(2\pi)^{3}}(2E-L^{2})^{3/2} & L^{2}/(2E)\leq1\\
+0 & L^{2}/(2E)\geq0
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial E}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial L}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial^{2}F_{2}}{\partial E^{2}}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial E\partial L}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial F_{2}}{\partial L}(E,L)=-\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}+\frac{18L^{2}}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
