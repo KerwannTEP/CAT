@@ -148,7 +148,7 @@ function localVelChange!(r::Float64, vr::Float64, vt::Float64,
 
 end
 
-function localOrbitChange(r::Float64, E::Float64, L::Float64, 
+function localOrbitChange!(r::Float64, E::Float64, L::Float64, 
                           q::Float64, m_field::Float64, m_test::Float64=0.0,
                           PlummerTable::IntTable = PlummerTable_serial)
 

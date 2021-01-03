@@ -111,10 +111,17 @@ function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
     end
 end
 
-function averageDiffCoeffs(E::Float64, L::Float64, q::Float64, 
-                           m_field::Float64)
+function averageDiffCoeffs!(E::Float64, L::Float64, q::Float64, m_field::Float64,
+                           PlummerTable::IntTable = PlummerTable_serial)
 
     @assert (E>0.0 && L>0.0) "averageDiffCoeffs: E and L must be non-negative"
+
+    IntTable_init!(PlummerTable)
+
+    local halfperiod, rmin, rmax, rc, r1, r2, th1, th2, nbT1, nbT2, nbr,
+          dE, dE2, dL, dL2, dEdL
+    let halfperiod, rmin, rmax, rc, r1, r2, th1, th2, nbT1, nbT2, nbr,
+        dE, dE2, dL, dL2, dEdL
 
     halfperiod = 0.0
     rmin, rmax = radiusBounds(E,L)
@@ -135,30 +142,34 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
     for iTh=1:nbT1
         thp1 = (iTh-0.5)*dth1
         rp1 = _orbitRadius(thp1,E,L,true)  # min value (left of rc)
+
         halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))
 
-        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp1,E,L,q,m_field)
+        localOrbitChange!(rp1,E,L,q,m_field)
 
-        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dEloc 
-        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dE2loc 
-        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dLloc  
-        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dL2loc
-        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*dEdLloc
+        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE[] 
+        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE2[] 
+        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dL[]  
+        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dL2[]
+        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dEdL[]
     end
 
     for iTh=1:nbT2
         thp2 = (iTh-0.5)*dth2
         rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
-        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
-        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp2,E,L,q,m_field)
 
-        dE   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dEloc 
-        dE2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dE2loc 
-        dL   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dLloc  
-        dL2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dL2loc
-        dEdL += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*dEdLloc
+        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
+        
+        localOrbitChange!(rp2,E,L,q,m_field)
+
+        dE   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE[]  
+        dE2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE2[]  
+        dL   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dL[]  
+        dL2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dL2[] 
+        dEdL += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dEdL[] 
     end
     halfperiod *= sqrt(2)
+
     dE   *= sqrt(2)
     dE2  *= sqrt(2)
     dL   *= sqrt(2)
@@ -167,19 +178,28 @@ function averageDiffCoeffs(E::Float64, L::Float64, q::Float64,
 
     for iR=1:nbr
         rp = r1 + (iR-0.5)*dr
-        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
-        dEloc, dE2loc, dLloc, dL2loc, dEdLloc = localOrbitChange(rp,E,L,q,m_field)
 
-        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*dEloc
-        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*dE2loc
-        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*dLloc
-        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*dL2loc
-        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*dEdLloc
+        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
+
+        localOrbitChange!(rp,E,L,q,m_field)
+
+        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE[] 
+        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE2[] 
+        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dL[] 
+        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dL2[] 
+        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dEdL[] 
     end
     dE   /= halfperiod
     dE2  /= halfperiod
     dL   /= halfperiod
     dL2  /= halfperiod
     dEdL /= halfperiod
-    return dE, dE2, dL, dL2, dEdL
+
+    PlummerTable.dE[]   = dE
+    PlummerTable.dE2[]  = dE2
+    PlummerTable.dL[]   = dL
+    PlummerTable.dL2[]  = dL2
+    PlummerTable.dEdL[] = dEdL
+
+    end
 end
