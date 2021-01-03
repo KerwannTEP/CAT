@@ -1,4 +1,5 @@
 include("Constants.jl")
+include("IntTable.jl")
 include("Mean.jl")
 include("Bath.jl")
 include("LocalDeflection.jl")
