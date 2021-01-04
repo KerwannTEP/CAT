@@ -145,7 +145,7 @@ function averageDiffCoeffs!(E::Float64, L::Float64, q::Float64, m_field::Float64
 
         halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))
 
-        localOrbitChange!(rp1,E,L,q,m_field)
+        localOrbitChange!(rp1,E,L,q,m_field,PlummerTable)
 
         dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE[] 
         dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE2[] 
@@ -160,7 +160,7 @@ function averageDiffCoeffs!(E::Float64, L::Float64, q::Float64, m_field::Float64
 
         halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
         
-        localOrbitChange!(rp2,E,L,q,m_field)
+        localOrbitChange!(rp2,E,L,q,m_field,PlummerTable)
 
         dE   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE[]  
         dE2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE2[]  
@@ -181,7 +181,7 @@ function averageDiffCoeffs!(E::Float64, L::Float64, q::Float64, m_field::Float64
 
         halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
 
-        localOrbitChange!(rp,E,L,q,m_field)
+        localOrbitChange!(rp,E,L,q,m_field,PlummerTable)
 
         dE   += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE[] 
         dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE2[] 

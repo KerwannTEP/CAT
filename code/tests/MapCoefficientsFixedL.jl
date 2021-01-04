@@ -16,7 +16,7 @@ using HDF5
 include("../sources/julia/Main.jl") # Loading the main code
 ########################################
 
-EminMeasure, EmaxMeasure = 0.001, Ec(LMeasure)-0.00001
+EminMeasure, EmaxMeasure = 0.001, 0.02#Ec(LMeasure)-0.00005
 nbEMeasure = 200
 tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
 
@@ -30,8 +30,14 @@ function tabDNR!()
     if (PARALLEL == "yes") 
         Threads.@threads for iE=1:nbEMeasure 
             EMeasure = tabEMeasure[iE] 
+            PlummerTable_parallel = IntTable_create!()
             if (EMeasure <= Ec(LMeasure))
-                DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
+                averageDiffCoeffs!(EMeasure,LMeasure,q_aniso,m_field,PlummerTable_parallel)
+                DE = PlummerTable_parallel.dE[]
+                DEE = PlummerTable_parallel.dE2[]
+                DL = PlummerTable_parallel.dL[]
+                DLL = PlummerTable_parallel.dL2[]
+                DEL = PlummerTable_parallel.dEdL[]            
             else
                 DE, DEE, DL, DLL, DEL = 0.0, 0.0, 0.0, 0.0, 0.0
             end
@@ -46,7 +52,12 @@ function tabDNR!()
         for iE=1:nbEMeasure 
             EMeasure = tabEMeasure[iE] 
             if (EMeasure <= Ec(LMeasure))
-                DE, DEE, DL, DLL, DEL = averageDiffCoeffs(EMeasure,LMeasure,q_aniso,m_field)
+                averageDiffCoeffs!(EMeasure,LMeasure,q_aniso,m_field,PlummerTable_serial)
+                DE = PlummerTable_serial.dE[]
+                DEE = PlummerTable_serial.dE2[]
+                DL = PlummerTable_serial.dL[]
+                DLL = PlummerTable_serial.dL2[]
+                DEL = PlummerTable_serial.dEdL[]
             else
                 DE, DEE, DL, DLL, DEL = 0.0, 0.0, 0.0, 0.0, 0.0
             end

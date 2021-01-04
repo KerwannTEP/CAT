@@ -21,18 +21,18 @@ function IntTable_create!()
 end
 
 function IntTable_init!(Table::IntTable)
-    Table.dhdvr = 0.0
-    Table.dhdvt = 0.0
-    Table.dgdvt	= 0.0
-    Table.d2gdvr2 = 0.0
-    Table.d2gdvrdvt = 0.0
-    Table.d2gdvt2 = 0.0
-    Table.dvPar = 0.0
-    Table.dvPar2 = 0.0
-    Table.dvTan2 = 0.0
-    Table.dE = 0.0
-    Table.dE2 = 0.0
-    Table.dL = 0.0
-    Table.dL2 = 0.0
-    Table.dEdL = 0.0
+    Table.dhdvr[] = 0.0
+    Table.dhdvt[] = 0.0
+    Table.dgdvt[]	= 0.0
+    Table.d2gdvr2[] = 0.0
+    Table.d2gdvrdvt[] = 0.0
+    Table.d2gdvt2[] = 0.0
+    Table.dvPar[] = 0.0
+    Table.dvPar2[] = 0.0
+    Table.dvTan2[] = 0.0
+    Table.dE[] = 0.0
+    Table.dE2[] = 0.0
+    Table.dL[] = 0.0
+    Table.dL2[] = 0.0
+    Table.dEdL[] = 0.0
 end

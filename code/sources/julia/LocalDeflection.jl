@@ -3,15 +3,13 @@
 ##################################################
 
 using StaticArrays # To have access to static arrays
-using Cuba
-
 using HCubature
 
 ##################################################
 # Actual Computation
 ##################################################
 
-@time PlummerTable_serial = IntTable_create!()
+PlummerTable_serial = IntTable_create!()
 
 function _vmax(r::Float64, vr::Float64, vt::Float64)
     return vt + vr + sqrt(2.0*(vr*vt + psi(r)))
@@ -104,23 +102,23 @@ function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
     int_gtt = (x->x[1]^3*sin(pi*x[2])  *d2fadvt2(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
 
 
-    PlummerTable.dhdvr[]     = 2*pi^2*vmax^2*HCubature.hcubature(int_hr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.dhdvt[]     = 2*pi^2*vmax^2*HCubature.hcubature(int_ht,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.dgdvt[]     = 2*pi^2*vmax^4*HCubature.hcubature(int_gt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvr2[]   = 2*pi^2*vmax^4*HCubature.hcubature(int_grr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvrdvt[] = 2*pi^2*vmax^4*HCubature.hcubature(int_grt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvt2[]   = 2*pi^2*vmax^4*HCubature.hcubature(int_gtt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvr[]     = 2*pi^2*vmax^2*hcubature(int_hr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvt[]     = 2*pi^2*vmax^2*hcubature(int_ht,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.dgdvt[]     = 2*pi^2*vmax^4*hcubature(int_gt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvr2[]   = 2*pi^2*vmax^4*hcubature(int_grr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvrdvt[] = 2*pi^2*vmax^4*hcubature(int_grt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvt2[]   = 2*pi^2*vmax^4*hcubature(int_gtt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
 
     end
 
 end
 
 function localVelChange!(r::Float64, vr::Float64, vt::Float64,
-                        q::Float64, m_field::Float64, m_test::Float64=0.0,
-                        PlummerTable::IntTable = PlummerTable_serial)
+                        q::Float64, m_field::Float64, PlummerTable::IntTable = PlummerTable_serial,
+                        m_test::Float64=0.0)
 
 
-    RosenbluthPotentials!(r,vr,vt,q)    
+    RosenbluthPotentials!(r,vr,vt,q,PlummerTable)    
 
     local v, cst, dvPar, dvPar2, dvTan2, dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2
     let v, cst, dvPar, dvPar2, dvTan2, dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2
@@ -148,18 +146,19 @@ function localVelChange!(r::Float64, vr::Float64, vt::Float64,
 
 end
 
-function localOrbitChange!(r::Float64, E::Float64, L::Float64, 
-                          q::Float64, m_field::Float64, m_test::Float64=0.0,
-                          PlummerTable::IntTable = PlummerTable_serial)
+function localOrbitChange!(r::Float64, E::Float64, L::Float64,
+                           q::Float64, m_field::Float64, PlummerTable::IntTable = PlummerTable_serial,
+                           m_test::Float64=0.0)
 
-    local vr, vt, v, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
-    let vr, vt, v, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
+    local v, vr, vt, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
+    let v, vr, vt, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
 
     vr = radialVelocity(E,L,r)
     vt = tangentVelocity(E,L,r)
     v = sqrt(vr^2+vt^2)
+
     
-    localVelChange!(r,vr,vt,q,m_field,m_test)
+    localVelChange!(r,vr,vt,q,m_field,PlummerTable,m_test)
 
     dvPar  = PlummerTable.dvPar[]
     dvPar2 = PlummerTable.dvPar2[]
