@@ -2924,7 +2924,7 @@ in order not to be too far away from
 , and apply the recursion
 \begin_inset Formula 
 \[
-r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n};L)}{\psi''_{{\rm eff}}(r_{n};L)},
+r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
 \]
 
 \end_inset
@@ -2984,6 +2984,129 @@ Then
 \begin_inset Formula 
 \[
 \delta E_{{\rm c}}(L)\simeq|\psi_{{\rm eff}}(r_{*}^{L};L)-\psi_{{\rm eff}}(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psi_{{\rm eff}}^{(2)}(r_{*}^{L})}_{<0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psi_{{\rm eff}}^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Computing the angular momentum of a circular orbit given 
+\begin_inset Formula $E$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We use the same technique as before.
+ For any 
+\begin_inset Formula $r$
+\end_inset
+
+, 
+\begin_inset Formula $E$
+\end_inset
+
+, 
+\begin_inset Formula $L$
+\end_inset
+
+ possible,
+\begin_inset Formula 
+\[
+L^{2}\leq2r^{2}(\psi(r)-E)\doteqdot z(r;E)
+\]
+
+\end_inset
+
+with equality for the radii 
+\begin_inset Formula $r$
+\end_inset
+
+ such that 
+\begin_inset Formula $v_{r}(r)=0$
+\end_inset
+
+, that is, the bounds of motion.
+ 
+\begin_inset Formula $z(r;E)$
+\end_inset
+
+ has two solutions, as shown in the previous analysis, and one global maximum
+ on 
+\begin_inset Formula $r>0$
+\end_inset
+
+.
+ For a given 
+\begin_inset Formula $E$
+\end_inset
+
+, the maximum 
+\begin_inset Formula $L_{{\rm c}}(E)$
+\end_inset
+
+ that a test star can have is such that only one 
+\begin_inset Formula $r_{*}^{E}$
+\end_inset
+
+ satisties 
+\begin_inset Formula $L_{{\rm c}}^{2}(E)\leq z(r_{*}^{E};E)$
+\end_inset
+
+, that is, 
+\begin_inset Formula 
+\[
+L_{{\rm c}}^{2}(E)=z(r_{*}^{E};E)=\max_{r>0}z(r;E).
+\]
+
+\end_inset
+
+This is therefore the angular momentum of the circular orbit corresponding
+ to the binding energy 
+\begin_inset Formula $E$
+\end_inset
+
+.
+ Given the behavior of 
+\begin_inset Formula $z(r;E)$
+\end_inset
+
+ (see appendix), we can use the similar Newton's method to find 
+\begin_inset Formula $r_{*}^{E}$
+\end_inset
+
+ starting from 
+\begin_inset Formula $r_{0}^{E}=\sqrt{E^{-2}-1}$
+\end_inset
+
+, applying the recursion
+\begin_inset Formula 
+\[
+r_{n+1}^{E}=r_{n}^{E}-\frac{z'(r_{n}^{E};E)}{z''(r_{n}^{E};E)},
+\]
+
+\end_inset
+
+and stopping at the lowest 
+\begin_inset Formula $N$
+\end_inset
+
+ such that 
+\begin_inset Formula $z'(r_{N}^{E}-\epsilon;E)>0$
+\end_inset
+
+ for some precision 
+\begin_inset Formula $\epsilon>0$
+\end_inset
+
+.
+ Then, 
+\begin_inset Formula 
+\[
+L_{{\rm c}}(E)\simeq\sqrt{z(r_{N}^{E}-\frac{\epsilon}{2};E)}
 \]
 
 \end_inset
@@ -5669,12 +5792,153 @@ Circular orbits:
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial^{2}g}{\partial v_{t}^{2}} & =\int d^{3}v_{a}f(v_{a})\frac{\partial}{\partial v_{t}}\frac{v_{t}}{\left[(v_{r}-v_{ar})^{2}+(v_{t}-v_{at})^{2}\right]^{1/2}}\\
- & =\int d^{3}v_{a}f(v_{a})\frac{\left[v_{ar}^{2}+(v_{t}-v_{at})^{2}\right]-v_{t}^{2}}{\left[(v_{r}-v_{ar})^{2}+(v_{t}-v_{at})^{2}\right]^{3/2}}
+ & =\int d^{3}v_{a}f(v_{a})\frac{\left[v_{ar}^{2}+(v_{t}-v_{at})^{2}\right]-v_{t}^{2}}{\left[v_{ar}{}^{2}+(v_{t}-v_{at})^{2}\right]^{3/2}}
 \end{align*}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+L_circ(E)
+\end_layout
+
+\begin_layout Standard
+We have , for any particle with binding energy 
+\begin_inset Formula $E$
+\end_inset
+
+ and angular momentum 
+\begin_inset Formula $L$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+E=\psi(r)-\frac{L^{2}}{2r^{2}}-\frac{\dot{r}^{2}}{2}
+\]
+
+\end_inset
+
+hence 
+\begin_inset Formula 
+\[
+\frac{L^{2}}{2r^{2}}=\psi(r)-E-\frac{\dot{r}^{2}}{2}\leq\psi(r)-E
+\]
+
+\end_inset
+
+Hence for any 
+\begin_inset Formula $r$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+L^{2}\leq2r^{2}(\psi(r)-E)=z(r)
+\]
+
+\end_inset
+
+Same study as for 
+\begin_inset Formula $E_{{\rm c}}(L)$
+\end_inset
+
+.
+ On the bounds of the orbit, 
+\begin_inset Formula $\dot{r}=0$
+\end_inset
+
+ and : 
+\begin_inset Formula 
+\[
+L^{2}=2r^{2}(\psi(r)-E)=z(r;E)
+\]
+
+\end_inset
+
+Two solution as already shown.
+ One global maximum 
+\begin_inset Formula $R_{E}>0$
+\end_inset
+
+.
+ For an orbit with 
+\begin_inset Formula $L_{{\rm c}}(E)=\sqrt{\max_{r\geq0}z(r;E)}$
+\end_inset
+
+, it is confined at 
+\begin_inset Formula $R_{E}$
+\end_inset
+
+ where 
+\begin_inset Formula $v_{r}(R)=0$
+\end_inset
+
+, hence is circular and higher 
+\begin_inset Formula $L>L_{{\rm c}}(E)$
+\end_inset
+
+ are forbidden for that particular energy 
+\begin_inset Formula $E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finding the maximum of 
+\begin_inset Formula $z(r;E)$
+\end_inset
+
+ is the same as solving 
+\begin_inset Formula 
+\[
+z'(r;E)=4r(\psi(r)-E)+2r^{2}\psi'(r)=0
+\]
+
+\end_inset
+
+We have 
+\begin_inset Formula 
+\[
+z'(r;E)=4r\left(\frac{1}{\sqrt{1+r^{2}}}-E\right)-\frac{2r^{3}}{(1+r^{2})^{3/2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $\frac{1}{\sqrt{1+r_{E}^{2}}}=E\leftrightarrow r_{E}=\sqrt{E^{-2}-1}$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\[
+z'(r_{E};E)=-\frac{2r_{E}^{3}}{(1+r_{E}^{2})^{3/2}}\in]-2,0[
+\]
+
+\end_inset
+
+By convexity, use Newton's method starting from 
+\begin_inset Formula $r_{0}^{E}=r_{E}$
+\end_inset
+
+.
+ It gives a decreasing sequence.
+ Therefore a good stopping condition is to get the lowest 
+\begin_inset Formula $N$
+\end_inset
+
+ such that 
+\begin_inset Formula $z'(r_{N}^{E}+\epsilon)>0$
+\end_inset
+
+.
 \end_layout
 
 \end_body

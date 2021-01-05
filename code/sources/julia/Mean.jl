@@ -51,14 +51,47 @@ function Ec(L::Float64)
 end
 
 ##################################################
+# Compute Lc(E) the angular momentum per unit mass of a circular orbit
+##################################################
+# Issue
+
+function _z(r::Float64, E::Float64)
+    return 2*r^2*(psi(r)-E)
+end
+
+function _dzdr(r::Float64, E::Float64)
+    return 4*r*(psi(r)-E) + 2*r^2*dpsidr(r)
+end
+
+function _d2zdr2(r::Float64, E::Float64)
+    return 4*(psi(r)-E) + 8*r*dpsidr(r) + 2*r^2*d2psidr2(r)
+end
+
+function maximizerZ(E::Float64, eps::Float64=4.0*eps(Float64))
+    r = sqrt(E^(-2)-1)
+    while(_dzdr(r-eps,E) < 0)
+        r = r - _dzdr(r,E)/_d2zdr2(r,E)
+    end
+    return r-eps/2
+end
+
+function Lc(E::Float64)
+    if (E == 1.0)
+        return 0.0
+    else
+        return sqrt(_z(maximizerZ(E),E))
+    end
+end
+
+##################################################
 # Convert (vr,vt) to (E,L) at a given radius r
 ##################################################
 
-function bindingEnergy(vr::Float64, vt::Float64, r::Float64)
+function bindingEnergy(r::Float64, vr::Float64, vt::Float64)
     return psi(r) - vr^2/(2.0) - vt^2/(2.0)
 end
 
-function angularMomentum(vr::Float64, vt::Float64, r::Float64)
+function angularMomentum(r::Float64, vr::Float64, vt::Float64)
     return r*vt
 end
 
@@ -67,11 +100,11 @@ end
 # Convention vr >= 0
 ##################################################
 
-function radialVelocity(E::Float64, L::Float64, r::Float64)
+function radialVelocity(r::Float64,E::Float64, L::Float64)
     return sqrt(2*abs((psiEff(r,L) - E)))
 end
 
-function tangentVelocity(E::Float64, L::Float64, r::Float64)
+function tangentVelocity(r::Float64,E::Float64, L::Float64)
     return L/r
 end
 

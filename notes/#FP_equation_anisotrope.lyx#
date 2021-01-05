@@ -3120,14 +3120,6 @@ z'(r;E)=4r(\psi(r)-E)+2r^{2}\psi'(r)
 \end_inset
 
 
-\begin_inset Formula 
-\[
-z''(r;E)=4(\psi(r)-E)+8r\psi'(r)+2r^{2}\psi''(r)
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection

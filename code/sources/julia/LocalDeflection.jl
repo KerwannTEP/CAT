@@ -153,8 +153,8 @@ function localOrbitChange!(r::Float64, E::Float64, L::Float64,
     local v, vr, vt, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
     let v, vr, vt, dvPar, dvPar2, dvTan2, dE, dE2, dL, dL2, dEdL
 
-    vr = radialVelocity(E,L,r)
-    vt = tangentVelocity(E,L,r)
+    vr = radialVelocity(r,E,L)
+    vt = tangentVelocity(r,E,L)
     v = sqrt(vr^2+vt^2)
 
     
