@@ -16,9 +16,10 @@ using HDF5
 include("../sources/julia/Main.jl") # Loading the main code
 ########################################
 
-EminMeasure, EmaxMeasure = 0.001, 0.02#Ec(LMeasure)-0.00005
+EminMeasure, EmaxMeasure = 0.001, Ec(LMeasure)-0.0001
 nbEMeasure = 200
-tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
+#tabEMeasure = exp.(range(log(EminMeasure),length=nbEMeasure,log(EmaxMeasure)))
+tabEMeasure = collect(range(EminMeasure,length=nbEMeasure,EmaxMeasure))
 
 const tabDNRE  = zeros(Float64,nbEMeasure) # Values of the DRR_E  coefficients on the (a,j)-grid
 const tabDNREE = zeros(Float64,nbEMeasure) # Values of the DRR_EE coefficients on the (a,j)-grid
