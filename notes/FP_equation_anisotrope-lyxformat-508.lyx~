@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,8 +21,6 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
-\use_microtype false
-\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -52,7 +50,6 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
-\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -65,10 +62,7 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\is_math_indent 0
-\math_numbering_side default
-\quotes_style english
-\dynamic_quotes 0
+\quotes_language english
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -1660,55 +1654,11 @@ We can obviously compute the
  integrals
 \begin_inset Formula 
 \[
-K_{0}=\int_{0}^{E}{\rm d}E_{a}F_{0}(E_{a})=\frac{3}{7\pi^{3}}2{}^{7/2}\left[\frac{E_{a}{}^{9/2}}{9/2}\right]_{0}^{E}=\frac{1}{21\pi^{3}}(2E){}^{9/2}
+\int_{0}^{E}{\rm d}E_{a}F_{0}(E_{a})=\frac{3}{7\pi^{3}}2{}^{7/2}\left[\frac{E_{a}{}^{9/2}}{9/2}\right]_{0}^{E}=\frac{1}{21\pi^{3}}(2E){}^{9/2}
 \]
 
 \end_inset
 
-We only have to compute
-\begin_inset Formula 
-\[
-K_{1}=\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}F_{0}(E_{a})
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-K_{3}=\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}^{3}F_{0}(E_{a})
-\]
-
-\end_inset
-
-Then
-\begin_inset Formula 
-\[
-\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=-\frac{16\pi^{2}G^{2}m_{a}(m+m_{a})\ln\Lambda}{v^{2}}K_{1}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[K_{0}+\frac{1}{v^{3}}K_{3}\right]
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[2K_{0}+\frac{3}{v}K_{1}-\frac{1}{v^{3}}K_{3}\right]
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 In the appendix, we recompute the formulae of the isotropic case from the
  arbitrary anisotropic case, with 
 \begin_inset Formula $v^{2}=v_{r}^{2}+v_{t}^{2}$

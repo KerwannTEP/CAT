@@ -4,3 +4,7 @@ include("Mean.jl")
 include("Bath.jl")
 include("LocalDeflection.jl")
 include("OrbitAverage.jl")
+
+# Previous isotropic case
+
+include("Isotropic.jl")
