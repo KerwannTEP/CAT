@@ -12,7 +12,7 @@ function bindingEnergyIso(r::Float64, v::Float64)
 end
 
 function DF_Iso(E::Float64)
-    return DistFunction(E,0.1,0) # L=0.1 is hard-coded to get the correct if-condition
+    return DistFunction(E,0.1,0.0) # L=0.1 is hard-coded to get the correct if-condition
 end
 
 function localVelChangeIso!(r::Float64, v::Float64, m_field::Float64, 
@@ -23,18 +23,18 @@ function localVelChangeIso!(r::Float64, v::Float64, m_field::Float64,
     let E, cst, dvPar, dvPar2, dvTan2, int1, int3, K0, K1, K3
 
     E = bindingEnergyIso(r,v)
-    cst       = 16*pi^2*G^2*logCoulomb*m_field
+    cst = 16*pi^2*G^2*logCoulomb*m_field
 
-    int1 = (Ea->velocityNorm(r,Ea)*DF_Iso(Ea))
-    int3 = (Ea->velocityNorm(r,Ea)^3*DF_Iso(Ea))
+    int1 = (Ea->velocityNorm(r,Ea[1])*DF_Iso(Ea[1]))
+    int3 = (Ea->velocityNorm(r,Ea[1])^3*DF_Iso(Ea[1]))
 
     K0 = (2*E)^(9/2)/(21*pi^3)
-    K1 = HCubature(int1,[E],[psi(r)],maxevals=MAXEVAL)[1]
-    K3 = HCubature(int3,[E],[psi(r)],maxevals=MAXEVAL)[1]
+    K1 = hcubature(int1,[E],[psi(r)],maxevals=MAXEVAL)[1]
+    K3 = hcubature(int3,[E],[psi(r)],maxevals=MAXEVAL)[1]
 
     dvPar = -cst*(m_field+m_test)*K1
-    dvPar2 = (2/3)*m_field*(K0+K3/v^3)
-    dvTan2 = (2/3)*m_field*(2*K0+K1/v-K3/v^3)
+    dvPar2 = (2/3)*cst*m_field*(K0+K3/v^3)
+    dvTan2 = (2/3)*cst*m_field*(2*K0+K1/v-K3/v^3)
 
     PlummerTable.dvPar[] = dvPar
     PlummerTable.dvPar2[] = dvPar2
