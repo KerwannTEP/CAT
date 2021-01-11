@@ -827,7 +827,11 @@ and a tedious by straightforward computation see appendix) yields
 
 \end_inset
 
+(should have minus sign? 
+\begin_inset Formula $\langle\Delta v_{||}\rangle=-4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda(\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}})$
+\end_inset
 
+?)
 \begin_inset Formula 
 \[
 \langle(\Delta v_{||})^{2}\rangle=4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}\right)
@@ -1780,6 +1784,14 @@ Now, switch to
 \begin_inset Formula 
 \[
 \langle\Delta E\Delta L\rangle(r,E,L)=-L\langle(\Delta v_{||})^{2}\rangle
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+r^{2}-\frac{L^{2}}{v^{2}}=\frac{r^{2}}{v^{2}}\left(v^{2}-\frac{L^{2}}{r^{2}}\right)=\frac{r^{2}}{v^{2}}\left(v^{2}-v_{t}^{2}\right)=\frac{r^{2}v_{r}^{2}}{v^{2}}
 \]
 
 \end_inset

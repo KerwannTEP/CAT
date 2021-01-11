@@ -32,9 +32,9 @@ function localVelChangeIso!(r::Float64, v::Float64, m_field::Float64,
     K1 = hcubature(int1,[E],[psi(r)],maxevals=MAXEVAL)[1]
     K3 = hcubature(int3,[E],[psi(r)],maxevals=MAXEVAL)[1]
 
-    dvPar = -cst*(m_field+m_test)*K1
+    dvPar = -cst*(m_field+m_test)/v^2*K1
     dvPar2 = (2/3)*cst*m_field*(K0+K3/v^3)
-    dvTan2 = (2/3)*cst*m_field*(2*K0+K1/v-K3/v^3)
+    dvTan2 = (2/3)*cst*m_field*(2*K0+3*K1/v-K3/v^3)
 
     PlummerTable.dvPar[] = dvPar
     PlummerTable.dvPar2[] = dvPar2

@@ -132,7 +132,7 @@ function localVelChange!(r::Float64, vr::Float64, vt::Float64,
     d2gdvrdvt = PlummerTable.d2gdvrdvt[]
     d2gdvt2   = PlummerTable.d2gdvt2[]
 
-    dvPar  = cst*(m_field+m_test) *((vr/v)*dhdvr+(vt/v)*dhdvt)
+    dvPar  = -cst*(m_field+m_test) *((vr/v)*dhdvr+(vt/v)*dhdvt)
     dvPar2 = cst* m_field         *((vr/v)^2*d2gdvr2+(2*vr*vt/v^2)*d2gdvrdvt
                                     +(vt/v)^2*d2gdvt2)
     dvTan2 = cst* m_field         *((vt/v)^2*d2gdvr2-(2*vr*vt/v^2)*d2gdvrdvt
