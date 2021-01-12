@@ -8,3 +8,7 @@ include("OrbitAverage.jl")
 # Previous isotropic case
 
 include("Isotropic.jl")
+
+# Test functions
+
+include("TestGradient.jl")
