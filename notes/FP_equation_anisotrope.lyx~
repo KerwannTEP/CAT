@@ -6135,7 +6135,7 @@ et, pour
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
- & +x\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
 \end{align*}
 
 \end_inset

@@ -40,12 +40,13 @@ function _La(r::Float64, vr::Float64, vt::Float64,
     return r*sqrt(vt^2+vp^2*sin(th)^2-2*vt*vp*sin(th)*cos(phi))
 end
 
+# Recompute the dFdE, etc properly
 function dfadvr(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
                 th::Float64, phi::Float64, q::Float64)
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return (-vr+vp*cos(th))*dDFdE(Ea,La,q)
+    return (-vr+vp*cos(th))*dFdE(Ea,La,q)
 end
 
 function dfadvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 

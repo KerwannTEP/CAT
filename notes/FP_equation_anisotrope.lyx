@@ -6165,5 +6165,62 @@ pour
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathbb{H}(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}._{2}F_{1}(a+b,1+a-c,a+d;x) & x\leq1\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x}) & x\geq1
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+x<1
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
+\end{align*}
+
+\end_inset
+
+x>1
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

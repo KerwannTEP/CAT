@@ -31,7 +31,46 @@ function DistFunction(E::Float64, L::Float64, q::Float64=0.0)
             else # Case q<2    
                 @assert q < 2.0 "DistFunction: q > 2" # check that q <= 2
                 return 3.0*gamma(6.0-q)/(2.0*(2.0*pi)* (5/2)*gamma(q/2.0)) *
-                       E^(7/2-q) * _H(0.0,q/2.0,9.2-q,1.0,L^2/(2.0*E))
+                       E^(7/2-q) * _H(0.0,q/2.0,9/2-q,1.0,L^2/(2.0*E))
+            end
+        end
+    end
+end
+
+##################################################
+# Derivatives in (E,L)
+##################################################
+
+function dHdx(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
+    if (x<=1)
+        return gamma(a+b)*x^(a-1)/(gamma(c-a)*gamma(a+d)) *
+               ( a*_₂F₁(a+b,1+a-c,a+d,x)
+               + ((a+b)*(1+a-c))/(a+d) *x*_₂F₁(a+b+1,a-c+2,a+d+1,x))
+    else
+        return gamma(a+b)*x^(-b-1)/(gamma(d-b)*gamma(b+c)) *
+               ( (-b)*_₂F₁(a+b,1+b-d,b+c,1/x)
+               - ((a+b)*(1+b-d))/(b+c) *(1/x)*_₂F₁(a+b+1,b-d+2,b+c+1,1/x))
+    end
+end
+
+function dFdE(E::Float64, L::Float64, q::Float64)
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
+    else
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 3/(pi^3) * (2*E)^(5/2)
+        else
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return 18/(2*pi)^3 * (2*E-L^2)^(1/2)
+                else
+                    return 0.0
+                end
+            else
+                return 3*gamma(6-q)*E^(3/2-q)/(2*(2*pi)^(5/2)*gamma(q/2))*
+                       (E*(7/2-q)*_H(0.0,q/2,9/2-q,1.0,x)
+                       - (L^2)/2 * dHdx(0.0,q/2,9/2-q,1.0,x))
             end
         end
     end
