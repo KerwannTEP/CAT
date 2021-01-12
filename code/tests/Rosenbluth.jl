@@ -1,6 +1,6 @@
 using HCubature
 
-r = 1.0
+r = 0.6
 E = 0.1
 L = 0.1
 
@@ -28,6 +28,10 @@ function bindEnergy(r::Float64, vr::Float64, vt::Float64)
     return psi(r) - (vr^2)/2 - (vt^2)/2
 end
 
+function bindEnergyIso(r::Float64, v::Float64)
+    return psi(r) - (v^2)/2
+end
+
 function angMoment(r::Float64, vr::Float64, vt::Float64)
     return r*vt
 end
@@ -51,10 +55,10 @@ function DF(E::Float64)
 end
 
 function _hIso(r::Float64, v::Float64)
+    Eb = bindEnergyIso(r,v)
     int1 = (Ea->normVelIso(r,Ea[1])*DF(Ea[1]))
-    int2 = (Ea->DF(Ea[1]))
-    I1 = (1/v) * hcubature(int1,[E],[psi(r)],maxevals=MAXEVALS)[1]
-    I2 = hcubature(int2,[0],[E],maxevals=MAXEVALS)[1]
+    I1 = (1/v) * hcubature(int1,[Eb],[psi(r)],maxevals=MAXEVALS)[1]
+    I2 = (1/(21*pi^3)) * (2*Eb)^(9/2)
     return 4*pi*(I1+I2)
 end
 
