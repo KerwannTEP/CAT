@@ -62,7 +62,7 @@ function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))*d2DFdE2(Ea,La,q)
+    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))*d2FdE2(Ea,La,q)
 end
 
 function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -71,7 +71,7 @@ function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
     return (-vr+vp*cos(th))*(-vt+vp*sin(th)*cos(phi))
-           *(d2DFdE2(Ea,La,q) - r/La *d2DFdEdL(Ea,La,q))
+           *(d2FdE2(Ea,La,q) - r/La *d2FdEdL(Ea,La,q))
 end
 
 function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -80,7 +80,7 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
     return -dFdE(Ea,La,q) + r/La *-dFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
-           *(d2DFdE2(Ea,La,q) - 2*r/La *d2DFdEdL(Ea,La,q)
+           *(d2FdE2(Ea,La,q) - 2*r/La *d2FdEdL(Ea,La,q)
              -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
 end
 
@@ -95,20 +95,20 @@ function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
     local int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
     let int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
 
-    int_hr = (x->x[1]  *sin(pi*x[2]) *dfadvr(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
-    int_ht = (x-> x[1]  *sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
-    int_gt = (x-> x[1]^3*sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
-    int_grr = (x->x[1]^3*sin(pi*x[2])  *d2fadvr2(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
-    int_grt = (x->x[1]^3*sin(pi*x[2])*d2fadvrdvt(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
-    int_gtt = (x->x[1]^3*sin(pi*x[2])  *d2fadvt2(r,vr,vt,vmax*x[1],pi*x[2],2*pi*x[3],q))
+    int_hr = (x->x[1]  *sin(x[2]) *dfadvr(r,vr,vt,x[1],x[2],x[3],q))
+    int_ht = (x-> x[1]  *sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
+    int_gt = (x-> x[1]^3*sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
+    int_grr = (x->x[1]^3*sin(x[2])  *d2fadvr2(r,vr,vt,x[1],x[2],x[3],q))
+    int_grt = (x->x[1]^3*sin(x[2])*d2fadvrdvt(r,vr,vt,x[1],x[2],x[3],q))
+    int_gtt = (x->x[1]^3*sin(x[2])  *d2fadvt2(r,vr,vt,x[1],x[2],x[3],q))
 
 
-    PlummerTable.dhdvr[]     = 2*pi^2*vmax^2*hcubature(int_hr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.dhdvt[]     = 2*pi^2*vmax^2*hcubature(int_ht,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.dgdvt[]     = 2*pi^2*vmax^4*hcubature(int_gt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvr2[]   = 2*pi^2*vmax^4*hcubature(int_grr,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvrdvt[] = 2*pi^2*vmax^4*hcubature(int_grt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvt2[]   = 2*pi^2*vmax^4*hcubature(int_gtt,[0,0,0],[1,1,1],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvr[]     = hcubature(int_hr,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvt[]     = hcubature(int_ht,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.dgdvt[]     = hcubature(int_gt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvr2[]   = hcubature(int_grr,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvrdvt[] = hcubature(int_grt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvt2[]   = hcubature(int_gtt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
 
     end
 

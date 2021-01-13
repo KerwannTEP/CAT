@@ -5707,7 +5707,7 @@ F_{2}(E,L)=\begin{cases}
 
 \begin_inset Formula 
 \[
-\frac{\partial F_{2}}{\partial L}(E,L)=-\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}+\frac{18L^{2}}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\frac{\partial^{2}F_{2}}{\partial L^{2}}(E,L)=-\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}+\frac{18L^{2}}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
 \]
 
 \end_inset
@@ -6442,6 +6442,93 @@ x>1
 \frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[b(b+1)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
  & +\frac{(2b+2)(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
  & +\frac{(a+b)(1+b-d)}{b+c}\frac{(a+b+1)(b-d+2)}{b+c+1}x^{-2}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}\left(\frac{5}{2}-q\right)E^{3/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & +\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\left(-\frac{L^{2}}{2E^{2}}\right)\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =\frac{3\Gamma(6-q)LE^{1/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{5}{2}-q\right)E\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & -\frac{L^{2}}{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial F_{q}}{\partial L}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & +\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{3/2-q}L^{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+L^{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
 \end{align*}
 
 \end_inset
