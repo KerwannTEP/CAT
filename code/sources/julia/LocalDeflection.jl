@@ -57,12 +57,13 @@ function dfadvt(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     return (-vt+vp*sin(th)*cos(phi))*(dFdE(Ea,La,q)-r/La *dFdL(Ea,La,q))
 end
 
+
 function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
                   th::Float64, phi::Float64, q::Float64)
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))*d2FdE2(Ea,La,q)
+    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))^2*d2FdE2(Ea,La,q)
 end
 
 function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -70,8 +71,8 @@ function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return (-vr+vp*cos(th))*(-vt+vp*sin(th)*cos(phi))
-           *(d2FdE2(Ea,La,q) - r/La *d2FdEdL(Ea,La,q))
+    return ((-vr+vp*cos(th))*(-vt+vp*sin(th)*cos(phi))
+           *(d2FdE2(Ea,La,q) - r/La *d2FdEdL(Ea,La,q)))
 end
 
 function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -79,14 +80,14 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return -dFdE(Ea,La,q) + r/La *-dFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
+    return (-dFdE(Ea,La,q) + r/La *dFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
            *(d2FdE2(Ea,La,q) - 2*r/La *d2FdEdL(Ea,La,q)
-             -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
+             -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2FdL2(Ea,La,q)))
 end
 
 MAXEVAL = 5000
 
-
+# problem somewhere (fine tune?)
 function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
                                PlummerTable::IntTable = PlummerTable_serial)
     #X = (v',x,phi) 
@@ -114,6 +115,7 @@ function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
 
 end
 
+
 function localVelChange!(r::Float64, vr::Float64, vt::Float64,
                         q::Float64, m_field::Float64, PlummerTable::IntTable = PlummerTable_serial,
                         m_test::Float64=0.0)
@@ -133,7 +135,7 @@ function localVelChange!(r::Float64, vr::Float64, vt::Float64,
     d2gdvrdvt = PlummerTable.d2gdvrdvt[]
     d2gdvt2   = PlummerTable.d2gdvt2[]
 
-    dvPar  = -cst*(m_field+m_test) *((vr/v)*dhdvr+(vt/v)*dhdvt)
+    dvPar  = cst*(m_field+m_test) *((vr/v)*dhdvr+(vt/v)*dhdvt)
     dvPar2 = cst* m_field         *((vr/v)^2*d2gdvr2+(2*vr*vt/v^2)*d2gdvrdvt
                                     +(vt/v)^2*d2gdvt2)
     dvTan2 = cst* m_field         *((vt/v)^2*d2gdvr2-(2*vr*vt/v^2)*d2gdvrdvt

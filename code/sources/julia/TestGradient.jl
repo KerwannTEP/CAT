@@ -1,47 +1,6 @@
 using SpecialFunctions
 using HypergeometricFunctions
 
-function DF_prefactor_alpha(q::Float64)
-    num = 3*gamma(6-q)
-    den = 2*(2*pi)^(5/2) * gamma(9/2-q)
-    return num/den
-end
-
-function DF_prefactor_beta(q::Float64)
-    num = 3*gamma(6-q)
-    den = *(2*pi)^(5/2) * gamma(1.0-q/2) * gamma(9/2-q/2)
-    return num/den
-end
-
-function dDFdE(E::Float64, L::Float64, q::Float64)
-    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
-        return 0.0
-    else
-        x = L^2/(2*E)
-        if (q == 0.0) # Isotropic case
-            return 3/(pi^3) * (2*E)^(5/2)
-        else
-            if (q == 2.0)
-                if (x <= 1.0)
-                    return 18/(2*pi)^3 * (2*E-L^2)^(1/2)
-                else
-                    return 0.0
-                end
-            else
-                if (x <= 1.0)
-                    diff = 1/4 *E^(3/2-q)*(7/2-q)*q*_₂F₁(1+q/2,q-5/2,2,x)
-                         + E^(5/2-q)*(7/2-q)*_₂F₁(q/2,q-7/2,1,x)
-                    return DF_prefactor_alpha(q) * diff
-                else
-                    diff = (2^(q/2))/(9-q) *E^(7/2-q)*(L^2)^(-1-q/2)*_₂F₁(1+q/2,1+q/2,1+(9-q)/2,1/x)
-                         + 2^(q/2) *E^(5/2-q)*(L^2)^(-q/2)*(7/2-q)*_₂F₁(q/2,q/2,(9-q)/2,1/x)
-                    return DF_prefactor_beta(q) * diff
-                end
-            end
-        end
-    end
-end
-
 
 function _H(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
     if (x <= 1)
@@ -117,6 +76,111 @@ function dfadvrNumRelError(r::Float64, vr::Float64, vt::Float64, vp::Float64,
     real = dfadvr(r,vr,vt,vp,th,phi,q)
     return abs(((num2-num1)/(2*eps)-real)/real)
 end
+
+function dfadvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vr,vt,vp,th,phi)
+    La = _La(r,vr,vt,vp,th,phi)
+    return (-vt+vp*sin(th)*cos(phi))*(dFdE(Ea,La,q)-r/La *dFdL(Ea,La,q))
+end
+
+function dfadvtNumRelError(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                   th::Float64, phi::Float64, q::Float64, eps::Float64=0.000001)
+
+    Ea1 = _Ea(r,vr,vt-eps,vp,th,phi)
+    La1 = _La(r,vr,vt-eps,vp,th,phi)
+
+    Ea2 = _Ea(r,vr,vt+eps,vp,th,phi)
+    La2 = _La(r,vr,vt+eps,vp,th,phi)
+
+    num1 = DistFunction(Ea1,La1,q)
+    num2 = DistFunction(Ea2,La2,q)
+
+    real = dfadvt(r,vr,vt,vp,th,phi,q)
+    return abs(((num2-num1)/(2*eps)-real)/real)
+end
+
+function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                  th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vr,vt,vp,th,phi)
+    La = _La(r,vr,vt,vp,th,phi)
+    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))^2*d2FdE2(Ea,La,q)
+end
+
+function d2fadvr2NumRelError(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                   th::Float64, phi::Float64, q::Float64, eps::Float64=0.001)
+
+    Ea1 = _Ea(r,vr-eps,vt,vp,th,phi)
+    La1 = _La(r,vr-eps,vt,vp,th,phi)
+
+    Ea2 = _Ea(r,vr+eps,vt,vp,th,phi)
+    La2 = _La(r,vr+eps,vt,vp,th,phi)
+
+    Ea0 = _Ea(r,vr,vt,vp,th,phi)
+    La0 = _La(r,vr,vt,vp,th,phi)
+
+    num1 = DistFunction(Ea1,La1,q)
+    num2 = DistFunction(Ea2,La2,q)
+    num0 = DistFunction(Ea0,La0,q)
+
+    real = d2fadvr2(r,vr,vt,vp,th,phi,q)
+    return abs(((num2+num1-2*num0)/(eps^2)-real)/real)
+end
+
+function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                    th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vr,vt,vp,th,phi)
+    La = _La(r,vr,vt,vp,th,phi)
+    return ((-vr+vp*cos(th))*(-vt+vp*sin(th)*cos(phi))
+           *(d2FdE2(Ea,La,q) - r/La *d2FdEdL(Ea,La,q)))
+end
+
+function d2fadvrdvtNumRelError(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                   th::Float64, phi::Float64, q::Float64, eps::Float64=0.001)
+
+
+    num1 = dfadvr(r,vr,vt-eps,vp,th,phi,q)
+    num2 = dfadvr(r,vr,vt+eps,vp,th,phi,q)
+
+    real = d2fadvrdvt(r,vr,vt,vp,th,phi,q)
+
+    return abs(((num2-num1)/(2*eps)-real)/real)
+end
+
+function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                  th::Float64, phi::Float64, q::Float64)
+
+    Ea = _Ea(r,vr,vt,vp,th,phi)
+    La = _La(r,vr,vt,vp,th,phi)
+    return (-dFdE(Ea,La,q) + r/La *dFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
+           *(d2FdE2(Ea,La,q) - 2*r/La *d2FdEdL(Ea,La,q)
+             -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2FdL2(Ea,La,q)))
+end
+
+function d2fadvt2NumRelError(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
+                   th::Float64, phi::Float64, q::Float64, eps::Float64=0.001)
+
+    Ea1 = _Ea(r,vr,vt-eps,vp,th,phi)
+    La1 = _La(r,vr,vt-eps,vp,th,phi)
+
+    Ea2 = _Ea(r,vr,vt+eps,vp,th,phi)
+    La2 = _La(r,vr,vt+eps,vp,th,phi)
+
+    Ea0 = _Ea(r,vr,vt,vp,th,phi)
+    La0 = _La(r,vr,vt,vp,th,phi)
+
+    num1 = DistFunction(Ea1,La1,q)
+    num2 = DistFunction(Ea2,La2,q)
+    num0 = DistFunction(Ea0,La0,q)
+
+    real = d2fadvt2(r,vr,vt,vp,th,phi,q)
+    return abs(((num2+num1-2*num0)/(eps^2)-real)/real)
+end
+
+
 
 function dEadvr(r::Float64, vr::Float64, vt::Float64, 
              vp::Float64, th::Float64, phi::Float64)
@@ -281,8 +345,8 @@ function d2FdL2(E::Float64, L::Float64, q::Float64)
         else
             if (q == 2.0)
                 if (x <= 1.0)
-                    return -18/(2*pi)^3 * (2*E-L^2)^(1/2)
-                           +18*L^2/(2*pi)^3 * (2*E-L^2)^(-1/2)
+                    return (-18/(2*pi)^3*(2*E-L^2)^(1/2)
+                           +18*L^2/(2*pi)^3*(2*E-L^2)^(-1/2))
                 else
                     return 0.0
                 end
@@ -329,6 +393,12 @@ function d2FdL2Num(E::Float64, L::Float64, q::Float64, eps::Float64=0.0001)
     num2 = DistFunction(E,L+eps,q)
     num0 = DistFunction(E,L,q)
     return (num1+num2-2*num0)/(eps^2)
+end
+
+function d2FdL2Num1(E::Float64, L::Float64, q::Float64, eps::Float64=0.001)
+    num1 = dFdL(E,L-eps,q)
+    num2 = dFdL(E,L+eps,q)
+    return (num2-num1)/(2*eps)
 end
 
 function dfadvrNew(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
