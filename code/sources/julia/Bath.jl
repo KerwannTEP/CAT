@@ -76,6 +76,28 @@ function dFdE(E::Float64, L::Float64, q::Float64)
     end
 end
 
+function dFdL(E::Float64, L::Float64, q::Float64)
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
+    else
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 0.0
+        else
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return -18*L/(2*pi)^3 * (2*E-L^2)^(1/2)
+                else
+                    return 0.0
+                end
+            else
+                return 3*gamma(6-q)*E^(5/2-q)/(2*(2*pi)^(5/2)*gamma(q/2))*
+                       (L * dHdx(0.0,q/2,9/2-q,1.0,x))
+            end
+        end
+    end
+end
+
 ##################################################
 # Partial derivatives of the distribution function in (E,L)
 ##################################################

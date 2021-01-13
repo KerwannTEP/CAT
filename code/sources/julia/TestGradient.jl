@@ -157,8 +157,26 @@ function dHdx(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
     end
 end
 
-function dHdxNum(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64, eps::Float64=0.001)
+function dHdxNum(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64, eps::Float64=0.00001)
     return (_H(a,b,c,d,x+eps)-_H(a,b,c,d,x-eps))/(2*eps)
+end
+
+function d2Hdx2(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
+    if (x<=1)
+        return gamma(a+b)*x^(a-2)/(gamma(c-a)*gamma(a+d)) *
+               ( a*(a-1)*_₂F₁(a+b,1+a-c,a+d,x)
+               + (2*a)*(a+b)*(1+a-c)/(a+d) *x*_₂F₁(a+b+1,a-c+2,a+d+1,x)
+               + (a+b)*(1+a-c)/(a+d)*(a+b+1)*(2+a-c)/(a+d+1) *x^2*_₂F₁(a+b+2,a-c+3,a+d+2,x))
+    else
+        return gamma(a+b)*x^(-b-2)/(gamma(d-b)*gamma(b+c)) *
+               ( b*(b+1)*_₂F₁(a+b,1+b-d,b+c,1/x)
+               + (2*b+2)*(a+b)*(1+b-d)/(b+c) *(1/x)*_₂F₁(a+b+1,b-d+2,b+c+1,1/x)
+               + (a+b)*(1+b-d)/(b+c)*(a+b+1)*(2+b-d)/(b+c+1) *(1/x^2)*_₂F₁(a+b+2,b-d+3,b+c+2,1/x))
+    end
+end
+
+function d2Hdx2Num(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64, eps::Float64=0.001)
+    return (_H(a,b,c,d,x+eps)+_H(a,b,c,d,x-eps)-2*_H(a,b,c,d,x))/(eps^2)
 end
 
 function dFdE(E::Float64, L::Float64, q::Float64)
@@ -184,12 +202,73 @@ function dFdE(E::Float64, L::Float64, q::Float64)
     end
 end
 
+function d2FdE2(E::Float64, L::Float64, q::Float64)
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
+    else
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 15/(pi^3) * (2*E)^(3/2)
+        else
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return 18/(2*pi)^3 * (2*E-L^2)^(-1/2)
+                else
+                    return 0.0
+                end
+            else
+                return 3*gamma(6-q)*E^(3/2-q)/(2*(2*pi)^(5/2)*gamma(q/2))*
+                       ((7/2-q)*(5/2-q)*_H(0.0,q/2,9/2-q,1.0,x)
+                       - (5-2*q)*(L^2)/(2*E) * dHdx(0.0,q/2,9/2-q,1.0,x)
+                       + (L^4)/(4*E^2) * d2Hdx2(0.0,q/2,9/2-q,1.0,x))
+            end
+        end
+    end
+end
+
+function dFdL(E::Float64, L::Float64, q::Float64)
+    if (E <= 0.0 || L <= 0.0) # If E or L are negative, the DF vanishes
+        return 0.0
+    else
+        x = L^2/(2*E)
+        if (q == 0.0) # Isotropic case
+            return 0.0
+        else
+            if (q == 2.0)
+                if (x <= 1.0)
+                    return -18*L/(2*pi)^3 * (2*E-L^2)^(1/2)
+                else
+                    return 0.0
+                end
+            else
+                return 3*gamma(6-q)*E^(5/2-q)/(2*(2*pi)^(5/2)*gamma(q/2))*
+                       (L * dHdx(0.0,q/2,9/2-q,1.0,x))
+            end
+        end
+    end
+end
+
+function dFdLNum(E::Float64, L::Float64, q::Float64, eps::Float64=0.001)
+    num1 = DistFunction(E,L-eps,q)
+    num2 = DistFunction(E,L+eps,q)
+    println(num1)
+    println(num2)
+    return (num2-num1)/(2*eps)
+end
+
 function dFdENum(E::Float64, L::Float64, q::Float64, eps::Float64=0.001)
     num1 = DistFunction(E-eps,L,q)
     num2 = DistFunction(E+eps,L,q)
     println(num1)
     println(num2)
     return (num2-num1)/(2*eps)
+end
+
+function d2FdE2Num(E::Float64, L::Float64, q::Float64, eps::Float64=0.001)
+    num1 = DistFunction(E-eps,L,q)
+    num2 = DistFunction(E+eps,L,q)
+    num0 = DistFunction(E,L,q)
+    return (num1+num2-2*num0)/(eps^2)
 end
 
 function dfadvrNew(r::Float64, vr::Float64, vt::Float64, vp::Float64, 

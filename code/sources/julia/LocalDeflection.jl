@@ -54,7 +54,7 @@ function dfadvt(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return (-vt+vp*sin(th)*cos(phi))*(dDFdE(Ea,La,q)-r/La *dDFdL(Ea,La,q))
+    return (-vt+vp*sin(th)*cos(phi))*(dFdE(Ea,La,q)-r/La *dFdL(Ea,La,q))
 end
 
 function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -62,7 +62,7 @@ function d2fadvr2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return -dDFdE(Ea,La,q) + (-vr+vp*cos(th))*d2DFdE2(Ea,La,q)
+    return -dFdE(Ea,La,q) + (-vr+vp*cos(th))*d2DFdE2(Ea,La,q)
 end
 
 function d2fadvrdvt(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
@@ -79,9 +79,9 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 
     Ea = _Ea(r,vr,vt,vp,th,phi)
     La = _La(r,vr,vt,vp,th,phi)
-    return -dDFdE(Ea,La,q) + r/La *-dDFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
+    return -dFdE(Ea,La,q) + r/La *-dFdL(Ea,La,q) +(-vt+vp*sin(th)*cos(phi))^2
            *(d2DFdE2(Ea,La,q) - 2*r/La *d2DFdEdL(Ea,La,q)
-             -r^2/La^3 *dDFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
+             -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2DFdL2(Ea,La,q))
 end
 
 MAXEVAL = 5000
