@@ -5457,7 +5457,7 @@ F_{q}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\mathbb{H}(0,\f
 
 \end_inset
 
-donc
+thus
 \begin_inset Formula 
 \[
 \frac{\partial F}{\partial E}(E,L)=\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{L^{2}}{2}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
@@ -5465,7 +5465,7 @@ donc
 
 \end_inset
 
-et, pour 
+and, for 
 \begin_inset Formula $x<1$
 \end_inset
 
@@ -5487,7 +5487,7 @@ et, pour
 
 \end_inset
 
-pour 
+for 
 \begin_inset Formula $x>1$
 \end_inset
 
@@ -5507,20 +5507,6 @@ pour
  & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]
 \end{align*}
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
 \end_inset
 
 
@@ -5577,39 +5563,11 @@ x>1
 \end_layout
 
 \begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
 \frac{\partial F_{q}}{\partial L}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
 \]
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
 \end_inset
 
 
@@ -5685,7 +5643,7 @@ x<1
 \begin{align*}
 \frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)(a-1)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]\\
-+ & \frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}x\frac{(a+b+1)(a-c+2)}{a+d+1}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
 \end{align*}
@@ -5697,7 +5655,7 @@ x<1
 \begin{align*}
 \frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
  & +\frac{(a-1)(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
-+ & \frac{a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}x^{2}\frac{(a+b+1)(a-c+2)}{a+d+1}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
 \end{align*}
@@ -5708,7 +5666,7 @@ x<1
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
-+ & \frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}\frac{(a+b+1)(a-c+2)}{a+d+1}x^{2}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
 \end{align*}
 
@@ -5777,7 +5735,7 @@ x<1
 \begin_inset Formula 
 \begin{align*}
 \frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
-+ & \frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
  & +\frac{(a+b)(1+a-c)}{a+d}\frac{(a+b+1)(a-c+2)}{a+d+1}x^{2}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
 \end{align*}
 
@@ -5826,20 +5784,6 @@ x>1
  & -\frac{L^{2}}{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]
 \end{align*}
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
 \end_inset
 
 
@@ -6119,6 +6063,81 @@ By convexity, use Newton's method starting from
 \end_layout
 
 \begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $v>v_{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{|v-v_{a}|} & =\frac{1}{\sqrt{v^{2}+v_{a}^{2}-2v_{a}v\cos\theta}}=\frac{1}{v\sqrt{1+\left(\frac{v_{a}}{v}\right)^{2}-2\frac{v_{a}}{v}\cos\theta}}\\
+ & =\frac{1}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{f(v_{a})}{|v-v_{a}|}=\frac{f(v_{a})}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial v_{r}}\frac{f(v_{a})}{|v-v_{a}|}=f(v_{a})\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\frac{v_{a}^{\ell}}{v^{\ell+1}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+ https://en.wikipedia.org/wiki/Legendre_polynomials (section recurrence relations)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{x^{2}-1}{n}\frac{{\rm d}P_{n}}{{\rm d}x}(x)=xP_{n}(x)-P_{n-1}(x)
+\]
+
+\end_inset
+
+hence
+\begin_inset Formula 
+\[
+\frac{{\rm d}P_{n}}{{\rm d}x}(x)=\frac{nx}{x^{2}-1}P_{n}(x)-\frac{n}{x^{2}-1}P_{n-1}(x)
+\]
+
+\end_inset
+
 
 \end_layout
 

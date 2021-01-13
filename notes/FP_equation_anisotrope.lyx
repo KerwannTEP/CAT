@@ -6062,5 +6062,84 @@ By convexity, use Newton's method starting from
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $v>v_{a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{|v-v_{a}|} & =\frac{1}{\sqrt{v^{2}+v_{a}^{2}-2v_{a}v\cos\theta}}=\frac{1}{v\sqrt{1+\left(\frac{v_{a}}{v}\right)^{2}-2\frac{v_{a}}{v}\cos\theta}}\\
+ & =\frac{1}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{f(v_{a})}{|v-v_{a}|}=\frac{f(v_{a})}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial v_{r}}\frac{f(v_{a})}{|v-v_{a}|}=f(v_{a})\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\frac{v_{a}^{\ell}}{v^{\ell+1}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+ https://en.wikipedia.org/wiki/Legendre_polynomials (section recurrence relations)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{x^{2}-1}{n}\frac{{\rm d}P_{n}}{{\rm d}x}(x)=xP_{n}(x)-P_{n-1}(x)
+\]
+
+\end_inset
+
+hence
+\begin_inset Formula 
+\[
+\frac{{\rm d}P_{n}}{{\rm d}x}(x)=\frac{n}{x^{2}-1}\left[xP_{n}(x)-P_{n-1}(x)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

@@ -1,0 +1,1931 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=2cm,rmargin=2cm}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wasysym}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\section{Plummer model}
+
+Consider a Plummer model (Dejonghe, H.1987, MNRAS 224, 13) with potential
+with units $r_{s}$ the Plummer scale radius (which sets the size
+of the cluster core), $M$ the total mass of the cluster and $\bar{\tau}$
+some unit time. Let $\psi_{s}$ be defined by
+\[
+\psi_{s}=\frac{GM}{r_{s}},
+\]
+for the central potential
+\[
+\psi(r)=\frac{\psi_{s}}{\sqrt{1+r^{2}}}.
+\]
+Let use fix $G=1\,r_{s}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}}$ in the
+new units so that $\psi_{s}=1\,r_{s}^{2}\cdot\bar{\tau}^{-2}$. This
+fixes the time unit $\bar{\tau}$, as we have the relation. 
+\[
+G=\tilde{G}{\rm m}^{3}.{\rm kg}^{-1}.{\rm s^{-2}}=\tilde{G}\frac{{\rm m}^{3}}{r_{s}^{3}}\frac{{\rm kg}^{-1}}{M^{-1}}\frac{s^{-2}}{\bar{\tau}{}^{-2}}r_{s}^{3}.M_{\odot}^{-1}.{\rm \tau^{-2}}=\bar{G}r_{s}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}},
+\]
+where $\tilde{G}=6.67430\times10^{-11}$. Consequently we can deduce
+from $1=\tilde{G}\frac{{\rm m}^{3}}{r_{s}^{3}}\frac{M}{{\rm kg}}\frac{\bar{\tau}^{2}}{s^{2}}$
+that
+\[
+\frac{\bar{\tau}}{s}=\sqrt{\frac{1}{\tilde{G}}\frac{r_{s}^{3}}{{\rm m}^{3}}\frac{{\rm kg}}{M}}.
+\]
+Therefore, in those units the potential (per unit mass) is given by
+\[
+\psi(r)=\frac{1}{\sqrt{1+r^{2}}}.
+\]
+Furthermore, letting $\tilde{c}=299792458$ and $c=\tilde{c\,}{\rm m}.{\rm s}^{-1}$
+be the light speed in vacuum, we can express it in the new units by
+\[
+c=\tilde{c}\frac{{\rm m}}{r_{s}}\frac{\bar{\tau}}{{\rm s}}\,r_{s}.\bar{\tau}^{-1}=\bar{c}\,r_{s}.\bar{\tau}^{-1};\quad\bar{c}=\tilde{c}\frac{{\rm m}}{r_{s}}\frac{\bar{\tau}}{{\rm s}}
+\]
+
+We use those units from now on. For example, M3 has total mass $M=4.5\cdot10^{5}M_{\odot}$
+and radius $r_{s}=90\,{\rm ly}$, hence $\bar{\tau}=1.0167\cdot10^{14}\,{\rm s}=3.2218\,{\rm Myr}$.
+In those units, and $c=36\cdot10^{3}\,r_{s}.\bar{\tau}^{-1}$.
+
+Define, given a radius $r$, the angular momentum $L(r,v_{r},v_{t})$
+and binding energy per unit mass $E(r,v_{r},v_{t})$, functions of
+the radial velocity $v_{r}$ and the tangential velocity $v_{t}\geq0$
+(defined as $\boldsymbol{v}=\boldsymbol{v_{r}}+\boldsymbol{v_{t}}=v_{r}\hat{\boldsymbol{r}}+\boldsymbol{v_{t}}$),
+as
+\[
+E(r,v_{r},v_{t})=\psi(r)-\frac{1}{2}v_{r}^{2}-\frac{1}{2}v_{t}^{2}
+\]
+\[
+L(r,v_{r},v_{t})=rv_{t}
+\]
+which is a transformation with Jacobian 
+\[
+{\rm Jac}_{(r,v_{r},v_{t})\rightarrow(r,E,L)}=\left(\begin{array}{cc}
+\frac{\partial E}{\partial v_{r}} & \frac{\partial E}{\partial v_{t}}\\
+\frac{\partial L}{v_{ar}} & \frac{\partial L}{\partial v_{t}}
+\end{array}\right)=\left(\begin{array}{cc}
+-v_{r} & -v_{t}\\
+0 & r
+\end{array}\right)\Rightarrow|{\rm Jac}|=r|v_{r}|
+\]
+To obtain a bijective transformation, we must chose wether to chose
+$v_{r}\ge0$ or $v_{r}\leq0$. A priori, this choice might have an
+impact on the result, but we will should that the local and orbit-averaged
+diffusion coefficients are not that. The coordinate system is spherical,
+its origin being at the center of the globular cluster. Finally, we
+consider the corresponding anisotropic distribution functions of the
+field stars $F_{q}(r,E,L)=F_{q}(E,L)$ in $(E,L)$-space. Since $(E,L)$
+and $(v_{r},v_{t})$ are linked, we can make use of the following
+equalities (for the moment, $v_{r}$ is determined modulo the sign)
+\[
+F_{q}(r,E,L)=f_{a}(v_{r}(r,E,L),v_{t}(r,E,L))
+\]
+and its converse
+\[
+f_{a}(r,v_{r},v_{t})=F_{q}(E(r,v_{r},v_{t}),L(r,v_{r},v_{t}))
+\]
+where $q$ is an anisotropy parameter:
+\begin{itemize}
+\item $q\in]0,2]$: radially anisotropic
+\item $q=0$: isotropic
+\item $q\in]-\infty,0[$: tangentially anisotropic.
+\end{itemize}
+Note that the DF has spherical symmetry in position. Its expression
+is (for $q\neq0$):
+\[
+F_{q}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+\[
+\mathbb{H}(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}._{2}F_{1}(a+b,1+a-c,a+d;x) & x\leq1\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x}) & x\geq1
+\end{cases}
+\]
+which reduces in the isotropic case $(q=0)$ to:
+\[
+F(E)=\frac{3}{7\pi^{3}}(2E)^{7/2}
+\]
+
+
+\subsection{Determination of the local diffusion coefficients}
+
+The local diffusion coefficients are the average velocity changes
+per unit time. We are interested in computing (bad notation: those
+are relative to the test star velocity, as opposed to the relative
+velocity!!!)
+\[
+\langle\Delta v_{||}\rangle(r,v_{r},v_{t})=\frac{\langle\Delta v_{||}\rangle_{\delta t}}{\delta t}
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle(r,v_{r},v_{t})=\frac{\langle(\Delta v_{||})^{2}\rangle_{\delta t}}{\delta t}
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle(r,v_{r},v_{t})=\frac{\langle(\Delta v_{\perp})^{2}\rangle_{\delta t}}{\delta t}
+\]
+Consider a test star at position $r$, mass $m$ and initial velocity
+$\boldsymbol{v}$ which interacts with a field star with impact parameter
+$b$, mass $m_{a}$ and velocity $\boldsymbol{v}$, Binney et Tremaine
+(2008, eq. (L.7) page 834) gives , with the convention (here, parallel
+and perpudicular to relative velocity)
+\[
+\Delta\boldsymbol{v}=-\Delta v_{\parallel}\boldsymbol{e_{1}'}+\Delta v_{\perp}(-\boldsymbol{e_{2}'}\cos\phi+\boldsymbol{e_{3}'}\sin\phi),
+\]
+where $\boldsymbol{e_{1}'}\parallel\boldsymbol{V_{0}}$ and $\phi$
+is the angle between the plane of the relative orbit and $\boldsymbol{e_{2}'}$,
+\[
+\Delta v_{\perp}=\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}}
+\]
+\[
+\Delta v_{||}=\frac{2m_{a}V_{0}}{m+m_{a}}\frac{1}{1+b^{2}/b_{90}^{2}}
+\]
+where $\boldsymbol{V_{0}}=\boldsymbol{v}-\boldsymbol{v_{a}}$ and
+$b_{90}$ is the 90° deflection radius, given by eq (L.8) 
+\[
+b_{90}=\frac{G(m+m_{a})}{V_{0}^{2}}
+\]
+Remember that in our units, $G=1$ and $m,m_{a}$ are given in fraction
+of the total mass $M$ of the cluster.
+
+Furthermore, after averaging over the equiprobable angles $\phi$
+(test star can be on either ``side'' of the field star), we obtain
+\[
+\langle\Delta v_{i}\rangle_{\phi}=-\Delta v_{\parallel}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
+\]
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle_{\phi} & =(\Delta v_{\parallel})^{2}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{1}'}\rangle\\
++ & \frac{1}{2}(\Delta v_{\perp})^{2}\left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
+\end{align*}
+where $(e_{1},e_{2},e_{3})$ is an fixed, arbitrary coordonnate system.
+
+Here, note that when considering a test star with energy and angular
+momentum (per unit mass) $(E,L)$, using the choise $v_{r}\geq0$
+or the choice $v_{r}\leq0$ has an impact on the local change of velocity
+through $V_{0}$. 
+
+We sum the effects of all the encounter up. Number density of field
+stars (at position $r$) within velocity space volume ${\rm d}^{3}\boldsymbol{v_{a}}$
+is $f_{a}(r,\boldsymbol{v_{a}}){\rm d}^{3}\boldsymbol{v_{a}}$ (remember
+that $f_{a}(r,\boldsymbol{v_{a}})=f_{a}(r,v_{ar},v_{at})$). The number
+of encounters in a time $\delta t$ with impact parameters between
+$b$ and $b+{\rm d}b$ is just this density times the volume of an
+annulus with inner radius $b$, outer radius $b+{\rm d}b$, and length
+$V_{0}\delta t$, that is (eq. L9)
+\[
+2\pi b{\rm d}bV_{0}\delta tf_{a}(r,\boldsymbol{v_{a}}){\rm d}^{3}\boldsymbol{v_{a}}
+\]
+We sum up over the velocities and the impact parameters. For the latter,
+we consider impact parameters between $0$ and a cut-off $b_{{\rm max}}$,
+traditionally given approximately by the radius of the subject star
+orbit. 
+
+Recall that $\boldsymbol{V_{0}}=\boldsymbol{v}-\boldsymbol{v_{a}}$.
+Since we assume that $\Lambda$ is large, we do not make any significant
+additional error by replacing the factor $V_{0}$ in $\Lambda$ by
+some typical stellar speed $v_{{\rm typ}}$, that is, 
+\[
+\Lambda=\frac{b_{{\rm max}}v_{{\rm typ}}^{2}}{G(m+m_{a})}.
+\]
+ This yields (Binney \& Tremaine, eq. L14)
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi\frac{m_{a}}{m+m_{a}}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{2}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle
+\]
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi\left(\frac{m_{a}}{m+m_{a}}\right)^{2}\int{\rm d}^{3}\boldsymbol{v_{a}}V_{0}^{3}b_{90}^{2}f_{a}(r,\boldsymbol{v_{a}})\ln\Lambda\\
+\times & \left[\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle\right]
+\end{align*}
+where we defined the Coulomb parameter $\Lambda=b_{{\rm max}}/b_{90}$.
+Remark that the scalar products depend on $\boldsymbol{v_{a}}$. Take
+$\Lambda=\lambda N$ (Binney et Tremaine, page 581) with $N\sim10^{5}$
+and $\lambda=0.059$ (Hamilton et al. (2018), eq. (B37)) for a globular
+cluster. 
+
+Then, using (Binney \& Tremaine, eq. L17)
+\[
+\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle=\frac{V_{0i}}{V_{0}};\quad\langle\boldsymbol{e_{i}},\boldsymbol{e_{2}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{2}'}\rangle+\langle\boldsymbol{e_{i}},\boldsymbol{e_{3}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{3}'}\rangle=\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}
+\]
+we obtain
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=-4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})\frac{V_{0i}}{V_{0}^{3}}
+\]
+\begin{align*}
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v}) & =4\pi G^{2}m_{a}^{2}\ln\Lambda\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{V_{0}}\left(\delta_{ij}-\frac{V_{0i}V_{0j}}{V_{0}^{2}}\right)
+\end{align*}
+which can be written as (Binney \& Tremaine, eq. L18)
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\frac{\partial h}{\partial v_{i}}(r,\boldsymbol{v})
+\]
+\[
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}^{2}\ln\Lambda\frac{\partial^{2}g}{\partial v_{i}\partial v_{j}}(r,\boldsymbol{v})
+\]
+where the Rosenbluth potentials are defined as (Binney \& Tremaine,
+eq. L19)
+\[
+h(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}
+\]
+\[
+g(r,\boldsymbol{v})=\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})|\boldsymbol{v}-\boldsymbol{v_{a}}|
+\]
+
+
+\subsubsection{Anisotropic case}
+
+Since this result is valid for any arbitrary coordinate system, we
+can fix it to the one where $e_{1}=\hat{v}$ and $e_{2}$ is the projection
+of $\hat{r}$ onto the equatorial plane orthogonal to $e_{1}$. Then
+we'll have the relations
+\[
+\langle\Delta v_{||}\rangle=\langle\Delta v_{1}\rangle
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle=\langle(\Delta v_{1})^{2}\rangle
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle=\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle
+\]
+and a tedious by straightforward computation see appendix) yields
+\[
+\langle\Delta v_{||}\rangle=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda(\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}})
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle=4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}\right)
+\]
+\begin{align*}
+\langle(\Delta v_{\perp})^{2}\rangle= & 4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}}\right)
+\end{align*}
+where $h(r,\boldsymbol{v})=h(r,v_{r},v_{t})$ and $g(r,\boldsymbol{v})=g(r,v_{r},v_{t})$.
+Applying the change of variable $\boldsymbol{v'}=\boldsymbol{v}-\boldsymbol{v_{a}}=\boldsymbol{V_{0}}$
+and using spherical coordinates with axis $(Oz)=\hat{\boldsymbol{r}}$
+the unit radius vector (parallel or antiparallel to the radial component
+of $\boldsymbol{v}$ by definition) yields
+\[
+h(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'}=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+\[
+g(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v'}f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})v'=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+where we have
+\[
+f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})=f_{a}(r,v_{ar},v_{at})=F_{q}(E_{a}(r,v_{ar},v_{at}),L_{a}(r,v_{ar},v_{at}))
+\]
+with
+\[
+E_{a}(r,v_{ar},v_{at})=\psi(r)-\frac{1}{2}v_{ar}{}^{2}-\frac{1}{2}v_{at}{}^{2}
+\]
+\[
+L_{a}(r,v_{ar},v_{at})=rv_{at}
+\]
+
+For a given convention $+$ or $-$ of the choice of $v_{r}$, and
+given $(E,L)$ the parameters of the test star, obtain the vectors
+$\boldsymbol{v_{+}}=(|v_{r}|,\boldsymbol{v_{t}})$ and $\boldsymbol{v_{-}}=(-|v_{r}|,\boldsymbol{v_{t}})$,
+which are symmetric with respect to the tangent plane where $\boldsymbol{v_{t}}$
+lives. In terms of spherical coordinates, we have that $\boldsymbol{v_{+}}=(v,\theta_{0},0)$
+and $\boldsymbol{v_{-}}=(v,\pi-\theta_{0},0)$. Remember that the
+integration over the velocities $\boldsymbol{v'}=\boldsymbol{v}-\boldsymbol{v_{a}}=\boldsymbol{V_{0}}$of
+the field stars cover the whole $\boldsymbol{V_{0}}$-space. Given
+a velocity $\boldsymbol{V_{0}}$ corresponds bijectively a field star
+velocity $\boldsymbol{v_{a}}$.
+
+We need to compute 
+\[
+h(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+\[
+g(r,\boldsymbol{v})=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+where we need to compute the radial and tangential components of the
+vector $\boldsymbol{v_{a}}=\boldsymbol{v}-\boldsymbol{v'}$. This
+is where we need to make sure that the choice of convention for $v_{r}$
+doesn't change the overall result. A long but straighforward computation
+gives the binding energy and the angular momentum at which the integrand
+is evaluated:
+
+\[
+E_{a}(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+\[
+L_{a}(r,v',\theta,\phi)=r(v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi)^{1/2}
+\]
+Now, remember that $\boldsymbol{v_{+}}=(|v_{r}|,\boldsymbol{v_{t}})$
+and $\boldsymbol{v_{-}}=(-|v_{r}|,\boldsymbol{v_{t}})$ in the $+$
+and $-$ convention. For a given $\boldsymbol{v'}=(v',\theta,\phi)$,
+the angular momentum doesn't depend on the convention we chose since
+only $v_{r}$ is impacted. On the other hand, for the bunding energy
+per unit mass, we obtain
+\[
+E_{a+}(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(|v_{r}|\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+\[
+E_{a-}(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(-|v_{r}|\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+which are different. However, when considering $\boldsymbol{\tilde{v}'}=(v',\pi-\theta,\phi)$,
+which is another vector used in the integration, we have
+\[
+E_{a+}(r,v',\pi-\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(-|v_{r}|\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+\[
+E_{a-}(r,v',\pi-\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(|v_{r}|\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+meaning that
+\[
+E_{a+}(r,v',\theta,\phi)=E_{a-}(r,v',\pi-\theta,\phi)
+\]
+\[
+E_{a-}(r,v',\theta,\phi)=E_{a+}(r,v',\pi-\theta,\phi)
+\]
+Furthermore, the prefactor in the integrand $\sin\theta$ becomes
+$\sin(\pi-\theta)=\sin\theta$ through this transformation. Therefore,
+the convention doesn't change the result of the overall integration
+(and therefore and the derivatives of the overall integration), and
+we may chose to set $v_{r}\geq0$. For an actual computation, we also
+need to compute the various velocity-partial derivatives of those
+integrals, meaning that we need to compute the velocity-partial derivatives
+of $f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})=F_{q}(E_{a},L_{a})$ (exchange
+derivation and integral). The calculation is done in the appendix,
+and the results are (function are evaluated at $(E_{a},L_{a})$):
+
+\[
+\frac{\partial}{\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E}
+\]
+\[
+\frac{\partial}{\partial v_{t}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right]=\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial F}{\partial E}-\frac{r}{L_{a}}\frac{\partial F}{\partial L}\right)
+\]
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{r}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E}+\left(-v_{r}+v'\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E{}^{2}}
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =\left(-v_{r}+v'\cos\theta\right)\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{L_{a}}\frac{\partial^{2}F}{\partial L\partial E}\right)
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =-\frac{\partial F}{\partial E}+\frac{r}{L_{a}}\frac{\partial F}{\partial L}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{L_{a}}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{L_{a}^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{L_{a}^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)
+\end{align*}
+
+Let $\theta\in[0,\pi]$ and $\phi\in[0,2\pi]$, and consider
+\[
+Q(r,v',\theta,\phi)=v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)
+\]
+Then $Q(r,v',\theta,\phi)\geq v^{2}+v'^{2}-2v'(v_{t}+|v_{r}|)$ for
+all $\theta,\phi$ in range, meaning that $Q(r,v',\theta,\phi)\rightarrow+\infty$
+as $v'\rightarrow\infty$ uniformely in angles. Therefore, there exists
+an bound $v'_{{\rm max}}$ such that 
+\[
+\forall v'>v'_{{\rm max}},\forall\theta\in[0,\pi],\forall\phi\in[0,2\pi];Q(r,v',\theta,\phi)>2\psi(r)
+\]
+that is,
+\[
+\forall v'>v'_{{\rm max}},\forall\theta\in[0,\pi],\forall\phi\in[0,2\pi];E_{a}(r,v',\theta,\phi)<0
+\]
+Above this bound, as the binding energy par unit mass is negative,
+the DF of the field stars, evaluated for $(r,v',\theta,\phi)$, vanishes.
+This shows that the $v'$-integral is in fact finite. We can obtain
+this bound by solving the inequation in $v'$
+\[
+E_{a}(r,v',\theta,\phi)<0\Leftrightarrow v'^{2}-2v'(v_{t}+|v_{r}|)+v^{2}-2\psi(r)>0
+\]
+The $v'$ which satisfy this inequation are those which yields $E(r,v',\theta,\phi)<0$
+(for any angle), hence a vanishing DF. Since the polynomial in $v'$
+has non-negative leading coefficient (it is monic), the polynomial
+is either always non-negative (negative discriminant) or there is
+an closed interval over which it is negative (non-negative discriminant).
+The polynomial's discriminant is 
+\[
+\Delta_{v}=4(v_{t}+|v_{r}|)^{2}-4(v^{2}-2\psi(r))=4(v_{t}^{2}+v_{r}^{2}+2|v_{r}|v_{t})-4(v^{2}-2\psi(r))=8(|v_{r}|v_{t}+\psi(r))
+\]
+Since $|v_{r}|,v_{t}\geq0$, it is non-negative. In that case, the
+$v'$ over which we can integrate are those which are positive $(v'\geq0)$
+and between the roots of the polynomial, given by
+
+\[
+v'_{\pm}=\frac{2(v_{t}+|v_{r}|)\pm\sqrt{8(|v_{r}|v_{t}+\psi(r))}}{2}=(v_{t}+|v_{r}|)\pm\sqrt{2(|v_{r}|v_{t}+\psi(r))}.
+\]
+One may ask if $v'_{-}$ is positive or negative. To that, recall
+that $|v_{r}|=v\cos\theta_{0}$ and $v_{t}=v\sin\theta_{0}$ for $\theta_{0}\in[0,\pi/2]$.
+Then 
+\[
+v'_{-}=v(\cos\theta+\sin\theta)-\sqrt{2(v^{2}\cos\theta\sin\theta+\psi(r))}
+\]
+We have that $v_{-}\leq0$ iif $v(\cos\theta_{0}+\sin\theta_{0})\leq\sqrt{2(v^{2}\cos\theta_{0}\sin\theta_{0}+\psi(r))}$.
+Both sides are positive for $\theta_{0}\in[0,\pi/2]$, therefore $v_{-}\leq0$
+iif 
+\[
+v^{2}(\cos\theta_{0}+\sin\theta_{0})^{2}\leq2(v^{2}\cos\theta_{0}\sin\theta_{0}+\psi(r))
+\]
+iff $v^{2}(1+2\cos\theta_{0}\sin\theta_{0})\leq2(v^{2}\cos\theta_{0}\sin\theta_{0}+\psi(r))$
+iff $v^{2}\leq2\psi(r)$. Since $E=\psi(r)-\frac{1}{2}v^{2}$, this
+is equivalent to $2(\psi(r)-E)\leq2\psi(r)$, i.e. $E\geq0$. Therefore,
+since we study systems with $E\geq0$, it follows that we always have
+$v_{-}\leq0$, meaning that our integration is over $[0,v'_{+}]$.
+This upper bound depends on $E,L,r$ and is given by the formula as
+long as $E\leq\psi(r)$ and $L\leq r\sqrt{2(\psi(r)-E)}$
+\[
+v_{+}=\left(\frac{L}{r}+\sqrt{2(\psi(r)-E)-\frac{L^{2}}{r^{2}}}\right)+\sqrt{2\left(\frac{L}{r}\sqrt{2(\psi(r)-E)-\frac{L^{2}}{r^{2}}}+\psi(r)\right)}
+\]
+This condition will always be satisfied in a star orbit (see next
+section). It can be useful to define the effective binding potential
+\[
+\psi_{{\rm eff}}(r;L)=\psi(r)-\frac{L^{2}}{2r^{2}},
+\]
+so that we can rewrite the upper bound of the integral as 
+\[
+v_{{\rm max}}=\frac{L}{r}+\sqrt{2(\psi_{{\rm eff}}(r;L)-E)}+\sqrt{2\left(\frac{L}{r}\sqrt{2(\psi_{{\rm eff}}(r;L)-E)}+\psi(r)\right)}
+\]
+\[
+K(r,v')=\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}\left(r,v',\theta,\phi\right)
+\]
+where 
+\[
+f_{a}(r,v',\theta,\phi)=F_{q}(E_{a}(r,v',\theta,\phi),L_{a}(r,v',\theta,\phi))
+\]
+with
+\[
+E_{a}(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+\[
+L_{a}(r,v',\theta,\phi)=r(v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi)^{1/2}
+\]
+
+If we want to use the Cuba.jl package with the Cuhre method (cuhre()
+in Julia), we want to reduce our integral over an integration over
+$[0,1]^{3}$. We must compute the two integrals
+\[
+h(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+\]
+\[
+g(r,\boldsymbol{v})=\int_{0}^{v_{\max}}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,v',\theta,\phi)
+\]
+ Make the change of variable 
+\[
+\tilde{v'}=v'/v_{\max};\quad\tilde{\theta}=\theta/\pi;\quad\tilde{\phi}=\phi/2\pi.
+\]
+Then 
+\[
+h(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{2}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+\]
+\[
+g(r,\boldsymbol{v})=2\pi^{2}v_{\max}^{4}\int_{0}^{1}{\rm d}\tilde{v'}\tilde{v'^{3}}\int_{0}^{1}{\rm d}\tilde{\theta}\sin(\pi\tilde{\theta})\int_{0}^{1}{\rm d}\phi f_{a}(r,v_{\max}v',\pi\tilde{\theta},2\pi\tilde{\phi})
+\]
+Note that the Cuba.jl Julia library calls the Cuba C library. The
+cuhre function can be found:
+\begin{itemize}
+\item https://github.com/JohannesBuchner/cuba/blob/master/src/cuhre
+\end{itemize}
+May be interesting to find how to free memory to avoid getting millions
+(or billions) of allocations. Maybe go to C?\\
+\\
+\\
+~
+
+Compute analytically? If not, finite differences?
+
+\[
+f'(x)\simeq\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon};\quad R_{1}(\epsilon)=\frac{f^{(3)}(\xi)}{6}\epsilon^{2},\xi\in(x-\epsilon,x+\epsilon)
+\]
+\[
+f''(x)\simeq\frac{f(x+\epsilon)+f(x-\epsilon)-2f(x)}{\epsilon^{2}};\quad R_{2}(\epsilon)=\frac{f^{(4)}(\xi)}{12}\epsilon^{2},\xi\in(x-\epsilon,x+\epsilon)
+\]
+
+
+\subsubsection{Isotropic case}
+
+We may want to check that the integrals yield the correct result.
+To that end, it can be of interest to consider the simple case $q=0$,
+where $f(E,L)=f(E)$, i.e. $f(r,\boldsymbol{v})=f(r,v)=F_{q}(E)$.
+Then according Binney \& Tremaine, eq. (L26),
+
+\[
+\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=-\frac{16\pi^{2}G^{2}m_{a}(m+m_{a})\ln\Lambda}{v^{2}}\int_{0}^{v}{\rm d}v_{a}v_{a}^{2}f_{a}(v_{a})
+\]
+\[
+\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[\int_{0}^{v}{\rm d}v_{a}\frac{v_{a}^{4}}{v^{3}}f_{a}(v_{a})+\int_{v}^{\infty}{\rm d}v_{a}v_{a}f_{a}(v_{a})\right]
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[\int_{0}^{v}{\rm d}v_{a}\left(\frac{3v_{a}^{2}}{v}-\frac{v_{a}^{4}}{v^{3}}\right)f_{a}(v_{a})+2\int_{v}^{\infty}{\rm d}v_{a}v_{a}f_{a}(v_{a})\right]
+\]
+Using the change of variable ${\rm d}E=-v{\rm d}v$ and that $F_{0}(E_{a})=0$
+for $E_{a}<0$, this reads
+\[
+\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=-\frac{16\pi^{2}G^{2}m_{a}(m+m_{a})\ln\Lambda}{v^{2}}\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}F_{0}(E_{a})
+\]
+\[
+\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[\int_{0}^{E}{\rm d}E_{a}F_{0}(E_{a})+\int_{E}^{\psi(r)}{\rm d}E_{a}\left(\frac{v_{a}}{v}\right)^{3}F_{0}(E_{a})\right]
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[2\int_{0}^{E}{\rm d}E_{a}F_{0}(E_{a})+\int_{E}^{\psi(r)}{\rm d}E_{a}\left(\frac{3v_{a}}{v}-\left(\frac{v_{a}}{v}\right)^{3}\right)F_{0}(E_{a})\right]
+\]
+where 
+\[
+v_{a}=v_{a}(r,E_{a})=\sqrt{2(\psi(r)-E_{a})}
+\]
+\[
+F_{0}(E_{a})=\frac{3}{7\pi^{3}}(2E_{a})^{7/2}
+\]
+We can obviously compute the $[0,E]$ integrals
+\[
+K_{0}=\int_{0}^{E}{\rm d}E_{a}F_{0}(E_{a})=\frac{3}{7\pi^{3}}2{}^{7/2}\left[\frac{E_{a}{}^{9/2}}{9/2}\right]_{0}^{E}=\frac{1}{21\pi^{3}}(2E){}^{9/2}
+\]
+We only have to compute
+\[
+K_{1}=\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}F_{0}(E_{a})
+\]
+\[
+K_{3}=\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}^{3}F_{0}(E_{a})
+\]
+Then
+\[
+\langle\Delta v_{\parallel}\rangle(r,\boldsymbol{v})=-\frac{16\pi^{2}G^{2}m_{a}(m+m_{a})\ln\Lambda}{v^{2}}K_{1}
+\]
+\[
+\langle(\Delta v_{\parallel})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[K_{0}+\frac{1}{v^{3}}K_{3}\right]
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle(r,\boldsymbol{v})=\frac{32\pi^{2}G^{2}m_{a}^{2}\ln\Lambda}{3}\left[2K_{0}+\frac{3}{v}K_{1}-\frac{1}{v^{3}}K_{3}\right]
+\]
+
+In the appendix, we recompute the formulae of the isotropic case from
+the arbitrary anisotropic case, with $v^{2}=v_{r}^{2}+v_{t}^{2}$,
+$h(r,v_{r},v_{t})=h(r,v)$ and $g(r,v_{r},v_{t})=g(r,v)$.
+
+\subsubsection{Local orbital parameter changes}
+
+Now, switch to $(E,L)$ space and using eq. (C15) to (C19) of Bar-Or
+\& Alexander (2016), which doesn't rely on an isotropy assumption,
+we obtain (evaluate at $(r,\boldsymbol{v}(r,E,L))$) at first order
+in $\Delta v/v$:
+\[
+\langle\Delta E\rangle(r,E,L)=-\frac{1}{2}\langle(\Delta v_{||})^{2}\rangle-\frac{1}{2}\langle(\Delta v_{\perp})^{2}\rangle-v\langle\Delta v_{||}\rangle
+\]
+\[
+\langle(\Delta E)^{2}\rangle(r,E,L)=v^{2}\langle(\Delta v_{||})^{2}\rangle
+\]
+\[
+\langle\Delta L\rangle(r,E,L)=\frac{L}{v}\langle\Delta v_{||}\rangle+\frac{r^{2}}{4L}\langle(\Delta v_{\perp})^{2}\rangle
+\]
+\[
+\langle(\Delta L)^{2}\rangle(r,E,L)=\frac{L^{2}}{v^{2}}\langle(\Delta v_{||})^{2}\rangle+\frac{1}{2}\left(r^{2}-\frac{L^{2}}{v^{2}}\right)\langle(\Delta v_{\perp})^{2}\rangle
+\]
+\[
+\langle\Delta E\Delta L\rangle(r,E,L)=-L\langle(\Delta v_{||})^{2}\rangle
+\]
+where
+\[
+r^{2}-\frac{L^{2}}{v^{2}}=\frac{r^{2}}{v^{2}}\left(v^{2}-\frac{L^{2}}{r^{2}}\right)=\frac{r^{2}}{v^{2}}\left(v^{2}-v_{t}^{2}\right)=\frac{r^{2}v_{r}^{2}}{v^{2}}
+\]
+Finally, due to our analysis, those quantities are well defined and
+we can use the bijective transformation $(r,E,L)\leftrightarrow(r,v_{r},v_{t})$,
+, through the relations
+\[
+E(r,v_{r},v_{t})=\psi(r)-\frac{1}{2}v_{r}{}^{2}-\frac{1}{2}v_{t}{}^{2}
+\]
+\[
+L(r,v_{r},v_{t})=rv_{t}
+\]
+where $v_{r},v_{t}\geq0$, yielding $E\in]-\infty,\psi(r)]$ and $L\in[0,r\sqrt{2(\psi(r)-E)}]$,
+while the converse relations are
+\[
+v_{t}(r,E,L)=\frac{L}{r}
+\]
+\[
+v_{r}(r,E,L)=\sqrt{2(\psi_{{\rm eff}}(r;L)-E)}
+\]
+where $E\in]-\infty,\psi(r)]$ and $L\in[0,r\sqrt{2(\psi(r)-E)}]$,
+yielding $v_{r},v_{t}\geq0$.
+
+\subsection{Orbit of a test star in a globular cluster}
+
+We can now compute the local diffusion coefficients $\langle\Delta E\rangle(r,E,L)$,
+$\langle(\Delta E)^{2}\rangle(r,E,L)$, $\langle\Delta L\rangle(r,E,L)$,
+$\langle(\Delta L)^{2}\rangle(r,E,L)$ and $\langle\Delta E\Delta L\rangle(r,E,L)$.
+Since we are interested in the secular evolution of the system, we
+can average over the dynamical time and smear out the star along its
+orbit. This leads us to consider the orbit-average diffusion coefficients
+\[
+\overline{D_{X}}(E,L)\doteqdot\langle D_{X}\rangle_{\leftturn}(E,L)=\frac{1}{T}\int_{0}^{T}\langle\Delta X\rangle(r(t),E,L){\rm d}t=\frac{2}{T}\int_{r_{min}}^{r_{max}}\langle\Delta X\rangle(r,E,L)\frac{{\rm d}r}{v_{r}(r,E,L)}
+\]
+\[
+\overline{D_{XY}}(E,L)\doteqdot\langle D_{XY}\rangle_{\leftturn}(E,L)=\frac{1}{T}\int_{0}^{T}\langle\Delta X\Delta Y\rangle(r(t),E,L){\rm d}t=\frac{2}{T}\int_{r_{min}}^{r_{max}}\langle\Delta X\Delta Y\rangle(r,E,L)\frac{{\rm d}r}{v_{r}(r,E,L)}
+\]
+where $v_{r}(r)$ is the radial velocity of the orbiting star at $r$.
+However, this suppose that the star follow ``nice'' trajectories.
+This is what we will look into in this section. Furthermore, since
+$E,L$ are chosen so that the trajectory is a circular orbit with
+radius $R$, then we apply the ``time'' formula instead of the radial
+velocity one and obtain 
+\[
+\overline{D_{X}}(E,L)=\frac{1}{T}\int_{0}^{T}\langle\Delta X\rangle(R,E,L){\rm d}t=\langle\Delta X\rangle(R,E,L)
+\]
+\[
+\overline{D_{XY}}(E,L)=\frac{1}{T}\int_{0}^{T}\langle\Delta X\Delta Y\rangle(R,E,L){\rm d}t=\langle\Delta X\Delta Y\rangle(R,E,L)
+\]
+
+
+\subsubsection{Study of an orbit}
+
+-> See Kurth (1955), Astronomische Nachrichten, volume 282, Issue
+6, p.241.
+
+~
+
+Consider a test star described by its position vector $\boldsymbol{r}$,
+its binding energye (opposite of its energy) $E(t)$ and its angular
+momentum vector $\boldsymbol{L}(t)$, per unit mass. Then
+\[
+E(t)=\psi(r(t))-\frac{1}{2}\boldsymbol{\dot{r}}^{2}(t)=\psi(r(t))-\frac{1}{2}\dot{r}^{2}(t)-\frac{1}{2}r^{2}(t)\dot{\theta}^{2}(t)
+\]
+\[
+\boldsymbol{L}(t)=\boldsymbol{r}(t)\times\boldsymbol{v}(t)
+\]
+Differentiating the binding energy and using Newton's law shows that
+it is conserved. Let $E(t)=E$. On the other hand, differentiating
+$\boldsymbol{L}(t)$ and using the fact that the potential is central
+shows that this quantity is also conserved. Therefore the star's orbit
+is kept within a fixed plane determined by its initial conditions.
+Let $L(t)=L$ be its conserved norm. We also have
+\[
+L=r(t)v_{t}(t)=r(t)^{2}\dot{\theta}(t)
+\]
+In our case, consider an orbit with binding energy $E\geq0$ and angular
+momentum $L\geq0$. We can rewriting the energy conservation equation
+(on one orbit) as
+\[
+E=\psi(r)-\frac{1}{2}\dot{r}^{2}-\frac{L^{2}}{2r^{2}}\Leftrightarrow\dot{r}^{2}=2(\psi(r)-E)-\frac{L^{2}}{r^{2}}=2(\psi_{{\rm eff}}(r;L)-E)
+\]
+Define
+\[
+v_{r}(r)\doteqdot\sqrt{2(\psi_{{\rm eff}}(r;L)-E)}\geq0
+\]
+Consider starting the motion from a radius with position initial radial
+velocity. Then as long as the radial velocity is positive, we have
+\[
+\int_{0}^{t}\frac{\dot{r}(t){\rm d}t}{v_{r}(r(t))}=t\Leftrightarrow\int_{r_{{\rm min}}}^{r(t)}\frac{{\rm d}r}{v_{r}(r)}=t.
+\]
+This motion goes on until $\dot{r}(\tau)=0$ for some time $\tau$
+defined by 
+\[
+\tau=\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}
+\]
+where $r_{\max}$ is the radius reached at $\tau$. Then the $\ddot{r}$
+(negative) decreases $r$ until a radius $r_{{\rm min}}$ which has
+vanishing radial velocity (but positive $\ddot{r}$), and the process
+repeats itself (see next section for a proof of those accelerations).
+Note that the motion from $r_{\max}$ to $r_{\min}$ is symmetrical
+to that from $r_{\min}$to $r_{\max}$, as it follows the relation
+\[
+\int_{\tau}^{t}\frac{\dot{r}(t){\rm d}t}{-v_{r}(r(t))}=t-\tau\Leftrightarrow\int_{r_{{\rm max}}}^{r(t)}\frac{{\rm d}r}{v_{r}(r)}=\tau-t
+\]
+hence
+\[
+\int_{r_{{\rm min}}}^{r(t)}\frac{{\rm d}r}{v_{r}(r)}-\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}=\tau-t\Leftrightarrow\int_{r_{{\rm min}}}^{r(t)}\frac{{\rm d}r}{v_{r}(r)}=2\tau-t.
+\]
+Letting the orbit start at $r_{\min}$ and setting 
+\[
+F(r)=\int_{r_{\min}}^{r}\frac{dx}{v_{r}(x)},
+\]
+we obtain an expression for the radius of the orbit
+\[
+r(t)=\begin{cases}
+F^{-1}(t) & t\in[0,\tau]\\
+F^{-1}(2\tau-t) & t\in[\tau,2\tau]
+\end{cases},
+\]
+with the symmetry $r(t)=r(2\tau-t)$ and the $2\tau$-periodicity
+of the radius. Furthermore, notice that $1/v_{r}(r)$ is integrable
+at $r_{\min}$ and $r_{\max}$. To show this, consider what happens
+near $r_{\max}$. Let $\epsilon>0$.
+\[
+v_{r}^{2}(r_{\max}-\epsilon)=2(\psi(r_{\max}-\epsilon)-E)-\frac{L^{2}}{(r_{\max}-\epsilon)^{2}}=2(\psi(r_{\max})-\psi'(r_{\max})\epsilon+o(\epsilon)-E)-\frac{L^{2}}{r_{\max}^{2}}\frac{1}{(1-\frac{\epsilon}{r_{\max}})^{2}}
+\]
+\[
+v_{r}^{2}(r_{\max}-\epsilon)=2(\psi(r_{\max})-\psi'(r_{\max})\epsilon+o(\epsilon)-E)-\frac{L^{2}}{r_{\max}^{2}}(1+\frac{2\epsilon}{r_{\max}}+o(\epsilon))
+\]
+\[
+v_{r}^{2}(r_{\max}-\epsilon)=\underbrace{v_{r}^{2}(r_{\max})}_{=0}-2\psi'(r_{\max})\epsilon-\frac{2L^{2}\epsilon}{r_{\max}^{3}}+o(\epsilon)
+\]
+\[
+v_{r}^{2}(r_{\max}-\epsilon)=\frac{2r_{\max}}{(1+r_{\max}^{2})^{3/2}}\epsilon-\frac{2L^{2}\epsilon}{r_{\max}^{3}}+o(\epsilon)
+\]
+Thus
+\[
+\frac{1}{v_{r}(r_{\max}-\epsilon)}=\left(\underbrace{\frac{2r_{\max}}{(1+r_{\max}^{2})^{3/2}}-\frac{2L^{2}}{r_{\max}^{3}}}_{=-2\psi_{{\rm eff}}'(r_{\max})\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
+\]
+A similar calculation yields
+\[
+\frac{1}{v_{r}(r_{\min}+\epsilon)}=\left(\underbrace{-\frac{2r_{\min}}{(1+r_{\min}^{2})^{3/2}}+\frac{2L^{2}}{r_{\min}^{3}}}_{=2\psi_{{\rm eff}}'(r_{\min})\geq0}\right)^{-1/2}\frac{1}{\sqrt{\epsilon}}(1+o(1))
+\]
+which is integrable since $1/\sqrt{\epsilon}$ is integrable at $0^{+}$
+if the $()^{-1/2}$ term in strictly positive. Once we have shown
+this, we can conclude that the orbit is ``rosette-like'', with periodical
+radius of periode $T=2\tau$ with
+\[
+\tau=\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}.
+\]
+Maybe isolate the borders and use change of variable $\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)$.
+Then 
+\[
+\int_{r_{\min}}\frac{{\rm d}r}{v_{r}(r)}=\int_{0}\frac{2\cos\theta\sin\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r;L)\sqrt{2\sin^{2}\theta}}=\int_{0}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r;L)}
+\]
+with $\psi_{{\rm eff}}(r;L)-E=\sin^{2}(\theta)$. This change of variable
+is posible because $\psi_{{\rm eff}}(r;L)\geq E$ and $E>0$, hence
+$\psi_{{\rm eff}}(r;L)-E\geq0$ and $\psi_{{\rm eff}}(r;L)-E\leq\psi_{{\rm eff}}(r;L)\leq1$.
+This transformation is bijective on $r\in[r_{\min},r_{*}^{L}]$ and
+$r\in[r_{*}^{L},r_{\max}]$ where $\psi_{{\rm eff}}'(r_{*}^{L};L)=0$.
+This way we have
+\[
+\frac{1}{\sqrt{1+r^{2}}}=\frac{L^{2}}{2r^{2}}+E+\sin^{2}\theta=\frac{L^{2}+2r^{2}(E+\sin^{2}\theta)}{2r^{2}}
+\]
+\[
+\frac{1}{1+r^{2}}=\frac{(L^{2}+2r^{2}(E+\sin^{2}\theta))^{2}}{4r^{4}}
+\]
+Let $X=r^{2}$. Then 
+\[
+4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2},
+\]
+degree-3 equation hence with the roots $X$ with an analytical expression.
+Two solution between $r_{\min}$ and $r_{\max}$, each separated by
+$r_{*}^{L}$. Therefore, letting $r_{\min}<r_{1}<r_{*}^{L}$ and $r_{*}^{L}<r_{2}<r_{\max}$,
+decompose the integral into
+\[
+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}=\int_{r_{{\rm min}}}^{r_{1}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{1}}^{r_{*}^{L}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{*}^{L}}^{r_{2}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}
+\]
+\[
+\int_{r_{{\rm min}}}^{r_{\max}}\frac{{\rm d}r}{v_{r}(r)}=\int_{0}^{\theta_{1}}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{\psi_{{\rm eff}}'(r(\theta);L)}+\int_{r_{1}}^{r_{*}^{L}}\frac{{\rm d}r}{v_{r}(r)}+\int_{r_{*}^{L}}^{r_{2}}\frac{{\rm d}r}{v_{r}(r)}+\int_{0}^{\theta_{2}}\frac{\sqrt{2}\cos\theta{\rm d}\theta}{|\psi_{{\rm eff}}'(r(\theta);L)|}
+\]
+where $\psi_{{\rm eff}}(r_{1};L)-E=\sin^{2}(\theta_{1})$ and $\psi_{{\rm eff}}(r_{2};L)-E=\sin^{2}(\theta_{2})$. 
+
+As for the angle, its derivative $\dot{\theta}$ is $T$-periodical
+since $L=r^{2}\dot{\theta}$ with $r\geq0$ $T$-periodical. Therefore
+it can be decomposed as 
+\[
+\theta(t)=\omega t+p(t)
+\]
+where $p(t)$ is $T$-periodical and $\omega$ is a real constant.
+Indeed, let $\omega=\frac{1}{T}\int_{0}^{T}\dot{\theta}(t){\rm d}t$
+and $p(t)=\theta(t)-\omega t$. Then 
+\[
+p(t+T)=\theta(t+T)-\omega(t+T)=\int_{0}^{t}\dot{\theta}(t){\rm d}t+\int_{t}^{t+T}\dot{\theta}(t){\rm d}t-\omega t-\omega T
+\]
+\[
+p(t+T)=\left(\int_{0}^{t}\dot{\theta}(t){\rm d}t-\omega t\right)+\left(\int_{0}^{T}\dot{\theta}(t){\rm d}t-\int_{0}^{T}\dot{\theta}(t){\rm d}t\right)=(\theta(t)-\omega t)=p(t)
+\]
+showing that $p(t)$ is $T$-periodical. 
+
+Now, to find what $r_{{\rm max}}$ and $r_{\min}$ are, we need to
+solve $v_{r}(r)=0$, i.e. $\psi(r)-E-\frac{L^{2}}{2r^{2}}=0$, i.e.
+\[
+\frac{1}{\sqrt{1+r^{2}}}=\frac{L^{2}}{2r^{2}}+E=\frac{2Er^{2}+L^{2}}{2r^{2}}\Leftrightarrow\frac{1}{1+r^{2}}=\frac{(2Er^{2}+L^{2})^{2}}{4r^{4}}\Leftrightarrow4r^{4}=(2Er^{2}+L^{2})^{2}(1+r^{2})
+\]
+Let $X=r^{2}$. Then
+\[
+4X^{2}=(2EX+L^{2})^{2}(1+X)\Leftrightarrow4E^{2}X^{3}+4(E^{2}-1+EL^{2})X^{2}+(4EL^{2}+L^{4})X+L^{4}=0
+\]
+This is a degree-3 polynomial in $X$. It has 3 real roots iff its
+discriminant $\Delta$ is strictly positive (two real roots, one of
+which is double, if $\Delta=0$). Let
+\[
+\alpha=4E^{2};\quad\beta=4(E^{2}-1+EL^{2});\quad\gamma=4EL^{2}+L^{4};\quad\delta=L^{4}.
+\]
+Then the polynomial has the form $\alpha X^{3}+\beta X^{2}+\gamma X+\delta$.
+Suppose $E>0$. Setting 
+\[
+X=Y-\frac{\beta}{3\alpha};\quad p=\frac{3\alpha\gamma-\beta^{2}}{3\alpha^{2}};\quad q=\frac{2\beta^{3}-9\alpha\beta\gamma+27\alpha^{2}\delta}{27\alpha^{3}},
+\]
+we have that $\alpha X^{3}+\beta X^{2}+\gamma X+\delta=0$ iff $Y^{3}+pY+q=0$
+where the roots of the two polynomials are linked by the formula $X_{i}=Y_{i}-\frac{\beta}{3\alpha}.$
+As for the discriminant of the $Y$ polynomial, it is 
+\[
+\Delta=-(4p^{3}+27q^{2}).
+\]
+Since only its sign matter on looking for the behavior of the solutions,
+we may only compute $\Delta$.
+
+If $\Delta<0$, i.e. $4p^{3}+27q^{2}>0$, then the polynomial has
+only one real root given by
+\[
+Y=\left(-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}\right)^{1/3}+\left(-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}\right)^{1/3}
+\]
+
+If $\Delta\geq0$, i.e. $4p^{3}+27q^{2}\geq0$, then there are three
+real roots given by
+\[
+Y_{k}=2\sqrt{-\frac{p}{3}}\cos\left[\frac{1}{3}\arccos\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right)-\frac{2\pi k}{3}\right],\quad k\in\{0,1,2\}.
+\]
+Note that when $\Delta=0$, this reduces to the two roots 
+\[
+Y_{0}=2\sqrt{-\frac{p}{3}},\quad Y_{1,2}=-\sqrt{-\frac{p}{3}}.
+\]
+ Recall $\dot{r}^{2}/2=\psi_{{\rm eff}}(r;L)-E$ ($\geq0$ on the
+orbit). $\psi_{{\rm eff}}(r;L)$ has derivative is
+\[
+\psi'_{{\rm eff}}(r;L)=\frac{L^{2}}{r^{3}}-\frac{r}{(1+r^{2})^{3/2}}
+\]
+with $\psi'_{{\rm eff}}(r;L)\leq0$ iif $r^{4}/L^{2}\geq(1+r^{2})^{3/2}$.
+Left term grows more quickly $(\sim r^{4})$ that the second term
+$(\sim r^{3})$ but stars at 0 whereas second term starts at $1/2>0$.
+Therefore the two curves cross at a unique point, and this inequality
+is satisfied after this point. This shows that $\psi_{{\rm eff}}(r;L)$
+is increasing until some point, then decreases. In this maximum is
+stricly below $E$, then there are no solution. If the maximum is
+exactly $E$, then there is only one solution and the orbit is circular.
+If the maximum is strictly above $E$, then they are two solutions
+which are $r_{{\rm min}}$and $r_{\max}$. The latter is because $\lim_{r\rightarrow\infty}\psi_{{\rm eff}}(r;L)=0<E$. 
+
+If we are in the case of no solution, then $v_{r}(r)=2(\psi_{{\rm eff}}(r;L)-E)<0$,
+which is impossible on an orbit.
+
+If we are in the case with two solutions, then the solution are not
+the maximum of $\psi_{{\rm eff}}(r;L)$, meaning that the derivative
+evaluated at the solutions are non-zero. This completes the proof
+that $1/v_{r}(r)$ is integrable at $r_{\max}$ and $r_{\min}$ as
+the integral of $1/\sqrt{r-r_{{\rm m}}}$. Furthermore, since $\psi_{{\rm eff}}(r;L)$
+must have two positive distincts solutions $r_{\min},r_{\max}$, then
+the polynomial should also have two distincts positive solutions $X_{{\rm max}}=r_{\max}^{2}$
+and $X_{\min}=r_{\min}^{2}$ (and the third one being negative).
+
+One should check whether a given couple $(E,L)$ allows for bound
+orbits. That that end, we should find if there exists at least one
+$r$ that that $\psi_{{\rm eff}}(r;L)\geq E$, i.e. if there are solution
+to the polynomial. Equivalently, this reduces to computing the discriminant
+$\Delta$ and testing if it is positive.
+
+\subsubsection{Computing the binding energy of a circular orbit given $L$}
+
+We have now access to the NR, orbit-averaged diffusion coefficients
+in $(E,L)$-space for the allowed bound orbits: $\bar{D}_{E}$, $\bar{D}_{EE}$,
+$\bar{D}_{L}$, $\bar{D}_{LL}$ and $\bar{D}_{EL}$, functions of
+$(E,L)$. The allowed region in $(E,L)$ space is composed of the
+$E,L\geq0$ such that there exists $r>0$ verifying the inequality
+$\psi_{{\rm eff}}(r;L)\geq E$, where we defined the effective potential
+\[
+\psi_{{\rm eff}}(r;L)=\psi(r)-\frac{L^{2}}{2r^{2}}=\frac{1}{\sqrt{1+r^{2}}}-\frac{L^{2}}{2r^{2}}.
+\]
+As shown before, for $L>0$, this function has limits $\lim_{0}\psi_{{\rm eff}}=-\infty$
+and $\lim_{+\infty}\psi_{{\rm eff}}=0$, is increasing until a global
+maximum before decreasing towards $0$. Raising the value of $L$
+lowers this maximum value, meaning that there exists a value $L_{{\rm c}}(E)$
+such that $\psi_{{\rm eff}}(r;L_{c}(E))=E$. Then, the forbidden angular
+momenta (for a given $E$) are the $L>L_{{\rm c}}(E)$. Due to the
+discussion in the previous section, this couple $(E,L_{{\rm c}}(E))$
+determines a circular orbit. 
+
+There are a priori no analytical formula composed only of basic operations
+and radical for $L_{{\rm c}}(E)$. Indeed, we noted that an orbit
+with $(E,L)$ was circular if the discriminant $\Delta=18\alpha\beta\gamma\delta-4\beta^{3}\delta+\beta^{2}\gamma^{2}-4\alpha\gamma^{3}-27\alpha^{2}\delta^{2}$,
+where $\alpha=4E^{2};\beta=4(E^{2}-1+EL^{2});\gamma=4EL^{2}+L^{4};\delta=L^{4}$,
+was zero. This is a degree-6 polynomial equation in the variable $L^{2}$,
+which has no such formula for its solutions (Abel, 1826). However,
+we may approximate it. For simplicity's sake, look for $E_{c}(L)$
+at a given $L$. It is given by $E_{c}(L)=\max_{r>0}\psi_{{\rm eff}}(r;L)=\psi_{{\rm eff}}(r_{*}^{L};L)$.
+To approximate this $r_{*}^{L}$, we may look for it using Newton's
+method applied to $\psi'_{{\rm eff}}$, since $\psi'_{{\rm eff}}(r_{*}^{L};L)=0$.
+Start at $r_{0}^{L}=L^{2/3}$ , where the evaluation yields
+\[
+\psi'_{{\rm eff}}(L^{2/3};L)=1-\frac{L^{2/3}}{(1+L^{4/3})^{3/2}}\in[1-\sqrt{4/27},1]\simeq[0.615,1]
+\]
+in order not to be too far away from $\psi'_{{\rm eff}}(r_{*}^{L};L)=0$,
+and apply the recursion
+\[
+r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
+\]
+where
+\[
+\psi'_{{\rm eff}}(r;L)=-\frac{r}{(1+r^{2})^{3/2}}+\frac{L^{2}}{r^{3}};\quad\psi''_{{\rm eff}}(r_{n};L)=-\frac{(1+r^{2})^{3/2}-3r^{2}\sqrt{1+r^{2}}}{(1+r^{2})^{3}}-3\frac{L^{2}}{r^{4}}.
+\]
+Then $r_{n}^{L}\rightarrow r_{*}^{L}$. We can show that $(r_{n}^{L})$
+is increasing since $\psi'_{{\rm eff}}(r_{n}^{L};L)>0$ and $\psi''_{{\rm eff}}(r_{n}^{L};L)<0$
+(and convexity of $\psi'_{{\rm eff}}$ where it matters). Therefore
+a good stopping condition is to get the lowest $N$ such that $\psi'_{{\rm eff}}(r_{N}^{L}+\epsilon)<0$
+for some precision $\epsilon>0$. Then, taking $\tilde{r}_{*}^{L}=(r_{N}^{L}+r_{N}^{L}+\epsilon)/2=r_{N}^{L}+\epsilon/2$
+we will have $E_{{\rm c}}(L)\simeq\psi_{{\rm eff}}(\tilde{r}_{*}^{L};L)$,
+with precision 
+\[
+\delta E_{{\rm c}}(L)\simeq|\psi_{{\rm eff}}(r_{*}^{L};L)-\psi_{{\rm eff}}(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psi_{{\rm eff}}^{(2)}(r_{*}^{L})}_{<0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psi_{{\rm eff}}^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
+\]
+
+
+\subsubsection{Computing the angular momentum of a circular orbit given $E$}
+
+We use the same technique as before. For any $r$, $E$, $L$ possible,
+\[
+L^{2}\leq2r^{2}(\psi(r)-E)\doteqdot z(r;E)
+\]
+with equality for the radii $r$ such that $v_{r}(r)=0$, that is,
+the bounds of motion. $z(r;E)$ has two solutions, as shown in the
+previous analysis, and one global maximum on $r>0$. For a given $E$,
+the maximum $L_{{\rm c}}(E)$ that a test star can have is such that
+only one $r_{*}^{E}$ satisties $L_{{\rm c}}^{2}(E)\leq z(r_{*}^{E};E)$,
+that is, 
+\[
+L_{{\rm c}}^{2}(E)=z(r_{*}^{E};E)=\max_{r>0}z(r;E).
+\]
+This is therefore the angular momentum of the circular orbit corresponding
+to the binding energy $E$. Given the behavior of $z(r;E)$ (see appendix),
+we can use the similar Newton's method to find $r_{*}^{E}$ starting
+from $r_{0}^{E}=\sqrt{E^{-2}-1}$, applying the recursion
+\[
+r_{n+1}^{E}=r_{n}^{E}-\frac{z'(r_{n}^{E};E)}{z''(r_{n}^{E};E)},
+\]
+and stopping at the lowest $N$ such that $z'(r_{N}^{E}-\epsilon;E)>0$
+for some precision $\epsilon>0$. Then, 
+\[
+L_{{\rm c}}(E)\simeq\sqrt{z(r_{N}^{E}-\frac{\epsilon}{2};E)}
+\]
+We have that 
+\[
+z'(r;E)=4r(\psi(r)-E)+2r^{2}\psi'(r)
+\]
+\[
+z''(r;E)=4(\psi(r)-E)+8r\psi'(r)+2r^{2}\psi''(r)
+\]
+
+
+\subsubsection{Study of the radiux acceleration $\ddot{r}$ for non-circular orbits}
+
+A condition to the periodicity of $r(t)$ is that $\ddot{r}(t)$ should
+be strictly negative when reaching $r_{\max}$ and strictly positive
+when reaching $r_{\min}$, so that for small $\epsilon>0$ (time just
+after $t_{\max}$ and $t_{\min}$)
+\[
+r(t_{\max}+\epsilon)=r(t_{\max})+\dot{r}(t_{\max})\epsilon+\ddot{r}(t_{\max})\frac{\epsilon^{2}}{2}+o(\epsilon^{2})=r_{\max}+\ddot{r}_{\max}\frac{\epsilon^{2}}{2}+o(\epsilon^{2})<r_{\max},
+\]
+\[
+r(t_{\min}+\epsilon)=r(t_{\min})+\dot{r}(t_{\min})\epsilon+\ddot{r}(t_{\min})\frac{\epsilon^{2}}{2}+o(\epsilon^{2})=r_{\min}+\ddot{r}_{\min}\frac{\epsilon^{2}}{2}+o(\epsilon^{2})>r_{\min}.
+\]
+Newton's law asserts that $a_{r}=\ddot{r}-r\dot{\theta}^{2}=\psi'(r)$,
+where $L=r^{2}\dot{\theta}$, hence $\ddot{r}=\psi'(r)+\frac{L^{2}}{r^{3}}=\psi'_{{\rm eff}}(r;L)$.
+In the case of a non-circular orbits, $r_{\max}$ and $r_{\min}$
+don't correspond to maxima of $\psi{}_{{\rm eff}}(r;L)$, therefore
+$\psi'_{{\rm eff}}(r;L)$ doesn't vanish at those points. Furthermore,
+we showed that $\psi{}_{{\rm eff}}(r;L)$ was strictly increasing
+until its maximum, then was strictly decreasing. This proves that
+$\ddot{r}_{\min}>0$ and that $\ddot{r}_{\max}<0$.
+
+\subsection{Diffusion equation and change of variables}
+
+All in all, those coefficients appear in the Fokker-Planck diffusion
+equation
+\[
+\frac{\partial P}{\partial t}(E,L,t)=-\frac{\partial}{\partial E}\left[\bar{D}_{E}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E^{2}}\left[\bar{D}_{EE}P\right]-\frac{\partial}{\partial L}\left[\bar{D}_{L}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial L^{2}}\left[\bar{D}_{LL}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E\partial L}\left[\bar{D}_{EL}P\right]
+\]
+
+If we want to change coordinates $\boldsymbol{x}\rightarrow\boldsymbol{x'}(\boldsymbol{x})$,
+we may use the formulae (C.52) and (C.53) p.25 from Bar-Or \& Alexander
+(2016)
+\[
+D'_{l}=\frac{\partial x'_{l}}{\partial x_{k}}D_{k}+\frac{1}{2}\frac{\partial^{2}x'_{l}}{\partial x_{r}\partial x_{k}}D_{rk},
+\]
+(error on the sign? should be
+\[
+D'_{l}=\frac{\partial x'_{l}}{\partial x_{k}}D_{k}-\frac{1}{2}\frac{\partial^{2}x'_{l}}{\partial x_{r}\partial x_{k}}D_{rk}\quad?)
+\]
+\[
+D'_{lm}=\frac{\partial x'_{l}}{\partial x_{r}}\frac{\partial x'_{m}}{\partial x_{k}}D_{rk}.
+\]
+We might be interested in the change of variable $(E,L)\rightarrow(E,\ell)$
+where $\ell(E,L)=L/L_{{\rm c}}(E)$. We have
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+ $(E,L)$ &  $(E,\ell)$\tabularnewline
+\hline 
+\hline 
+ $(0,0)$ &  $(0,0)$\tabularnewline
+\hline 
+ $(E,0)$ &  $(E,0)$\tabularnewline
+\hline 
+ $(1-\epsilon,\alpha)$ &  $(1-\epsilon,\alpha/L_{{\rm c}}(1-\epsilon))$\tabularnewline
+\hline 
+ $(E,L_{{\rm c}}(E))$ &  $(E,1)$\tabularnewline
+\hline 
+ $(0,L>0)$ &  $(0,1)$\tabularnewline
+\hline 
+ $(0,+\infty)$ &  $(0,1)$\tabularnewline
+\hline 
+\end{tabular}
+\par\end{center}
+
+For $(E,L)=(1-\epsilon,\alpha)$ with $\epsilon,\alpha>0$ small,
+letting $\alpha\rightarrow0$ more quickly than $\epsilon\rightarrow0$
+corresponds to taking an arbitry limit in the authorized $(E,L)$-space
+towards $(E,L)=(1,0)$. Then $L_{{\rm c}}(1-\epsilon)\sim|L_{{\rm c}}(1)|\epsilon$
+and $(E,\ell)\rightarrow(1,0)$, meaning that we have
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+ $(E,L)$ &  $(E,\ell)$\tabularnewline
+\hline 
+\hline 
+ $(0,0)$ &  $(0,0)$\tabularnewline
+\hline 
+ $(E,0)$ &  $(E,0)$\tabularnewline
+\hline 
+ $(1,0)$ &  $(1,0)$\tabularnewline
+\hline 
+ $(E,L_{{\rm c}}(E))$ &  $(E,1)$\tabularnewline
+\hline 
+ $(0,L)$ &  $(0,\ell)$\tabularnewline
+\hline 
+ $(0,+\infty)$ &  $(0,1)$\tabularnewline
+\hline 
+\end{tabular}
+\par\end{center}
+
+We have thus transformed the $(E,L)$-space to a square $(E,\ell)$-space,
+were:
+\begin{itemize}
+\item the side $\ell=0$ is a degenerated bound orbit (straight line through
+the center with $r_{\max}=\sqrt{1/E^{2}-1}$. Because of the definition,
+its period is $4\int_{0}^{r_{\max}}{\rm d}r/\sqrt{2(\psi_{{\rm eff}}(r)-E}$
+($r_{\max}\rightarrow0\rightarrow r_{\max}\rightarrow0\rightarrow r_{\max}$
+instead of $r_{\max}\rightarrow r_{\min}\rightarrow r_{\max}$).
+\item the side $\ell=1$ is the limit of circular orbits.
+\item the side $E=0$ is the limit of unbounded orbits.
+\item the side $E=1$ is the limit of forbidden parameters.
+\end{itemize}
+Then we obtain the transformed Fokker-Planck equation
+\[
+\frac{\partial P}{\partial t}(E,\ell,t)=-\frac{\partial}{\partial E}\left[\bar{D}_{E}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E^{2}}\left[\bar{D}_{EE}P\right]-\frac{\partial}{\partial\ell}\left[\bar{D}_{\ell}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial\ell^{2}}\left[\bar{D}_{\ell\ell}P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E\partial\ell}\left[\bar{D}_{E\ell}P\right]
+\]
+
+
+\subsection{Useful Julia packages}
+\begin{itemize}
+\item HCuba, with its function cuhre((x,f)->f{[}1{]} = integrand, 3, 1),
+to integrable multidimensional integrals (here 3D) over the unit hypercube.
+May be useful to compute the local diffusion coefficients since all
+integration bounds are finite. The cuhre() function is deterministic,
+fast and globally adaptive.
+\end{itemize}
+
+\section{Brouillon}
+
+\subsection{Local diffusion coefficients}
+
+Repère fixé quelconque $e_{1}=(Oz)$, $e_{2},e_{3}$. Vecteur $\boldsymbol{r}=(r,\theta,\phi)$,
+fixé. 
+\[
+r_{1}=r\cos\theta
+\]
+\[
+r_{2}=r\sin\theta\cos\phi
+\]
+\[
+r_{3}=r\sin\theta\sin\phi
+\]
+Vecteur vitesse de la particule test $\boldsymbol{v}$
+\[
+v_{1}=v\cos\theta_{v}
+\]
+\[
+v_{2}=v\sin\theta_{v}\cos\phi_{v}
+\]
+\[
+v_{3}=v\sin\theta_{v}\sin\phi_{v}
+\]
+en cylindrique avec $\theta_{v}$ l'angle entre $\hat{e_{1}}$ et
+$\boldsymbol{v}$, et $\phi_{v}$ l'angle entre $\hat{e_{2}}$ et
+le projeté de $\boldsymbol{v}$ sur le plan equatorial. On a $\boldsymbol{v}=v_{r}\hat{r}+\boldsymbol{v_{t}}=\boldsymbol{v_{r}}+\boldsymbol{v_{t}}$.
+\[
+v_{r}=\boldsymbol{v}\cdot\hat{r}=v_{1}\hat{r}_{1}+v_{2}\hat{r}_{2}+v_{3}\hat{r}_{3}=v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi
+\]
+
+\[
+v_{t}^{2}=v^{2}-(v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi)
+\]
+\[
+v_{t}^{2}=v^{2}-v_{r}^{2}=(\underbrace{v_{1}^{2}+v_{2}^{2}+v_{3}^{2}}_{=v^{2}})-(\underbrace{v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi}_{=v_{r}})^{2}
+\]
+
+. Let $h(\boldsymbol{r},\boldsymbol{v})=h(r,v_{r},v_{t})$. Note that
+$\frac{\partial r}{\partial v_{i}}=0$. Thus
+\[
+\frac{\partial h}{\partial v_{1}}=\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial h}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial h}{\partial v_{t}}
+\]
+We have, (at fixed $\boldsymbol{r}$(Fixed $\boldsymbol{r}$ mean
+fixed $r,\theta,\phi$)).
+\[
+\frac{\partial v_{r}}{\partial v_{1}}=\cos\theta
+\]
+and 
+\[
+\frac{\partial(v_{t}^{2})}{\partial v_{1}}=2v_{t}\frac{\partial v_{t}}{\partial v_{1}}=\frac{\partial(v^{2})}{\partial v_{1}}-\frac{\partial(v_{r}^{2})}{\partial v_{1}}=2v_{1}-2v_{r}\frac{\partial v_{r}}{\partial v_{1}}=2v_{1}-2v_{r}\cos\theta
+\]
+hence
+\[
+\frac{\partial v_{t}}{\partial v_{1}}=\frac{v_{1}-v_{r}\cos\theta}{v_{t}}
+\]
+In the coordinate system where $\hat{e_{1}}=\hat{v}$ and $\hat{e_{2}}$
+is the projection of $\hat{r}$ on the equatorial plane ($\phi=0$),
+we have that $\Delta v_{1}=\Delta v_{||}$ and $\Delta v_{2}^{2}+\Delta v_{3}^{2}=\Delta v_{\perp}^{2}$,
+meaning that 
+\[
+\langle\Delta v_{||}\rangle=\langle\Delta v_{1}\rangle
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle=\langle(\Delta v_{1})^{2}\rangle
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle=\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle
+\]
+In that system, we have that $\theta_{v}=0$, $v_{1}=v$ and $\phi$We
+also have that $\cos\theta=v_{r}/v$ because $\theta$ is the angle
+between $\hat{r}$ and $(Oz)=\hat{e_{1}}=\hat{v}$, and $v_{r}$ is
+the orthogonal projection of $\boldsymbol{v}$ on $\hat{r}$. For
+the same reason, $\sin\theta=v_{t}/v$. Therefore, in that coordinate
+system:
+\[
+\frac{\partial v_{r}}{\partial v_{1}}=\frac{v_{r}}{v};\quad\frac{\partial v_{t}}{\partial v_{1}}=\frac{v-v_{r}^{2}/v}{v_{t}}=\frac{v^{2}-v_{r}^{2}}{v_{t}v}=\frac{v_{t}^{2}}{v_{t}v}=\frac{v_{t}}{v}
+\]
+and we have
+\[
+\frac{\partial h}{\partial v_{1}}=\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}}
+\]
+
+As for second order:
+\[
+\frac{\partial^{2}g}{\partial v_{1}^{2}}=\frac{\partial}{\partial v_{1}}\left(\frac{\partial g}{\partial v_{1}}\right)=\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial g}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial g}{\partial v_{t}}\right)
+\]
+with $\frac{\partial v_{r}}{\partial v_{1}}=\cos\theta$ and $\frac{\partial v_{t}}{\partial v_{1}}=\frac{v_{1}-v_{r}\cos\theta}{v_{t}}$.
+Then
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}\\
++ & \frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\left(\frac{\partial v_{t}}{\partial v_{1}}\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\end{align*}
+where 
+\[
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{1}}\left(\cos\theta\right)\frac{\partial g}{\partial v_{r}}=0
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}=\cos^{2}\theta\frac{\partial^{2}g}{\partial v_{r}^{2}}
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}=\left(\cos\theta\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}} & =\frac{\partial}{\partial v_{1}}\left(\cos\theta\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)\frac{\partial g}{\partial v_{t}}=\cos\theta\left(\frac{(1-\frac{\partial v_{r}}{\partial v_{1}}\cos\theta)v_{t}-(v_{1}-v_{r}\cos\theta)\frac{\partial v_{t}}{\partial v_{1}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}\\
+ & =\cos\theta\left(\frac{(1-\cos^{2}\theta)v_{t}-(v_{1}-v_{r}\cos\theta)\frac{v_{1}-v_{r}\cos\theta}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}\\
+ & =\cos\theta\left(\frac{\sin^{2}\theta v_{t}-(v_{1}-v_{r}\cos\theta)\frac{v_{1}-v_{r}\cos\theta}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}
+\end{align*}
+
+\[
+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}=\left(\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\]
+Which in the special coordinate system gives
+\[
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{r}}=0
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}=\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}=\left(\frac{v_{r}}{v}\frac{v-v_{r}^{2}/v}{v_{t}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}=\left(\frac{v_{r}v_{t}}{v^{2}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}} & =\frac{v_{r}}{v}\left(\frac{v_{t}^{3}/v^{2}-(v-v_{r}^{2}/v)\frac{v-v_{r}^{2}/v}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}\\
+ & \frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}}==\frac{v_{r}}{v}\left(\frac{v_{t}^{3}/v^{2}-\frac{v_{t}^{3}}{v^{2}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}=0
+\end{align*}
+
+\[
+\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}=\left(\frac{v-v_{r}^{2}/v}{v_{t}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}=\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\]
+Hence:
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+\[
+\frac{\partial^{2}g}{\partial v_{2}^{2}}=\frac{\partial}{\partial v_{2}}\left(\frac{\partial g}{\partial v_{2}}\right)=\frac{\partial}{\partial v_{2}}\left(\frac{\partial v_{r}}{\partial v_{2}}\frac{\partial g}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{2}}\frac{\partial g}{\partial v_{t}}\right)
+\]
+with 
+\[
+\frac{\partial v_{r}}{\partial v_{2}}=\sin\theta\cos\phi
+\]
+\[
+\frac{\partial(v_{t}^{2})}{\partial v_{2}}=2v_{t}\frac{\partial v_{t}}{\partial v_{2}}=\frac{\partial(v^{2})}{\partial v_{2}}-\frac{\partial(v_{r}^{2})}{\partial v_{2}}=2v_{2}-2v_{r}\frac{\partial v_{r}}{\partial v_{2}}=2v_{2}-2v_{r}\sin\theta\cos\phi
+\]
+thus
+\[
+\frac{\partial v_{t}}{\partial v_{2}}=\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}}
+\]
+thus
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{2}^{2}} & =\left(\frac{\partial}{\partial v_{2}}\frac{\partial v_{r}}{\partial v_{2}}\right)\frac{\partial g}{\partial v_{r}}+\left(\frac{\partial v_{r}}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\left(\frac{\partial v_{r}}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}\\
+ & +\left(\frac{\partial}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}}\right)\frac{\partial g}{\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{2}}\frac{\partial v_{r}}{\partial v_{2}}\right)\frac{\partial^{2}g}{\partial r\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+we have
+\[
+\frac{\partial}{\partial v_{2}}\frac{\partial v_{r}}{\partial v_{2}}=\frac{\partial}{\partial v_{2}}(\sin\theta\cos\phi)=0
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{2}}\right)^{2}=\sin^{2}\theta\cos^{2}\phi
+\]
+\[
+\frac{\partial v_{r}}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}}=\sin\theta\cos\phi\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}}
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}} & =\frac{\partial}{\partial v_{2}}(\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}})=\frac{(1-\frac{\partial v_{r}}{\partial v_{2}}\sin\theta\cos\phi)v_{t}-(v_{2}-v_{r}\sin\theta\cos\phi)\frac{\partial v_{t}}{\partial v_{2}}}{v_{t}^{2}}\\
+ & =\frac{(1-\sin^{2}\theta\cos^{2}\phi)v_{t}-(v_{2}-v_{r}\sin\theta\cos\phi)\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}}}{v_{t}^{2}}
+\end{align*}
+\[
+\left(\frac{\partial v_{t}}{\partial v_{2}}\right)^{2}=(\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}})^{2}
+\]
+In the special coordinate system:
+\[
+\frac{\partial}{\partial v_{2}}\frac{\partial v_{r}}{\partial v_{2}}=0
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{2}}\right)^{2}=\left(\frac{v_{t}}{v}\right)^{2}
+\]
+\[
+\frac{\partial v_{r}}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}}=\frac{-v_{r}(v_{t}^{2}/v^{2})}{v_{t}}=-\frac{v_{r}v_{t}}{v^{2}}
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{2}}\frac{\partial v_{t}}{\partial v_{2}} & =\frac{(1-\frac{v_{t}^{2}}{v^{2}})v_{t}-(-v_{r}v_{t}/v)\frac{-v_{r}v_{t}/v}{v_{t}}}{v_{t}^{2}}=\frac{1}{v_{t}}(1-\frac{v_{t}^{2}}{v^{2}})-\frac{v_{r}^{2}}{v^{2}v_{t}}==\frac{v_{r}^{2}}{v^{2}v_{t}}-\frac{v_{r}^{2}}{v^{2}v_{t}}=0
+\end{align*}
+\[
+\left(\frac{\partial v_{t}}{\partial v_{2}}\right)^{2}=\left(\frac{v_{r}}{v}\right)^{2}
+\]
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{2}^{2}} & =\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+And for the third:
+\[
+\frac{\partial^{2}g}{\partial v_{3}^{2}}=\frac{\partial}{\partial v_{3}}\left(\frac{\partial g}{\partial v_{3}}\right)=\frac{\partial}{\partial v_{3}}\left(\frac{\partial v_{r}}{\partial v_{3}}\frac{\partial g}{\partial v_{r}}+\frac{\partial v_{t}}{\partial v_{3}}\frac{\partial g}{\partial v_{t}}\right)
+\]
+with
+\[
+\frac{\partial v_{r}}{\partial v_{3}}=\sin\theta\sin\phi
+\]
+\[
+\frac{\partial(v_{t}^{2})}{\partial v_{3}}=2v_{t}\frac{\partial v_{t}}{\partial v_{3}}=\frac{\partial(v^{2})}{\partial v_{3}}-\frac{\partial(v_{r}^{2})}{\partial v_{3}}=2v_{3}-2v_{r}\frac{\partial v_{r}}{\partial v_{3}}=2v_{3}-2v_{r}\sin\theta\sin\phi
+\]
+thus
+\[
+\frac{\partial v_{t}}{\partial v_{3}}=\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}
+\]
+thus
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{3}^{2}} & =\left(\frac{\partial}{\partial v_{3}}\frac{\partial v_{r}}{\partial v_{3}}\right)\frac{\partial g}{\partial v_{r}}+\left(\frac{\partial v_{r}}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\left(\frac{\partial v_{r}}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}\\
+ & +\left(\frac{\partial}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}}\right)\frac{\partial g}{\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{3}}\frac{\partial v_{r}}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial r\partial v_{t}}+\left(\frac{\partial v_{t}}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+with
+\[
+\frac{\partial}{\partial v_{3}}\frac{\partial v_{r}}{\partial v_{3}}=\frac{\partial}{\partial v_{3}}(\sin\theta\sin\phi)=0
+\]
+\[
+\left(\frac{\partial v_{r}}{\partial v_{3}}\right)^{2}=\sin^{2}\theta\sin^{2}\phi
+\]
+\[
+\frac{\partial v_{r}}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}}=\sin\theta\sin\phi\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}} & =\frac{\partial}{\partial v_{3}}\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}=\frac{(1-\frac{\partial v_{r}}{\partial v_{3}}\sin\theta\sin\phi)v_{t}-(v_{3}-v_{r}\sin\theta\sin\phi)\frac{\partial v_{t}}{\partial v_{3}}}{v_{t}^{2}}\\
+ & =\frac{(1-\sin^{2}\theta\sin^{2}\phi)v_{t}-(v_{3}-v_{r}\sin\theta\sin\phi)\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}}{v_{t}^{2}}
+\end{align*}
+\[
+\left(\frac{\partial v_{t}}{\partial v_{3}}\right)^{2}=(\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}})^{2}
+\]
+In the special coordinate system
+\[
+\left(\frac{\partial v_{r}}{\partial v_{3}}\right)^{2}=0
+\]
+\[
+\frac{\partial v_{r}}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}}=0
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{3}}\frac{\partial v_{t}}{\partial v_{3}} & =\frac{1}{v_{t}}
+\end{align*}
+\[
+\left(\frac{\partial v_{t}}{\partial v_{3}}\right)^{2}=0
+\]
+therefore
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{3}^{2}} & =\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}}
+\end{align*}
+
+~
+
+$h(v_{r},v_{t})=h(v)$, $v^{2}=v_{r}^{2}+v_{t}^{2}\rightarrow v\frac{\partial v}{\partial v_{i}}=2v_{i}\rightarrow\frac{\partial v}{\partial v_{i}}=\frac{v_{i}}{v}$
+\[
+\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}}=\frac{v_{r}}{v}\frac{\partial v}{\partial v_{r}}h'+\frac{v_{t}}{v}\frac{\partial v}{\partial v_{t}}h'=\frac{v_{r}^{2}}{v^{2}}h'+\frac{v_{t}^{2}}{v^{2}}h'=h'
+\]
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{r}^{2}} & =\frac{\partial}{\partial v_{r}}\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{r}}(\frac{\partial v}{\partial v_{r}}g'(v))=\frac{\partial}{\partial v_{r}}(\frac{v_{r}}{v}g'(v))=\frac{v-v_{r}^{2}/v}{v^{2}}g'(v)+\frac{v_{r}}{v}\frac{\partial v}{\partial v_{r}}g''(v)\\
+ & =\frac{v_{t}^{2}}{v^{3}}g'(v)+\frac{v_{r}^{2}}{v^{2}}g''(v)
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}} & =\frac{\partial}{\partial v_{t}}\frac{\partial g}{\partial v_{r}}=\frac{\partial}{\partial v_{t}}(\frac{\partial v}{\partial v_{r}}g')=\frac{\partial}{\partial v_{t}}(\frac{v_{r}}{v}g')=\frac{-v_{r}v_{t}/v}{v^{2}}g'+\frac{v_{r}}{v}\frac{\partial v}{\partial v_{t}}g''\\
+ & =\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{t}^{2}} & =\frac{\partial}{\partial v_{t}}\frac{\partial g}{\partial v_{t}}=\frac{\partial}{\partial v_{t}}(\frac{\partial v}{\partial v_{t}}g')=\frac{\partial}{\partial v_{t}}(\frac{v_{t}}{v}g')=\frac{v-v_{t}^{2}/v}{v^{2}}g'+\frac{v_{t}}{v}\frac{\partial v}{\partial v_{t}}g'\\
+ & =\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''
+\end{align*}
+\[
+\frac{\partial g}{\partial v_{t}}=\frac{\partial v}{\partial v_{t}}g'=\frac{v_{t}}{v}g'
+\]
+hence
+\begin{align*}
+\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}} & =\frac{v_{r}^{2}}{v^{2}}\left(\frac{v_{t}^{2}}{v^{3}}g'+\frac{v_{r}^{2}}{v^{2}}g''\right)+\frac{2v_{r}v_{t}}{v^{2}}\left(\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''\right)+\left(\frac{v_{t}}{v}\right)^{2}\left(\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''\right)\\
+ & =\left(\frac{v_{r}^{2}v_{t}^{2}}{v^{5}}-\frac{2v_{r}^{2}v_{t}^{2}}{v^{5}}+\frac{v_{r}^{2}v_{t}^{2}}{v^{5}}\right)g'+\left(\frac{v_{r}^{4}}{v^{4}}+\frac{2v_{r}^{2}v_{t}^{2}}{v^{4}}+\frac{v_{t}^{4}}{v^{4}}\right)g''\\
+ & =\left(\frac{v_{r}^{2}}{v^{2}}+\frac{v_{t}^{2}}{v^{2}}\right)^{2}g''=g''
+\end{align*}
+and
+\begin{align*}
+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}} & =\left(\frac{v_{t}}{v}\right)^{2}\left(\frac{v_{t}^{2}}{v^{3}}g'+\frac{v_{r}^{2}}{v^{2}}g''\right)-\frac{2v_{r}v_{t}}{v^{2}}\left(\frac{-v_{r}v_{t}}{v^{3}}g'+\frac{v_{r}v_{t}}{v^{2}}g''\right)\\
+ & +\left(\frac{v_{r}}{v}\right)^{2}\left(\frac{v_{r}^{2}}{v^{3}}g'+\frac{v_{t}^{2}}{v^{2}}g''\right)+\frac{1}{v_{t}}\frac{v_{t}}{v}g'\\
+ & =\left(\frac{v_{t}^{4}}{v^{5}}+\frac{2v_{r}^{2}v_{t}^{2}}{v^{5}}+\frac{v_{r}^{4}}{v^{5}}+\frac{1}{v}\right)g'+\left(\frac{v_{r}^{2}v_{t}^{2}}{v^{4}}-\frac{2v_{r}^{2}v_{t}^{2}}{v^{4}}+\frac{v_{r}^{2}v_{t}^{2}}{v^{4}}\right)g''\\
+ & =\frac{1}{v}\left(\left(\frac{v_{t}^{2}}{v^{2}}+\frac{v_{r}^{2}}{v^{2}}\right)^{2}+1\right)g'=\frac{2}{v}g'
+\end{align*}
+
+
+\subsection{Derivatives in the special referential frame}
+
+\[
+\frac{\partial h}{\partial v_{1}}=\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}}
+\]
+
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{2}^{2}} & =\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{3}^{2}} & =\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}}
+\end{align*}
+
+with
+\[
+\langle\Delta v_{||}\rangle=\langle\Delta v_{1}\rangle
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle=\langle(\Delta v_{1})^{2}\rangle
+\]
+\[
+\langle(\Delta v_{\perp})^{2}\rangle=\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle
+\]
+and
+\[
+\langle\Delta v_{i}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\frac{\partial h}{\partial v_{i}}(r,\boldsymbol{v})
+\]
+\[
+\langle\Delta v_{i}\Delta v_{j}\rangle(r,\boldsymbol{v})=4\pi G^{2}m_{a}^{2}\ln\Lambda\frac{\partial g}{\partial v_{i}\partial v_{j}}(r,\boldsymbol{v})
+\]
+Therefore
+\[
+\langle\Delta v_{||}\rangle=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda\frac{\partial h}{\partial v_{1}}=4\pi G^{2}m_{a}(m+m_{a})\ln\Lambda(\frac{v_{r}}{v}\frac{\partial h}{\partial v_{r}}+\frac{v_{t}}{v}\frac{\partial h}{\partial v_{t}})
+\]
+\[
+\langle(\Delta v_{||})^{2}\rangle=4\pi G^{2}m_{a}^{2}\ln\Lambda\frac{\partial^{2}g}{\partial v_{1}^{2}}=4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\frac{v_{r}^{2}}{v^{2}}\frac{\partial^{2}g}{\partial v_{r}^{2}}+\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}\right)
+\]
+\begin{align*}
+\langle(\Delta v_{\perp})^{2}\rangle & =4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\frac{\partial^{2}g}{\partial v_{2}^{2}}+\frac{\partial^{2}g}{\partial v_{3}^{2}}\right)\\
+ & =4\pi G^{2}m_{a}^{2}\ln\Lambda\left(\left(\frac{v_{t}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}-\frac{2v_{r}v_{t}}{v^{2}}\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}+\left(\frac{v_{r}}{v}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}+\frac{1}{v_{t}}\frac{\partial g}{\partial v_{t}}\right)
+\end{align*}
+
+Overall, those can be expressed as functions of $h(v_{r},v_{t})$,
+$g(v_{r},v_{t})$, $\frac{\partial h}{\partial v_{r}}$, $\frac{\partial h}{\partial v_{t}}$,
+$\frac{\partial g}{\partial v_{t}}$, $\frac{\partial^{2}g}{\partial v_{r}^{2}}$,
+$\frac{\partial^{2}g}{\partial v_{t}^{2}}$ and$\frac{\partial^{2}g}{\partial v_{r}\partial v_{t}}$.
+Consider 
+\[
+h(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v_{a}}\frac{f_{a}(r,\boldsymbol{v_{a}})}{|\boldsymbol{v}-\boldsymbol{v_{a}}|}=\int{\rm d}^{3}\boldsymbol{v'}\frac{f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})}{v'}=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+\[
+g(r,v_{r},v_{t})=\int{\rm d}^{3}\boldsymbol{v_{a}}f_{a}(r,\boldsymbol{v_{a}})|\boldsymbol{v}-\boldsymbol{v_{a}}|=\int{\rm d}^{3}\boldsymbol{v'}f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})v'=\int_{0}^{\infty}{\rm d}v'v'^{3}\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+with
+\[
+\frac{\partial h}{\partial v_{r}}(r,v_{r},v_{t})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi\frac{\partial f_{a}}{\partial v_{r}}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+\[
+\frac{\partial h}{\partial v_{t}}(r,v_{r},v_{t})=\int_{0}^{\infty}{\rm d}v'v'\int_{0}^{\pi}{\rm d}\theta\sin\theta\int_{0}^{2\pi}{\rm d}\phi\frac{\partial f_{a}}{\partial v_{t}}(r,\boldsymbol{v}-\boldsymbol{v'})
+\]
+where (at fixed $r$)
+\[
+\frac{\partial f_{a}}{\partial v_{r}}=\frac{\partial E}{\partial v_{r}}\frac{\partial f}{\partial E}+\frac{\partial L}{\partial v_{r}}\frac{\partial f}{\partial L}=-v_{r}\frac{\partial f}{\partial E}
+\]
+\[
+\frac{\partial f_{a}}{\partial v_{t}}=\frac{\partial E}{\partial v_{t}}\frac{\partial f}{\partial E}+\frac{\partial L}{\partial v_{t}}\frac{\partial f}{\partial L}=-v_{t}\frac{\partial f}{\partial E}+r\frac{\partial f}{\partial L}
+\]
+ More generaly, consider the partial derivatives of $f_{E}(E,L)$.
+Note that 
+\[
+f_{E}(E,L)=0\forall E,L<0
+\]
+hence its partial derivatives also vanish for $E,L<0$. Do the same
+analysis as before to bound the integral. 
+
+~
+
+~
+\begin{align*}
+\frac{\partial^{2}g}{\partial v_{r}^{2}},\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}},\frac{\partial^{2}g}{\partial v_{t}^{2}}
+\end{align*}
+\[
+\frac{\partial^{2}f_{a}}{\partial v_{r}^{2}}=\frac{\partial}{\partial v_{r}}\left(-v_{r}\frac{\partial f}{\partial E}\right)=-\frac{\partial f}{\partial E}-v_{r}\left(\frac{\partial E}{\partial v_{r}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{r}}\frac{\partial^{2}f}{\partial E\partial L}\right)=-\frac{\partial f}{\partial E}+v_{r}^{2}\frac{\partial^{2}f}{\partial E^{2}}
+\]
+\begin{align*}
+\frac{\partial^{2}f_{a}}{\partial v_{t}^{2}} & =\frac{\partial}{\partial v_{t}}\left(-v_{t}\frac{\partial f}{\partial E}+r\frac{\partial f}{\partial L}\right)=-\frac{\partial f}{\partial E}-v_{t}\left(\frac{\partial E}{\partial v_{t}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{t}}\frac{\partial^{2}f}{\partial L\partial E}\right)+r\left(\frac{\partial L}{\partial v_{t}}\frac{\partial f}{\partial E\partial L}+\frac{\partial E}{\partial v_{t}}\frac{\partial f}{\partial E^{2}}\right)\\
+ & =-\frac{\partial f}{\partial E}+v_{t}^{2}\frac{\partial^{2}f}{\partial E^{2}}-rv_{t}\frac{\partial^{2}f}{\partial L\partial E}+r^{2}\frac{\partial f}{\partial E\partial L}-rv_{t}\frac{\partial f}{\partial E^{2}}
+\end{align*}
+\[
+\frac{\partial^{2}f_{a}}{\partial v_{t}\partial v_{r}}=\frac{\partial}{\partial v_{t}}\left(-v_{r}\frac{\partial f}{\partial E}\right)=-v_{r}\left(\frac{\partial E}{\partial v_{t}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{t}}\frac{\partial^{2}f}{\partial L\partial E}\right)=v_{r}v_{t}\frac{\partial^{2}f}{\partial E^{2}}-rv_{r}\frac{\partial^{2}f}{\partial L\partial E}
+\]
+\begin{align*}
+\frac{\partial^{2}f_{a}}{\partial v_{r}\partial v_{t}} & =\frac{\partial}{\partial v_{r}}\left(-v_{t}\frac{\partial f}{\partial E}+r\frac{\partial f}{\partial L}\right)=-v_{t}\left(\frac{\partial E}{\partial v_{r}}\frac{\partial^{2}f}{\partial E^{2}}+\frac{\partial L}{\partial v_{r}}\frac{\partial^{2}f}{\partial E\partial L}\right)+r\left(\frac{\partial E}{\partial v_{r}}\frac{\partial^{2}f}{\partial E\partial L}+\frac{\partial L}{\partial v_{r}}\frac{\partial^{2}f}{\partial L^{2}}\right)\\
+ & =v_{t}v_{r}\frac{\partial^{2}f}{\partial E^{2}}-rv_{r}\frac{\partial^{2}f}{\partial E\partial L}
+\end{align*}
+OK
+
+\subsection{Recap}
+
+\[
+\frac{\partial f_{a}}{\partial v_{r}}=-v_{r}\frac{\partial f}{\partial E}
+\]
+\[
+\frac{\partial f_{a}}{\partial v_{t}}=-v_{t}\frac{\partial f}{\partial E}+r\frac{\partial f}{\partial L}
+\]
+\[
+\frac{\partial^{2}f_{a}}{\partial v_{r}^{2}}=-\frac{\partial f}{\partial E}+v_{r}^{2}\frac{\partial^{2}f}{\partial E^{2}}
+\]
+\begin{align*}
+\frac{\partial^{2}f_{a}}{\partial v_{t}^{2}} & =-\frac{\partial f}{\partial E}+v_{t}^{2}\frac{\partial^{2}f}{\partial E^{2}}-rv_{t}\frac{\partial^{2}f}{\partial L\partial E}+r^{2}\frac{\partial f}{\partial E\partial L}-rv_{t}\frac{\partial f}{\partial E^{2}}
+\end{align*}
+
+
+\subsection{Angular and radial velocities}
+
+The radial component is quite straightforward since 
+\[
+v_{ar}=(\boldsymbol{v}-\boldsymbol{v'})_{r}=v_{r}-v_{r}'=v_{r}-v'\cos\theta.
+\]
+
+On the other hand, the tangential component is a bit more tricky.
+Let $\boldsymbol{v}=(v,\theta_{0},0)$ , where $v_{r}=v\cos\theta_{0}$
+and $v_{t}=v\sin\theta_{0}$, and let $\boldsymbol{v'}=(v',\theta,\phi)$.
+In cartesian coordinates, setting $(Ox)=\boldsymbol{v_{t}}$, $(Oz)=\boldsymbol{v_{r}}$
+and $(Oy)$ such that $(Oxyz)$ is a direction orthonormal coordinate
+system, we have
+\[
+v_{x}=v_{t}
+\]
+\[
+v_{y}=0
+\]
+\[
+v_{z}=v_{r}
+\]
+and
+\[
+v'_{x}=v'\sin\theta\cos\phi
+\]
+\[
+v'_{y}=v'\sin\theta\sin\phi
+\]
+\[
+v'_{z}=v'\cos\theta
+\]
+Then 
+\[
+v_{ax}=v_{t}-v'\sin\theta\cos\phi
+\]
+\[
+v_{ay}=-v'\sin\theta\sin\phi
+\]
+\[
+v_{az}=v_{r}-v'\cos\theta
+\]
+Therefore 
+\[
+v_{at}^{2}=v_{ax}^{2}+v_{ay}^{2}=(v_{t}-v'\sin\theta\cos\phi)^{2}+(v'\sin\theta\sin\phi)^{2}
+\]
+\[
+v_{at}^{2}=v_{t}^{2}+v'^{2}\sin^{2}\theta\cos^{2}\phi-2v_{r}v'\sin\theta\cos\phi+v'^{2}\sin^{2}\theta\sin^{2}\phi
+\]
+\[
+v_{at}^{2}=v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi
+\]
+The complete norm of $\boldsymbol{v_{a}}$ is 
+\[
+v_{a}^{2}=v_{ar}^{2}+v_{at}^{2}=(v_{r}-v'\cos\theta)^{2}+v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi
+\]
+\[
+v_{a}^{2}=v_{r}^{2}+v'^{2}\cos^{2}\theta-2v_{r}v'\cos\theta+v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi
+\]
+\[
+v_{a}^{2}=v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)
+\]
+which gives the binding energy per unit mass 
+\[
+E(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+and the angular momentum per unit mass
+\[
+L(r,v',\theta,\phi)=r(v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi)^{1/2}
+\]
+
+
+\subsection{Partial derivative of Fq(Ea,La)}
+
+\[
+E_{a}(r,v',\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+v'^{2}-2v'(v_{r}\cos\theta+v_{t}\sin\theta\cos\phi)\right]
+\]
+\[
+L_{a}(r,v',\theta,\phi)=r(v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi)^{1/2}
+\]
+\[
+\frac{\partial E_{a}}{\partial v_{r}}=-v_{r}+v'\cos\theta
+\]
+
+\[
+\frac{\partial E_{a}}{\partial v_{t}}=-v_{t}+v'\sin\theta\cos\phi
+\]
+\[
+\frac{\partial L_{a}}{\partial v_{r}}=0
+\]
+\[
+L_{a}^{2}=r(v_{t}^{2}+v'^{2}\sin^{2}\theta-2v_{t}v'\sin\theta\cos\phi)
+\]
+\[
+2L_{a}\frac{\partial L_{a}}{\partial v_{t}}=2rv_{t}-2rv'\sin\theta\cos\phi\Rightarrow\frac{\partial L_{a}}{\partial v_{t}}=\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)
+\]
+
+~
+
+First order:
+
+\[
+\frac{\partial}{\partial v_{r}}F(E_{a},L_{a})=\frac{\partial E_{a}}{\partial v_{r}}\frac{\partial F}{\partial E}+\frac{\partial L_{a}}{\partial v_{r}}\frac{\partial F}{\partial L}=\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E}
+\]
+
+~
+\[
+\frac{\partial}{\partial v_{t}}F(E_{a},L_{a})=\frac{\partial E_{a}}{\partial v_{t}}\frac{\partial F}{\partial E}+\frac{\partial L_{a}}{\partial v_{t}}\frac{\partial F}{\partial L}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial E}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L}
+\]
+
+~
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{r}^{2}}F(E_{a},L_{a}) & =\frac{\partial}{\partial v_{r}}\left[\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E}\right]=\frac{\partial}{\partial v_{r}}\left[\left(-v_{r}+v'\cos\theta\right)\right]\frac{\partial F}{\partial E}+\left(-v_{r}+v'\cos\theta\right)\frac{\partial}{\partial v_{r}}\left[\frac{\partial F}{\partial E}\right]\\
+ & =-\frac{\partial F}{\partial E}+\left(-v_{r}+v'\cos\theta\right)\left(\frac{\partial E_{a}}{\partial v_{r}}\frac{\partial^{2}F}{\partial E{}^{2}}+\frac{\partial L_{a}}{\partial v_{r}}\frac{\partial F}{\partial L\partial E}\right)=-\frac{\partial F}{\partial E}+\left(-v_{r}+v'\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E{}^{2}}
+\end{align*}
+
+~
+
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}\partial v_{r}}\left[f_{a}(r,\boldsymbol{v}-\boldsymbol{v'})\right] & =\frac{\partial}{\partial v_{t}}\left[\left(-v_{r}+v'\cos\theta\right)\frac{\partial F}{\partial E}\right]=\left(-v_{r}+v'\cos\theta\right)\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial E}\right]\\
+ & =\left(-v_{r}+v'\cos\theta\right)\left(\frac{\partial E_{a}}{\partial v_{t}}\frac{\partial^{2}F}{\partial E{}^{2}}+\frac{\partial L_{a}}{\partial v_{t}}\frac{\partial^{2}F}{\partial L\partial E}\right)\\
+ & =\left(-v_{r}+v'\cos\theta\right)\left[\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E{}^{2}}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L\partial E}\right]
+\end{align*}
+
+~
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}F(E_{a},L_{a}) & =\frac{\partial}{\partial v_{t}}\left[\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial E}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L}\right]\\
+ & =-\frac{\partial F}{\partial E}+\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial}{\partial v_{t}}\frac{\partial F}{\partial E}+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L}\right]
+\end{align*}
+with
+\[
+\frac{\partial}{\partial v_{t}}\frac{\partial F}{\partial E}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E{}^{2}}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L\partial E}
+\]
+\[
+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L}\right]=\frac{\partial}{\partial v_{t}}\left[\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\right]\frac{\partial F}{\partial L}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial L}\right]
+\]
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\right] & =\frac{rL_{a}-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial L_{a}}{\partial v_{t}}}{L_{a}^{2}}=\frac{rL_{a}-r\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)}{L_{a}^{2}}\\
+ & =\frac{rL_{a}-\frac{r^{2}}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L_{a}^{2}}
+\end{align*}
+\begin{align*}
+\frac{\partial}{\partial v_{t}}\left[\frac{\partial F}{\partial L}\right] & =\frac{\partial E_{a}}{\partial v_{t}}\frac{\partial^{2}F}{\partial E\partial L}+\frac{\partial L_{a}}{\partial v_{t}}\frac{\partial^{2}F}{\partial L{}^{2}}=\left(-v_{t}+v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial E\partial L}+\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial^{2}F}{\partial L{}^{2}}\\
+ & =\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E\partial L}-\frac{r}{L_{a}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)
+\end{align*}
+thus
+\begin{align*}
+\frac{\partial^{2}}{\partial v_{t}^{2}}F(E_{a},L_{a}) & =-\frac{\partial F}{\partial E}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{L_{a}}\frac{\partial^{2}F}{\partial L\partial E}\right)+\frac{\partial}{\partial v_{t}}\left[\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\frac{\partial F}{\partial L}\right]\\
+ & =-\frac{\partial F}{\partial E}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{L_{a}}\frac{\partial^{2}F}{\partial L\partial E}\right)+\frac{rL_{a}-\frac{r^{2}}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)^{2}}{L_{a}^{2}}\frac{\partial F}{\partial L}\\
+ & +\frac{r}{L_{a}}\left(v_{t}-v'\sin\theta\cos\phi\right)\left(-v_{t}+v'\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E\partial L}-\frac{r}{L_{a}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)\\
+ & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}-\frac{r}{L'}\frac{\partial^{2}F}{\partial E'\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)\\
+ & =-\frac{\partial F}{\partial E'}+\frac{r}{L'}\frac{\partial F}{\partial L'}+\left(-v_{t}+v'\sin\theta\cos\phi\right)^{2}\left(\frac{\partial^{2}F}{\partial E'^{2}}-\frac{2r}{L'}\frac{\partial^{2}F}{\partial L'\partial E'}-\frac{r^{2}}{L'^{3}}\frac{\partial F}{\partial L'}+\frac{r^{2}}{L'^{2}}\frac{\partial^{2}F}{\partial L'^{2}}\right)
+\end{align*}
+
+~
+
+Now compute the partial derivatives of $F(E,L)$
+\[
+F_{q}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+\[
+\mathbb{H}(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}._{2}F_{1}(a+b,1+a-c,a+d;x) & x\leq1\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x}) & x\geq1
+\end{cases}
+\]
+
+\[
+\frac{\partial F}{\partial E}(E,L)=\frac{3\Gamma(6-q)\left(\frac{7}{2}-q\right)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\frac{L^{2}}{2E^{2}}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+\[
+\frac{\partial F}{\partial E}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{3/2-q}\frac{L^{2}}{2}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+thus
+\[
+\frac{\partial F}{\partial E}(E,L)=\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{L^{2}}{2}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
+\]
+and, for $x<1$
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)a}{\Gamma(c-a)\Gamma(a+d)}x^{a-1}._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}\frac{\partial._{2}F_{1}}{\partial x}(a+b,1+a-c,a+d;x)
+\end{align*}
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
+\end{align*}
+for $x>1$
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}(-b)x^{-b-1}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}\frac{1}{x^{2}}\frac{\partial._{2}F_{1}}{\partial x}(a+b,1+b-d,b+c;\frac{1}{x})
+\end{align*}
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]
+\end{align*}
+
+~
+
+\[
+\mathbb{H}(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a}._{2}F_{1}(a+b,1+a-c,a+d;x) & x\leq1\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b}._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x}) & x\geq1
+\end{cases}
+\]
+
+x<1
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
+\end{align*}
+x>1
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]
+\end{align*}
+
+~
+
+\[
+\frac{\partial F_{q}}{\partial L}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+
+~
+
+\[
+\frac{\partial F}{\partial E}(E,L)=\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{L^{2}}{2}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
+\]
+\begin{align*}
+\frac{\partial^{2}F}{\partial E^{2}}(E,L) & =\frac{3\Gamma(6-q)\left(\frac{3}{2}-q\right)E^{1/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{L^{2}}{2}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]\\
+ & +\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+E\left(\frac{7}{2}-q\right)\left(-\frac{L^{2}}{2E^{2}}\right)\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]\\
+ & +\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[-\frac{L^{2}}{2}\left(-\frac{L^{2}}{2E^{2}}\right)\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}F}{\partial E^{2}}(E,L) & =\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[\left(\frac{7}{2}-q\right)\left(\frac{3}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\left(\frac{3}{2}-q\right)\frac{L^{2}}{2E}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]\\
+ & +\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\left(\frac{7}{2}-q\right)\frac{L^{2}}{2E}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]\\
+ & +\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[\frac{L^{4}}{4E^{2}}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
+\end{align*}
+
+\begin{align*}
+\frac{\partial^{2}F}{\partial E^{2}}(E,L) & =\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{7}{2}-q\right)\left(\frac{3}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\left(\frac{3}{2}-q\right)\frac{L^{2}}{2E}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & +\left(\frac{7}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\left(\frac{7}{2}-q\right)\frac{L^{2}}{2E}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+\frac{L^{4}}{4E^{2}}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]
+\end{align*}
+donc
+\begin{align*}
+\frac{\partial^{2}F}{\partial E^{2}}(E,L) & =\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{7}{2}-q\right)\left(\frac{5}{2}-q\right)\mathbb{H}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & -\left(5-2q\right)\frac{L^{2}}{2E}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+\frac{L^{4}}{4E^{2}}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]
+\end{align*}
+x<1
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)(a-1)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\bigg]\\
+ & +\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x\frac{(a+b+1)(a-c+2)}{a+d+1}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{(a-1)(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}x^{2}\frac{(a+b+1)(a-c+2)}{a+d+1}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}\frac{(a+b+1)(a-c+2)}{a+d+1}x^{2}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
+\end{align*}
+x>1
+\begin{align*}
+\frac{\partial\mathbb{H}}{\partial x} & =\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)(-b-1)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]\\
+ & +\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-\frac{1}{x^{2}})\frac{(a+b)(1+b-d)}{b+c}(-b)._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}(-1)x^{-2}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x^{-1}(\frac{-1}{x^{2}})\frac{(a+b+1)(b-d+2)}{b+c+1}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b-1)(-b)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}(-b-1)x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +(-\frac{x}{x^{2}})\frac{(a+b)(1+b-d)}{b+c}(-b)._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}x(-1)x^{-2}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & -\frac{(a+b)(1+b-d)}{b+c}xx^{-1}(\frac{-1}{x^{2}})\frac{(a+b+1)(b-d+2)}{b+c+1}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[b(b+1)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}(b+1)x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}(b)x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}\frac{(a+b+1)(b-d+2)}{b+c+1}x^{-2}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[b(b+1)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & +\frac{(2b+2)(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}\frac{(a+b+1)(b-d+2)}{b+c+1}x^{-2}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+finalement
+
+x<1
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)._{2}F_{1}(a+b,1+a-c,a+d;x)\\
+ & +\frac{2a(a+b)(1+a-c)}{a+d}x._{2}F_{1}(a+b+1,a-c+2,a+d+1;x)\\
+ & +\frac{(a+b)(1+a-c)}{a+d}\frac{(a+b+1)(a-c+2)}{a+d+1}x^{2}._{2}F_{1}(a+b+2,a-c+3,a+d+2;x)\bigg]
+\end{align*}
+x>1
+\begin{align*}
+\frac{\partial^{2}\mathbb{H}}{\partial x^{2}} & =\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[b(b+1)._{2}F_{1}(a+b,1+b-d,b+c;\frac{1}{x})\\
+ & +\frac{(2b+2)(a+b)(1+b-d)}{b+c}x^{-1}._{2}F_{1}(a+b+1,b-d+2,b+c+1;\frac{1}{x})\\
+ & +\frac{(a+b)(1+b-d)}{b+c}\frac{(a+b+1)(b-d+2)}{b+c+1}x^{-2}._{2}F_{1}(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]
+\end{align*}
+
+~
+
+~
+
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}\left(\frac{5}{2}-q\right)E^{3/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & +\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\left(-\frac{L^{2}}{2E^{2}}\right)\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial E\partial L}(E,L) & =\frac{3\Gamma(6-q)LE^{1/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{5}{2}-q\right)E\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & -\frac{L^{2}}{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]
+\end{align*}
+
+~
+
+\[
+\frac{\partial F_{q}}{\partial L}(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\]
+
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\\
+ & +\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{3/2-q}L^{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+\end{align*}
+\begin{align*}
+\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L) & =\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\frac{\partial\mathbb{H}}{\partial x}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+L^{2}\frac{\partial^{2}\mathbb{H}}{\partial x^{2}}(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]
+\end{align*}
+
+Case $q=0$
+\[
+F_{0}(E)=\frac{3}{7\pi^{3}}(2E)^{7/2}
+\]
+\[
+\frac{\partial F_{0}}{\partial E}(E)=\frac{3}{\pi^{3}}(2E)^{5/2}
+\]
+\[
+\frac{\partial^{2}F_{0}}{\partial E^{2}}(E)=\frac{15}{\pi^{3}}(2E)^{3/2}
+\]
+
+Case $q=2$
+\[
+F_{2}(E,L)=\begin{cases}
+\frac{6}{(2\pi)^{3}}(2E-L^{2})^{3/2} & L^{2}/(2E)\leq1\\
+0 & L^{2}/(2E)\geq0
+\end{cases}
+\]
+\[
+\frac{\partial F_{2}}{\partial E}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+\[
+\frac{\partial F_{2}}{\partial L}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{1/2}
+\]
+\[
+\frac{\partial^{2}F_{2}}{\partial E^{2}}(E,L)=\frac{18}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+\[
+\frac{\partial F_{2}}{\partial E\partial L}(E,L)=\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+\[
+\frac{\partial^{2}F_{2}}{\partial L^{2}}(E,L)=-\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}+\frac{18L^{2}}{(2\pi)^{3}}(2E-L^{2})^{-1/2}
+\]
+
+
+\subsection{$L_{{\rm circ}}(E)$}
+
+We have , for any particle with binding energy $E$ and angular momentum
+$L$:
+\[
+E=\psi(r)-\frac{L^{2}}{2r^{2}}-\frac{\dot{r}^{2}}{2}
+\]
+hence 
+\[
+\frac{L^{2}}{2r^{2}}=\psi(r)-E-\frac{\dot{r}^{2}}{2}\leq\psi(r)-E
+\]
+Hence for any $r$ 
+\[
+L^{2}\leq2r^{2}(\psi(r)-E)=z(r)
+\]
+Same study as for $E_{{\rm c}}(L)$. On the bounds of the orbit, $\dot{r}=0$
+and : 
+\[
+L^{2}=2r^{2}(\psi(r)-E)=z(r;E)
+\]
+Two solution as already shown. One global maximum $R_{E}>0$. For
+an orbit with $L_{{\rm c}}(E)=\sqrt{\max_{r\geq0}z(r;E)}$, it is
+confined at $R_{E}$ where $v_{r}(R)=0$, hence is circular and higher
+$L>L_{{\rm c}}(E)$ are forbidden for that particular energy $E$.
+
+Finding the maximum of $z(r;E)$ is the same as solving 
+\[
+z'(r;E)=4r(\psi(r)-E)+2r^{2}\psi'(r)=0
+\]
+We have 
+\[
+z'(r;E)=4r\left(\frac{1}{\sqrt{1+r^{2}}}-E\right)-\frac{2r^{3}}{(1+r^{2})^{3/2}}
+\]
+
+For $\frac{1}{\sqrt{1+r_{E}^{2}}}=E\leftrightarrow r_{E}=\sqrt{E^{-2}-1}$,
+we have 
+\[
+z'(r_{E};E)=-\frac{2r_{E}^{3}}{(1+r_{E}^{2})^{3/2}}\in]-2,0[
+\]
+By convexity, use Newton's method starting from $r_{0}^{E}=r_{E}$.
+It gives a decreasing sequence. Therefore a good stopping condition
+is to get the lowest $N$ such that $z'(r_{N}^{E}+\epsilon)>0$.
+
+~
+
+~$v>v_{a}$
+
+\begin{align*}
+\frac{1}{|v-v_{a}|} & =\frac{1}{\sqrt{v^{2}+v_{a}^{2}-2v_{a}v\cos\theta}}=\frac{1}{v\sqrt{1+\left(\frac{v_{a}}{v}\right)^{2}-2\frac{v_{a}}{v}\cos\theta}}\\
+ & =\frac{1}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\end{align*}
+\[
+\frac{f(v_{a})}{|v-v_{a}|}=\frac{f(v_{a})}{v}\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\left(\frac{v_{a}}{v}\right)^{\ell}
+\]
+\[
+\frac{\partial}{\partial v_{r}}\frac{f(v_{a})}{|v-v_{a}|}=f(v_{a})\sum_{\ell=0}^{\infty}P_{\ell}(\cos\theta)\frac{v_{a}^{\ell}}{v^{\ell+1}}
+\]
+
+~
+
+~ https://en.wikipedia.org/wiki/Legendre\_polynomials (section recurrence
+relations)
+
+\[
+\frac{x^{2}-1}{n}\frac{{\rm d}P_{n}}{{\rm d}x}(x)=xP_{n}(x)-P_{n-1}(x)
+\]
+hence
+\[
+\frac{{\rm d}P_{n}}{{\rm d}x}(x)=\frac{n}{x^{2}-1}\left[xP_{n}(x)-P_{n-1}(x)\right]
+\]
+
+\end{document}
