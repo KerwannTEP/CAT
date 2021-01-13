@@ -96,9 +96,9 @@ function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
     local int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
     let int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
 
-    int_hr = (x->x[1]  *sin(x[2]) *dfadvr(r,vr,vt,x[1],x[2],x[3],q))
-    int_ht = (x-> x[1]  *sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
-    int_gt = (x-> x[1]^3*sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
+    int_hr  = (x->x[1]  *sin(x[2])    *dfadvr(r,vr,vt,x[1],x[2],x[3],q))
+    int_ht  = (x->x[1]  *sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
+    int_gt  = (x->x[1]^3*sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
     int_grr = (x->x[1]^3*sin(x[2])  *d2fadvr2(r,vr,vt,x[1],x[2],x[3],q))
     int_grt = (x->x[1]^3*sin(x[2])*d2fadvrdvt(r,vr,vt,x[1],x[2],x[3],q))
     int_gtt = (x->x[1]^3*sin(x[2])  *d2fadvt2(r,vr,vt,x[1],x[2],x[3],q))
