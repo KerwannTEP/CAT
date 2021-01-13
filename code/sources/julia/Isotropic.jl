@@ -1,8 +1,6 @@
 using StaticArrays # To have access to static arrays
 using HCubature
 
-MAXEVAL = 5000
-
 function velocityNorm(r::Float64, E::Float64)
     return sqrt(2*(psi(r)-E))
 end

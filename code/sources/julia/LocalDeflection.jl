@@ -85,9 +85,13 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
              -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2FdL2(Ea,La,q)))
 end
 
-MAXEVAL = 5000
+MAXEVAL = 10000
 
 # problem somewhere (fine tune?)
+# convergence issue ?
+# maybe monte-carlo?
+# large relative error when the result is very low (10^-5, ...)
+# ok otherwise
 function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
                                PlummerTable::IntTable = PlummerTable_serial)
     #X = (v',x,phi) 
@@ -96,20 +100,20 @@ function RosenbluthPotentials!(r::Float64, vr::Float64, vt::Float64, q::Float64,
     local int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
     let int_hr, int_ht, int_gt, int_grr, int_grt, int_gtt
 
-    int_hr  = (x->x[1]  *sin(x[2])    *dfadvr(r,vr,vt,x[1],x[2],x[3],q))
-    int_ht  = (x->x[1]  *sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
-    int_gt  = (x->x[1]^3*sin(x[2])    *dfadvt(r,vr,vt,x[1],x[2],x[3],q))
-    int_grr = (x->x[1]^3*sin(x[2])  *d2fadvr2(r,vr,vt,x[1],x[2],x[3],q))
-    int_grt = (x->x[1]^3*sin(x[2])*d2fadvrdvt(r,vr,vt,x[1],x[2],x[3],q))
-    int_gtt = (x->x[1]^3*sin(x[2])  *d2fadvt2(r,vr,vt,x[1],x[2],x[3],q))
+    int_hr  = (x->x[1]  *sin(pi*x[2])    *dfadvr(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
+    int_ht  = (x->x[1]  *sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
+    int_gt  = (x->x[1]^3*sin(pi*x[2])    *dfadvt(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
+    int_grr = (x->x[1]^3*sin(pi*x[2])  *d2fadvr2(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
+    int_grt = (x->x[1]^3*sin(pi*x[2])*d2fadvrdvt(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
+    int_gtt = (x->x[1]^3*sin(pi*x[2])  *d2fadvt2(r,vr,vt,vmax*x[1],pi*x[2],x[3],q))
 
 
-    PlummerTable.dhdvr[]     = hcubature(int_hr,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
-    PlummerTable.dhdvt[]     = hcubature(int_ht,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
-    PlummerTable.dgdvt[]     = hcubature(int_gt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvr2[]   = hcubature(int_grr,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvrdvt[] = hcubature(int_grt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
-    PlummerTable.d2gdvt2[]   = hcubature(int_gtt,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvr[]     = pi*vmax^2*hcubature(int_hr,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.dhdvt[]     = pi*vmax^2*hcubature(int_ht,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.dgdvt[]     = pi*vmax^4*hcubature(int_gt,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvr2[]   = pi*vmax^4*hcubature(int_grr,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvrdvt[] = pi*vmax^4*hcubature(int_grt,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
+    PlummerTable.d2gdvt2[]   = pi*vmax^4*hcubature(int_gtt,[0,0,0],[1,1,2*pi],maxevals=MAXEVAL)[1]
 
     end
 

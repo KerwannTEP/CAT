@@ -44,7 +44,7 @@ function _vmax(r::Float64, vr::Float64, vt::Float64)
     return (vr+vt) + sqrt(2*(vr*vt+psi(r)))
 end
 
-MAXEVALS = 5000
+MAXEVALS = 50000
 
 function DF(E::Float64)
     if (E <= 0.0) # If E or L are negative, the DF vanishes
@@ -62,6 +62,19 @@ function _hIso(r::Float64, v::Float64)
     return 4*pi*(I1+I2)
 end
 
+function _gIso(r::Float64, v::Float64)
+    Eb = bindEnergyIso(r,v)
+    int1 = (Ea->3*normVelIso(r,Ea[1])*DF(Ea[1]))
+    int2 = (Ea->(normVelIso(r,Ea[1])^3/v^2)*DF(Ea[1]))
+    int3 = (Ea->3*(normVelIso(r,Ea[1])^2/v)*DF(Ea[1]))
+    int4 = (Ea->v*DF(Ea[1]))
+    I1 = hcubature(int1,[Eb],[psi(r)],maxevals=MAXEVALS)[1]
+    I2 = hcubature(int2,[Eb],[psi(r)],maxevals=MAXEVALS)[1]
+    I3 = hcubature(int3,[0],[Eb],maxevals=MAXEVALS)[1]
+    I4 = hcubature(int4,[0],[Eb],maxevals=MAXEVALS)[1]
+    return (4*pi*v/3)*(I1+I2+I3+I4)
+end
+
 function Efield(r::Float64, vr::Float64, vt::Float64, vp::Float64, 
                 th::Float64, phi::Float64)
     vfield_r = vr - vp*cos(th)
@@ -76,7 +89,18 @@ function _hAni(r::Float64, vr::Float64, vt::Float64)
     I = hcubature(int1,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVALS)[1]
     return I
 end
+
+function _gAni(r::Float64, vr::Float64, vt::Float64)
+    # x = (vp, th, phi)
+    vmax = _vmax(r,vr,vt)
+    int1 = (x->x[1]^3*sin(x[2])*DF(Efield(r,vr,vt,x[1],x[2],x[3])))
+    I = hcubature(int1,[0,0,0],[vmax,pi,2*pi],maxevals=MAXEVALS)[1]
+    return I
+end
     
 
-println("Iso = ",_hIso(r,v))
-println("Ani = ",_hAni(r,vr,vt))
+println("hIso = ",_hIso(r,v))
+println("hAni = ",_hAni(r,vr,vt))
+
+println("gIso = ",_gIso(r,v))
+println("gAni = ",_gAni(r,vr,vt))
