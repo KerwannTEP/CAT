@@ -4,6 +4,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=0.5in,right=0.5in,top=0.5in,bottom=0.5in,%
+            footskip=.25in]{geometry}
+
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -22,6 +26,8 @@
 \newacro{NR}{non-resonant relaxation}
 \newcommand{\NR}{\ac{NR}}
 \newcommand{\rs}{\mathrm{s}}
+\newcommand{\rt}{\mathrm{t}}
+\newcommand{\rr}{\mathrm{r}}
 \newcommand{\psis}{\psi_{\rs}}
 
 \author{Kerwann}
@@ -42,12 +48,12 @@
 \label{sec:Plummer}
 
   Consider a Plummer model (Dejonghe, H.1987, MNRAS 224, 13) with potential
-with units \(r_{s}\) the Plummer scale radius (which sets the size
-of the cluster core), \(M\) the total mass of the cluster and \(\bar{\tau}\)
+with units $r_{\rs}$ the Plummer scale radius (which sets the size
+of the cluster core), $M$ the total mass of the cluster and $\bar{\tau}$
 some unit time. Let $\psis$ be defined by
 
 \begin{equation}
-\psis = \frac{G M}{r_{s}} ,
+\psis = \frac{G M}{r_{\rs}} ,
 \label{def_psi_s}
 \end{equation}
 
@@ -57,4 +63,45 @@ for the central potential
 \psi(r)=\frac{\psis}{\sqrt{1+r^{2}}} .
 \label{def_potential}
 \end{equation}
+
+Let use fix $G=1\,r_{\rs}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}}$ in the
+new units so that $\psis=1\,r_{\rs}^{2}\cdot\bar{\tau}^{-2}$. This
+fixes the time unit $\bar{\tau}$, as we have the relation. Therefore, in
+those units the potential (per unit mass) is given by
+
+\begin{equation}
+\psi(r)=\frac{1}{\sqrt{1+r^{2}}} .
+\label{def_potential_new_units}
+\end{equation}
+
+Define, given a radius $r$, the angular momentum $L(r,v_{\rr},v_{\rt})$
+and binding energy per unit mass $E(r,v_{\rr},v_{\rt})$, functions of
+the radial velocity $v_{\rr}$ and the tangential velocity $v_{\rt}\geq 0$
+(defined as $\boldsymbol{v}=\boldsymbol{v_{\rr}}+\boldsymbol{v_{\rt}}=v_{\rr}\hat{\boldsymbol{r}}+\boldsymbol{v_{\rt}}$),
+as
+
+\begin{equation}
+\begin{array}{ccl}
+E(r,v_{\rr},v_{\rt}) & = & \psi(r)-\frac{1}{2}v_{\rr}^{2}-\frac{1}{2}v_{\rt}^{2} ,\\
+L(r,v_{\rr},v_{\rt}) & = & r \cdot v_{\rt} ,
+\end{array}
+\label{eq:v_to_E_L}
+\end{equation}
+whose Jacobian is 
+\begin{equation}
+{\rm Jac}_{(r,v_{r},v_{t})\rightarrow(r,E,L)}=\left(\begin{array}{cc}
+\frac{\partial E}{\partial v_{r}} & \frac{\partial E}{\partial v_{t}}\\
+\frac{\partial L}{v_{ar}} & \frac{\partial L}{\partial v_{t}}
+\end{array}\right)=\left(\begin{array}{cc}
+-v_{r} & -v_{t}\\
+0 & r
+\end{array}\right)\Rightarrow|{\rm Jac}|=r|v_{r}| .
+  \end{equation}
+
+
+
+
+
+
+
 \end{document}
