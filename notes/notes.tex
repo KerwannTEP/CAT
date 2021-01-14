@@ -3,23 +3,27 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
 \usepackage{graphicx}
-\usepackage{grffile}
-\usepackage{longtable}
-\usepackage{wrapfig}
-\usepackage{rotating}
-\usepackage[normalem]{ulem}
 \usepackage{amsmath}
-\usepackage{textcomp}
 \usepackage{amssymb}
-\usepackage{capt-of}
+\usepackage{xspace}
+\usepackage{commath}
+\usepackage{times}
+\usepackage{bm} 
+\usepackage{balance}
 \usepackage{hyperref}
-\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+
+%%%% Define Acronyms
 \usepackage{acronym}
+%
 \newacro{NR}{non-resonant relaxation}
 \newcommand{\NR}{\ac{NR}}
 \newcommand{\rs}{\mathrm{s}}
 \newcommand{\psis}{\psi_{\rs}}
+
 \author{Kerwann}
 \date{\today}
 \title{Notes}
@@ -35,15 +39,15 @@
 \maketitle
 
 \section{Plummer model}
-\label{sec:org6bde748}
+\label{sec:Plummer}
 
   Consider a Plummer model (Dejonghe, H.1987, MNRAS 224, 13) with potential
 with units \(r_{s}\) the Plummer scale radius (which sets the size
 of the cluster core), \(M\) the total mass of the cluster and \(\bar{\tau}\)
-some unit time. Let \(\psi_{s}\) be defined by
+some unit time. Let $\psis$ be defined by
 
 \begin{equation}
-\psis=\frac{G M}{r_{\s}} ,
+\psis = \frac{G M}{r_{s}} ,
 \label{def_psi_s}
 \end{equation}
 
