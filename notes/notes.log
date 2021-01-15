@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  15 JAN 2021 20:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  15 JAN 2021 21:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,6 +328,13 @@ Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \ocircle on input line 243.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
 Package: acronym 2019/11/11 v1.42 Support for acronyms (Tobias Oetiker)
 
@@ -355,27 +362,30 @@ LaTeX Warning: Label `eq:delta_v' multiply defined.
 
 LaTeX Warning: Label `eq:Rosenbluth' multiply defined.
 
+
+LaTeX Warning: Label `eq:DE_DL' multiply defined.
+
 )
 \openout1 = `notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 86
-.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
+LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 11
+7.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -437,7 +447,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 86.
+Package hyperref Info: Link coloring OFF on input line 117.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -450,51 +460,65 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count280
 )
-LaTeX Info: Redefining \ref on input line 86.
-LaTeX Info: Redefining \pageref on input line 86.
-LaTeX Info: Redefining \nameref on input line 86.
+LaTeX Info: Redefining \ref on input line 117.
+LaTeX Info: Redefining \pageref on input line 117.
+LaTeX Info: Redefining \nameref on input line 117.
 
 (./notes.out) (./notes.out)
 \@outlinefile=\write3
 \openout3 = `notes.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 89.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 120
+.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 89.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 120
+.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 8
-9.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 1
+20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 12
+0.
+
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 120.
+(Font)              using `U/stmry/m/n' instead on input line 151.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 151.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 151.
 
 Package acronym Info: Label `acro:DF' newly defined as it shall be overridden
-although it is yet undefined on input line 159.
+although it is yet undefined on input line 190.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-62.
+93.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 478.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 478.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 568.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 568.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 478.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 478.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 568.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 568.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 63DFE071273B6BF03E2D3EC0293C3CDF;326.
+(rerunfilecheck)             Checksum: C06DC731719DA21478350AC0D07B394D;469.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -502,14 +526,14 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 478.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 568.
  ) 
 Here is how much of TeX's memory you used:
- 8709 strings out of 483107
- 125337 string characters out of 5964631
- 404361 words of memory out of 5000000
- 23501 multiletter control sequences out of 15000+600000
- 559536 words of font info for 77 fonts, out of 8000000 for 9000
+ 8957 strings out of 483107
+ 127767 string characters out of 5964631
+ 406448 words of memory out of 5000000
+ 23732 multiletter control sequences out of 15000+600000
+ 560632 words of font info for 82 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  34i,14n,31p,354b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -526,11 +550,12 @@ msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on notes.pdf (5 pages, 168179 bytes).
+f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/wasy-type1/wasy10.pfb>
+Output written on notes.pdf (6 pages, 177626 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 128 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 172 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

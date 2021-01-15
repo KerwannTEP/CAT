@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
+\usepackage{wasysym}
 
 %%%% Define Acronyms
 \usepackage{acronym}
@@ -33,7 +34,8 @@
 \newcommand{\vt}{v_{\rt}}
 \newcommand{\bv}{\boldsymbol{v}}
 \newcommand{\bvt}{\boldsymbol{\vt}}
-\newcommand{\hr}{\hat{\boldsymbol{r}}}
+\newcommand{\br}{\boldsymbol{r}}
+\newcommand{\hr}{\hat{\br}}
 \newcommand{\Fq}{F_{q}}
 \newcommand{\fq}{f_{q}}
 \newcommand{\ra}{\mathrm{a}}
@@ -71,6 +73,35 @@
 \newcommand{\La}{L_{\ra}}
 
 \newcommand{\Vmax}{V_{\max}}
+
+\newcommand{\Dv}{\Delta v}
+\newcommand{\DE}{\Delta E}
+\newcommand{\DL}{\Delta L}
+
+\newcommand{\DEAvr}{\langle\DE\rangle}
+\newcommand{\DESqAvr}{\langle (\DE)^{2} \rangle}
+\newcommand{\DLAvr}{\langle\DL\rangle}
+\newcommand{\DLSqAvr}{\langle (\DL)^{2} \rangle}
+\newcommand{\DEDLAvr}{\langle \DE \DL \rangle}
+
+\newcommand{\dE}{D_{E}}
+\newcommand{\dL}{D_{L}}
+\newcommand{\dEE}{D_{EE}}
+\newcommand{\dLL}{D_{LL}}
+\newcommand{\dEL}{D_{EL}}
+
+\newcommand{\DXAvr}{\langle\Delta X\rangle}
+\newcommand{\DXYAvr}{\langle\Delta X \Delta Y\rangle}
+
+\newcommand{\dX}{D_{X}}
+\newcommand{\dXY}{D_{XY}}
+
+\newcommand{\rmax}{r_{\max}}
+\newcommand{\rmin}{r_{\min}}
+
+\newcommand{\psieff}{\psi_{\rm{eff}}}
+
+\newcommand{\bL}{\boldsymbol{L}}
 
 
 \author{Kerwann}
@@ -474,5 +505,64 @@ $h(r,\vr,\vt)=h(r,v)$ and $g(r,\vr,\vt)=g(r,v)$.
 
 \section{Local orbital parameter changes}
 \label{sec:Local_dE_dL}
+
+Now, switch to $(E,L)$ space and using eq. (C15) to (C19) of Bar-Or
+\& Alexander (2016), which doesn't rely on an isotropy assumption,
+we obtain (evaluate at $(r,\bv(r,E,L))$) at first order
+in $\Dv/v$
+
+\begin{equation}
+\begin{array}{ccl}
+ \DEAvr(r,E,L) & =&\displaystyle{-\frac{1}{2}\dvParSqAvrLoc-\frac{1}{2}\dvPerpSqAvrLoc-v\dvParAvrLoc} ,\\
+  
+ \DESqAvr(r,E,L) & = &\displaystyle{v^{2}\dvParSqAvrLoc}\\
+  \DLAvr(r,E,L) & =&\displaystyle{\frac{L}{v}\dvParAvrLoc+\frac{r^{2}}{4L}\dvPerpSqAvrLoc} ,\\
+  
+  \DLSqAvr(r,E,L) & = &\displaystyle{\frac{L^{2}}{v^{2}}\dvParAvrLoc+\frac{1}{2}\left(r^{2}-\frac{L^{2}}{v^{2}}\right)\dvPerpSqAvrLoc}\\
+  
+  \DEDLAvr(r,E,L) & = &\displaystyle{-L \dvParSqAvrLoc}   
+\end{array}
+\label{eq:DE_DL}
+\end{equation}
+Due to our analysis, those quantities are well defined and
+we can use the bijective transformation $(r,E,L)\leftrightarrow(r,\vr,\vt)$
+
+\section{Orbit of a test star in a globular cluster}
+\label{sec:Orbit_globular_cluster}
+
+We can now compute the local diffusion coefficients $\DEAvr$,
+$\DESqAvr$, $\DLAvr$,
+$\DLSqAvr$ and $\DEDLAvr$.
+Since we are interested in the secular evolution of the system, we
+can average over the dynamical time and smear out the star along its
+orbit. This leads us to consider the orbit-average diffusion coefficients
+
+\begin{equation}
+\begin{array}{cclcl}
+ \dX(E,L) & =& \DXAvr_{\leftturn} & =&\displaystyle{\frac{2}{T}\int_{\rmin}^{\rmax}\DXAvr(r,E,L)\frac{{\rd}r}{\vr(r,E,L)}} ,\\
+  
+  \dXY(E,L) & =& \DXYAvr_{\leftturn} & =&\displaystyle{\frac{2}{T}\int_{\rmin}^{\rmax}\DXYAvr(r,E,L)\frac{{\rd}r}{\vr(r,E,L)}} .
+\end{array}
+\label{eq:DE_DL}
+\end{equation}
+where $\vr(r)$ is the radial velocity of the orbiting star at $r$. It is of interest to define the effective potential
+
+\begin{equation}
+  \psieff(r,L) = \psi(r) - \frac{L^{2}}{2r^{2}} .
+  \label{eq:Effective_potential}
+  \end{equation}
+
+\subsection{Study of an orbit}
+\label{subsec:OrbitGlobular}
+
+See Kurth (1955), Astronomische Nachrichten, volume 282, Issue
+6, p.241.
+
+~
+
+Consider a test star described by its position vector $\br$,
+its binding energy (opposite of its energy) $E(t)$ and its angular
+momentum vector $\bL(t)$, per unit mass. Then
+
 
 \end{document}
