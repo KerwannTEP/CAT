@@ -103,6 +103,8 @@
 
 \newcommand{\bL}{\boldsymbol{L}}
 
+\newcommand{\Ec}{E_{{\rm{c}}}}
+
 
 \author{Kerwann}
 \date{\today}
@@ -562,7 +564,42 @@ See Kurth (1955), Astronomische Nachrichten, volume 282, Issue
 
 Consider a test star described by its position vector $\br$,
 its binding energy (opposite of its energy) $E(t)$ and its angular
-momentum vector $\bL(t)$, per unit mass. Then
+momentum vector $\bL(t)$, per unit mass. Then by Newton's law, those two quantities are conserved along an orbit, allowing us to drop the $t$ parameter.
 
+Consider a bound orbit with $E\geq 0$ and $L \geq 0$. Then its ascending radial velocity is given by
+
+\begin{equation}
+  \vr(r) = \sqrt{2(\psieff(r;L)-E)} ,
+  \label{eq:radial_velocity}
+\end{equation}
+
+its bounds $\rmin$ and $\rmax$ are given by the solution of the equation $\vr(r)=0$, which has two solutions, and its orbital period $T$ is defined by
+
+\begin{equation}
+ \frac{T}{2}=\int_{\rmin}^{\rmax}\frac{{\rd}r}{\vr(r)}
+  \label{eq:orbital_period}
+  \end{equation}
+
+The ''type'' of an orbit is determined by $E$ and $L$. Graphically, $\rmax$ and $\rmin$ are given by the intersection points of $\psieff(r,L)$ and $E$. There are a few different cases:
+\begin{itemize}
+\item $E \leq 0$: unbounded orbit,
+\item $E \in ]0,\Ec(L)[$: bound ''rosette-like'' orbit,
+\item $E = \Ec(L)$: circular orbit,
+\item $E > \Ec(L)$: impossible,
+\end{itemize}
+where $\Ec(L) = \max_{r>0}\psieff(r,L)$.
+
+All the integral are finite, since they are integrable at the endpoints
+
+\begin{equation}
+\begin{array}{ccl}
+ \displaystyle{\frac{1}{\vr(\rmax-\epsilon)}} & \sim& \displaystyle{|2\psi_{{\rm eff}}'(r_{\max})|^{-1/2}\frac{1}{\sqrt{\epsilon}}} ,\\
+  
+ \displaystyle{\frac{1}{\vr(\rmin+\epsilon)}} & \sim&\displaystyle{|2\psi_{{\rm eff}}'(r_{\min})|^{-1/2}\frac{1}{\sqrt{\epsilon}}} .
+\end{array}
+\label{eq:integrable_T}
+\end{equation}
+
+with strictly positive prefactor for bounded, non-circular orbits.
 
 \end{document}
