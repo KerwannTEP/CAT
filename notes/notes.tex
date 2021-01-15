@@ -98,12 +98,13 @@
 
 \newcommand{\rmax}{r_{\max}}
 \newcommand{\rmin}{r_{\min}}
+\newcommand{\rcut}{r_{{\rm{cut}}}}
+\newcommand{\tcut}{\theta_{{\rm{cut}}}}
 
 \newcommand{\psieff}{\psi_{\rm{eff}}}
-
 \newcommand{\bL}{\boldsymbol{L}}
-
 \newcommand{\Ec}{E_{{\rm{c}}}}
+
 
 
 \author{Kerwann}
@@ -576,7 +577,7 @@ Consider a bound orbit with $E\geq 0$ and $L \geq 0$. Then its ascending radial 
 its bounds $\rmin$ and $\rmax$ are given by the solution of the equation $\vr(r)=0$, which has two solutions, and its orbital period $T$ is defined by
 
 \begin{equation}
- \frac{T}{2}=\int_{\rmin}^{\rmax}\frac{{\rd}r}{\vr(r)}
+ \frac{T}{2}=\int_{\rmin}^{\rmax}\frac{{\rd}r}{\vr(r)} .
   \label{eq:orbital_period}
   \end{equation}
 
@@ -599,7 +600,17 @@ All the integral are finite, since they are integrable at the endpoints
 \end{array}
 \label{eq:integrable_T}
 \end{equation}
-
 with strictly positive prefactor for bounded, non-circular orbits.
+
+For actual computation, it is useful to use the bijective change of variable $\sin^{2}(\theta) = \psieff(r;L)-E$. Then 
+\begin{equation}
+  \int_{\rmin}^{\rcut}\frac{{\rd}r}{\vr(r)}=\int_{0}^{\tcut}\frac{2\cos\theta\sin\theta{\rd}\theta}{\psieff'(r(\theta);L)\sqrt{2\sin^{2}\theta}}=\int_{0}^{\tcut}\frac{\sqrt{2}\cos\theta{\rd}\theta}{\psieff'(r(\theta);L)} ,
+  \label{eq:change_variable_period}
+\end{equation}
+where $\tcut = \arcsin({\sqrt{\psieff(\rmin,L)-E}})>0$, and do the same around $\rmax$. We can solve this bijection analytically by solving the degree-3 polynomial in $X=r^{2}$ given by
+\begin{equation}
+4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2} .
+\label{eq:bijection_polynomial}
+\end{equation}
 
 \end{document}
