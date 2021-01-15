@@ -70,6 +70,8 @@
 \newcommand{\Ea}{E_{\ra}}
 \newcommand{\La}{L_{\ra}}
 
+\newcommand{\Vmax}{V_{\max}}
+
 
 \author{Kerwann}
 \date{\today}
@@ -366,7 +368,7 @@ of $\bv$ by definition) yields
 \begin{array}{cclcl}
   h(r,\vr,\vt) & =&\displaystyle{\int{\rd}^{3}\bV0 \frac{\fq(r,\bv-\bV0)}{V_{0}}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)} ,\\
   
-  g(r,\vr,\vt) & = &\displaystyle{\int{\rd}^{3}\bV0 \fq(r,\bv-\bV0)V_{0}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi f_{a}(r,\bv-\bV0)}
+  g(r,\vr,\vt) & = &\displaystyle{\int{\rd}^{3}\bV0 \fq(r,\bv-\bV0)V_{0}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)}
 \end{array}
 \label{eq:Rosenbluth}
 \end{equation}
@@ -418,8 +420,59 @@ and the results are (function are evaluated at $(\Ea,\La)$)
 \label{eq:DF_Derivatives}
 \end{equation}
 
+The DF and its derivative vanish when $\Ea<0$. Obviously, $\va(r,V_{0},\theta,\phi)$ is minored by the polynomial in $V_{0}$ given by $v^{2}+V_{0}^{2}-2V_{0}(\vr+\vt)$. We have $\Ea<0$ when $\va>\psi(r)$, which happens outside of the roots of $v^{2}+V_{0}^{2}-2V_{0}(\vr+\vt)-2\psi(r)$. Those roots are
 
+\begin{equation}
+  V_{0 \pm} = (\vt+\vr)\pm\sqrt{2(\vr\vt+\psi(r))}.
+  \label{eq:Vmax}
+\end{equation}
+For $E>0$, the inferior root is always negative whereas the superior root is always positive. Let's call it $\Vmax$. In the end, the Rosenbluth potentials can be computed over compact domains
+\begin{equation}
+\begin{array}{ccl}
+  h(r,\vr,\vt) &=& \displaystyle{\int_{0}^{\Vmax}{\rd}V_{0} V_{0}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)} ,\\
+  g(r,\vr,\vt) &=& \displaystyle{\int_{0}^{\Vmax}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)}
+\end{array}
+\label{eq:Rosenbluth_finite}
+\end{equation}
+and so do its partial derivatives.
 
+\subsection{Isotropic case}
+\label{subsec:Isotropic}
 
+We may want to check that the integrals yield the correct result.
+To that end, it can be of interest to consider the simple case $q=0$,
+where $f(E,L)=f(E)$, i.e. $f(r,\bv)=f(r,v)=\Fq(E)$.
+Then according Binney \& Tremaine, eq. (L26),
+
+\begin{equation}
+\begin{array}{ccl}
+  \dvParAvrLoc(r,v) & =&\displaystyle{-\frac{16\pi^{2}G^{2}\ma(m+\ma)\ln\Lambda}{v^{2}}K_{1}(r,v)} ,\\
+  
+  \dvParSqAvrLoc(r,v) & = &\displaystyle{\frac{32\pi^{2}G^{2}\ma^{2}\ln\Lambda}{3}\left(K_{0}(r,v)+\frac{1}{v^{3}}K_{3}(r,v)\right)}\\
+  
+  \dvPerpSqAvrLoc(r,v) & = &\displaystyle{\frac{32\pi^{2}G^{2}\ma^{2}\ln\Lambda}{3}\left(2K_{0}(r,v)+\frac{3}{v}K_{1}(r,v)-\frac{1}{v^{3}}K_{3}(r,v)\right)}   
+\end{array}
+\label{eq:IsoLocDiffCoefsdRdT}
+\end{equation}
+
+where
+\begin{equation}
+\begin{array}{ccl}
+ K_{0}(r,v) & =&\displaystyle{\frac{1}{21\pi^{3}}(2E){}^{9/2}} ,\\
+  
+  K_{1}(r,v) & = &\displaystyle{\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}F_{0}(E_{a})}\\
+  
+  K_{3}(r,v) & = &\displaystyle{\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}^{3}F_{0}(E_{a})}   
+\end{array}
+\label{eq:K_Iso}
+\end{equation}
+and the correspondance $E = \psi(r)-v^{2}/2$
+
+In the appendix, we recompute the formulae of the isotropic case from
+the arbitrary anisotropic case, with $v^{2}=\vr^{2}+\vt^{2}$,
+$h(r,\vr,\vt)=h(r,v)$ and $g(r,\vr,\vt)=g(r,v)$.
+
+\section{Local orbital parameter changes}
+\label{sec:Local_dE_dL}
 
 \end{document}
