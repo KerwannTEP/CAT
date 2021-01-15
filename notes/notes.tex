@@ -67,6 +67,9 @@
 \newcommand{\bvp}{\boldsymbol{\vp}}
 \newcommand{\bvm}{\boldsymbol{\vm}}
 
+\newcommand{\Ea}{E_{\ra}}
+\newcommand{\La}{L_{\ra}}
+
 
 \author{Kerwann}
 \date{\today}
@@ -125,8 +128,8 @@ L(r,\vr,\vt) & = & r \cdot \vt ,
 whose Jacobian is
 \begin{equation}
 {\rm Jac}_{(r,\vr,\vt)\rightarrow(r,E,L)}=\left(\begin{array}{cc}
-\frac{\partial E}{\partial \vr} & \frac{\partial E}{\partial \vt}\\
-\frac{\partial L}{\partial \vr} & \frac{\partial L}{\partial \vt}
+\displaystyle{\frac{\partial E}{\partial \vr}} & \displaystyle{\frac{\partial E}{\partial \vt}}\\
+\displaystyle{\frac{\partial L}{\partial \vr}} & \displaystyle{\frac{\partial L}{\partial \vt}}
 \end{array}\right)=\left(\begin{array}{cc}
 -\vr & -\vt\\
 0 & r
@@ -145,8 +148,8 @@ and $(\vr,\vt)$ are linked, we can make use of the following
 equalities (for the moment, $\vr$ is defined modulo the sign)
 \begin{equation}
 \begin{array}{ccl}
-\Fq(E,L) &=&\fq(r,\vr(r,E,L),\vt(r,E,L)) ,\\
-\fq(r,\vr,\vt)&=&F_{q}(E(r,\vr,\vt),L(r,\vr,\vt)) ,
+\Fq(E,L) &=&\displaystyle{\fq(r,\vr(r,E,L),\vt(r,E,L))} ,\\
+\fq(r,\vr,\vt)&=&\displaystyle{F_{q}(E(r,\vr,\vt),L(r,\vr,\vt))} ,
 \end{array}
 \label{eq:conversion_DF}
 \end{equation}
@@ -168,8 +171,8 @@ is (for $q \neq0$):
 where
 \begin{equation}
 \mH(a,b,c,d;x)=\begin{cases}
-\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a} \HG(a+b,1+a-c,a+d;x) & {\rm{if}} \quad x\leq1 ,\\
-\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b} \HG(a+b,1+b-d,b+c;\frac{1}{x}) &{\rm{if}} \quad x\geq1 ,
+\displaystyle{\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a} \HG(a+b,1+a-c,a+d;x)} & {\rm{if}} \quad x\leq1 ,\\
+\displaystyle{\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b} \HG(a+b,1+b-d,b+c;\frac{1}{x})} &{\rm{if}} \quad x\geq1 ,
 \end{cases}
 \label{eq:def_H}
 \end{equation}
@@ -182,7 +185,7 @@ which reduces in the isotropic case $(q=0)$ to
 and in the extreme radially anisotropic $(q=2)$ to
 \begin{equation}
   F_{2}(E)=\begin{cases}
-\frac{6}{(2\pi)^{3}}(2E-L)^{3/2} & {\rm{if}} \quad 2 E\leq L^{2} ,\\
+\displaystyle{ \frac{6}{(2\pi)^{3}}(2E-L)^{3/2}} & {\rm{if}} \quad 2 E\leq L^{2} ,\\
 0 &{\rm{if}} \quad  2 E\geq L^{2} .
 \end{cases}
   \label{eq:F_q=2}
@@ -201,9 +204,9 @@ per unit time. We are interested in computing
 
 \begin{equation}
 \begin{array}{ccl}
-  \dvParAvrLoc(r,\vr,\vt) & = & \frac{ \dvParAvr(r,\vr,\vt)}{\delta t} ,\\
- \dvParSqAvrLoc(r,\vr,\vt) & = & \frac{ \dvParSqAvr(r,\vr,\vt)}{\delta t}  ,\\
-\dvPerpSqAvrLoc(r,\vr,\vt) & = & \frac{ \dvPerpSqAvr(r,\vr,\vt)}{\delta t} ,
+  \dvParAvrLoc(r,\vr,\vt) & = & \displaystyle{\frac{ \dvParAvr(r,\vr,\vt)}{\delta t}} ,\\
+ \dvParSqAvrLoc(r,\vr,\vt) & = & \displaystyle{\frac{ \dvParSqAvr(r,\vr,\vt)}{\delta t}}  ,\\
+\dvPerpSqAvrLoc(r,\vr,\vt) & = & \displaystyle{\frac{ \dvPerpSqAvr(r,\vr,\vt)}{\delta t}} ,
 \end{array}
 \label{eq:DiffCoeffLoc}
 \end{equation}
@@ -223,8 +226,8 @@ is the angle between the plane of the relative orbit and $\e2'$,
 
 \begin{equation}
 \begin{array}{ccl}
-  \dvPerp & =&\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}} ,\\
- \dvPar & = & \frac{2m_{a}V_{0}}{m+m_{a}}\frac{1}{1+b^{2}/b_{90}^{2}} ,
+  \dvPerp & =&\displaystyle{\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}}} ,\\
+ \dvPar & = & \displaystyle{\frac{2m_{a}V_{0}}{m+m_{a}}\frac{1}{1+b^{2}/b_{90}^{2}}} ,
 \end{array}
 \label{eq:delta_v}
 \end{equation}
@@ -285,7 +288,7 @@ This yields (Binney \& Tremaine, eq. L14)
   \langle\Delta v_{i}\rangle & =& \displaystyle{-4\pi\frac{\ma}{m+\ma}
     \int{\rd}^{3}\bva V_{0}^{2}b_{90}^{2} \fq(r,\bva)\ln\Lambda\langle
     \boldsymbol{e_{i}},\e1'\rangle} ,\\
-  {}&{}&{} \\
+  
   \langle\Delta v_{i}\Delta v_{j}\rangle & = &\displaystyle{ 4\pi\left(
     \frac{\ma}{m+\ma}\right)^{2}\int{\rd}^{3}\bva V_{0}^{3}b_{90}^{2}f_{a}(r,
     \bva)\ln\Lambda  \left[\langle\boldsymbol{e_{i}},\e2'\rangle\langle
@@ -306,7 +309,7 @@ Using (Binney \& Tremaine, eq. L17 and L18), we obtain
 \begin{equation}
 \begin{array}{ccl}
   \langle\Delta v_{i}\rangle(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda\frac{\partial h}{\partial v_{i}}(r,\bv)} ,\\
-  {}&{}&{} \\
+  
   \langle\Delta v_{i}\Delta v_{j}\rangle(r,\bv) & = &\displaystyle{4\pi G^{2}{\ma}^{2}\ln\Lambda\frac{\partial^{2}g}{\partial v_{i}\partial v_{j}}(r,\bv)}
 \end{array}
 \label{eq:delta_v_Rosenbluth}
@@ -316,7 +319,7 @@ eq. L19)
 \begin{equation}
 \begin{array}{ccl}
   h(r,\bv) & =&\displaystyle{\int{\rd}^{3}\bva\frac{\fq(r,\bva)}{|\bv-\bva|}} ,\\
-  {}&{}&{} \\
+  
   g(r,\bv) & = &\displaystyle{\int{\rd}^{3}\bva \fq(r,\bva)|\bv-\bva|}
 \end{array}
 \label{eq:Rosenbluth}
@@ -332,9 +335,9 @@ we'll have the relations
 \begin{equation}
 \begin{array}{ccl}
   \dvParAvrLoc(r,\bv) & =&\displaystyle{\langle\Delta v_{1}\rangle(r,\bv)} ,\\
-  {}&{}&{} \\
+  
   \dvParSqAvrLoc(r,\bv) & = &\displaystyle{\langle(\Delta v_{1})^{2}\rangle(r,\bv)}\\
-  {}&{}&{} \\
+  
   \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{\langle(\Delta v_{2})^{2}\rangle(r,\bv)+\langle(\Delta v_{3})^{2}\rangle(r,\bv)}
 \end{array}
 \label{eq:TestStarDeflection}
@@ -346,9 +349,9 @@ and a tedious by straightforward computation see appendix) yields
 \begin{equation}
 \begin{array}{ccl}
   \dvParAvrLoc(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda(\frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt})} ,\\
-  {}&{}&{} \\
+  
   \dvParSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}{\ma}^{2}\ln\Lambda\left(\frac{\vr^{2}}{v^{2}}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}\right)}\\
-  {}&{}&{} \\
+  
   \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}\ma^{2}\ln\Lambda\left(\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\ partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt}\right)}   
 \end{array}
 \label{eq:AnisoLocDiffCoefsdRdT}
@@ -362,7 +365,7 @@ of $\bv$ by definition) yields
 \begin{equation}
 \begin{array}{cclcl}
   h(r,\vr,\vt) & =&\displaystyle{\int{\rd}^{3}\bV0 \frac{\fq(r,\bv-\bV0)}{V_{0}}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)} ,\\
-  {}&{}&{} \\
+  
   g(r,\vr,\vt) & = &\displaystyle{\int{\rd}^{3}\bV0 \fq(r,\bv-\bV0)V_{0}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi f_{a}(r,\bv-\bV0)}
 \end{array}
 \label{eq:Rosenbluth}
@@ -386,11 +389,36 @@ the field stars cover the whole $\boldsymbol{V_{0}}$-space. Given
 a velocity $\bV0$ corresponds bijectively a field star
 velocity $\bva$. The overall integration will in fact not depend on the convention we used. The $E(r,\var,\vat)$ component depends on the sign of $\vr$ since
 \begin{equation}
-  E_{a}(r,V_{0},\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}(\vr\cos\theta+\vt\sin\theta\cos\phi)\right]
+  \Ea(r,V_{0},\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}(\vr\cos\theta+\vt\sin\theta\cos\phi)\right]
   \label{eq:Ea}
 \end{equation}
 
-but $L(r,\var,\vat)$ does not. When doing the integration, we will evaluate the integrand at both arguments $(V_{0},\theta,\phi)$ and  $(V_{0},\pi-\theta,\phi)$, and their summed contribution doesn't depend on the convention choice. In the following, we decide to use $\vr\geq 0$.
+but $\La(r,\var,\vat)$ does not. When doing the integration, we will evaluate the integrand at both arguments $(V_{0},\theta,\phi)$ and  $(V_{0},\pi-\theta,\phi)$, and their summed contribution doesn't depend on the convention choice. In the following, we decide to use $\vr\geq 0$.
+
+For an actual computation, we also
+need to compute the various velocity-partial derivatives of those
+integrals, meaning that we need to compute the velocity-partial derivatives
+of $\fq(r,\bva)=\Fq(\Ea,\La)$ (exchange
+derivation and integral). The calculation is done in the appendix,
+and the results are (function are evaluated at $(\Ea,\La)$)
+
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial}{\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\frac{\partial F}{\partial E}} ,\\
+  
+   \displaystyle{\frac{\partial}{\partial \vt}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial F}{\partial E}-\frac{r}{\La}\frac{\partial F}{\partial L}\right)} ,\\
+ 
+  \displaystyle{\frac{\partial^{2}}{\partial \vr^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\left(-\vr+V_{0}\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E{}^{2}}} ,\\
+ 
+  \displaystyle{\frac{\partial^{2}}{\partial \vt\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{\La}\frac{\partial^{2}F}{\partial L\partial E}\right)} ,\\
+ 
+  \displaystyle{\frac{\partial^{2}}{\partial \vt^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\frac{r}{\La}\frac{\partial F}{\partial L}+\left(-\vt+V_{0}\sin\theta\cos\phi\right)^{2}} \\
+  {}&{}&\times \displaystyle{\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)} .
+\end{array}
+\label{eq:DF_Derivatives}
+\end{equation}
+
+
 
 
 
