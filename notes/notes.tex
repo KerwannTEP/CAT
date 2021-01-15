@@ -4,8 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage[a4paper,bindingoffset=0.2in,%
-            left=0.5in,right=0.5in,top=0.5in,bottom=0.5in,%
+\usepackage[a4paper,bindingoffset=0.5in,%
+            left=0.5in,right=0.5in,top=1in,bottom=1in,%
             footskip=.25in]{geometry}
 
 \usepackage{graphicx}
@@ -40,6 +40,33 @@
 \newcommand{\va}{v_{\ra}}
 \newcommand{\mH}{\mathbb{H}}
 \newcommand{\HG}{\prescript{}{2}F_{1}}
+
+\newcommand{\dvPar}{\Delta v_{||}}
+\newcommand{\dvPerp}{\Delta v_{\perp}}
+
+\newcommand{\dvParAvr}{\langle \dvPar \rangle_{\delta t}}
+\newcommand{\dvParSqAvr}{\langle(\dvPar)^{2}\rangle_{\delta t}}
+\newcommand{\dvPerpSqAvr}{\langle(\dvPerp)^{2}\rangle_{\delta t}}
+
+\newcommand{\dvParAvrLoc}{\langle \dvPar \rangle}
+\newcommand{\dvParSqAvrLoc}{\langle(\dvPar)^{2}\rangle}
+\newcommand{\dvPerpSqAvrLoc}{\langle(\dvPerp)^{2}\rangle}
+
+\newcommand{\bva}{\boldsymbol{\va}}
+\newcommand{\ma}{m_{\ra}}
+
+\newcommand{\e}[1]{\boldsymbol{e_{#1}}}
+\newcommand{\bV}[1]{\boldsymbol{V_{#1}}}
+
+\newcommand{\rd}{{\rm{d}}}
+\newcommand{\var}{v_{\ra \rr}}
+\newcommand{\vat}{v_{\ra \rt}}
+
+\newcommand{\vp}{v_{+}}
+\newcommand{\vm}{v_{-}}
+\newcommand{\bvp}{\boldsymbol{\vp}}
+\newcommand{\bvm}{\boldsymbol{\vm}}
+
 
 \author{Kerwann}
 \date{\today}
@@ -163,12 +190,208 @@ and in the extreme radially anisotropic $(q=2)$ to
 
 When $E \leq 0$ or $L \leq 0$ then $\Fq(E,L) = 0$.
 
+
+
+
 \section{Determination of the local diffusion coefficients}
 \label{sec:LocDiffCoeffs}
 
 The local diffusion coefficients are the average velocity changes
-per unit time. We are interested in computing (bad notation: those
-are relative to the test star velocity, as opposed to the relative
-velocity!!!)
+per unit time. We are interested in computing
+
+\begin{equation}
+\begin{array}{ccl}
+  \dvParAvrLoc(r,\vr,\vt) & = & \frac{ \dvParAvr(r,\vr,\vt)}{\delta t} ,\\
+ \dvParSqAvrLoc(r,\vr,\vt) & = & \frac{ \dvParSqAvr(r,\vr,\vt)}{\delta t}  ,\\
+\dvPerpSqAvrLoc(r,\vr,\vt) & = & \frac{ \dvPerpSqAvr(r,\vr,\vt)}{\delta t} ,
+\end{array}
+\label{eq:DiffCoeffLoc}
+\end{equation}
+
+where the subscript are relative to the relative velocity of test star (in the referential where the deflecting field star is still). Consider a test star at position $r$, mass $m$ and initial velocity
+$\bv$ which interacts with a field star with impact parameter
+$b$, mass $\ma$ and velocity  $\bva$, Binney et Tremaine
+(2008, eq. (L.7) page 834) gives , with the convention (here, parallel
+and perpendicular to relative velocity)
+\begin{equation}
+  \Delta\boldsymbol{v}=- \dvPar \e1'+\dvPerp(-\e2'\cos\phi+\e3'\sin\phi) ,
+  \label{eq:deltaV}
+\end{equation}
+
+where $\e1' \parallel \bV0$ and $\phi$
+is the angle between the plane of the relative orbit and $\e2'$,
+
+\begin{equation}
+\begin{array}{ccl}
+  \dvPerp & =&\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}} ,\\
+ \dvPar & = & \frac{2m_{a}V_{0}}{m+m_{a}}\frac{1}{1+b^{2}/b_{90}^{2}} ,
+\end{array}
+\label{eq:delta_v}
+\end{equation}
+
+where $\bV0= \bv-\bva$ and $b_{90}$ is the 90° deflection radius,
+given by eq (L.8) 
+\begin{equation}
+  b_{90}=\frac{G(m+m_{a})}{V_{0}^{2}} .
+  \label{eq:b90}
+\end{equation}
+
+Furthermore, after averaging over the equiprobable angles $\phi$
+(test star can be on either ``side'' of the field star), we obtain
+
+\begin{equation}
+\begin{array}{ccl}
+  \langle\Delta v_{i}\rangle_{\phi} & =&-\dvPar \langle\boldsymbol{e_{i}},\e1'\rangle ,\\
+  {}&{}&{} \\
+  \langle\Delta v_{i}\Delta v_{j}\rangle_{\phi} & = & (\Delta v_{\parallel})^{2}\langle\boldsymbol{e_{i}},\boldsymbol{e_{1}'}\rangle\langle\boldsymbol{e_{j}},\boldsymbol{e_{1}'}\rangle \\
+  {}&{}&+\frac{1}{2}(\dvPerp)^{2}\left[\langle\boldsymbol{e_{i}},\e2'\rangle\langle\boldsymbol{e_{j}},\e2'\rangle+\langle\boldsymbol{e_{i}},\e3'\rangle\langle\boldsymbol{e_{j}},\e3'\rangle\right]
+\end{array}
+\label{eq:delta_v}
+\end{equation}
+
+where $(e_{1},e_{2},e_{3})$ is an fixed, arbitrary coordonnate system. Here, note that when considering a test star with energy and angular
+momentum (per unit mass) $(E,L)$, using the choise $v_{r}\geq0$
+or the choice $v_{r}\leq0$ has an impact on the local change of velocity
+through $V_{0}$.
+
+We sum the effects of all the encounter up. Number density of field
+stars (at position $r$) within velocity space volume ${\rm d}^{3}\boldsymbol{v_{a}}$
+is $\fq(r,\bva) \rd^{3}\bva$ (remember
+that $\fq(r,\bva)= \fq(r,\var,\vat)$). The number
+of encounters in a time $\delta t$ with impact parameters between
+$b$ and $b+\rd b$ is just this density times the volume of an
+annulus with inner radius $b$, outer radius $b+\rd b$, and length
+$V_{0}\delta t$, that is (eq. L9) $2\pi b{\rm d}bV_{0}\delta tf_{a}(r,\boldsymbol{v_{a}}){\rm d}^{3}\boldsymbol{v_{a}}$.
+
+We sum up over the velocities and the impact parameters. For the latter,
+we consider impact parameters between $0$ and a cut-off $b_{{\rm max}}$,
+traditionally given approximately by the radius of the subject star
+orbit.
+
+Recall that $\bV0 =\bv -\bva$.
+Since we assume that $\Lambda$ is large, we do not make any significant
+additional error by replacing the factor $V_{0}$ in $\Lambda$ by
+some typical stellar speed $v_{{\rm typ}}$, that is,
+
+\begin{equation}
+  \Lambda=\frac{b_{{\rm max}}v_{{\rm typ}}^{2}}{G(m+m_{a})} .
+  \label{Lambda}
+\end{equation}
+
+This yields (Binney \& Tremaine, eq. L14)
+
+\begin{equation}
+\begin{array}{ccl}
+  \langle\Delta v_{i}\rangle & =& \displaystyle{-4\pi\frac{\ma}{m+\ma}
+    \int{\rd}^{3}\bva V_{0}^{2}b_{90}^{2} \fq(r,\bva)\ln\Lambda\langle
+    \boldsymbol{e_{i}},\e1'\rangle} ,\\
+  {}&{}&{} \\
+  \langle\Delta v_{i}\Delta v_{j}\rangle & = &\displaystyle{ 4\pi\left(
+    \frac{\ma}{m+\ma}\right)^{2}\int{\rd}^{3}\bva V_{0}^{3}b_{90}^{2}f_{a}(r,
+    \bva)\ln\Lambda  \left[\langle\boldsymbol{e_{i}},\e2'\rangle\langle
+      \boldsymbol{e_{j}},\e2'\rangle+\langle\boldsymbol{e_{i}},\e3'\rangle
+      \langle\boldsymbol{e_{j}},\e3'\rangle\right]}
+\end{array}
+\label{eq:delta_v_sum}
+\end{equation}
+
+
+where we defined the Coulomb parameter $\Lambda=b_{{\rm max}}/b_{90}$.
+Remark that the scalar products depend on $\boldsymbol{v_{a}}$. Take
+$\Lambda=\lambda N$ (Binney et Tremaine, page 581) with $N\sim10^{5}$
+and $\lambda=0.059$ (Hamilton et al. (2018), eq. (B37)) for a globular
+cluster.
+
+Using (Binney \& Tremaine, eq. L17 and L18), we obtain
+\begin{equation}
+\begin{array}{ccl}
+  \langle\Delta v_{i}\rangle(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda\frac{\partial h}{\partial v_{i}}(r,\bv)} ,\\
+  {}&{}&{} \\
+  \langle\Delta v_{i}\Delta v_{j}\rangle(r,\bv) & = &\displaystyle{4\pi G^{2}{\ma}^{2}\ln\Lambda\frac{\partial^{2}g}{\partial v_{i}\partial v_{j}}(r,\bv)}
+\end{array}
+\label{eq:delta_v_Rosenbluth}
+\end{equation}
+where the Rosenbluth potentials are defined as (Binney \& Tremaine,
+eq. L19)
+\begin{equation}
+\begin{array}{ccl}
+  h(r,\bv) & =&\displaystyle{\int{\rd}^{3}\bva\frac{\fq(r,\bva)}{|\bv-\bva|}} ,\\
+  {}&{}&{} \\
+  g(r,\bv) & = &\displaystyle{\int{\rd}^{3}\bva \fq(r,\bva)|\bv-\bva|}
+\end{array}
+\label{eq:Rosenbluth}
+\end{equation}
+
+\subsection{Anisotropic case}
+\label{subsec:Aniso}
+
+Since this result is valid for any arbitrary coordinate system, we
+can fix it to the one where $\e1=\hat{v}$ and $\e2$ is the projection
+of $\hr$ onto the equatorial plane orthogonal to $\e1$. Then
+we'll have the relations
+\begin{equation}
+\begin{array}{ccl}
+  \dvParAvrLoc(r,\bv) & =&\displaystyle{\langle\Delta v_{1}\rangle(r,\bv)} ,\\
+  {}&{}&{} \\
+  \dvParSqAvrLoc(r,\bv) & = &\displaystyle{\langle(\Delta v_{1})^{2}\rangle(r,\bv)}\\
+  {}&{}&{} \\
+  \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{\langle(\Delta v_{2})^{2}\rangle(r,\bv)+\langle(\Delta v_{3})^{2}\rangle(r,\bv)}
+\end{array}
+\label{eq:TestStarDeflection}
+\end{equation}
+where the subscripts are relative of the velocity of the test star.
+
+and a tedious by straightforward computation see appendix) yields
+
+\begin{equation}
+\begin{array}{ccl}
+  \dvParAvrLoc(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda(\frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt})} ,\\
+  {}&{}&{} \\
+  \dvParSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}{\ma}^{2}\ln\Lambda\left(\frac{\vr^{2}}{v^{2}}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}\right)}\\
+  {}&{}&{} \\
+  \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}\ma^{2}\ln\Lambda\left(\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\ partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt}\right)}   
+\end{array}
+\label{eq:AnisoLocDiffCoefsdRdT}
+\end{equation}
+where $h(r,\bva)=h(r,\vr,\vt)$ and $g(r,\bv)=g(r,\vr,\vt)$.
+
+Applying the change of variable $\bV0=\bv-\bva$
+and using spherical coordinates with axis $(Oz)=\hr$
+the unit radius vector (parallel or antiparallel to the radial component
+of $\bv$ by definition) yields
+\begin{equation}
+\begin{array}{cclcl}
+  h(r,\vr,\vt) & =&\displaystyle{\int{\rd}^{3}\bV0 \frac{\fq(r,\bv-\bV0)}{V_{0}}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi \fq(r,\bv-\bV0)} ,\\
+  {}&{}&{} \\
+  g(r,\vr,\vt) & = &\displaystyle{\int{\rd}^{3}\bV0 \fq(r,\bv-\bV0)V_{0}} &=& \displaystyle{\int_{0}^{\infty}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi f_{a}(r,\bv-\bV0)}
+\end{array}
+\label{eq:Rosenbluth}
+\end{equation}
+where
+\begin{equation}
+  \fq(r,\bv-\bV0)=\fq(r,\var,\vat)=\Fq(E(r,\var,\vat),L(r,\var,\vat))
+  \label{eq:DFa}
+\end{equation}
+
+with $E,L$ given by eq \eqref{eq:v_to_E_L}.
+
+For a given convention $+$ or $-$ of the choice of $\vr$, and
+given $(E,L)$ the parameters of the test star, obtain the vectors
+$\bvp=(|\vr|,\bvt)$ and $\bvm=(-|\vr|,\bvt)$,
+which are symmetric with respect to the tangent plane where $\bvt$
+lives. In terms of spherical coordinates, we have that $\bvp=(v,\theta_{0},0)$
+and $\bvm=(v,\pi-\theta_{0},0)$. Remember that the
+integration over the velocities $\bV0=\bv-\bva$ of
+the field stars cover the whole $\boldsymbol{V_{0}}$-space. Given
+a velocity $\bV0$ corresponds bijectively a field star
+velocity $\bva$. The overall integration will in fact not depend on the convention we used. The $E(r,\var,\vat)$ component depends on the sign of $\vr$ since
+\begin{equation}
+  E_{a}(r,V_{0},\theta,\phi)=\psi(r)-\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}(\vr\cos\theta+\vt\sin\theta\cos\phi)\right]
+  \label{eq:Ea}
+\end{equation}
+
+but $L(r,\var,\vat)$ does not. When doing the integration, we will evaluate the integrand at both arguments $(V_{0},\theta,\phi)$ and  $(V_{0},\pi-\theta,\phi)$, and their summed contribution doesn't depend on the convention choice. In the following, we decide to use $\vr\geq 0$.
+
+
 
 \end{document}
