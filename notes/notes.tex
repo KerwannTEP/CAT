@@ -23,12 +23,23 @@
 %%%% Define Acronyms
 \usepackage{acronym}
 %
-\newacro{NR}{non-resonant relaxation}
-\newcommand{\NR}{\ac{NR}}
+\newacro{DF}{distribution fonction}
+\newcommand{\DF}{\ac{DF}}
 \newcommand{\rs}{\mathrm{s}}
 \newcommand{\rt}{\mathrm{t}}
 \newcommand{\rr}{\mathrm{r}}
 \newcommand{\psis}{\psi_{\rs}}
+\newcommand{\vr}{v_{\rr}}
+\newcommand{\vt}{v_{\rt}}
+\newcommand{\bv}{\boldsymbol{v}}
+\newcommand{\bvt}{\boldsymbol{\vt}}
+\newcommand{\hr}{\hat{\boldsymbol{r}}}
+\newcommand{\Fq}{F_{q}}
+\newcommand{\fq}{f_{q}}
+\newcommand{\ra}{\mathrm{a}}
+\newcommand{\va}{v_{\ra}}
+\newcommand{\mH}{\mathbb{H}}
+\newcommand{\HG}{\prescript{}{2}F_{1}}
 
 \author{Kerwann}
 \date{\today}
@@ -51,57 +62,113 @@
 with units $r_{\rs}$ the Plummer scale radius (which sets the size
 of the cluster core), $M$ the total mass of the cluster and $\bar{\tau}$
 some unit time. Let $\psis$ be defined by
-
 \begin{equation}
 \psis = \frac{G M}{r_{\rs}} ,
-\label{def_psi_s}
+\label{eq:def_psi_s}
 \end{equation}
 
 for the central potential
-
 \begin{equation}
 \psi(r)=\frac{\psis}{\sqrt{1+r^{2}}} .
-\label{def_potential}
+\label{eq:def_potential}
 \end{equation}
 
 Let use fix $G=1\,r_{\rs}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}}$ in the
 new units so that $\psis=1\,r_{\rs}^{2}\cdot\bar{\tau}^{-2}$. This
 fixes the time unit $\bar{\tau}$, as we have the relation. Therefore, in
 those units the potential (per unit mass) is given by
-
 \begin{equation}
 \psi(r)=\frac{1}{\sqrt{1+r^{2}}} .
-\label{def_potential_new_units}
+\label{eq:def_potential_new_units}
 \end{equation}
 
-Define, given a radius $r$, the angular momentum $L(r,v_{\rr},v_{\rt})$
-and binding energy per unit mass $E(r,v_{\rr},v_{\rt})$, functions of
-the radial velocity $v_{\rr}$ and the tangential velocity $v_{\rt}\geq 0$
-(defined as $\boldsymbol{v}=\boldsymbol{v_{\rr}}+\boldsymbol{v_{\rt}}=v_{\rr}\hat{\boldsymbol{r}}+\boldsymbol{v_{\rt}}$),
+Define, given a radius $r$, the angular momentum $L(r,\vr,\vt)$
+and binding energy per unit mass $E(r,\vr,\vt)$, functions of
+the radial velocity $\vr$ and the tangential velocity $\vt\geq 0$
+(defined as $\bv=\vr \hr + \bvt$),
 as
-
 \begin{equation}
 \begin{array}{ccl}
-E(r,v_{\rr},v_{\rt}) & = & \psi(r)-\frac{1}{2}v_{\rr}^{2}-\frac{1}{2}v_{\rt}^{2} ,\\
-L(r,v_{\rr},v_{\rt}) & = & r \cdot v_{\rt} ,
+E(r,\vr,\vt) & = & \psi(r)-\frac{1}{2} \vr^{2}-\frac{1}{2}\vt^{2} ,\\
+L(r,\vr,\vt) & = & r \cdot \vt ,
 \end{array}
 \label{eq:v_to_E_L}
 \end{equation}
-whose Jacobian is 
+
+whose Jacobian is
 \begin{equation}
-{\rm Jac}_{(r,v_{r},v_{t})\rightarrow(r,E,L)}=\left(\begin{array}{cc}
-\frac{\partial E}{\partial v_{r}} & \frac{\partial E}{\partial v_{t}}\\
-\frac{\partial L}{v_{ar}} & \frac{\partial L}{\partial v_{t}}
+{\rm Jac}_{(r,\vr,\vt)\rightarrow(r,E,L)}=\left(\begin{array}{cc}
+\frac{\partial E}{\partial \vr} & \frac{\partial E}{\partial \vt}\\
+\frac{\partial L}{\partial \vr} & \frac{\partial L}{\partial \vt}
 \end{array}\right)=\left(\begin{array}{cc}
--v_{r} & -v_{t}\\
+-\vr & -\vt\\
 0 & r
-\end{array}\right)\Rightarrow|{\rm Jac}|=r|v_{r}| .
+\end{array}\right)\Rightarrow|{\rm Jac}|=r|\vr| .
+\label{eq:Jacobian}
   \end{equation}
 
+To obtain a bijective transformation, we must chose wether to chose
+$\vr\ge 0$ or $\vr\leq 0$. A priori, this choice might have an
+impact on the result, but we will should that the local and orbit-averaged
+diffusion coefficients are not that. The coordinate system is spherical,
+its origin being at the center of the globular cluster. Finally, we
+consider the corresponding anisotropic distribution functions of the
+field stars $\Fq(r,E,L)= \Fq(E,L)$ in $(E,L)$-space. Since $(E,L)$
+and $(\vr,\vt)$ are linked, we can make use of the following
+equalities (for the moment, $\vr$ is defined modulo the sign)
+\begin{equation}
+\begin{array}{ccl}
+\Fq(E,L) &=&\fq(r,\vr(r,E,L),\vt(r,E,L)) ,\\
+\fq(r,\vr,\vt)&=&F_{q}(E(r,\vr,\vt),L(r,\vr,\vt)) ,
+\end{array}
+\label{eq:conversion_DF}
+\end{equation}
 
+where $\fq$ is the \DF in the $(\vr,\vt)$ space and where $q$ is an anisotropy
+parameter:
+\begin{itemize}
+\item $q\in]0,2]$: radially anisotropic
+\item $q=0$: isotropic
+\item $q\in]-\infty,0[$: tangentially anisotropic.
+\end{itemize}
 
+Note that the DF has spherical symmetry in position. Its expression for $E \geq 0, L \geq 0$
+is (for $q \neq0$):
+\begin{equation}
+  \Fq(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{7/2-q}\mH(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})
+  \label{eq:def_Fq}
+\end{equation}
+where
+\begin{equation}
+\mH(a,b,c,d;x)=\begin{cases}
+\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a} \HG(a+b,1+a-c,a+d;x) & {\rm{if}} \quad x\leq1 ,\\
+\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b} \HG(a+b,1+b-d,b+c;\frac{1}{x}) &{\rm{if}} \quad x\geq1 ,
+\end{cases}
+\label{eq:def_H}
+\end{equation}
+which reduces in the isotropic case $(q=0)$ to
+\begin{equation}
+  F_{0}(E)=\frac{3}{7\pi^{3}}(2E)^{7/2} ,
+  \label{eq:F_q=0}
+\end{equation}
 
+and in the extreme radially anisotropic $(q=2)$ to
+\begin{equation}
+  F_{2}(E)=\begin{cases}
+\frac{6}{(2\pi)^{3}}(2E-L)^{3/2} & {\rm{if}} \quad 2 E\leq L^{2} ,\\
+0 &{\rm{if}} \quad  2 E\geq L^{2} .
+\end{cases}
+  \label{eq:F_q=2}
+\end{equation}
 
+When $E \leq 0$ or $L \leq 0$ then $\Fq(E,L) = 0$.
 
+\section{Determination of the local diffusion coefficients}
+\label{sec:LocDiffCoeffs}
+
+The local diffusion coefficients are the average velocity changes
+per unit time. We are interested in computing (bad notation: those
+are relative to the test star velocity, as opposed to the relative
+velocity!!!)
 
 \end{document}
