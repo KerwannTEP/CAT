@@ -9,3 +9,4 @@
 \contentsline {section}{\numberline {5}Diffusion equation and change of variables}{9}{section.5}%
 \contentsline {section}{Appendices}{9}{section*.3}%
 \contentsline {section}{\numberline {A}Local diffusion coefficients}{9}{appendix.1.A}%
+\contentsline {section}{\numberline {B}From anisotropy to isotropy}{12}{appendix.1.B}%

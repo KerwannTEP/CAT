@@ -910,9 +910,10 @@ which in the special coordinate system yields
 \end{equation}
 
 hence
-\begin{align}
-\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}.
-\end{align}
+\begin{equation}
+  \frac{\partial^{2}g}{\partial v_{1}^{2}}  =\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}.
+  \label{eq:d2gdv12_Special}
+\end{equation}
 
 ~
 
@@ -937,7 +938,7 @@ Its coefficients are
  
   \displaystyle{\left(\frac{\partial \vt}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{v_{2}-\vr\sin\theta\cos\phi}{\vt}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
 \end{array}
-\label{eq:d2gdv12_Coeffs_Arbitrary}
+\label{eq:d2gdv22_Coeffs_Arbitrary}
 \end{equation}
 which in the special coordinate system yields
 
@@ -950,17 +951,63 @@ which in the special coordinate system yields
  
   \displaystyle{\left(\frac{\partial \vt}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
 \end{array}
-\label{eq:d2gdv12_Coeffs_Special}
+\label{eq:d2gdv22_Coeffs_Special}
 \end{equation}
 
 hence
-\begin{align}
-\frac{\partial^{2}g}{\partial v_{2}^{2}} & =\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}.
-\end{align}
+\begin{equation}
+  \frac{\partial^{2}g}{\partial v_{2}^{2}}  =\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}.
+   \label{eq:d2gdv22_Special}
+\end{equation}
 
 ~
 
 For the $v_{3}$ partial derivative, we have :
+
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial^{2}g}{\partial v_{3}^{2}}}&=& \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vr}{\partial v_{3}}\right)\frac{\partial g}{\partial \vr}+\left(\frac{\partial \vr}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\left(\frac{\partial \vr}{\partial v_{3}}\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
+
+  {} &+& \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial g}{\partial \vt}+\left(\frac{\partial \vt}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\left(\frac{\partial \vt}{\partial v_{3}}\frac{\partial \vr}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} .
+\end{array}
+\label{eq:d2gdv32_Arbitrary}
+\end{equation}
+
+Its coefficients are
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vr}{\partial v_{3}}\right)}&=& \displaystyle{0} ,\\
+  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}}&=& \displaystyle{\sin^{2}\theta\sin^{2}\phi\frac{\partial^{2}g}{\partial \vr^{2}}} ,\\
+  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=& \displaystyle{\sin\theta\sin\phi\left(\frac{v_{3}-\vr\sin\theta\cos\phi}{\vt}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
+  \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{(1-\sin^{2}\theta\sin^{2}\phi)v_{t}-(v_{3}-v_{r}\sin\theta\sin\phi)\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial \vt}} ,\\
+ 
+  \displaystyle{\left(\frac{\partial \vt}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{v_{3}-\vr\sin\theta\cos\phi}{\vt}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
+\end{array}
+\label{eq:d2gdv32_Coeffs_Arbitrary}
+\end{equation}
+which in the special coordinate system yields
+
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vr}{\partial v_{3}}\right)}&=& \displaystyle{0} ,\\
+  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}}&=& \displaystyle{0} ,\\
+  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=& \displaystyle{0} ,\\
+  \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{1}{\vt}\right)\frac{\partial g}{\partial \vt}} ,\\
+ 
+  \displaystyle{\left(\frac{\partial \vt}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{0} ,
+\end{array}
+\label{eq:d2gdv32_Coeffs_Special}
+\end{equation}
+
+hence
+\begin{equation}
+  \frac{\partial^{2}g}{\partial v_{3}^{2}}  = \frac{1}{\vt}\frac{\partial g}{\partial \vt} .
+   \label{eq:d2gdv32_Special}
+\end{equation}
+
+\section{From anisotropy to isotropy}
+\label{app:Aniso_To_Iso}
+
 
 \end{appendices}
 
