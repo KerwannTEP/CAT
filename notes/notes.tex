@@ -444,8 +444,7 @@ For an actual computation, we also
 need to compute the various velocity-partial derivatives of those
 integrals, meaning that we need to compute the velocity-partial derivatives
 of $\fq(r,\bva)=\Fq(\Ea,\La)$ (exchange
-derivation and integral). The calculation is done in the appendix,
-and the results are (function are evaluated at $(\Ea,\La)$)
+derivation and integral). Those are (function are evaluated at $(\Ea,\La)$)
 
 \begin{equation}
 \begin{array}{ccl}
@@ -616,7 +615,7 @@ For actual computation, it is useful to use the bijective change of variable $\s
   \int_{\rmin}^{\rcut}\frac{{\rd}r}{\vr(r)}=\int_{0}^{\tcut}\frac{2\cos\theta\sin\theta{\rd}\theta}{\psieff'(r(\theta);L)\sqrt{2\sin^{2}\theta}}=\int_{0}^{\tcut}\frac{\sqrt{2}\cos\theta{\rd}\theta}{\psieff'(r(\theta);L)} ,
   \label{eq:change_variable_period}
 \end{equation}
-where $\tcut = \arcsin({\sqrt{\psieff(\rmin,L)-E}})>0$, and do the same around $\rmax$. We can solve this bijection analytically by solving the degree-3 polynomial in $X=r^{2}$ given by
+where $\tcut = \arcsin({\sqrt{\psieff(\rcut,L)-E}})>0$, and do the same around $\rmax$. We can solve this bijection analytically by solving the degree-3 polynomial in $X=r^{2}$ given by
 \begin{equation}
 4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2} .
 \label{eq:bijection_polynomial}
@@ -754,7 +753,7 @@ We can adapt the pevious method to compute the angular momentum of a circular or
 L_{{\rm c}}^{2}(E)=z(r_{*}^{E};E)=\max_{r>0}z(r;E).
 \label{eq:angular_circular}
 \end{equation}
-where we defined $z(r;E)\doteqdot L^{2}r^{2}(\psi(r)-E)$. Its derivatives are
+where we defined $z(r;E)\doteqdot r^{2}(\psi(r)-E)$. Its derivatives are
 \begin{equation}
 \begin{array}{ccl}
   z'(r;E) & =& \displaystyle{4r(\psi(r)-E)+2r^{2}\psi'(r)} ,\\
@@ -934,7 +933,7 @@ Its coefficients are
   \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vr}{\partial v_{2}}\right)}&=& \displaystyle{0} ,\\
   \displaystyle{\left(\frac{\partial \vr}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}}&=& \displaystyle{\sin^{2}\theta\cos^{2}\phi\frac{\partial^{2}g}{\partial \vr^{2}}} ,\\
   \displaystyle{\left(\frac{\partial \vr}{\partial v_{2}}\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=& \displaystyle{\sin\theta\cos\phi\left(\frac{v_{2}-\vr\sin\theta\cos\phi}{\vt}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
-  \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{(1-\sin^{2}\theta\cos^{2}\phi)v_{t}-(v_{2}-v_{r}\sin\theta\cos\phi)\frac{v_{2}-v_{r}\sin\theta\cos\phi}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial \vt}} ,\\
+  \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{(1-\sin^{2}\theta\cos^{2}\phi)\vt-(v_{2}-\vr\sin\theta\cos\phi)\frac{v_{2}-\vr\sin\theta\cos\phi}\vt}{\vt^{2}}\right)\frac{\partial g}{\partial \vt}} ,\\
  
   \displaystyle{\left(\frac{\partial \vt}{\partial v_{2}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{v_{2}-\vr\sin\theta\cos\phi}{\vt}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
 \end{array}
@@ -978,10 +977,10 @@ Its coefficients are
 \begin{array}{ccl}
   \displaystyle{\frac{\partial}{\partial v_{3}}\left(\frac{\partial \vr}{\partial v_{3}}\right)}&=& \displaystyle{0} ,\\
   \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}}&=& \displaystyle{\sin^{2}\theta\sin^{2}\phi\frac{\partial^{2}g}{\partial \vr^{2}}} ,\\
-  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=& \displaystyle{\sin\theta\sin\phi\left(\frac{v_{3}-\vr\sin\theta\cos\phi}{\vt}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
-  \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{(1-\sin^{2}\theta\sin^{2}\phi)v_{t}-(v_{3}-v_{r}\sin\theta\sin\phi)\frac{v_{3}-v_{r}\sin\theta\sin\phi}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial \vt}} ,\\
+  \displaystyle{\left(\frac{\partial \vr}{\partial v_{3}}\frac{\partial \vt}{\partial v_{3}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=& \displaystyle{\sin\theta\sin\phi\left(\frac{v_{3}-\vr\sin\theta\sin\phi}{\vt}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
+  \displaystyle{\frac{\partial}{\partial v_{2}}\left(\frac{\partial \vt}{\partial v_{2}}\right)\frac{\partial g}{\partial \vt}}&=& \displaystyle{\left(\frac{(1-\sin^{2}\theta\sin^{2}\phi)\vt-(v_{3}-\vr\sin\theta\sin\phi)\frac{v_{3}-\vr\sin\theta\sin\phi}{\vt}}{\vt^{2}}\right)\frac{\partial g}{\partial \vt}} ,\\
  
-  \displaystyle{\left(\frac{\partial \vt}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{v_{3}-\vr\sin\theta\cos\phi}{\vt}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
+  \displaystyle{\left(\frac{\partial \vt}{\partial v_{3}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}}&=& \displaystyle{\left(\frac{v_{3}-\vr\sin\theta\sin\phi}{\vt}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}} ,
 \end{array}
 \label{eq:d2gdv32_Coeffs_Arbitrary}
 \end{equation}
@@ -1007,6 +1006,45 @@ hence
 
 \section{From anisotropy to isotropy}
 \label{app:Aniso_To_Iso}
+From the anisotropic Rosenbluth formulae, we should recover the isotropic formulae. Let $h(v_{r},v_{t})=h(v)$ where $v^{2}=\vr^{2}+\vt^{2}$. Then the $\dvParAvrLoc$ partial derivatives yield
+
+\begin{equation}
+\frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt}=\frac{\vr}{v}\frac{\partial v}{\partial \vr}h'+\frac{\vt}{v}\frac{\partial v}{\partial \vt}h'=\frac{\vr^{2}}{v^{2}}h'+\frac{\vt^{2}}{v^{2}}h'=h'
+\label{eq:AniToIso_d1}
+\end{equation}
+
+The $\dvParSqAvrLoc$ and $\dvPerpSqAvrLoc$ partial derivatives yield
+
+\begin{equation}
+  \begin{array}{ccl}
+\displaystyle{\frac{\partial^{2}g}{\partial \vr^{2}}}& =&\displaystyle{\frac{\partial}{\partial \vr}(\frac{\partial v}{\partial \vr}g'(v))=\frac{\partial}{\partial\vr}(\frac{\vr}{v}g'(v))=\frac{v-\vr^{2}/v}{v^{2}}g'(v)+\frac{\vr}{v}\frac{\partial v}{\partial \vr}g''(v)}\\
+     {}& =&\displaystyle{\frac{\vt^{2}}{v^{3}}g'(v)+\frac{\vr^{2}}{v^{2}}g''(v)}\\
+
+\displaystyle{\frac{\partial^{2}g}{\partial \vt\partial \vr}}&=&\displaystyle{\frac{\partial}{\partial\vt}(\frac{\partial v}{\partial \vr}g')=\frac{\partial}{\partial \vt}(\frac{\vr}{v}g')=-\frac{\vr\vt/v}{v^{2}}g'+\frac{\vr}{v}\frac{\partial v}{\partial\vt}g''}\\
+     {}& =&\displaystyle{-\frac{\vr\vt}{v^{3}}g'+\frac{\vr\vt}{v^{2}}g'}'\\
+
+\displaystyle{\frac{\partial^{2}g}{\partial \vt^{2}}}&=&\displaystyle{\displaystyle{\frac{\partial}{\partial \vt}(\frac{\partial v}{\partial \vt}g')}=\displaystyle{\frac{\partial}{\partial \vt}(\frac{\vt}{v}g')}=\displaystyle{\frac{v-\vt^{2}/v}{v^{2}}g'+\frac{\vt}{v}\frac{\partial v}{\partial \vt}g'}}\\
+{}  &=&\displaystyle{\displaystyle{\frac{\vr^{2}}{v^{3}}g'+\frac{\vt^{2}}{v^{2}}g''}}\\
+ \displaystyle{\frac{\partial g}{\partial \vt}}&=&\displaystyle{\frac{\partial v}{\partial \vt}g'=\frac{\vt}{v}g'} .           
+  \end{array}
+  \label{eq:AniToIso_d2}
+\end{equation}
+
+Therefore, after doing the calculations, 
+hence
+\begin{equation}
+  \left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial\vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}} =g''
+  \label{eq:Iso_g''}
+\end{equation}
+and
+\begin{equation}
+  \left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial\vt\partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt} =\frac{2}{v}g'
+  \label{eq:Iso_g'}
+\end{equation}
+
+\section{Test star velocity components}
+\label{app:Test_star_velocity}
+
 
 
 \end{appendices}
