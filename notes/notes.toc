@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Plummer model}{1}{section.1}%
+\contentsline {section}{\numberline {2}Determination of the local diffusion coefficients}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Anisotropic case}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Isotropic case}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Local orbital parameter changes}{6}{section.3}%
+\contentsline {section}{\numberline {4}Orbit of a test star in a globular cluster}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Study of an orbit}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Circular orbit}{8}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Diffusion equation and change of variables}{9}{section.5}%
+\contentsline {section}{Appendices}{9}{section*.3}%
+\contentsline {section}{\numberline {A}Local diffusion coefficients}{9}{appendix.1.A}%

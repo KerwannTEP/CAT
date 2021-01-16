@@ -21,6 +21,8 @@
 \usepackage{stmaryrd}
 \usepackage{wasysym}
 
+\usepackage[toc,page]{appendix}
+
 %%%% Define Acronyms
 \usepackage{acronym}
 %
@@ -110,6 +112,7 @@
 \newcommand{\xp}{x'}
 \newcommand{\bxp}{\boldsymbol{\xp}}
 
+\newcommand{\hv}{\hat{\bv}}
 
 \author{Kerwann}
 \date{\today}
@@ -124,6 +127,8 @@
 \begin{document}
 
 \maketitle
+
+\tableofcontents
 
 \section{Plummer model}
 \label{sec:Plummer}
@@ -453,7 +458,7 @@ and the results are (function are evaluated at $(\Ea,\La)$)
   \displaystyle{\frac{\partial^{2}}{\partial \vt\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{\La}\frac{\partial^{2}F}{\partial L\partial E}\right)} ,\\
  
   \displaystyle{\frac{\partial^{2}}{\partial \vt^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\frac{r}{\La}\frac{\partial F}{\partial L}+\left(-\vt+V_{0}\sin\theta\cos\phi\right)^{2}} \\
-  {}&{}&\times \displaystyle{\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)} .
+  {}&\times& \displaystyle{\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)} .
 \end{array}
 \label{eq:DF_Derivatives}
 \end{equation}
@@ -786,5 +791,116 @@ we may use the formulae (C.52) and (C.53) p.25 from Bar-Or \& Alexander
 \[
 D'_{l}=\frac{\partial \xp_{l}}{\partial x_{k}}D_{k}-\frac{1}{2}\frac{\partial^{2}\xp_{l}}{\partial x_{r}\partial x_{k}}D_{rk}\quad?)
 \]
+
+
+\begin{appendices}
+
+\section{Local diffusion coefficients}
+\label{app:LocDiffCoeffs_Computation}
+Consider a fixed, arbitrary coordinate system when we let $\e1$ be the z-axis and let $\e2$ and $\e3$ be arbitrary basis vector in the orthogonal plane. Let $\br = (r,\theta,\phi)$ such that
+\begin{equation}
+\begin{array}{ccl}
+ r_{1} & =& \displaystyle{r\cos\theta} ,\\
+  
+ r_{2} & =&\displaystyle{r\sin\theta\cos\phi} ,\\
+
+ r_{3} &=& \displaystyle{r\sin\theta\sin\phi} .
+\end{array}
+\label{eq:r_coord}
+\end{equation}
+and letting $\bv=(v_{1},v_{2},v_{3})$ be the velocity cartesian coordinates. Then
+\begin{equation}
+\begin{array}{cclcl}
+ \vr &=& \bv \cdot\hr &=& \displaystyle{v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi} ,\\
+
+ \vt^{2} &=& v^{2}-\vr^{2} &=& \displaystyle{v^{2}-(v_{1}\cos\theta+v_{2}\sin\theta\cos\phi+v_{3}\sin\theta\sin\phi)} .
+\end{array}
+\label{eq:vRadTan_coord}
+\end{equation}
+
+Let $h(\br,\bv)=h(r,\vr,\vt)$. Note that
+${\partial r}/{\partial v_{i}}=0$. Thus
+\begin{equation}
+\frac{\partial h}{\partial v_{1}}=\frac{\partial \vr}{\partial v_{1}}\frac{\partial h}{\partial \vr}+\frac{\partial \vt}{\partial v_{1}}\frac{\partial h}{\partial \vt}
+\label{eq:partial1_h}
+\end{equation}
+
+We have, (at fixed $\br$, i.e. fixed  $r,\theta,\phi$),
+\begin{equation}
+\begin{array}{cclcccl}
+ \displaystyle{\frac{\partial\vr}{\partial v_{1}}}&=& \displaystyle{\cos\theta} &;\quad& \displaystyle{\frac{\partial \vt}{\partial v_{1}}} &=& \displaystyle{\frac{v_{1}-\vr\cos\theta}{\vt}},\\
+
+
+ \displaystyle{\frac{\partial\vr}{\partial v_{2}}}&=& \displaystyle{\sin\theta \cos\phi} &;\quad& \displaystyle{\frac{\partial \vt}{\partial v_{2}}} &=& \displaystyle{\frac{v_{2}-\vr\sin\theta\cos\phi}{\vt}}, \\
+
+ \displaystyle{\frac{\partial\vr}{\partial v_{3}}}&=& \displaystyle{\sin\theta \sin\phi} &;\quad& \displaystyle{\frac{\partial \vt}{\partial v_{3}}} &=& \displaystyle{\frac{v_{3}-\vr\sin\theta\sin\phi}{\vt}} .
+ 
+\end{array}
+\label{eq:dvdv1}
+\end{equation}
+
+In the special coordinate system where $\e1=\hv$ and $\e2$
+is the projection of $\hr$ on the equatorial plane ($\phi=0$),
+we have that $\Delta v_{1}=\dvPar$ and $\Delta v_{2}^{2}+\Delta v_{3}^{2}=\dvPerp^{2}$,
+meaning that
+
+\begin{equation}
+\begin{array}{ccl}
+  \dvParAvrLoc&=& \displaystyle{\langle\Delta v_{1}\rangle} ,\\
+
+  \dvParSqAvrLoc&=& \displaystyle{\langle(\Delta v_{1})^{2}\rangle} ,\\
+
+  \dvPerpSqAvrLoc &=& \displaystyle{\langle(\Delta v_{2})^{2}\rangle+\langle(\Delta v_{3})^{2}\rangle} .
+\end{array}
+\label{eq:SpecialCoordSys_LocDiffCoeffs}
+\end{equation}
+
+In that system, we have that $v_{1}=v$, $v_{2}=v_{3}=0$ and $\phi=0$. We
+also have that $\cos\theta=\vr/v$ because $\theta$ is the angle
+between $\hr$ and $(Oz)=\e1=\hv$, and $\vr$ is
+the orthogonal projection of $\bv$ on $\hr$. For
+the same reason, $\sin\theta=\vt/v$. Therefore, in that special coordinate
+system:
+\begin{equation}
+\frac{\partial \vr}{\partial v_{1}}=\frac{\vr}{v};\quad\frac{\partial \vt}{\partial v_{1}}=\frac{v-\vr^{2}/v}{\vt}=\frac{v^{2}-\vr^{2}}{\vt v}=\frac{\vt^{2}}{\vt v}=\frac{\vt}{v}
+\label{eq:SpecialCoord_dvd1}
+\end{equation}
+and we have
+\begin{equation}
+\frac{\partial h}{\partial v_{1}}=\frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt}
+\label{eq:SpecialCoord_dhdv1}
+\end{equation}
+
+As for second order derivatives, we must compute ${\partial^{2}g}/{\partial v_{1}^{2}}$, ${\partial^{2}g}/{\partial v_{2}^{2}}$ and ${\partial^{2}g}/{\partial v_{3}^{2}}$. Let us compute those in an arbitrary coordinate system
+
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial^{2}g}{\partial v_{1}^{2}}}&=& \displaystyle{\frac{\partial}{\partial v_{1}}\left(\frac{\partial \vr}{\partial v_{1}}\right)\frac{\partial g}{\partial \vr}+\left(\frac{\partial \vr}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\left(\frac{\partial \vr}{\partial v_{1}}\frac{\partial \vt}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} ,\\
+
+  {} &+& \displaystyle{\frac{\partial}{\partial v_{1}}\left(\frac{\partial \vt}{\partial v_{1}}\right)\frac{\partial g}{\partial \vt}+\left(\frac{\partial \vt}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\left(\frac{\partial \vt}{\partial v_{1}}\frac{\partial \vr}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial \vt\partial \vr}} .
+\end{array}
+\label{eq:d2gdv12_Arbitrary}
+\end{equation}
+
+Its coefficients are
+\begin{equation}
+\begin{array}{ccl}
+  \displaystyle{\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{r}}{\partial v_{1}}\right)}&=& \displaystyle{0} ,\\
+  \displaystyle{\left(\frac{\partial v_{r}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{r}^{2}}}&=& \displaystyle{\cos^{2}\theta\frac{\partial^{2}g}{\partial v_{r}^{2}}} ,\\
+  \displaystyle{\left(\frac{\partial v_{r}}{\partial v_{1}}\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}}&=& \displaystyle{\cos\theta\left(\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)\frac{\partial^{2}g}{\partial v_{t}\partial v_{r}}} ,\\
+  \displaystyle{\frac{\partial}{\partial v_{1}}\left(\frac{\partial v_{t}}{\partial v_{1}}\right)\frac{\partial g}{\partial v_{t}}}&=& \displaystyle{\cos\theta\left(\frac{\sin^{2}\theta v_{t}-(v_{1}-v_{r}\cos\theta)\frac{v_{1}-v_{r}\cos\theta}{v_{t}}}{v_{t}^{2}}\right)\frac{\partial g}{\partial v_{t}}} ,\\
+ 
+
+  \displaystyle{\left(\frac{\partial v_{t}}{\partial v_{1}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}}&=& \displaystyle{\left(\frac{v_{1}-v_{r}\cos\theta}{v_{t}}\right)^{2}\frac{\partial^{2}g}{\partial v_{t}^{2}}} ,
+\end{array}
+\label{eq:d2gdv12_Arbitrary}
+\end{equation}
+which in the special coordinate system yields
+\begin{align}
+\frac{\partial^{2}g}{\partial v_{1}^{2}} & =\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}
+\end{align}
+
+
+\end{appendices}
 
 \end{document}
