@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  16 JAN 2021 16:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  16 JAN 2021 16:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -372,7 +372,10 @@ LaTeX Warning: Label `eq:Rosenbluth' multiply defined.
 LaTeX Warning: Label `eq:DE_DL' multiply defined.
 
 
-LaTeX Warning: Label `eq:d2gdv12_Arbitrary' multiply defined.
+LaTeX Warning: Label `eq:d2gdv12_Coeffs_Arbitrary' multiply defined.
+
+
+LaTeX Warning: Label `eq:d2gdv12_Coeffs_Special' multiply defined.
 
 )
 \openout1 = `notes.aux'.
@@ -526,13 +529,13 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [2] [3] [4] [5]
-[6] [7] [8] [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 906.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 906.
+[6] [7] [8] [9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 967.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 967.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 906.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 906.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 967.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 967.
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: 6039FA0821A2577FAF78630F24881147;723.
 
@@ -542,13 +545,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 906.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 967.
  ) 
 Here is how much of TeX's memory you used:
- 9144 strings out of 483107
- 130447 string characters out of 5964631
- 410494 words of memory out of 5000000
- 23873 multiletter control sequences out of 15000+600000
+ 9152 strings out of 483107
+ 130597 string characters out of 5964631
+ 411671 words of memory out of 5000000
+ 23875 multiletter control sequences out of 15000+600000
  567882 words of font info for 87 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  34i,14n,31p,424b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -570,10 +573,10 @@ ive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/wasy-type1/wasy10.pfb>
-Output written on notes.pdf (10 pages, 223483 bytes).
+Output written on notes.pdf (11 pages, 226999 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 85 named destinations out of 1000 (max. 500000)
+ 274 PDF objects out of 1000 (max. 8388607)
+ 240 compressed objects within 3 object streams
+ 91 named destinations out of 1000 (max. 500000)
  89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
