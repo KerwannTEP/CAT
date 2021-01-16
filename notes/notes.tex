@@ -104,7 +104,11 @@
 \newcommand{\psieff}{\psi_{\rm{eff}}}
 \newcommand{\bL}{\boldsymbol{L}}
 \newcommand{\Ec}{E_{{\rm{c}}}}
+\newcommand{\Lc}{L_{{\rm{c}}}}
 
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\xp}{x'}
+\newcommand{\bxp}{\boldsymbol{\xp}}
 
 
 \author{Kerwann}
@@ -612,5 +616,175 @@ where $\tcut = \arcsin({\sqrt{\psieff(\rmin,L)-E}})>0$, and do the same around $
 4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2} .
 \label{eq:bijection_polynomial}
 \end{equation}
+
+Now, to find what $\rmax$ and $\rmin$ are, we need to
+solve $v_{r}(r)=0$, i.e.  $\psi(r)-E-\frac{L^{2}}{2r^{2}}=0$. Using the same method as before, and letting $X=r^{2}$, the bounds are roots of the degree-3 polynomial equation
+\begin{equation}
+4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2} .
+\label{eq:bounds_polynomial}
+\end{equation}
+It has 3 real roots iff its
+discriminant $\Delta$ is strictly positive (two real roots, one of
+which is double, if $\Delta=0$).  Let
+\begin{equation}
+\alpha=4E^{2};\quad\beta=4(E^{2}-1+EL^{2});\quad\gamma=4EL^{2}+L^{4};\quad\delta=L^{4}.
+\label{eq:coeff_poly_bound}
+\end{equation}
+Then the polynomial has the form $\alpha X^{3}+\beta X^{2}+\gamma X+\delta$.
+Suppose $E>0$. Setting 
+\begin{equation}
+X=Y-\frac{\beta}{3\alpha};\quad p=\frac{3\alpha\gamma-\beta^{2}}{3\alpha^{2}};\quad q=\frac{2\beta^{3}-9\alpha\beta\gamma+27\alpha^{2}\delta}{27\alpha^{3}},
+\label{eq:Change_poly_variable}
+\end{equation}
+we have that $\alpha X^{3}+\beta X^{2}+\gamma X+\delta=0$ iff $Y^{3}+pY+q=0$
+where the roots of the two polynomials are linked by the formula $X_{i}=Y_{i}-\frac{\beta}{3\alpha}.$
+As for the discriminant of the $Y$ polynomial, it is $\Delta=-(4p^{3}+27q^{2})$. Since only its sign matter on looking for the behavior of the solutions,
+we may only compute $\Delta$.
+
+If $\Delta<0$, i.e. $4p^{3}+27q^{2}>0$, then the polynomial has
+only one real root given by
+\begin{equation}
+Y=\left(-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}\right)^{1/3}+\left(-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}\right)^{1/3}
+\label{eq:Neg_discriminant}
+\end{equation}
+
+If $\Delta\geq0$, then there are three
+real roots given by
+\begin{equation}
+Y_{k}=2\sqrt{-\frac{p}{3}}\cos\left[\frac{1}{3}\arccos\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right)-\frac{2\pi k}{3}\right],\quad k\in\{0,1,2\}.
+\label{eq:Pos_discriminant}
+\end{equation}
+Note that when $\Delta=0$, this reduces to the two roots 
+\begin{equation}
+Y_{0}=2\sqrt{-\frac{p}{3}},\quad Y_{1,2}=-\sqrt{-\frac{p}{3}}.
+\label{eq:Null_discriminant}
+\end{equation}
+
+ Recall $\dot{r}^{2}/2=\psieff(r;L)-E$ ($\geq0$ on the
+orbit). $\psieff(r;L)$ has derivative is $\psieff'(r;L)=\frac{L^{2}}{r^{3}}-\frac{r}{(1+r^{2})^{3/2}}$
+with $\psieff'(r;L)\leq0$ iif $r^{4}/L^{2}\geq(1+r^{2})^{3/2}$.
+Left term grows more quickly $(\sim r^{4})$ that the second term
+$(\sim r^{3})$ but stars at 0 whereas second term starts at $1/2>0$.
+Therefore the two curves cross at a unique point, and this inequality
+is satisfied after this point. This shows that $\psieff(r;L)$
+is increasing until some point, then decreases. In this maximum is
+stricly below $E$, then there are no solution. If the maximum is
+exactly $E$, then there is only one solution and the orbit is circular.
+If the maximum is strictly above $E$, then they are two solutions
+which are $\rmin$ and $\rmax$. The latter is because $\lim_{r\rightarrow\infty}\psieff(r;L)=0<E$. 
+
+If we are in the case of no solution, then $v_{r}(r)=2(\psieff(r;L)-E)<0$,
+which is impossible on an orbit.
+
+If we are in the case with two solutions, then the solution are not
+the maximum of $\psieff(r;L)$, meaning that the derivative
+evaluated at the solutions are non-zero. This completes the proof
+that $1/\vr(r)$ is integrable at $\rmax$ and $\rmin$ as
+the integral of $1/\sqrt{r-r_{{\rm m}}}$. Furthermore, since $\psieff(r;L)$
+must have two positive distincts solutions $\rmin,\rmax$, then
+the polynomial should also have two distincts positive solutions $X_{{\rm max}}=\rmax^{2}$
+and $X_{\min}=\rmin^{2}$ (and the third one being negative).
+
+One should check whether a given couple $(E,L)$ allows for bound
+orbits. That that end, we should find if there exists at least one
+$r$ that that $\psieff(r;L)\geq E$, i.e. if there are solution
+to the polynomial. Equivalently, this reduces to computing the discriminant
+$\Delta$ and testing if it is positive.
+
+\subsection{Circular orbit}
+\label{subsec:Circular_Energy}
+
+We have now access to the NR, orbit-averaged diffusion coefficients
+in $(E,L)$-space for the allowed bound orbits: $\dE$, $\dEE$,
+$\dL$, $\dLL$ and $\dEL$, functions of
+$(E,L)$. The allowed region in $(E,L)$ space is composed of the
+$E,L\geq0$ such that there exists $r>0$ verifying the inequality
+$\psieff(r;L)\geq E$. As shown before, for $L>0$, this function  is increasing until a global
+maximum before decreasing towards $0$. Raising the value of $L$
+lowers this maximum value, meaning that there exists a value $\Lc(E)$
+such that $\psieff(r;\Lc(E))=E$. Then, the forbidden angular
+momenta (for a given $E$) are the $L>\Lc(E)$. Due to the
+discussion in the previous section, this couple $(E,\Lc(E))$
+determines a circular orbit.
+
+It is given by $\Ec(L)=\max_{r>0}\psieff(r;L)=\psieff(r_{*}^{L};L)$.
+To approximate this $r_{*}^{L}$, we may look for it using Newton's
+method applied to $\psieff'$, since $\psieff'(r_{*}^{L};L)=0$.
+Start at $r_{0}^{L}=L^{2/3}$ , where the evaluation yields
+\begin{equation}
+\psieff'(L^{2/3};L)=1-\frac{L^{2/3}}{(1+L^{4/3})^{3/2}}\in[1-\sqrt{4/27},1]\simeq[0.615,1]
+\label{eq:start_recursion_Ec}
+\end{equation}
+in order not to be too far away from $\psieff'(r_{*}^{L};L)=0$,
+and apply the recursion
+\begin{equation}
+r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
+\label{eq:recursion_Ec}
+\end{equation}
+where
+
+\begin{equation}
+\begin{array}{ccl}
+ \psieff'(r;L) & =& \displaystyle{-\frac{r}{(1+r^{2})^{3/2}}+\frac{L^{2}}{r^{3}}} ,\\
+  
+  \psieff''(r_{n};L) & =&\displaystyle{-\frac{(1+r^{2})^{3/2}-3r^{2}\sqrt{1+r^{2}}}{(1+r^{2})^{3}}-3\frac{L^{2}}{r^{4}}} .
+\end{array}
+\label{eq:psieff_derivatives}
+\end{equation}
+
+Then $r_{n}^{L}\rightarrow r_{*}^{L}$. We can show that $(r_{n}^{L})$
+is increasing since $\psieff'(r_{n}^{L};L)>0$ and $\psieff''(r_{n}^{L};L)<0$
+(and convexity of $\psieff'$ where it matters). Therefore
+a good stopping condition is to get the lowest $N$ such that $\psieff'(r_{N}^{L}+\epsilon)<0$
+for some precision $\epsilon>0$. Then, taking $\tilde{r}_{*}^{L}=(r_{N}^{L}+r_{N}^{L}+\epsilon)/2=r_{N}^{L}+\epsilon/2$
+we will have $\Ec(L)\simeq\psieff(\tilde{r}_{*}^{L};L)$,
+with precision 
+\begin{equation}
+\delta \Ec(L)\simeq|\psieff(r_{*}^{L};L)-\psieff(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psieff^{(2)}(r_{*}^{L})}_{<0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psieff^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
+\label{eq:precision_Ec}
+\end{equation}
+
+We can adapt the pevious method to compute the angular momentum of a circular orbit using the equation
+\begin{equation}
+L_{{\rm c}}^{2}(E)=z(r_{*}^{E};E)=\max_{r>0}z(r;E).
+\label{eq:angular_circular}
+\end{equation}
+where we defined $z(r;E)\doteqdot L^{2}r^{2}(\psi(r)-E)$. Its derivatives are
+\begin{equation}
+\begin{array}{ccl}
+  z'(r;E) & =& \displaystyle{4r(\psi(r)-E)+2r^{2}\psi'(r)} ,\\
+  
+  z''(r;E) & =&\displaystyle{4(\psi(r)-E)+8r\psi'(r)+2r^{2}\psi''(r)} .
+\end{array}
+\label{eq:z_derivatives}
+\end{equation}
+
+\section{Diffusion equation and change of variables}
+\label{sec:diffEq_changeVar}
+
+All in all, those coefficients appear in the Fokker-Planck diffusion
+equation
+\begin{equation}
+\frac{\partial P}{\partial t}(E,L,t)=-\frac{\partial}{\partial E}\left[\dE P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E^{2}}\left[\dEE P\right]-\frac{\partial}{\partial L}\left[\dL P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial L^{2}}\left[\dLL P\right]+\frac{1}{2}\frac{\partial^{2}}{\partial E\partial L}\left[\dEL P\right]
+\label{eq:FP:equation}
+\end{equation}
+
+If we want to change coordinates $\bx\rightarrow\bxp(\bx)$,
+we may use the formulae (C.52) and (C.53) p.25 from Bar-Or \& Alexander
+(2016)
+\begin{equation}
+\begin{array}{ccl}
+  D'_{l} & =& \displaystyle{\frac{\partial \xp_{l}}{\partial x_{k}}D_{k}+\frac{1}{2}\frac{\partial^{2}\xp_{l}}{\partial x_{r}\partial x_{k}}D_{rk}} ,\\
+  
+ D'_{lm} & =&\displaystyle{\frac{\partial \xp_{l}}{\partial x_{r}}\frac{\partial \xp_{m}}{\partial x_{k}}D_{rk}} .
+\end{array}
+\label{eq:change_var_DiffCoeffs}
+\end{equation}
+
+
+(error on the sign? should be
+\[
+D'_{l}=\frac{\partial \xp_{l}}{\partial x_{k}}D_{k}-\frac{1}{2}\frac{\partial^{2}\xp_{l}}{\partial x_{r}\partial x_{k}}D_{rk}\quad?)
+\]
 
 \end{document}
