@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.1.8)  17 JAN 2021 12:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.1.8)  17 JAN 2021 14:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -520,41 +520,41 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 [5] [6] [7] [8] [9] [10] [11] [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1104.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1104.
+(hyperref)                removing `subscript' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1104.
+(hyperref)                removing `math shift' on input line 1100.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1121.
+(hyperref)                removing `math shift' on input line 1117.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1121.
+(hyperref)                removing `subscript' on input line 1117.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1121.
+(hyperref)                removing `math shift' on input line 1117.
 
 [13]
-Overfull \hbox (2.07996pt too wide) detected at line 1160
+Overfull \hbox (2.07996pt too wide) detected at line 1156
 []\U/msb/m/n/10.95 H[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; b; c; d\OT1/cm
 r/m/n/10.95 ; \OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) = []
  []
 
 [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1215.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1211.
  [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1215.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1211.
  (./notes.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1215.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1215.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1211.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1211.
 
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: BDF205122D63F68431FC85C81CCE3A00;986.
@@ -565,7 +565,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1215.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1211.
  ) 
 Here is how much of TeX's memory you used:
  8750 strings out of 483108
@@ -576,4 +576,4 @@ Here is how much of TeX's memory you used:
  59 hyphenation exceptions out of 8191
  37i,19n,31p,424b,425s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on notes.dvi (15 pages, 124172 bytes).
+Output written on notes.dvi (15 pages, 124360 bytes).
