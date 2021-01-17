@@ -1138,10 +1138,77 @@ We will need the derivatives of $\mH$, which are
 \label{eq:dHdx}
 \end{equation}
 
+and
 
+\begin{equation}
+  \mH''(a,b,c,d;x)=\begin{cases}
+  \begin{array}{l}
+    \displaystyle{\frac{\Gamma(a+b)x^{a-2}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a(a-1)\HG(a+b,1+a-c,a+d;x)} \\
+        \displaystyle{+\frac{2a(a+b)(1+a-c)}{a+d}x\HG(a+b+1,a-c+2,a+d+1;x)}\\
+        \displaystyle{+\frac{(a+b)(1+a-c)}{a+d}\frac{(a+b+1)(a-c+2)}{a+d+1}x^{2}} \\
+        \displaystyle{\times \HG(a+b+2,a-c+3,a+d+2;x)\bigg]}
+  \end{array} & {\rm{if}} \quad x\leq1 , \\
+  {}&{}\\
+  \begin{array}{l}
+    \displaystyle{\frac{\Gamma(a+b)x^{-b-2}}{\Gamma(d-b)\Gamma(b+c)}\bigg[b(b+1)\HG(a+b,1+b-d,b+c;\frac{1}{x})} \\
+      \displaystyle{+\frac{(2b+2)(a+b)(1+b-d)}{b+c}x^{-1}\HG(a+b+1,b-d+2,b+c+1;\frac{1}{x})}\\
+      \displaystyle{+\frac{(a+b)(1+b-d)}{b+c}\frac{(a+b+1)(b-d+2)}{b+c+1}x^{-2}} \\
+      \displaystyle{\times \HG(a+b+2,b-d+3,b+c+2;\frac{1}{x})\bigg]}
+    \end{array} &{\rm{if}} \quad x\geq1 ,
+\end{cases}
+\label{eq:d2Hdx2}
+\end{equation}
 
+Then, for $q \notin \{0,2\}$, we have for first-order
 
+\begin{equation}
+  \begin{array}{ccl}
+    \displaystyle{\frac{\partial \Fq}{\partial E}(E,L)}&=&\displaystyle{\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\left(\frac{7}{2}-q\right)\mH(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})-\frac{L^{2}}{2}\mH'(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]} ,\\
 
+    \displaystyle{\frac{\partial \Fq}{\partial L}(E,L)} &=& \displaystyle{\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}E^{5/2-q}L\mH'(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})} .
+    \end{array}
+\label{eq:d1F}
+\end{equation}
+
+For second order, we have
+
+\begin{equation}
+  \begin{array}{ccl}
+    \displaystyle{\frac{\partial^{2}\Fq}{\partial E^{2}}(E,L)}&=&\displaystyle{\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{7}{2}-q\right)\left(\frac{5}{2}-q\right)\mH(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})} \\
+      {}&-& \displaystyle{\left(5-2q\right)\frac{L^{2}}{2E}\mH'(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+\frac{L^{4}}{4E^{2}}\mH''(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]} ,\\
+
+    \displaystyle{\frac{\partial^{2}\Fq}{\partial E\partial L}(E,L)} &=& \displaystyle{\frac{3\Gamma(6-q)LE^{1/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg[\left(\frac{5}{2}-q\right)E\mH'(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})} \\
+      {}&-& \displaystyle{\frac{L^{2}}{2}\mH''(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\bigg]} ,\\
+    \displaystyle{\frac{\partial^{2}F_{q}}{\partial L^{2}}(E,L)}&=&\displaystyle{\frac{3\Gamma(6-q)E^{3/2-q}}{2(2\pi)^{5/2}\Gamma(q/2)}\left[E\mH'(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})+L^{2}\mH''(0,\frac{q}{2},\frac{9}{2}-q,1;\frac{L^{2}}{2E})\right]} .
+    \end{array}
+\label{eq:d2F}
+\end{equation}
+
+For the isotropic case $q=0$, the derivatives are
+
+\begin{equation}
+  \begin{array}{ccl}
+    \displaystyle{\frac{\partial F_{0}}{\partial E}(E)}&=&\displaystyle{\frac{3}{\pi^{3}}(2E)^{5/2}} ,\\
+
+    \displaystyle{\frac{\partial^{2} F_{0}}{\partial E^{2}}(E)} &=& \displaystyle{\frac{15}{\pi^{3}}(2E)^{3/2}} .
+    \end{array}
+\label{eq:dF0}
+\end{equation}
+while in the highly-radially anisotropic case $q=2$, for $L^{2} \leq 2E$ (null if otherwise)
+\begin{equation}
+  \begin{array}{ccl}
+    \displaystyle{\frac{\partial F_{2}}{\partial E}(E,L)}&=&\displaystyle{\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}} ,\\
+
+    \displaystyle{\frac{\partial F_{0}}{\partial L}(E,L)} &=& \displaystyle{\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{1/2}} , \\
+  
+      \displaystyle{\frac{\partial^{2} F_{2}}{\partial E^{2}}(E,L)}&=&\displaystyle{\frac{18}{(2\pi)^{3}}(2E-L^{2})^{-1/2}} ,\\
+
+      \displaystyle{\frac{\partial^{2} F_{0}}{\partial E \partial L}(E,L)} &=& \displaystyle{\frac{-18L}{(2\pi)^{3}}(2E-L^{2})^{-1/2}} , \\
+
+         \displaystyle{\frac{\partial^{2} F_{0}}{\partial L^{2}}(E,L)} &=& \displaystyle{-\frac{18}{(2\pi)^{3}}(2E-L^{2})^{1/2}+\frac{18L^{2}}{(2\pi)^{3}}(2E-L^{2})^{-1/2}} .
+    \end{array}
+\label{eq:dF2}
+\end{equation}
 
 \end{appendices}
 
