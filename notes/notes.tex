@@ -31,9 +31,19 @@
 \newcommand{\rs}{\mathrm{s}}
 \newcommand{\rt}{\mathrm{t}}
 \newcommand{\rr}{\mathrm{r}}
+\newcommand{\rx}{\mathrm{x}}
+\newcommand{\ry}{\mathrm{y}}
+\newcommand{\rz}{\mathrm{z}}
+
+
 \newcommand{\psis}{\psi_{\rs}}
 \newcommand{\vr}{v_{\rr}}
 \newcommand{\vt}{v_{\rt}}
+\newcommand{\vx}{v_{\rx}}
+\newcommand{\vy}{v_{\ry}}
+\newcommand{\vz}{v_{\rz}}
+
+
 \newcommand{\bv}{\boldsymbol{v}}
 \newcommand{\bvt}{\boldsymbol{\vt}}
 \newcommand{\br}{\boldsymbol{r}}
@@ -42,6 +52,11 @@
 \newcommand{\fq}{f_{q}}
 \newcommand{\ra}{\mathrm{a}}
 \newcommand{\va}{v_{\ra}}
+
+\newcommand{\vax}{v_{\ra \rx}}
+\newcommand{\vay}{v_{\ra \ry}}
+\newcommand{\vaz}{v_{\ra \rz}}
+
 \newcommand{\mH}{\mathbb{H}}
 \newcommand{\HG}{\prescript{}{2}F_{1}}
 
@@ -62,7 +77,7 @@
 \newcommand{\e}[1]{\boldsymbol{e_{#1}}}
 \newcommand{\bV}[1]{\boldsymbol{V_{#1}}}
 
-\newcommand{\rd}{{\rm{d}}}
+\newcommand{\rd}{{\mathrm{d}}}
 \newcommand{\var}{v_{\ra \rr}}
 \newcommand{\vat}{v_{\ra \rt}}
 
@@ -100,13 +115,13 @@
 
 \newcommand{\rmax}{r_{\max}}
 \newcommand{\rmin}{r_{\min}}
-\newcommand{\rcut}{r_{{\rm{cut}}}}
-\newcommand{\tcut}{\theta_{{\rm{cut}}}}
+\newcommand{\rcut}{r_{{\mathrm{cut}}}}
+\newcommand{\tcut}{\theta_{{\mathrm{cut}}}}
 
-\newcommand{\psieff}{\psi_{\rm{eff}}}
+\newcommand{\psieff}{\psi_{\mathrm{eff}}}
 \newcommand{\bL}{\boldsymbol{L}}
-\newcommand{\Ec}{E_{{\rm{c}}}}
-\newcommand{\Lc}{L_{{\rm{c}}}}
+\newcommand{\Ec}{E_{{\mathrm{c}}}}
+\newcommand{\Lc}{L_{{\mathrm{c}}}}
 
 \newcommand{\bx}{\boldsymbol{x}}
 \newcommand{\xp}{x'}
@@ -271,8 +286,8 @@ is the angle between the plane of the relative orbit and $\e2'$,
 
 \begin{equation}
 \begin{array}{ccl}
-  \dvPerp & =&\displaystyle{\frac{2m_{a}V_{0}}{m+m_{a}}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}}} ,\\
- \dvPar & = & \displaystyle{\frac{2m_{a}V_{0}}{m+m_{a}}\frac{1}{1+b^{2}/b_{90}^{2}}} ,
+  \dvPerp & =&\displaystyle{\frac{2\ma V_{0}}{m+\ma}\frac{b/b_{90}}{1+b^{2}/b_{90}^{2}}} ,\\
+ \dvPar & = & \displaystyle{\frac{2\ma V_{0}}{m+\ma}\frac{1}{1+b^{2}/b_{90}^{2}}} ,
 \end{array}
 \label{eq:delta_v}
 \end{equation}
@@ -297,19 +312,19 @@ Furthermore, after averaging over the equiprobable angles $\phi$
 \label{eq:delta_v}
 \end{equation}
 
-where $(e_{1},e_{2},e_{3})$ is an fixed, arbitrary coordonnate system. Here, note that when considering a test star with energy and angular
-momentum (per unit mass) $(E,L)$, using the choise $v_{r}\geq0$
-or the choice $v_{r}\leq0$ has an impact on the local change of velocity
+where $(\e1,\e2,\e3)$ is an fixed, arbitrary coordonnate system. Here, note that when considering a test star with energy and angular
+momentum (per unit mass) $(E,L)$, using the choise $\vr\geq0$
+or the choice $\vr\leq0$ has an impact on the local change of velocity
 through $V_{0}$.
 
 We sum the effects of all the encounter up. Number density of field
-stars (at position $r$) within velocity space volume ${\rm d}^{3}\boldsymbol{v_{a}}$
+stars (at position $r$) within velocity space volume ${\rd}^{3}\bva$
 is $\fq(r,\bva) \rd^{3}\bva$ (remember
 that $\fq(r,\bva)= \fq(r,\var,\vat)$). The number
 of encounters in a time $\delta t$ with impact parameters between
 $b$ and $b+\rd b$ is just this density times the volume of an
 annulus with inner radius $b$, outer radius $b+\rd b$, and length
-$V_{0}\delta t$, that is (eq. L9) $2\pi b{\rm d}bV_{0}\delta tf_{a}(r,\boldsymbol{v_{a}}){\rm d}^{3}\boldsymbol{v_{a}}$.
+$V_{0}\delta t$, that is (eq. L9) $2\pi b{\rd}bV_{0}\delta t \fq(r,\bva){\rm d}^{3}\bva$.
 
 We sum up over the velocities and the impact parameters. For the latter,
 we consider impact parameters between $0$ and a cut-off $b_{{\rm max}}$,
@@ -322,7 +337,7 @@ additional error by replacing the factor $V_{0}$ in $\Lambda$ by
 some typical stellar speed $v_{{\rm typ}}$, that is,
 
 \begin{equation}
-  \Lambda=\frac{b_{{\rm max}}v_{{\rm typ}}^{2}}{G(m+m_{a})} .
+  \Lambda=\frac{b_{{\rm max}}v_{{\rm typ}}^{2}}{G(m+\ma)} .
   \label{Lambda}
 \end{equation}
 
@@ -335,7 +350,7 @@ This yields (Binney \& Tremaine, eq. L14)
     \boldsymbol{e_{i}},\e1'\rangle} ,\\
   
   \langle\Delta v_{i}\Delta v_{j}\rangle & = &\displaystyle{ 4\pi\left(
-    \frac{\ma}{m+\ma}\right)^{2}\int{\rd}^{3}\bva V_{0}^{3}b_{90}^{2}f_{a}(r,
+    \frac{\ma}{m+\ma}\right)^{2}\int{\rd}^{3}\bva V_{0}^{3}b_{90}^{2}\fq(r,
     \bva)\ln\Lambda  \left[\langle\boldsymbol{e_{i}},\e2'\rangle\langle
       \boldsymbol{e_{j}},\e2'\rangle+\langle\boldsymbol{e_{i}},\e3'\rangle
       \langle\boldsymbol{e_{j}},\e3'\rangle\right]}
@@ -448,16 +463,16 @@ derivation and integral). Those are (function are evaluated at $(\Ea,\La)$)
 
 \begin{equation}
 \begin{array}{ccl}
-  \displaystyle{\frac{\partial}{\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\frac{\partial F}{\partial E}} ,\\
+  \displaystyle{\frac{\partial}{\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\frac{\partial \Fq}{\partial E}} ,\\
   
-   \displaystyle{\frac{\partial}{\partial \vt}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial F}{\partial E}-\frac{r}{\La}\frac{\partial F}{\partial L}\right)} ,\\
+   \displaystyle{\frac{\partial}{\partial \vt}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial \Fq}{\partial E}-\frac{r}{\La}\frac{\partial \Fq}{\partial L}\right)} ,\\
  
-  \displaystyle{\frac{\partial^{2}}{\partial \vr^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\left(-\vr+V_{0}\cos\theta\right)^{2}\frac{\partial^{2}F}{\partial E{}^{2}}} ,\\
+  \displaystyle{\frac{\partial^{2}}{\partial \vr^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial \Fq}{\partial E}+\left(-\vr+V_{0}\cos\theta\right)^{2}\frac{\partial^{2}\Fq}{\partial E{}^{2}}} ,\\
  
-  \displaystyle{\frac{\partial^{2}}{\partial \vt\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{r}{\La}\frac{\partial^{2}F}{\partial L\partial E}\right)} ,\\
+  \displaystyle{\frac{\partial^{2}}{\partial \vt\partial \vr}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\left(-\vt+V_{0}\sin\theta\cos\phi\right)\left(\frac{\partial^{2}\Fq}{\partial E{}^{2}}-\frac{r}{\La}\frac{\partial^{2}\Fq}{\partial L\partial E}\right)} ,\\
  
-  \displaystyle{\frac{\partial^{2}}{\partial \vt^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\frac{r}{\La}\frac{\partial F}{\partial L}+\left(-\vt+V_{0}\sin\theta\cos\phi\right)^{2}} \\
-  {}&\times& \displaystyle{\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)} .
+  \displaystyle{\frac{\partial^{2}}{\partial \vt^{2}}\left[\fq(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial \Fq}{\partial E}+\frac{r}{\La}\frac{\partial \Fq}{\partial L}+\left(-\vt+V_{0}\sin\theta\cos\phi\right)^{2}} \\
+  {}&\times& \displaystyle{\left(\frac{\partial^{2}\Fq}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}\Fq}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial \Fq}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}\Fq}{\partial L{}^{2}}\right)} .
 \end{array}
 \label{eq:DF_Derivatives}
 \end{equation}
@@ -483,7 +498,7 @@ and so do its partial derivatives.
 
 We may want to check that the integrals yield the correct result.
 To that end, it can be of interest to consider the simple case $q=0$,
-where $f(E,L)=f(E)$, i.e. $f(r,\bv)=f(r,v)=\Fq(E)$.
+where $\Fq(E,L)=F_{0}(E)$, i.e. $\fq(r,\bv)=f_{0}(r,v)=F_{0}(E)$.
 Then according Binney \& Tremaine, eq. (L26),
 
 \begin{equation}
@@ -624,7 +639,7 @@ where $\tcut = \arcsin({\sqrt{\psieff(\rcut,L)-E}})>0$, and do the same around $
 Now, to find what $\rmax$ and $\rmin$ are, we need to
 solve $v_{r}(r)=0$, i.e.  $\psi(r)-E-\frac{L^{2}}{2r^{2}}=0$. Using the same method as before, and letting $X=r^{2}$, the bounds are roots of the degree-3 polynomial equation
 \begin{equation}
-4X^{2}=(1+X)(L^{2}+2X(E+\sin^{2}\theta))^{2} .
+4X^{2}=(1+X)(L^{2}+2EX)^{2} .
 \label{eq:bounds_polynomial}
 \end{equation}
 It has 3 real roots iff its
@@ -1044,6 +1059,87 @@ and
 
 \section{Test star velocity components}
 \label{app:Test_star_velocity}
+
+We have to do an integration over velocity space to compute the Rosenbluth potential and its derivatives. To that end, we use spherical coordinate by fixing $(Oz) = \hr$ and letting $(Ox) \propto \bvt$. Then $\vx=\vt$, $\vy=0$ and $\vz=\vr$. Since
+\begin{equation}
+\begin{array}{ccl}
+  V_{0 \rx} & =&\displaystyle{V_{0}\sin\theta\cos\phi} ,\\
+
+  V_{0 \ry} &=& \displaystyle{V_{0}\sin\theta\sin\phi} , \\
+
+  V_{0 \rz} & =& \displaystyle{V_{0}\cos\theta} ,
+\end{array}
+\label{eq:V0_coord}
+\end{equation}
+then
+\begin{equation}
+\begin{array}{ccl}
+ \vax & =&\displaystyle{\vt - V_{0}\sin\theta\cos\phi} ,\\
+
+  \vay &=& \displaystyle{-V_{0}\sin\theta\sin\phi} , \\
+
+  \vaz & =& \displaystyle{\vr - V_{0}\cos\theta} ,
+\end{array}
+\label{eq:va_coord}
+\end{equation}
+and therefore
+\begin{equation}
+  \begin{array}{ccl}
+  \var & =&\displaystyle{\vr-V_{0}\cos\theta} ,\\
+
+  \vat^{2} & =& \displaystyle{(\vt-V_{0}\sin\theta\cos\phi)^{2}+(V_{0}\sin\theta\sin\phi)^{2}} .
+  \end{array}
+  \label{eq:va_r_t}
+\end{equation}
+The associated energy and angular momentum are
+\begin{equation}
+  \begin{array}{ccl}
+  \Ea & =&\displaystyle{\psi(r)-\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}\left(\vr\cos\theta + \vt\sin\theta\cos\phi\right)\right]} ,\\
+
+  \La & =& \displaystyle{r\left(\vt^{2}+V_{0}^{2}\sin^{2}\theta-2\vt V_{0}\sin\theta\cos\phi\right)^{1/2}} .
+  \end{array}
+  \label{eq:Ea_La}
+\end{equation}
+
+\section{Velocity-derivatives of $\fq$}
+\label{app:fq_derivatives}
+
+First, we compute the velocity dependency of the energy and the angular momentum
+
+\begin{equation}
+  \begin{array}{cclcccl}
+  \displaystyle{\frac{\partial\Ea}{\partial \vr}} & =&\displaystyle{-\vr + V_{0} \cos\theta}&;\quad&  \displaystyle{\frac{\partial\Ea}{\partial \vt}} & =&\displaystyle{-\vt + V_{0}\sin\theta \cos\phi},\\
+
+  \displaystyle{\frac{\partial\La}{\partial \vr}} & =&\displaystyle{
+    0}&;\quad&  \displaystyle{\frac{\partial\La}{\partial \vt}} & =&\displaystyle{\frac{r}{\La} (\vt-V_{0}\sin\theta\cos\phi)} .
+ 
+  \end{array}
+  \label{eq:Ea_La}
+\end{equation}
+Then we just apply the chain rule as many times as we need to to obtain the desire formulae.
+
+\section{Partial derivatives of $\Fq$}
+\label{app:Fq_derivatives}
+We will need the derivatives of $\mH$, which are
+
+
+\begin{equation}
+  \mH'(a,b,c,d;x)=\begin{cases}
+  \begin{array}{l}
+    \displaystyle{\frac{\Gamma(a+b)x^{a-1}}{\Gamma(c-a)\Gamma(a+d)}\bigg[a\HG(a+b,1+a-c,a+d;x)} \\
+      \displaystyle{+\frac{(a+b)(1+a-c)}{a+d}x \HG(a+b+1,a-c+2,a+d+1;x)\bigg]}
+  \end{array} & {\rm{if}} \quad x\leq1 , \\
+  {}&{}\\
+  \begin{array}{l}
+    \displaystyle{\frac{\Gamma(a+b)x^{-b-1}}{\Gamma(d-b)\Gamma(b+c)}\bigg[(-b)\HG(a+b,1+b-d,b+c;\frac{1}{x})} \\
+      \displaystyle{-\frac{(a+b)(1+b-d)}{b+c}x^{-1}\HG(a+b+1,b-d+2,b+c+1;\frac{1}{x})\bigg]}
+    \end{array} &{\rm{if}} \quad x\geq1 ,
+\end{cases}
+\label{eq:dHdx}
+\end{equation}
+
+
+
 
 
 
