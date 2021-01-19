@@ -35,6 +35,10 @@
 \newcommand{\ry}{\mathrm{y}}
 \newcommand{\rz}{\mathrm{z}}
 
+\newcommand{\tha}{\theta_{\ra}}
+\newcommand{\thr}{\theta_{\rr}}
+\newcommand{\phia}{\phi_{\ra}}
+
 
 \newcommand{\psis}{\psi_{\rs}}
 \newcommand{\vr}{v_{\rr}}
@@ -42,7 +46,8 @@
 \newcommand{\vx}{v_{\rx}}
 \newcommand{\vy}{v_{\ry}}
 \newcommand{\vz}{v_{\rz}}
-
+\newcommand{\vinf}{v_{<}}
+\newcommand{\vsup}{v_{>}}
 
 \newcommand{\bv}{\boldsymbol{v}}
 \newcommand{\bvt}{\boldsymbol{\vt}}
@@ -384,6 +389,55 @@ eq. L19)
 \end{array}
 \label{eq:Rosenbluth}
 \end{equation}
+
+
+\subsection{Legendre expansion}
+\label{subsec:LegendreExpAniso}
+
+Using that the Legendre expansion through its generating function $1/|\bv - \bva| = 1/\sqrt{v^{2}+\va^{2}-2v \va \cos(\theta)}$, we can expand the integration by using $\bv$ as the (Oz) axis as
+
+\begin{equation}
+  \begin{array}{ccl}
+  h(r,\bv) & =&\displaystyle{\int_{0}^{\infty}{\rd} \va \va^{2} \int_{0}^{\pi} {\rd} \theta \sin \theta \int_{0}^{2\pi}{\rd}\phi \frac{\Fq(\Ea,\La)}{\sqrt{v^{2}+\va^{2}-2v \va \cos(\theta)}}} , \\
+
+  {} & =&\displaystyle{\sum_{l=0}^{\infty}\int_{0}^{\infty}{\rd} \va \va^{2} \frac{\vinf^{l}}{\vsup^{l+1}}\int_{0}^{\pi} {\rd} \theta \sin\theta P_{l}(\cos\theta)  \int_{0}^{2\pi}{\rd}\phi \Fq(\Ea,\La)} , 
+  \end{array}
+  \label{eq:h_Legendre}
+\end{equation}
+
+where $\theta$ is the angle between $\bv$ and $\bva$, $\vinf = \min{v,\va}$, $\vsup = \max{v,\va}$, $P_{l}$ is the l-th Legendre polynomial and 
+
+\begin{equation}
+  \begin{array}{ccl}
+    \Ea(r,\va,\theta,\phi) & =&\displaystyle{\psi(r)-\frac{\va^{2}}{2}} , \\
+
+    \La(r,\va,\theta,\phi) &=& \displaystyle{r \vat} .
+
+  \end{array}
+  \label{eq:Ea_La_Legendre}
+\end{equation}
+
+Letting (Ox) be the projection of $\hr$, the cartesian coordinates of $\va$ and $\hr$ are respectively
+
+
+$(\va\sin\tha\cos\phia,\va\sin\tha\sin\phia,\va\cos\tha)$ and $(\sin\thr,0,\cos\thr)= (v/\vt,v/\vr)$, and we have
+
+\begin{equation}
+  \begin{array}{ccl}
+    \var(r,\va,\theta,\phi) & =& \bv \cdot \hr = \displaystyle{\frac{v\va}{\vt}\sin\tha\cos\phia  + \frac{v\va}{\vr}\cos\tha} , \\
+
+    \vat^2(r,\va,\theta,\phi) &=& \displaystyle{\va^{2} \left[1 - \left(\frac{v}{\vt}\sin\tha\cos\phia  + \frac{v}{\vr}\cos\tha\right)^{2}\right] } ,
+
+  \end{array}
+  \label{eq:var_vat_Legendre}
+\end{equation}
+
+and therefore
+
+\begin{equation}
+    \La(r,\va,\theta,\phi) = \displaystyle{ r \va \sqrt{1 - \left( \frac{v}{\vr}\cos\tha + \frac{v}{\vt}\sin\tha\cos\phia\right)^{2} }} .
+  \label{eq:La_Legendre}
+  \end{equation}
 
 \subsection{Anisotropic case}
 \label{subsec:Aniso}
