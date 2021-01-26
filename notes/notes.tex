@@ -35,10 +35,7 @@
 \newcommand{\ry}{\mathrm{y}}
 \newcommand{\rz}{\mathrm{z}}
 
-\newcommand{\tha}{\theta_{\ra}}
 \newcommand{\thr}{\theta_{\rr}}
-\newcommand{\phia}{\phi_{\ra}}
-
 
 \newcommand{\psis}{\psi_{\rs}}
 \newcommand{\vr}{v_{\rr}}
@@ -50,7 +47,7 @@
 \newcommand{\vsup}{v_{>}}
 
 \newcommand{\bv}{\boldsymbol{v}}
-\newcommand{\bvt}{\boldsymbol{\vt}}
+\newcommand{\bvt}{\boldsymbol{v}_{\mathrm{t}}}
 \newcommand{\br}{\boldsymbol{r}}
 \newcommand{\hr}{\hat{\br}}
 \newcommand{\Fq}{F_{q}}
@@ -134,6 +131,8 @@
 
 \newcommand{\hv}{\hat{\bv}}
 
+\newcommand{\Jr}{J_{\mathrm{r}}}
+
 \author{Kerwann}
 \date{\today}
 \title{Notes}
@@ -202,7 +201,7 @@ whose Jacobian is
 \label{eq:Jacobian}
   \end{equation}
 
-To obtain a bijective transformation, we must chose wether to chose
+To obtain a bijective transformation, we must chose whether to chose
 $\vr\ge 0$ or $\vr\leq 0$. A priori, this choice might have an
 impact on the result, but we will should that the local and orbit-averaged
 diffusion coefficients are not that. The coordinate system is spherical,
@@ -297,7 +296,7 @@ is the angle between the plane of the relative orbit and $\e2'$,
 \label{eq:delta_v}
 \end{equation}
 
-where $\bV0= \bv-\bva$ and $b_{90}$ is the 90° deflection radius,
+where $\bV0= \bv-\bva$ and $b_{90}$ is the $90^{\circ}$ deflection radius,
 given by eq (L.8) 
 \begin{equation}
   b_{90}=\frac{G(m+m_{a})}{V_{0}^{2}} .
@@ -405,7 +404,7 @@ Using that the Legendre expansion through its generating function $1/|\bv - \bva
   \label{eq:h_Legendre}
 \end{equation}
 
-where $\theta$ is the angle between $\bv$ and $\bva$, $\vinf = \min{v,\va}$, $\vsup = \max{v,\va}$, $P_{l}$ is the l-th Legendre polynomial and 
+where $\theta$ is the angle between $\bv$ and $\bva$, $\vinf = \min\{v,\va\}$, $\vsup = \max\{v,\va\}$, $P_{l}$ is the l-th Legendre polynomial and 
 
 \begin{equation}
   \begin{array}{ccl}
@@ -420,13 +419,13 @@ where $\theta$ is the angle between $\bv$ and $\bva$, $\vinf = \min{v,\va}$, $\v
 Letting (Ox) be the projection of $\hr$, the cartesian coordinates of $\va$ and $\hr$ are respectively
 
 
-$(\va\sin\tha\cos\phia,\va\sin\tha\sin\phia,\va\cos\tha)$ and $(\sin\thr,0,\cos\thr)= (v/\vt,v/\vr)$, and we have
+$(\va\sin\theta\cos\phi,\va\sin\theta\sin\phi,\va\cos\theta)$ and $(\sin\thr,0,\cos\thr)= (\vt/v,0,\vr/v)$, and we have
 
 \begin{equation}
   \begin{array}{ccl}
-    \var(r,\va,\theta,\phi) & =& \bv \cdot \hr = \displaystyle{\frac{v\va}{\vt}\sin\tha\cos\phia  + \frac{v\va}{\vr}\cos\tha} , \\
+    \var(r,\va,\theta,\phi) & =& \bv \cdot \hr = \displaystyle{\frac{\vt\va}{v}\sin\theta\cos\phi  + \frac{\vr\va}{v}\cos\theta} , \\
 
-    \vat^2(r,\va,\theta,\phi) &=& \displaystyle{\va^{2} \left[1 - \left(\frac{v}{\vt}\sin\tha\cos\phia  + \frac{v}{\vr}\cos\tha\right)^{2}\right] } ,
+    \vat^2(r,\va,\theta,\phi) &=& \displaystyle{\va^{2} \left[1 - \left(\frac{\vt}{v}\sin\theta\cos\phi  + \frac{\vr}{v}\cos\theta\right)^{2}\right] } ,
 
   \end{array}
   \label{eq:var_vat_Legendre}
@@ -435,7 +434,7 @@ $(\va\sin\tha\cos\phia,\va\sin\tha\sin\phia,\va\cos\tha)$ and $(\sin\thr,0,\cos\
 and therefore
 
 \begin{equation}
-    \La(r,\va,\theta,\phi) = \displaystyle{ r \va \sqrt{1 - \left( \frac{v}{\vr}\cos\tha + \frac{v}{\vt}\sin\tha\cos\phia\right)^{2} }} .
+    \La(r,\va,\theta,\phi) = \displaystyle{ r \va \sqrt{1 - \left( \frac{\vr}{v}\cos\theta + \frac{\vt}{v}\sin\theta\cos\phi\right)^{2} }} .
   \label{eq:La_Legendre}
   \end{equation}
 
@@ -462,11 +461,11 @@ and a tedious by straightforward computation see appendix) yields
 
 \begin{equation}
 \begin{array}{ccl}
-  \dvParAvrLoc(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda(\frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt})} ,\\
+  \dvParAvrLoc(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda \bigg( \frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt} \bigg)} ,\\
   
   \dvParSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}{\ma}^{2}\ln\Lambda\left(\frac{\vr^{2}}{v^{2}}\frac{\partial^{2}g}{\partial \vr^{2}}+\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\partial \vr}+\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}\right)}\\
   
-  \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}\ma^{2}\ln\Lambda\left(\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt\ partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt}\right)}   
+  \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}\ma^{2}\ln\Lambda\left(\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt \partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt}\right)}   
 \end{array}
 \label{eq:AnisoLocDiffCoefsdRdT}
 \end{equation}
@@ -855,6 +854,40 @@ we may use the formulae (C.52) and (C.53) p.25 from Bar-Or \& Alexander
 \[
 D'_{l}=\frac{\partial \xp_{l}}{\partial x_{k}}D_{k}-\frac{1}{2}\frac{\partial^{2}\xp_{l}}{\partial x_{r}\partial x_{k}}D_{rk}\quad?)
 \]
+
+Instead of considering the parameters $(E,L)$, we could go to the action parameters $(\Jr,L)$ with $\Jr$ being the radial action. It is defined as
+
+\begin{equation}
+  \Jr(E,L) = \frac{1}{\pi} \int_{\rmin}^{\rmax}\vr(r)\rd r =  \frac{1}{\pi} \int_{\rmin}^{\rmin} \sqrt{2(\psieff(r,L)-E)}\rd r.
+  \label{eq:Radial_action}
+  \end{equation}
+
+It is the generating function of the radial period $T$ defined in eq \eqref{eq:orbital_period} and of the apsidal angle $\Theta$ defined by = $\Theta(t)=\theta(t+T)-\theta(t)$, which is constant and given by the formula
+
+\begin{equation}
+  \Theta(E,L) =   \int_{\rmin}^{\rmax} \frac{2 L \rd r}{r^{2}\sqrt{2(\psieff(r,L)-E)}}.
+  \label{eq:Apsidal_angle}
+\end{equation}
+
+Those quantities are linked by the relations 
+
+\begin{equation}
+  \frac{T}{2\pi} = -\frac{\partial \Jr}{\partial E}\quad \mathrm{and} \quad
+  \frac{\Theta}{2\pi} = -\frac{\partial \Jr}{\partial L}
+  \label{eq:dJr}
+\end{equation}
+
+The transformation $(E,L) \rightarrow (\Jr,L)$ yields (check that the relation is correct?)
+
+\begin{align*}
+ D_{r} &= \frac{\partial \Jr}{\partial E} \dE + \frac{\partial \Jr}{\partial L} \dL+\frac{1}{2}\bigg(\frac{\partial^2 \Jr}{\partial E^2} \dEE +2 \frac{\partial^2 \Jr}{\partial E \partial L} \dEL +\frac{\partial^2 \Jr}{\partial L^2} \dLL\bigg) \\
+    &= -\frac{T}{2\pi} \dE -\frac{\Theta}{2\pi} \dL+\frac{1}{2}\bigg(\frac{\partial T}{\partial E} \dEE +2 \frac{\partial T}{\partial L} \dEL +\frac{\partial \Theta}{\partial L} \dLL\bigg) \\
+  D_{rr} &=\bigg(\frac{\partial \Jr}{\partial E} \bigg)^{2} \dEE + 2 \frac{\partial \Jr}{\partial E} \frac{\partial \Jr}{\partial L} \dEL + \bigg(\frac{\partial \Jr}{\partial L} \bigg)^{2} \dLL\\
+  &=\bigg(\frac{T}{2\pi} \bigg)^{2} \dEE + 2 \frac{T}{2\pi}\frac{\Theta}{2\pi} \dEL + \bigg(\frac{\Theta}{2\pi} \bigg)^{2} \dLL \\
+    D_{rL} &=\frac{\partial \Jr}{\partial E} \frac{\partial L}{\partial E} \dEE + 2 \frac{\partial \Jr}{\partial E} \frac{\partial L}{\partial L} \dEL + \frac{\partial \Jr}{\partial L} \frac{\partial L}{\partial L} \dLL\\
+  &= -2 \frac{T}{2\pi} \dEL -\frac{\Theta}{2\pi}  \dLL \\
+  \label{eq:changeVar}
+\end{align*}
 
 
 \begin{appendices}
