@@ -1,0 +1,1043 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+T & =\int_{r_{p}}^{r_{a}}\frac{2dr}{\sqrt{2(\psi(r)-E)-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}\frac{2rdr}{\sqrt{2r^{2}(\psi(r)-E)-L^{2}}}\\
+ & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{Y(x)-Ex-L^{2}}}\\
+ & =\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{Y(x)-(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
+ & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{\ell^{2}-\left((Ex-L_{c}^{2})-Y(x)\right)}}\\
+ & \stackrel{z^{2}(x)=(Ex-L_{c}^{2})-Y(x)}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
+ & \stackrel[f(z(x))=x]{x=f(z)}{=}\frac{1}{2}\int_{-\ell}^{\ell}\frac{f'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
+ & \stackrel{z=\ell\sin\phi}{=}\frac{1}{2}\int_{-\pi/2}^{\pi/2}f'(\ell\sin\phi)d\phi
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{2}(x)=Y(x)+(Ex-L_{c}^{2})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}=z^{2}(f(z))=Y(f(z))+(Ef(z)-L_{c}^{2})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}=Y(f(z))+(Ef(z)-L_{c}^{2})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+2z=f'(z)Y'(f(z))+Ef'(z)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+2z=f'(z)\left[Y'(f(z))+E\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{2z}{Y'(f(z))+E}=f'(z)
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula 
+\[
+f(z)=x=2r^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Y(x)=2r^{2}\psi(r)=x\psi(\sqrt{x/2})=\frac{x}{\sqrt{1+x/2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Y'(x)=\frac{x+4}{\sqrt{2}(x+2)^{3/2}}>0
+\]
+
+\end_inset
+
+.
+ with 
+\begin_inset Formula $z^{2}=Y(f(z))+(Ef(z)-L_{c}^{2})$
+\end_inset
+
+ we have
+\begin_inset Formula 
+\[
+f'(z)=\frac{2z}{Y'(f(z))+E}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f'(\ell\sin\phi)=\frac{2\ell\sin\phi}{Y'(f(\ell\sin\phi))+E}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula 
+\[
+\ell^{2}=L_{c}^{2}-L^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+z^{2}(x) & =Y(x)+(Ex-L_{c}^{2})\\
+ & =x(\psi(\sqrt{x/2})+E)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $z=z(x)\rightarrow x=f(z)$
+\end_inset
+
+.
+ Solve at fixed 
+\begin_inset Formula $z$
+\end_inset
+
+ for 
+\begin_inset Formula $x$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}=Y(x)+(Ex-L_{c}^{2})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}=\frac{x}{\sqrt{1+x/2}}+Ex-L_{c}^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}+L_{c}^{2}=(\frac{1}{\sqrt{1+x/2}}+E)x
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{z^{2}+L_{c}^{2}}{x}-E=\frac{1}{\sqrt{1+x/2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{z^{2}+L_{c}^{2}-Ex}{x}=\frac{1}{\sqrt{1+x/2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\left(z^{2}+L_{c}^{2}-Ex\right)^{2}}{x^{2}}=\frac{1}{1+x/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(z^{2}+L_{c}^{2}-Ex\right)^{2}\left(1+x/2\right)=x^{2}
+\]
+
+\end_inset
+
+degree-3 polynomial in 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ find solution in 
+\begin_inset Formula $x>0$
+\end_inset
+
+ with 
+\begin_inset Formula 
+\[
+z^{2}+L_{c}^{2}-Ex>0\Leftrightarrow x<\frac{z^{2}+L_{c}^{2}}{E}=x_{\max}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+there is a solution in 
+\begin_inset Formula $[x_{\max},\infty[$
+\end_inset
+
+, another in 
+\begin_inset Formula $[0,x_{\max}[$
+\end_inset
+
+ and another in 
+\begin_inset Formula $]-\infty,-\frac{1}{2}[$
+\end_inset
+
+.
+ => Positive discriminant: order the roots and select the middle one =>
+ 
+\begin_inset Formula $x=f(z)$
+\end_inset
+
+ is semi-analytical (analytical if we are given 
+\begin_inset Formula $L_{c}$
+\end_inset
+
+).
+ no?
+\end_layout
+
+\begin_layout Standard
+we have
+\begin_inset Formula 
+\[
+\left(z^{2}+L_{c}^{2}-Ex\right)^{2}\left(1+x/2\right)=x^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(x-x_{\max}\right)^{2}\left(1+x/2\right)E^{2}=x^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(x^{2}-2xx_{\max}+x_{\max}^{2}\right)\left(1+x/2\right)E^{2}=x^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(x^{2}-2xx_{\max}+x_{\max}^{2}+\frac{1}{2}x^{3}-x^{2}x_{\max}+\frac{1}{2}xx_{\max}^{2}\right)E^{2}=x^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(2x^{2}-4xx_{\max}+2x_{\max}^{2}+x^{3}-2x^{2}x_{\max}+xx_{\max}^{2}\right)E^{2}=2x^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E^{2}x^{3}+(2E^{2}-2E^{2}x_{\max}-2)x^{2}+xE^{2}(x_{\max}^{2}-4x_{\max})+2E^{2}x_{\max}^{2}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+a & =E^{2}>0\\
+b & =2E^{2}-2E^{2}x_{\max}-2<0\\
+c & =E^{2}(x_{\max}^{2}-4x_{\max})=E^{2}x_{\max}(x_{\max}-4)\\
+d & =E^{2}x_{\max}^{2}>0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{2}(x)=\frac{x}{\sqrt{1+x/2}}+Ex-L_{c}^{2}=\phi(x)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi'(x)=\frac{x+4}{\sqrt{2}(x+2)^{3/2}}+E>0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi(0)=-L_{c}^{2}<0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi(\infty)=\infty
+\]
+
+\end_inset
+
+unique solution dans 
+\begin_inset Formula $x\in]0,+\infty[$
+\end_inset
+
+ tel que 
+\begin_inset Formula $z^{2}=\phi(x)\rightarrow x=f(z)$
+\end_inset
+
+ et 
+\begin_inset Formula $f'(z)=\frac{1}{\phi'(x)}>0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z=0\rightarrow\phi(0)=-L_{c}^{2}<0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{2}(x)=Y(x)+(Ex-L_{c}^{2})\in[-\ell,\ell]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\ell^{2}(E,L)=L_{c}^{2}(E)-L^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+Y'(x)=\frac{x+4}{\sqrt{2}(x+2)^{3/2}}>0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f'(z)=\frac{2z}{Y'(f(z))+E}
+\]
+
+\end_inset
+
+then
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+T & (E,L)=\frac{1}{2}\int_{-\pi/2}^{\pi/2}f'(\ell\sin\phi)d\phi
+\end{align*}
+
+\end_inset
+
+then 
+\begin_inset Formula 
+\[
+\frac{\partial T}{\partial E}(E,L)=\frac{1}{2}\frac{\partial\ell}{\partial E}\int_{-\pi/2}^{\pi/2}\sin\phi f''(\ell\sin\phi)d\phi
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial T}{\partial L}(E,L)=\frac{1}{2}\frac{\partial\ell}{\partial L}\int_{-\pi/2}^{\pi/2}\sin\phi f''(\ell\sin\phi)d\phi
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula 
+\[
+\ell\frac{\partial\ell}{\partial E}(E,L)=L_{c}(E)\frac{\partial L_{c}}{\partial E}(E)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\ell\frac{\partial\ell}{\partial L}(E,L)=-L
+\]
+
+\end_inset
+
+donc
+\begin_inset Formula 
+\[
+\frac{\partial\ell}{\partial E}(E,L)=\frac{L_{c}(E,L)}{\ell(E,L)}\frac{\partial L_{c}}{\partial E}(E)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\ell}{\partial L}(E,L)=-\frac{L}{\ell(E,L)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\Theta & =\int_{r_{p}}^{r_{a}}\frac{2Ldr}{r^{2}\sqrt{2(\psi(r)-E)-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}\frac{2rdr}{r^{2}\sqrt{2r^{2}(\psi(r)-E)-L^{2}}}\\
+ & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\int_{x_{p}}^{x_{a}}\frac{dx}{x\sqrt{Y(x)-Ex-L^{2}}}\\
+ & =\int_{x_{p}}^{x_{a}}\frac{dx}{x\sqrt{Y(x)-(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
+ & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\int_{x_{p}}^{x_{a}}\frac{dx}{x\sqrt{\ell^{2}-(Y(x)+(Ex-L_{c}^{2}))}}\\
+ & \stackrel{z^{2}(x)=Y(x)+(Ex-L_{c}^{2})}{=}\int_{x_{p}}^{x_{a}}\frac{dx}{x\sqrt{\ell^{2}-z^{2}(x)}}\\
+ & \stackrel{x=f(z)}{=}\int_{-\ell}^{\ell}\frac{f'(z)dz}{f(z)\sqrt{\ell^{2}-z^{2}}}\\
+ & \stackrel{z=\ell\sin\phi}{=}\frac{1}{2}\int_{-\pi/2}^{\pi/2}\frac{f'(\ell\sin\phi)}{f(\ell\sin\phi)}d\phi
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+T & =\int_{r_{p}}^{r_{a}}\frac{2dr}{\sqrt{2(\psi(r)-E)-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}\frac{2rdr}{\sqrt{2r^{2}(\psi(r)-E)-L^{2}}}\\
+ & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{Y(x)-Ex-L^{2}}}\\
+ & =\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{Y(x)-(Ex+L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
+ & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{\ell^{2}-\left((Ex+L_{c}^{2})-Y(x)\right)}}\\
+ & \stackrel{z^{2}(x)=(Ex+L_{c}^{2})-Y(x)}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
+ & \stackrel[f(z(x))=x]{x=f(z)}{=}\frac{1}{2}\int_{-\ell}^{\ell}\frac{f'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
+ & \stackrel{z=\ell\sin\phi}{=}\frac{1}{2}\int_{-\pi/2}^{\pi/2}f'(\ell\sin\phi)d\phi
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z=z(x),x=f(z),f(z)=z^{-1}(z),f(z(x))=z^{-1}(z(x))=x
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z=z(x),dz=z'(x)dx
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z'=(f^{-1})'=1/f'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z(x)\leq0$
+\end_inset
+
+ sur 
+\begin_inset Formula $[x_{p},x_{c}]$
+\end_inset
+
+ and 
+\begin_inset Formula $z(x)\geq0$
+\end_inset
+
+ sur 
+\begin_inset Formula $[x_{c},x_{a}]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\[
+g(x)=Ex+L_{c}^{2}-Y(x)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+g'(x)=(z^{2})'=2z'z
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z\leftrightarrow x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f'(z)=1/z'(x)=\frac{2z}{g'(x)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z^{2}(x)=(Ex+L_{c}^{2})-Y(x)=2r^{2}(E-\psi(r))+L_{c}^{2}=L_{c}^{2}-r^{2}\dot{r}^{2}-L^{2}=\ell^{2}-r^{2}\dot{r}^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}(x)=\ell^{2}-r^{2}\dot{r}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z_{a}=z_{p}=\ell^{2}$
+\end_inset
+
+.
+ a-t-on 
+\begin_inset Formula $z_{c}=0?$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}\propto E-\psi(r)+\frac{L_{c}^{2}}{2r^{2}}=E-\psi(r)+\frac{L^{2}}{2r^{2}}-\frac{L^{2}}{2r^{2}}+\frac{L_{c}^{2}}{2r^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}\propto E-\psi_{eff}(r,L)+\frac{\ell^{2}}{2r^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+On a 
+\begin_inset Formula 
+\[
+z^{2}(x)=L_{c}^{2}+Ex-\frac{x}{\sqrt{1+x/2}}=\phi(x)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi'(x)=E-\frac{x+4}{\sqrt{2}(x+2)^{3/2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi''(x)=\frac{x+8}{2\sqrt{2}(x+2)^{5/2}}>0
+\]
+
+\end_inset
+
+donc 
+\begin_inset Formula $\phi'(x)$
+\end_inset
+
+ croissant.
+ 
+\begin_inset Formula 
+\[
+\phi'(0)=E-1<0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\phi'(x)=E-\frac{1}{\sqrt{2x}}\rightarrow E>0
+\]
+
+\end_inset
+
+donc 
+\begin_inset Formula $\phi(x)$
+\end_inset
+
+ décroissant sur 
+\begin_inset Formula $[0,x_{c}]$
+\end_inset
+
+ et croissant sur 
+\begin_inset Formula $[x_{c},\infty]$
+\end_inset
+
+.
+ minumum sur 
+\begin_inset Formula 
+\[
+\phi'(x)=E-\frac{x+4}{\sqrt{2}(x+2)^{3/2}}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E=\frac{x+4}{\sqrt{2}(x+2)^{3/2}}\leftrightarrow E^{2}=\frac{(x+4)^{2}}{2(x+2)^{3}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z^{2}(x)$
+\end_inset
+
+ décroissant sur 
+\begin_inset Formula $[x_{p},x_{c}]$
+\end_inset
+
+ et croissant sur 
+\begin_inset Formula $[x_{c},x_{a}]$
+\end_inset
+
+ avec 
+\begin_inset Formula $z^{2}(x_{a})=z^{2}(x_{p})=\ell^{2}$
+\end_inset
+
+ et 
+\begin_inset Formula $z^{2}(x_{c})=0$
+\end_inset
+
+ et On pose
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z(x)=\begin{cases}
+-\sqrt{\phi(x)} & x\in[x_{a},x_{c}]\\
++\sqrt{\phi(x)} & x\in[x_{c},x_{p}]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z'(x)=\begin{cases}
+-\frac{\phi'(x)}{2\sqrt{\phi(x)}} & x\in[x_{a},x_{c}]\\
++\frac{\phi'(x)}{2\sqrt{\phi(x)}} & x\in[x_{c},x_{p}]
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f'(z)=\begin{cases}
+-\frac{2|z|}{\phi'(x)} & x\in[x_{a},x_{c}]\\
++\frac{2|z|}{\phi'(x)} & x\in[x_{c},x_{p}]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

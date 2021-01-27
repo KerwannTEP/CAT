@@ -14,3 +14,4 @@
 \contentsline {section}{\numberline {C}Test star velocity components}{14}{appendix.1.C}%
 \contentsline {section}{\numberline {D}Velocity-derivatives of $f_{q}$}{15}{appendix.1.D}%
 \contentsline {section}{\numberline {E}Partial derivatives of $F_{q}$}{15}{appendix.1.E}%
+\contentsline {section}{\numberline {F}Generating function $J_{\mathrm {r}}(E,L$)}{16}{appendix.1.F}%

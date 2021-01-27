@@ -858,18 +858,19 @@ D'_{l}=\frac{\partial \xp_{l}}{\partial x_{k}}D_{k}-\frac{1}{2}\frac{\partial^{2
 Instead of considering the parameters $(E,L)$, we could go to the action parameters $(\Jr,L)$ with $\Jr$ being the radial action. It is defined as
 
 \begin{equation}
-  \Jr(E,L) = \frac{1}{\pi} \int_{\rmin}^{\rmax}\vr(r)\rd r =  \frac{1}{\pi} \int_{\rmin}^{\rmin} \sqrt{2(\psieff(r,L)-E)}\rd r.
+  \Jr(E,L) = \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)}\vr(r,E,L)\rd r =  \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)} \sqrt{2(\psieff(r,L)-E)}\rd r.
   \label{eq:Radial_action}
   \end{equation}
 
-It is the generating function of the radial period $T$ defined in eq \eqref{eq:orbital_period} and of the apsidal angle $\Theta$ defined by = $\Theta(t)=\theta(t+T)-\theta(t)$, which is constant and given by the formula
+It is the generating function of the radial period $T$ defined in eq \eqref{eq:orbital_period} and of the apsidal angle $\Theta$ defined by  $\Theta(t)=\theta(t+T)-\theta(t)$, which is constant and given by the formula
 
 \begin{equation}
-  \Theta(E,L) =   \int_{\rmin}^{\rmax} \frac{2 L \rd r}{r^{2}\sqrt{2(\psieff(r,L)-E)}}.
+  \Theta(E,L)=   \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{2 L \rd r}{r^{2}\vr(r,E,L)} =   \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{2 L \rd r}{r^{2}\sqrt{2(\psieff(r,L)-E)}}, 
   \label{eq:Apsidal_angle}
 \end{equation}
 
-Those quantities are linked by the relations 
+with $\theta(t) = p(t) + \Theta t/T$ with $p(t)$ is $T$-periodical.
+Those quantities are linked by the relations  (see appendix)
 
 \begin{equation}
   \frac{T}{2\pi} = -\frac{\partial \Jr}{\partial E}\quad \mathrm{and} \quad
@@ -881,7 +882,7 @@ The transformation $(E,L) \rightarrow (\Jr,L)$ yields (check that the relation i
 
 \begin{align*}
  D_{r} &= \frac{\partial \Jr}{\partial E} \dE + \frac{\partial \Jr}{\partial L} \dL+\frac{1}{2}\bigg(\frac{\partial^2 \Jr}{\partial E^2} \dEE +2 \frac{\partial^2 \Jr}{\partial E \partial L} \dEL +\frac{\partial^2 \Jr}{\partial L^2} \dLL\bigg) \\
-    &= -\frac{T}{2\pi} \dE -\frac{\Theta}{2\pi} \dL+\frac{1}{2}\bigg(\frac{\partial T}{\partial E} \dEE +2 \frac{\partial T}{\partial L} \dEL +\frac{\partial \Theta}{\partial L} \dLL\bigg) \\
+    &= -\frac{T}{2\pi} \dE -\frac{\Theta}{2\pi} \dL+\frac{1}{2}\bigg(-\frac{1}{2\pi}\frac{\partial T}{\partial E} \dEE -2 \frac{1}{2\pi} \frac{\partial T}{\partial L} \dEL -\frac{1}{2\pi}\frac{\partial \Theta}{\partial L} \dLL\bigg) \\
   D_{rr} &=\bigg(\frac{\partial \Jr}{\partial E} \bigg)^{2} \dEE + 2 \frac{\partial \Jr}{\partial E} \frac{\partial \Jr}{\partial L} \dEL + \bigg(\frac{\partial \Jr}{\partial L} \bigg)^{2} \dLL\\
   &=\bigg(\frac{T}{2\pi} \bigg)^{2} \dEE + 2 \frac{T}{2\pi}\frac{\Theta}{2\pi} \dEL + \bigg(\frac{\Theta}{2\pi} \bigg)^{2} \dLL \\
     D_{rL} &=\frac{\partial \Jr}{\partial E} \frac{\partial L}{\partial E} \dEE + 2 \frac{\partial \Jr}{\partial E} \frac{\partial L}{\partial L} \dEL + \frac{\partial \Jr}{\partial L} \frac{\partial L}{\partial L} \dLL\\
@@ -1292,6 +1293,39 @@ while in the highly-radially anisotropic case $q=2$, for $L^{2} \leq 2E$ (null i
     \end{array}
 \label{eq:dF2}
 \end{equation}
+
+\section{Generating function $\Jr(E,L$)}
+\label{sec:derivatives_Jr}
+
+$\Jr(E,L)$ is a function of the form
+
+\begin{equation}
+  \Jr(E,L) = \frac{1}{\pi} \bigg(G(\rmax(E,L),E,L)-G(\rmin(E,L),E,L))\bigg)
+  \label{eq:Jr_eq} ,
+\end{equation}
+
+where $\vr(\rmin,E,L)=\vr(\rmax,E,L)=0$ and
+
+\begin{equation}
+  G(x,E,L) = \int_{0}^{x} \vr(x,E,L) \rd x .
+  \label{eq:Jr_eq_G}
+\end{equation}
+
+Differentiation by $E$ using chain rule and $\partial G/\partial r (x,E,L) = \vr(x,E,L)$ , yields
+
+\begin{align*}
+  \frac{\partial \Jr}{\partial E}(E,L) &= \frac{1}{\pi} \bigg( \frac{\partial G}{\partial E}(\rmin,E,L)- \frac{\partial G}{\partial E}(\rmin,E,L)\bigg)
+  \label{eq:dJrdE} \\
+  &= \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{\partial \vr}{\partial E} (r,E,L) \rd r \\
+  &= - \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{\rd r}{\vr(r,E,L)} = -\frac{T}{2\pi} .
+\end{align*}
+
+By the same method,
+
+\begin{align*}
+  \frac{\partial \Jr}{\partial L}(E,L) &= \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{\partial \vr}{\partial L} (r,E,L) \rd r \\
+  &= \frac{1}{\pi} \int_{\rmin(E,L)}^{\rmax(E,L)} \frac{- L \rd r }{r^{2} \vr(r,E,L)} = - \frac{\Theta}{2\pi}
+\end{align*}
 
 \end{appendices}
 
