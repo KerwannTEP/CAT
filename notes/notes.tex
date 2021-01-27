@@ -34,8 +34,11 @@
 \newcommand{\rx}{\mathrm{x}}
 \newcommand{\ry}{\mathrm{y}}
 \newcommand{\rz}{\mathrm{z}}
+\newcommand{\rc}{\mathrm{c}}
 
 \newcommand{\thr}{\theta_{\rr}}
+
+
 
 \newcommand{\psis}{\psi_{\rs}}
 \newcommand{\vr}{v_{\rr}}
@@ -132,6 +135,9 @@
 \newcommand{\hv}{\hat{\bv}}
 
 \newcommand{\Jr}{J_{\mathrm{r}}}
+
+\newcommand{\xc}{x_{\rc}}
+\newcommand{\rrc}{r_{\rc}}
 
 \author{Kerwann}
 \date{\today}
@@ -889,6 +895,48 @@ The transformation $(E,L) \rightarrow (\Jr,L)$ yields (check that the relation i
   &= -2 \frac{T}{2\pi} \dEL -\frac{\Theta}{2\pi}  \dLL \\
   \label{eq:changeVar}
 \end{align*}
+
+Using Hénon's method, we can get rid of the singularities in the integrand of $T$ and $\Theta$, as well as the $(E,L)$ dependencies in the integration bounds. After computation, we obtain the following expressions
+\begin{align}
+  T(E,L) &= \frac{1}{2}\int_{-\pi/2}^{\pi/2}\partial_{z} f(\ell\sin\phi,E)\rd\phi \\
+  \Theta(E,L) &= \int_{-\pi/2}^{\pi/2} \frac{\partial_{z}f(\ell\sin\phi,E)}{f(\ell\sin\phi,E)}\rd\phi
+  \end{align}
+
+where $\ell^{2}(E) = \Lc^{2}(E) - L^{2}$ and $x=f(z,E)>0$ is the solution of the equation
+\begin{equation}
+  z^{2} = \zeta(x,E) = x \psi(\sqrt{x/2}) + E x - \Lc^{2},
+  \label{eq:f(z)}
+\end{equation}
+chosen so that $x<\xc$ if $z<0$ and $x>\xc$ if $z>0$, where $\xc = 2\rrc^{2}$ correspond to the ''circular radius''. The function $z\mapsto f(z,E)$ is $C^{1}$ is the inverse bijection of $x\mapsto z(x,E)$, which is defined by
+
+\begin{equation}
+z(x,E)=\begin{cases}
+\displaystyle{-\sqrt{\zeta(x,E)}} & {\rm{if}} \quad x\in [x_{\min},\xc] ,\\
+\displaystyle{+\sqrt{\zeta(x,E)}} & {\rm{if}} \quad x\in [\xc,x_{\max}] .
+\end{cases}
+\label{eq:z(x)}
+\end{equation}
+
+Its derivative is given by  
+\begin{equation}
+\partial_{x}z(x,E)=\begin{cases}
+\displaystyle{\frac{\partial_{x}\zeta(x,E)}{2 z(x,E)}} & {\rm{if}} \quad x\neq \xc ,\\
+&\\
+\displaystyle{\sqrt{\frac{\partial_{xx}^{2}\zeta(\xc,E)}{2}}} & {\rm{if}} \quad x = \xc ,
+\end{cases}
+\label{eq:dzdx}
+\end{equation}
+
+where $\partial_{xx}^{2}\zeta(x,E)=(x+8)/(2\sqrt{2}(x+2)^{5/2})>0$. Therefore we have (with the correspondance $x\leftrightarrow z$)
+
+\begin{equation}
+\partial_{z}f(z,E)=\begin{cases}
+\displaystyle{\frac{2 z}{\partial_{x}\zeta(f(z),E)}} & {\rm{if}} \quad z\neq 0 ,\\
+&\\
+\displaystyle{\sqrt{\frac{2}{\partial_{xx}^{2}\zeta(\xc,E)}}} & {\rm{if}} \quad z = 0 ,
+\end{cases}
+\label{eq:dfdz}
+\end{equation}
 
 
 \begin{appendices}

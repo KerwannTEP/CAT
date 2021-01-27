@@ -1321,9 +1321,8 @@ f=z^{-1}
 \begin_inset Formula 
 \[
 f'(z)=\begin{cases}
--\frac{2|z|}{\phi'(x)} & x\in[x_{a},x_{c}[\leftrightarrow z\in[-\ell,0[\\
-+\frac{2|z|}{\phi'(x)} & x\in]x_{c},x_{p}]\leftrightarrow z\in]0,\ell]\\
-\sqrt{\frac{2}{\phi''(x_{c})}} & x=x_{c}\leftrightarrow z=0\leftrightarrow\phi'(x)=0
+\frac{2z}{\phi'(x)} & x\neq x_{c}\leftrightarrow z\neq0\\
+\sqrt{\frac{2}{\phi''(x_{c})}} & x=x_{c}\leftrightarrow\phi'(x)=0\leftrightarrow z=0
 \end{cases}
 \]
 
@@ -1340,6 +1339,53 @@ z(x)=\begin{cases}
 
 \end_inset
 
+
+\begin_inset Formula 
+\[
+z'(x)=\begin{cases}
+-\frac{\phi'(x)}{2\sqrt{\phi(x)}}=\frac{\phi'(x)}{2z} & x\in[x_{a},x_{c}]\\
++\frac{\phi'(x)}{2\sqrt{\phi(x)}}=\frac{\phi'(x)}{2z} & x\in[x_{c},x_{p}]
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $z$
+\end_inset
+
+ continue sur 
+\begin_inset Formula $[x_{p},x_{a}]$
+\end_inset
+
+, derivable sur l'intervalle privé de 
+\begin_inset Formula $x_{c}$
+\end_inset
+
+, et limite finie en 
+\begin_inset Formula $x_{c}$
+\end_inset
+
+.
+ donc 
+\begin_inset Formula $C^{1}$
+\end_inset
+
+ sur 
+\begin_inset Formula $[x_{p},x_{a}]$
+\end_inset
+
+.
+ dérivée toujours non-nulle (et positive).
+ donc inverse est 
+\begin_inset Formula $C^{1}$
+\end_inset
+
+ de dérivée strict positive.
+ (inversion globale)
+\end_layout
+
+\begin_layout Standard
 with 
 \begin_inset Formula $x_{c}=2r_{c}^{2}$
 \end_inset
