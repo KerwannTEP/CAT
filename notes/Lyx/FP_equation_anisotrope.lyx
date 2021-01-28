@@ -82,6 +82,159 @@
 \begin_body
 
 \begin_layout Section
+Isochrone potential
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\psi(r)=\frac{GM}{b+\sqrt{b^{2}+r^{2}}}=\frac{GM}{b}\frac{1}{1+\sqrt{1+\left(\frac{r}{b}\right)^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+fonction: eq (56) de Hamilton+Fouvry(2018) et (A1)
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\psi(r)=\frac{1}{1+\sqrt{1+r^{2}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Y(x)=x\psi(\sqrt{x/2})=\frac{x}{1+\sqrt{1+x/2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Y'(x)=\frac{\sqrt{2}x+4(\sqrt{x+2}+\sqrt{2})}{\sqrt{x+2}(\sqrt{2}\sqrt{x+2}+2)^{2}}=\frac{1}{\sqrt{2}\sqrt{x+2}}>0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Y''(x)=-\frac{1}{2\sqrt{2}(x+2)^{3/2}}<0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+Parametre d'anisotropie: 
+\begin_inset Formula $R_{a}$
+\end_inset
+
+ rayon d'anisotropie:
+\begin_inset Formula 
+\[
+\beta(r)=1-\frac{\langle v_{t}^{2}\rangle}{2\langle v_{r}^{2}\rangle}=\frac{1}{1+(R_{a}/r)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ainsi:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{a}=\infty$
+\end_inset
+
+ -> 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+ , 
+\begin_inset Formula $Q\propto E$
+\end_inset
+
+ et 
+\begin_inset Formula $f(E,L)=f(E)$
+\end_inset
+
+ (isotropie)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{a}=0$
+\end_inset
+
+ -> 
+\begin_inset Formula $\beta=1$
+\end_inset
+
+: radially anisotropic
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r<R_{a}$
+\end_inset
+
+: isotropic
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r>R_{a}$
+\end_inset
+
+: radially biased
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pour un tangentially biaised FP eq (A1) de Hamilton+Fouvry(2018)
+\end_layout
+
+\begin_layout Section
 Plummer model
 \end_layout
 
