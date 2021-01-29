@@ -35,6 +35,7 @@
 \newcommand{\ry}{\mathrm{y}}
 \newcommand{\rz}{\mathrm{z}}
 \newcommand{\rc}{\mathrm{c}}
+\newcommand{\ro}{\mathrm{o}}
 
 \newcommand{\thr}{\theta_{\rr}}
 
@@ -138,6 +139,10 @@
 
 \newcommand{\xc}{x_{\rc}}
 \newcommand{\rrc}{r_{\rc}}
+
+\newcommand{\Eo}{E_{\ro}}
+
+\newcommand{\bJ}{\boldsymbol{J}}
 
 \author{Kerwann}
 \date{\today}
@@ -908,10 +913,64 @@ and in the extreme radially anisotropic $(q=2)$ to
 
 When $E \leq 0$ or $L \leq 0$ then $\Fq(E,L) = 0$.
 
-\section{Isochrone model}
+\section{Isochronous model}
 \label{sec:Isochrone}
 
+(TODO)
 
+The isochronous model is associated with the gravitationnal potential
+
+\begin{equation}
+  \psi(r) = - \frac{GM}{b+\sqrt{b^{2}+r^{2}}} = \frac{2 \Eo}{1+\sqrt{1+x^{2}}}
+  \label{eq:IsoPotential}
+\end{equation}
+where $x=r/b$ and $\Eo=-GM/(2b)$.
+
+We consider the orbital plane of the motion. Within it, we can describe the motion by its hamiltonian $H$ and its actions $\bJ = (\Jr,L)$
+
+\begin{equation}
+  H(\bJ) = - \frac{(GM)^{2}}{2 \bigg[\Jr + \frac{1}{2} \bigg(L+\sqrt{L^{2}+4GMb}\bigg)\bigg]^{2}}
+  \label{eq:HamiltionianIso}
+\end{equation}
+
+From this, we can obtain a closed expression for $\Jr$
+
+\begin{equation}
+  \Jr (E,L)= \frac{GM}{\sqrt{-2E}} - \frac{1}{2} \bigg(L+\sqrt{L^{2}+4GMb}\bigg)
+  \label{eq:Jr_Iso}
+\end{equation}
+
+from the generic radial action
+
+\begin{equation}
+  \Jr (E,L)= \frac{1}{\pi} \int_{\rmin}^{\rmax} \vr(r) \rd r =  \frac{1}{\pi} \int_{\rmin}^{\rmax} \sqrt{2(E-\psieff(r,L))} \rd r .
+  \label{eq:Jr_Generic}
+\end{equation}
+
+From the generic definition $\rd E = \Omega_{1} \rd \Jr + \Omega_{2} \rd L$, which yields equivalently $\rd \Jr = (1/\Omega_{1}) \rd E - (\Omega_{2}/\Omega_{1}) \rd L$, we obtain
+
+\begin{align*}
+  \frac{2\pi}{\Omega_{1}} &= \int_{\rmin}^{\rmax} \frac{\rd r}{\vr(r)} = T \\
+  \frac{\Omega_{2}}{\Omega_{1}} &= \frac{1}{\pi} \int_{\rmin}^{\rmax} \frac{L \rd r}{r^{2} \vr(r)} = \frac{\Theta}{2\pi}
+\end{align*}
+
+where $T$ is the radial period and $\Theta$ is the apsidal angle. In particular, for the isochronous potential,
+
+\begin{align*}
+  \Omega_{1} (E,L)&= \omega(E) \Omega_{o} \\
+  \Omega_{2} (E,L)&= \eta(L) \omega(E) \Omega_{o} ,
+\end{align*}
+
+where $\omega(E) = (E/\Eo)^{3/2}$, $\Omega_{o}=\sqrt{GM/b^{3}}$ and $\eta(L)=\Omega_{2}/\Omega_{1}=(1/2)(1+L/\sqrt{L^{2}+4GMb})$.
+
+The angles associated to the actions are (cf. main.pdf Fouvry eq (A3) : mistake on denominator: $r$ instead of $r^{2}$?)
+
+\begin{align*}
+  \theta_{1} &= \int_{\rmin}^{r(\theta_{1})} \frac{\Omega_{1}}{\vr(r)} \rd r \\
+  \theta_{2} - \varphi &= \int_{\rmin}^{r(\theta_{1})} \frac{\Omega_{2} - L/r^{2}}{\vr(r)} \rd r,
+  \end{align*}
+where $\varphi$ is the angle from the ascending node to the current location
+of the particle along the orbital motion.
 
 
 \begin{appendices}

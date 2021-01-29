@@ -462,6 +462,31 @@ i.e.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L=r^{2}\dot{\theta}\rightarrow\theta=\int\frac{L{\rm d}t}{r^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Plummer model
 \end_layout
