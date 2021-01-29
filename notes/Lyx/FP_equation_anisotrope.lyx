@@ -88,7 +88,7 @@ Isochrone potential
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\psi(r)=\frac{GM}{b+\sqrt{b^{2}+r^{2}}}=\frac{GM}{b}\frac{1}{1+\sqrt{1+\left(\frac{r}{b}\right)^{2}}}
+\psi(r)=-\frac{GM}{b+\sqrt{b^{2}+r^{2}}}=-\frac{GM}{b}\frac{1}{1+\sqrt{1+\left(\frac{r}{b}\right)^{2}}}
 \]
 
 \end_inset
@@ -98,48 +98,6 @@ Isochrone potential
 
 \begin_layout Standard
 fonction: eq (56) de Hamilton+Fouvry(2018) et (A1)
-\end_layout
-
-\begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\psi(r)=\frac{1}{1+\sqrt{1+r^{2}}}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-Y(x)=x\psi(\sqrt{x/2})=\frac{x}{1+\sqrt{1+x/2}}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-Y'(x)=\frac{\sqrt{2}x+4(\sqrt{x+2}+\sqrt{2})}{\sqrt{x+2}(\sqrt{2}\sqrt{x+2}+2)^{2}}=\frac{1}{\sqrt{2}\sqrt{x+2}}>0
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-Y''(x)=-\frac{1}{2\sqrt{2}(x+2)^{3/2}}<0
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -231,7 +189,277 @@ Ainsi:
 \end_layout
 
 \begin_layout Standard
-Pour un tangentially biaised FP eq (A1) de Hamilton+Fouvry(2018)
+Dans le plan orbital: 
+\begin_inset Formula $\mathbf{J}=(J_{r},L)$
+\end_inset
+
+.
+ Le Hamiltonien est (cf main.
+ F2.
+ faux? manque un carré?)
+\begin_inset Formula 
+\[
+H(\mathbf{J})=-\frac{(GM)^{2}}{2\left[J_{r}+\frac{1}{2}\left(L+\sqrt{L^{2}+4GMb}\right)\right]^{2}}=E
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+J_{r}=\frac{GM}{\sqrt{-2E}}-\frac{1}{2}\left(L+\sqrt{L^{2}+4GMb}\right)
+\]
+
+\end_inset
+
+Soit 
+\begin_inset Formula $s^{2}=1+r^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\Omega_{r}=\Omega_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omega_{\phi}=\Omega_{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $E_{{\rm min}}=-\frac{GM}{2b}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\Omega_{o}=\sqrt{\frac{GM}{b^{3}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+dE=\Omega_{r}dJ_{r}+\Omega_{\phi}dL
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+dJ_{r}=\frac{1}{\Omega_{r}}dE-\frac{\Omega_{\phi}}{\Omega_{r}}dL
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\omega=(\frac{E}{E_{\min}})^{3/2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{\Omega_{r}} & =\frac{\partial J_{r}}{\partial E}=\frac{GM}{(-2E)^{3/2}}\rightarrow\Omega_{r}=\frac{(-2E)^{3/2}}{GM}=\frac{\omega(-2E_{\min})^{3/2}}{GM}=\frac{\omega(\frac{GM}{b})^{3/2}}{GM}=\frac{\omega(GM)^{3/2}}{b^{3/2}GM}\\
+\Omega_{r} & =\omega\Omega_{o}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\eta=\frac{\Omega_{\phi}}{\Omega_{r}} & =-\frac{\partial J_{r}}{\partial L}=\frac{1}{2}\left(1+\frac{L}{\sqrt{L^{2}+4GMb}}\right)\\
+ & =\frac{1}{2}\left(1+\frac{x_{p}x_{a}}{(1+s_{p})(1+s_{a})}\right)
+\end{align*}
+
+\end_inset
+
+Donc avec 
+\begin_inset Formula $\omega=(\frac{E}{E_{\min}})^{3/2}$
+\end_inset
+
+, 
+\begin_inset Formula $E_{{\rm min}}=-\frac{GM}{2b}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omega_{o}=\sqrt{\frac{GM}{b^{3}}}$
+\end_inset
+
+, on a
+\begin_inset Formula 
+\[
+\Omega_{r}=\omega\Omega_{o}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Omega_{\phi}=\eta\omega\Omega_{o}
+\]
+
+\end_inset
+
+Notations: 
+\begin_inset Formula 
+\[
+a=\frac{r_{a}+r_{p}}{2};\quad e=\frac{r_{a}-r_{p}}{r_{a}+r_{p}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E=\frac{\dot{r}^{2}}{2}+\frac{L^{2}}{2r^{2}}+\psi(r)
+\]
+
+\end_inset
+
+Bounds: 
+\begin_inset Formula $\dot{r}=0$
+\end_inset
+
+ donc .
+ Soit 
+\begin_inset Formula $x=r/b$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\ell^{2}=L^{2}/2b^{2}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $s^{2}=1+x^{2}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E=\frac{\ell^{2}}{x^{2}}+\frac{2E_{\min}}{1+\sqrt{1+x^{2}}}=\frac{\ell^{2}}{s^{2}-1}+\frac{2E_{\min}}{1+s}=\frac{\ell^{2}}{(s-1)(s+1)}+\frac{2E_{\min}}{s+1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(s^{2}-1)E=\ell^{2}+2(s-1)E_{\min}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Es^{2}-2sE_{\min}+\left(2E_{\min}-E-\ell^{2}\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+s_{a}+s_{p}=\frac{E_{\min}}{E}\rightarrow E=\frac{E_{\min}}{s_{a}+s_{p}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\theta_{1}}{\partial t}=\frac{\partial H}{\partial J_{r}}=\Omega_{r}\rightarrow\theta_{1}=\Omega_{r}(J_{r},L)t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\theta_{2}}{\partial t}=\frac{\partial H}{\partial L}=\Omega_{\phi}\rightarrow\theta_{2}-\varphi=\Omega_{\phi}(J_{r},L)t
+\]
+
+\end_inset
+
+La quantité intéressante est 
+\begin_inset Formula 
+\[
+\theta_{1}(t)=\Omega_{r}(J_{r},L)t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Définition arbitraire:
+\begin_inset Formula 
+\[
+\frac{2\pi}{\Omega_{r}}=T_{r}=2\int_{r_{p}}^{r_{a}}\frac{{\rm d}r}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=2\int_{r_{p}}^{r_{a}}\frac{{\rm d}r}{v_{r}(r)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\Omega_{\phi}}{\Omega_{r}}=\frac{1}{\pi}\int_{r_{p}}^{r_{a}}\frac{L{\rm d}r}{r^{2}v_{r}(r)}=\frac{\Theta}{2\pi}\Rightarrow\Omega_{\phi}=\frac{\Omega_{r}}{2\pi}\Theta=\frac{\Theta}{T_{r}}
+\]
+
+\end_inset
+
+i.e.
+ le décalage angulaire (sur la période radiale 
+\begin_inset Formula $T_{r}$
+\end_inset
+
+) est
+\begin_inset Formula 
+\[
+\Theta=\Omega_{\phi}T_{r}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
