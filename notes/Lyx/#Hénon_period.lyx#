@@ -113,37 +113,66 @@ T & =\int_{r_{p}}^{r_{a}}\frac{2dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\in
 
 \end_inset
 
-and
+
+\begin_inset Formula 
+\[
+x=2r^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{2}(x)=Y(x)-(Ex-L_{c}^{2})\leftrightarrow x=\varphi(z)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z=\ell\sin\phi
+\]
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align*}
-\langle D\rangle & =\int_{r_{p}}^{r_{a}}D(r)\frac{dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}D(r)\frac{rdr}{\sqrt{2r^{2}(E-\psi(r))-L^{2}}}\\
- & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{Ex-Y(x)-L^{2}}}\\
- & =\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{-Y(x)+(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
- & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-\left(Y(x)-(Ex-L_{c}^{2})\right)}}\\
- & \stackrel{z^{2}(x)=Y(x)-(Ex-L_{c}^{2})}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
- & \stackrel[\varphi(z(x))=x]{x=\varphi(z)}{=}\frac{1}{4}\int_{-\ell}^{\ell}\frac{D(r(z))\varphi'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
- & \stackrel{z=\ell\sin\phi}{=}\frac{1}{4}\int_{-\pi/2}^{\pi/2}D(r(\phi))\varphi'(\ell\sin\phi)d\phi
+\langle D\rangle & =\int_{r_{p}}^{r_{a}}D(r)\frac{2dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}D(r)\frac{2rdr}{\sqrt{2r^{2}(E-\psi(r))-L^{2}}}\\
+ & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r)dx}{\sqrt{Ex-Y(x)-L^{2}}}\\
+ & =\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r)dx}{\sqrt{-Y(x)+(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
+ & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r)dx}{\sqrt{\ell^{2}-\left(Y(x)-(Ex-L_{c}^{2})\right)}}\\
+ & \stackrel{z^{2}(x)=Y(x)-(Ex-L_{c}^{2})}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r)dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
+ & \stackrel[\varphi(z(x))=x]{x=\varphi(z)}{=}\frac{1}{2}\int_{-\ell}^{\ell}\frac{D(r)\varphi'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
+ & \stackrel{z=\ell\sin\phi}{=}\frac{1}{2}\int_{-\pi/2}^{\pi/2}D(r)\varphi'(\ell\sin\phi)d\phi
 \end{align*}
 
 \end_inset
 
-where 
-\begin_inset Formula $r(\phi)=\sqrt{\varphi(\ell\sin\phi)/2}$
-\end_inset
 
-.
 \end_layout
 
 \begin_layout Standard
-This transformation is quasi-analytical, with 
-\begin_inset Formula $x=\varphi(z)$
+\begin_inset space ~
 \end_inset
 
- being a 
-\begin_inset Formula $C^{1}$
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
 \end_inset
 
-, non-decreasing function as proven in the next analysis.
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
 \begin_inset Formula 
 \[
 z^{2}=Y(x)-(Ex-L_{c}^{2})=-\frac{x}{\sqrt{1+x/2}}-Ex+L_{c}^{2}=\phi(x)\leftrightarrow\begin{cases}
@@ -178,10 +207,6 @@ z^{2}=\phi(f(z))\rightarrow2z=f'(z)\phi'(f(z))\rightarrow f'(z)=\frac{2z}{\phi'(
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 donc 
 \begin_inset Formula $\phi'(x)$
 \end_inset
@@ -286,7 +311,7 @@ z>0\leftrightarrow x>x_{c}
 \end_inset
 
 We also have 
-\begin_inset Formula $\varphi'(z)=\frac{2z}{\phi'(\varphi(z))}$
+\begin_inset Formula $f'(z)=\frac{2z}{\phi'(f(z))}$
 \end_inset
 
  with 
@@ -348,13 +373,9 @@ z(x_{c}-\epsilon) & =-\sqrt{z^{2}(x_{c}-\epsilon)}=\sqrt{z_{c}^{2}-\epsilon\phi'
 \end_inset
 
 hence 
-\begin_inset Formula $z'(x_{c})=\sqrt{\frac{\phi''(x_{c})}{2}}>0$
-\end_inset
-
- and 
 \begin_inset Formula 
 \[
-\varphi'(z=0)=\sqrt{\frac{2}{\phi''(x_{c})}}=\sqrt{\frac{2}{\phi''(\varphi(0))}}>0
+f'(z=0)=
 \]
 
 \end_inset
@@ -438,34 +459,7 @@ x_{{\rm neg}}<x_{1}<x_{2}
 
 \end_inset
 
-There is an analytical formula for the roots as a function of the coefficients,
- hence of 
-\begin_inset Formula $z$
-\end_inset
 
-.
- This means that we may compute the derivative of the 
-\begin_inset Formula $z$
-\end_inset
-
--dependency of the roots.
-\end_layout
-
-\begin_layout Standard
-Double root at 
-\begin_inset Formula $x=x_{c}$
-\end_inset
-
- when 
-\begin_inset Formula $z=0$
-\end_inset
-
-.
- There, 
-\begin_inset Formula $\varphi'(0)=\sqrt{2/\phi''(x_{c})}>0$
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Standard

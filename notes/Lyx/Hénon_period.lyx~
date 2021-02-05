@@ -116,13 +116,13 @@ T & =\int_{r_{p}}^{r_{a}}\frac{2dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\in
 and
 \begin_inset Formula 
 \begin{align*}
-\langle D\rangle & =\int_{r_{p}}^{r_{a}}D(r)\frac{dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}D(r)\frac{rdr}{\sqrt{2r^{2}(E-\psi(r))-L^{2}}}\\
- & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{Ex-Y(x)-L^{2}}}\\
- & =\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{-Y(x)+(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
- & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-\left(Y(x)-(Ex-L_{c}^{2})\right)}}\\
- & \stackrel{z^{2}(x)=Y(x)-(Ex-L_{c}^{2})}{=}\frac{1}{4}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
- & \stackrel[\varphi(z(x))=x]{x=\varphi(z)}{=}\frac{1}{4}\int_{-\ell}^{\ell}\frac{D(r(z))\varphi'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
- & \stackrel{z=\ell\sin\phi}{=}\frac{1}{4}\int_{-\pi/2}^{\pi/2}D(r(\phi))\varphi'(\ell\sin\phi)d\phi
+\langle D\rangle & =\int_{r_{p}}^{r_{a}}D(r)\frac{2dr}{\sqrt{2(E-\psi(r))-\frac{L^{2}}{r^{2}}}}=\int_{r_{p}}^{r_{a}}D(r)\frac{2rdr}{\sqrt{2r^{2}(E-\psi(r))-L^{2}}}\\
+ & \stackrel[Y(x)=2r^{2}\psi(r)]{x=2r^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{Ex-Y(x)-L^{2}}}\\
+ & =\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{-Y(x)+(Ex-L_{c}^{2})+(L_{c}^{2}-L^{2})}}\\
+ & \stackrel{\ell^{2}=L_{c}^{2}-L^{2}}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-\left(Y(x)-(Ex-L_{c}^{2})\right)}}\\
+ & \stackrel{z^{2}(x)=Y(x)-(Ex-L_{c}^{2})}{=}\frac{1}{2}\int_{x_{p}}^{x_{a}}\frac{D(r(x))dx}{\sqrt{\ell^{2}-z^{2}(x)}}\\
+ & \stackrel[\varphi(z(x))=x]{x=\varphi(z)}{=}\frac{1}{2}\int_{-\ell}^{\ell}\frac{D(r(z))\varphi'(z)dz}{\sqrt{\ell^{2}-z^{2}}}\\
+ & \stackrel{z=\ell\sin\phi}{=}\frac{1}{2}\int_{-\pi/2}^{\pi/2}D(r(\phi))\varphi'(\ell\sin\phi)d\phi
 \end{align*}
 
 \end_inset
