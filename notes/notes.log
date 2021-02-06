@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  6 FEB 2021 14:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.8)  6 FEB 2021 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -374,6 +374,9 @@ LaTeX Warning: Label `eq:DE_DL' multiply defined.
 
 LaTeX Warning: Label `eq:Ea_La' multiply defined.
 
+
+LaTeX Warning: Label `eq:xcPlummer' multiply defined.
+
 )
 \openout1 = `notes.aux'.
 
@@ -526,30 +529,30 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 [6] [7] [8] [9]
 Package acronym Info: Label `acro:DF' newly defined as it shall be overridden
-although it is yet undefined on input line 892.
+although it is yet undefined on input line 887.
  [10] [11] [12] [13] [14] [15]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1284.
+(hyperref)                removing `math shift' on input line 1279.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1284.
+(hyperref)                removing `math shift' on input line 1279.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1301.
+(hyperref)                removing `math shift' on input line 1296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1301.
+(hyperref)                removing `subscript' on input line 1296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1301.
+(hyperref)                removing `math shift' on input line 1296.
 
 
-Overfull \hbox (2.07996pt too wide) detected at line 1340
+Overfull \hbox (2.07996pt too wide) detected at line 1335
 [][]\U/msb/m/n/10.95 H[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; b; c; d\OT1/
 cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) = []
  []
@@ -557,23 +560,23 @@ cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ) = []
 [16] [17]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1393.
+(hyperref)                removing `math shift' on input line 1388.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 1393.
+(hyperref)                removing `subscript' on input line 1388.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1393.
+(hyperref)                removing `math shift' on input line 1388.
 
 [18] [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1499.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1510.
  [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1499.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1510.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1499.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1499.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1510.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1510.
 
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: 39A284FAC798770973888E984ACECF91;1564.
@@ -584,16 +587,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1499.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1510.
  ) 
 Here is how much of TeX's memory you used:
- 9326 strings out of 483107
- 132879 string characters out of 5964631
- 415787 words of memory out of 5000000
- 23985 multiletter control sequences out of 15000+600000
+ 9329 strings out of 483107
+ 132933 string characters out of 5964631
+ 415851 words of memory out of 5000000
+ 23986 multiletter control sequences out of 15000+600000
  574512 words of font info for 113 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 34i,19n,31p,876b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,19n,31p,829b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-
@@ -613,10 +616,10 @@ xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/was
 y-type1/wasy10.pfb>
-Output written on notes.pdf (20 pages, 269196 bytes).
+Output written on notes.pdf (20 pages, 270696 bytes).
 PDF statistics:
- 431 PDF objects out of 1000 (max. 8388607)
- 386 compressed objects within 4 object streams
- 150 named destinations out of 1000 (max. 500000)
+ 435 PDF objects out of 1000 (max. 8388607)
+ 390 compressed objects within 4 object streams
+ 152 named destinations out of 1000 (max. 500000)
  185 words of extra memory for PDF output out of 10000 (max. 10000000)
 

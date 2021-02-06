@@ -646,22 +646,17 @@ with precision
 \label{eq:precision_Ec}
 \end{equation}
 
-We can adapt the pevious method to compute the angular momentum of a circular orbit using the equation
+However, there is no need to use an approximation method to compute $\Lc$, as we can obtain an analytical formula. Indeed, it is given by
 \begin{equation}
-L_{{\rm c}}^{2}(E)=\eta(r_{*}^{E};E)=\max_{r>0}\eta(r;E).
+\Lc^{2}(E)=\eta(r_{*}^{E};E)=\max_{r>0}\eta(r;E).
 \label{eq:angular_circular}
 \end{equation}
-where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Its derivatives are
-
+where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Using the change of variable $x=2r^{2}$, we obtain $\tilde{\eta}(x,L)=\eta(r,L)=x(E+1/\sqrt{1+x/2})$, whose maximum is equal to that of $\eta$. It is reached for $\xc(E)$ (defined in the next section), whose computation is done is the appendix and is given by eq\eqref{eq:xcPlummer}. Therefore, we have an analytical expression for $\Lc^{2}(E)$, given by
 
 \begin{equation}
-\begin{array}{ccl}
-  \eta'(r;E) & =& \displaystyle{4r(E-\psi(r))-2r^{2}\psi'(r)} ,\\
-  
-  \eta''(r;E) & =&\displaystyle{4(E-\psi(r))-8r\psi'(r)-2r^{2}\psi''(r)} .
-\end{array}
-\label{eq:z_derivatives}
-\end{equation}
+  \Lc^{2}(E) =\tilde{\eta}(\xc(E),E) =\eta(\sqrt{\xc(E)/2},E) .
+  \label{eq:Lc_analytical_Plummer}
+  \end{equation}
 
 
 \subsubsection{Isochrone model}
@@ -745,7 +740,7 @@ Since $z^{2}=\Upsilon(\varphi(z))$, we have that
   \label{eq:varphi'(z)}
 \end{equation}
 
-which is strictly positive for $z\neq0$ and evaluates to $\sqrt{2/\Upsilon''(\xc)}>0$ at $z=0$ (see appendix). A straighforward computation gives us that $x=\varphi(z)$ is solution to the degree-3 polynomial equation $z^{2}-\Lc^{2} + Ex)^{2}(1+x/2)=x^{2}$. This equation has at least the two real-positive solutions of $z^{2}=\Upsilon(x)$, to which it must have an additional root at some negative $x$. Cardan's formulae (and more precisely Viète's formulae) gives us analytical expressions for those solutions (in terms of its coefficients), hence analytical expressions in term of $z$ (given that we have computed $\Lc$ beforehand). Using equation \eqref{eq:varphi'(z)}, we obtain an analytical expression of $\varphi'(z)$ which is regular along $z$, meaning that the orbit-averaged expression from eq. \eqref{eq:I(D)Chgphi} is nicely integrable.
+which is strictly positive for $z\neq0$ and evaluates to $\sqrt{2/\Upsilon''(\xc)}>0$ at $z=0$ (see appendix). A straighforward computation gives us that $x=\varphi(z)$ is solution to the degree-3 polynomial equation $z^{2}-\Lc^{2} + Ex)^{2}(1+x/2)=x^{2}$. This equation has at least the two real-positive solutions of $z^{2}=\Upsilon(x)$, to which it must have an additional root at some negative $x$. Cardan's formulae (and more precisely Viète's formulae) gives us analytical expressions for those solutions (in terms of its coefficients), hence analytical expressions in term of $z$. Using equation \eqref{eq:varphi'(z)}, we obtain an analytical expression of $\varphi'(z)$ which is regular along $z$, meaning that the orbit-averaged expression from eq. \eqref{eq:I(D)Chgphi} is nicely integrable.
 
 In particular, we obtain the following expressions
 
@@ -1478,7 +1473,7 @@ Defining
   d &= (z^{2}-\Lc^{2})^{2} .
 \end{align*}
 
-the equation becomes $a x^{2}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
+the equation becomes $a x^{3}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
 \begin{align*}
   p &= (3ac -b^{2})/(3a^{2}), \\
   q &= (2b^{3}-9abc+27a^{2}d)/(27a^{3}) ,
@@ -1491,7 +1486,23 @@ the equation to solve is $t^{3}+pt+q=0$, with the three roots given by
 \end{equation}
 One must then order the three roots, discard the negative one, and select the smaller or the bigger root depending on the sign of $z$.
 
-
+Using the same method, we may also obtain an analytical expression for $\xc$, since the condition $\Upsilon'(\xc)=0$ (only one positive solution) is equivalent to the cubic equation
+\begin{equation}
+   2E^{2}(2+x)^{3} - (4+x)^{2} = 0 ,
+  \label{eq:xcPlummer}
+\end{equation}
+which has only one real solution $(-1<E<0)$. Defining
+\begin{align*}
+  a &= E^{2}/2, \\
+  b &= 12E^{2}-1 ,\\
+  c &= 24E^{2}-8,\\
+  d &= 16(E^{2}-1) ,
+\end{align*}
+and defining $p,q$ the same way, we can express the solution as
+\begin{equation}
+  \xc(E) = -\frac{b}{3a} + \sqrt[3]{-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} + \sqrt[3]{-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} .
+  \label{eq:xcPlummer}
+  \end{equation}
 
 
 \end{appendices}
