@@ -364,6 +364,7 @@ where the subscripts are relative of the velocity of the test star.
 and a tedious by straightforward computation see appendix) yields
 
 \begin{equation}
+  \boxed{
 \begin{array}{ccl}
   \dvParAvrLoc(r,\bv) & =&\displaystyle{4\pi G^{2}\ma(m+\ma)\ln\Lambda \bigg( \frac{\vr}{v}\frac{\partial h}{\partial \vr}+\frac{\vt}{v}\frac{\partial h}{\partial \vt} \bigg)} ,\\
   
@@ -371,6 +372,7 @@ and a tedious by straightforward computation see appendix) yields
   
   \dvPerpSqAvrLoc(r,\bv) & = &\displaystyle{4\pi G^{2}\ma^{2}\ln\Lambda\left(\left(\frac{\vt}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vr^{2}}-\frac{2\vr\vt}{v^{2}}\frac{\partial^{2}g}{\partial \vt \partial \vr}+\left(\frac{\vr}{v}\right)^{2}\frac{\partial^{2}g}{\partial \vt^{2}}+\frac{1}{\vt}\frac{\partial g}{\partial \vt}\right)}   
 \end{array}
+}
 \label{eq:AnisoLocDiffCoefsdRdT}
 \end{equation}
 where $h(r,\bva)=h(r,\vr,\vt)$ and $g(r,\bv)=g(r,\vr,\vt)$.
@@ -419,6 +421,7 @@ of $f(r,\bva)=F(\Ea,\La)$ (exchange
 derivation and integral). Those are (function are evaluated at $(\Ea,\La)$)
 
 \begin{equation}
+  \boxed{
 \begin{array}{ccl}
   \displaystyle{\frac{\partial}{\partial \vr}\left[f(r,\bv-\bV0)\right]} & =&\displaystyle{\left(-\vr+V_{0}\cos\theta\right)\frac{\partial F}{\partial E}} ,\\
   
@@ -431,6 +434,7 @@ derivation and integral). Those are (function are evaluated at $(\Ea,\La)$)
   \displaystyle{\frac{\partial^{2}}{\partial \vt^{2}}\left[f(r,\bv-\bV0)\right]} & =&\displaystyle{-\frac{\partial F}{\partial E}+\frac{r}{\La}\frac{\partial F}{\partial L}+\left(-\vt+V_{0}\sin\theta\cos\phi\right)^{2}} \\
   {}&\times& \displaystyle{\left(\frac{\partial^{2}F}{\partial E{}^{2}}-\frac{2r}{\La}\frac{\partial^{2}F}{\partial L\partial E}-\frac{r^{2}}{\La^{3}}\frac{\partial F}{\partial L}+\frac{r^{2}}{\La^{2}}\frac{\partial^{2}F}{\partial L{}^{2}}\right)} .
 \end{array}
+}
 \label{eq:DF_Derivatives}
 \end{equation}
 
@@ -442,10 +446,12 @@ The DF and its derivative vanish when $\Ea>0$. Obviously, $\va(r,V_{0},\theta,\p
 \end{equation}
 For $E>0$, the inferior root is always negative whereas the superior root is always positive. Let's call it $\Vmax$. In the end, the Rosenbluth potentials can be computed over compact domains
 \begin{equation}
+  \boxed{
 \begin{array}{ccl}
   h(r,\vr,\vt) &=& \displaystyle{\int_{0}^{\Vmax}{\rd}V_{0} V_{0}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi f(r,\bv-\bV0)} ,\\
   g(r,\vr,\vt) &=& \displaystyle{\int_{0}^{\Vmax}{\rd}V_{0} V_{0}^{3}\int_{0}^{\pi}{\rd}\theta\sin\theta\int_{0}^{2\pi}{\rd}\phi f(r,\bv-\bV0)}
 \end{array}
+}
 \label{eq:Rosenbluth_finite}
 \end{equation}
 and so do its partial derivatives.
@@ -582,10 +588,110 @@ All the integral are finite, since they are integrable at the endpoints
 \end{equation}
 with strictly positive prefactor for bounded, non-circular orbits.
 
-\subsubsection{Isochrone model}
-\label{subsubsec:IsochroneOrbitStudy}
+
+
+\subsection{Circular orbit}
+\label{subsec:Circular_Energy}
+
+ The allowed region in $(E,L)$ space is composed of the
+$E < 0 , L> 0$ such that there exists $r>0$ verifying the inequality
+$\psieff(r;L)\leq E$. For $L>0$, this function  is decreasing until a global
+minimum before increasing towards $0$. Raising the value of $L$
+increases this minimum value, meaning that there exists a value $\Lc(E)$
+such that $\psieff(r;\Lc(E))=E$. Then, the forbidden angular
+momenta (for a given $E$) are the $L>\Lc(E)$. Due to the
+discussion in the previous section, this couple $(E,\Lc(E))$
+determines a circular orbit.
+
+
+\subsubsection{Plummer model}
+\label{subsubsec:PlummerCircularOrbit}
 
 (TODO)
+
+It is given by $\Ec(L)=\min_{r>0}\psieff(r;L)=\psieff(r_{*}^{L};L)$.
+To approximate this $r_{*}^{L}$, we may look for it using Newton's
+method applied to $\psieff'$, since $\psieff'(r_{*}^{L};L)=0$.
+Start at $r_{0}^{L}=L^{2/3}$ , where the evaluation yields
+\begin{equation}
+\psieff'(L^{2/3};L)=-1+\frac{L^{2/3}}{(1+L^{4/3})^{3/2}}\in[-1,\sqrt{4/27}-1]\simeq[-1,-0.615]
+\label{eq:start_recursion_Ec}
+\end{equation}
+in order not to be too far away from $\psieff'(r_{*}^{L};L)=0$,
+and apply the recursion
+\begin{equation}
+r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
+\label{eq:recursion_Ec}
+\end{equation}
+where
+
+\begin{equation}
+\begin{array}{ccl}
+ \psieff'(r;L) & =& \displaystyle{\frac{r}{(1+r^{2})^{3/2}}-\frac{L^{2}}{r^{3}}} ,\\
+  
+  \psieff''(r_{n};L) & =&\displaystyle{\frac{(1+r^{2})^{3/2}-3r^{2}\sqrt{1+r^{2}}}{(1+r^{2})^{3}}+3\frac{L^{2}}{r^{4}}} .
+\end{array}
+\label{eq:psieff_derivatives}
+\end{equation}
+
+Then $r_{n}^{L}\rightarrow r_{*}^{L}$. We can show that $(r_{n}^{L})$
+is increasing since $\psieff'(r_{n}^{L};L)<0$ and $\psieff''(r_{n}^{L};L)>0$
+(and convexity of $\psieff'$ where it matters). Therefore
+a good stopping condition is to get the lowest $N$ such that $\psieff'(r_{N}^{L}+\epsilon)>0$
+for some precision $\epsilon>0$. Then, taking $\tilde{r}_{*}^{L}=(r_{N}^{L}+r_{N}^{L}+\epsilon)/2=r_{N}^{L}+\epsilon/2$
+we will have $\Ec(L)\simeq\psieff(\tilde{r}_{*}^{L};L)$,
+with precision 
+\begin{equation}
+\delta \Ec(L)\simeq|\psieff(r_{*}^{L};L)-\psieff(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psieff^{(2)}(r_{*}^{L})}_{>0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psieff^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
+\label{eq:precision_Ec}
+\end{equation}
+
+We can adapt the pevious method to compute the angular momentum of a circular orbit using the equation
+\begin{equation}
+L_{{\rm c}}^{2}(E)=\eta(r_{*}^{E};E)=\max_{r>0}\eta(r;E).
+\label{eq:angular_circular}
+\end{equation}
+where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Its derivatives are
+
+
+\begin{equation}
+\begin{array}{ccl}
+  \eta'(r;E) & =& \displaystyle{4r(E-\psi(r))-2r^{2}\psi'(r)} ,\\
+  
+  \eta''(r;E) & =&\displaystyle{4(E-\psi(r))-8r\psi'(r)-2r^{2}\psi''(r)} .
+\end{array}
+\label{eq:z_derivatives}
+\end{equation}
+
+
+\subsubsection{Isochrone model}
+\label{subsubsec:IsoCircularOrbit}
+
+In this case, $\psieff(r,L)=-2/(1+\sqrt{1+r^{2}}) + L^{2}/(2r^{2})$. Its minimum value is given by
+
+\begin{equation}
+  \Ec(L) = \frac{1}{4} \bigg(-L^{2} + \sqrt{L^{2}(L^{2}+8)}-4\bigg).
+  \label{eq:Ec_Isochronous}
+\end{equation}
+
+As for $\Lc^{2}$, we can deduces its expressions by inverting eq.\eqref{eq:Ec_Isochronous}. Letting $X=L^{2}$, we must solve for $X>0$ the equation
+
+\begin{equation}
+  4E=-X+\sqrt{X(X+8)}-4 = h(X) ,
+  \label{eq:Lc2X}
+\end{equation}
+which is an increasing function such that $h(0)=-4$ and $h(+\infty)=0$. Therefore it has only one strictly positive solution. We can rewrite this equation as the degree-2 equation
+\begin{equation}
+  (4(E+1)+X)^{2}=X(X+8) ,
+  \label{eq:Lc2X_poly2_equation}
+\end{equation}
+which simplifies a linear equation with the solution $X=-2(E+1)^{2}/E>0$. Therefore, the angular momentum of a circular orbit for the isochronous potential is given by
+
+\begin{equation}
+  \Lc(E) = \sqrt{\frac{2(E+1)^{2}}{-E}} .
+  \label{eq:Ec_Iso}
+  \end{equation}
+
 
 \subsubsection{Plummer model}
 \label{subsubsec:PlummerOrbitStudy}
@@ -640,85 +746,26 @@ Since $z^{2}=\Upsilon(\varphi(z))$, we have that
 \end{equation}
 
 which is strictly positive for $z\neq0$ and evaluates to $\sqrt{2/\Upsilon''(\xc)}>0$ at $z=0$ (see appendix). A straighforward computation gives us that $x=\varphi(z)$ is solution to the degree-3 polynomial equation $z^{2}-\Lc^{2} + Ex)^{2}(1+x/2)=x^{2}$. This equation has at least the two real-positive solutions of $z^{2}=\Upsilon(x)$, to which it must have an additional root at some negative $x$. Cardan's formulae (and more precisely Viète's formulae) gives us analytical expressions for those solutions (in terms of its coefficients), hence analytical expressions in term of $z$ (given that we have computed $\Lc$ beforehand). Using equation \eqref{eq:varphi'(z)}, we obtain an analytical expression of $\varphi'(z)$ which is regular along $z$, meaning that the orbit-averaged expression from eq. \eqref{eq:I(D)Chgphi} is nicely integrable.
-        
 
-\subsection{Circular orbit}
-\label{subsec:Circular_Energy}
+In particular, we obtain the following expressions
 
-We have now access to the NR, orbit-averaged diffusion coefficients
-in $(E,L)$-space for the allowed bound orbits: $\dE$, $\dEE$,
-$\dL$, $\dLL$ and $\dEL$, functions of
-$(E,L)$. The allowed region in $(E,L)$ space is composed of the
-$E < 0 , L> 0$ such that there exists $r>0$ verifying the inequality
-$\psieff(r;L)\leq E$. As shown before, for $L>0$, this function  is decreasing until a global
-minimum before increasing towards $0$. Raising the value of $L$
-increases this minimum value, meaning that there exists a value $\Lc(E)$
-such that $\psieff(r;\Lc(E))=E$. Then, the forbidden angular
-momenta (for a given $E$) are the $L>\Lc(E)$. Due to the
-discussion in the previous section, this couple $(E,\Lc(E))$
-determines a circular orbit.
+\begin{equation}
+  \boxed{
+    \begin{array}{ccl}
+      \displaystyle{\frac{T}{2}} &=& \displaystyle{\int_{-\pi/2}^{\pi/2}\varphi'(\ell\sin\phi)\rd \phi},\\
+      \displaystyle{\langle D\rangle} &=& \displaystyle{\frac{2}{T}\int_{-\pi/2}^{\pi/2}D(r(\phi))\varphi'(\ell\sin\phi)\rd \phi}, \\
+      r(\phi) &=& \sqrt{\varphi(\ell\sin\phi)/2}.
+    \end{array}
+  }
+  \label{eq:periodAndOAD}
+ \end{equation}
+
+
 
 \subsubsection{Isochrone model}
-\label{subsubsec:PlummerCircularOrbit}
+\label{subsubsec:IsochroneOrbitStudy}
 
 (TODO)
-
-\subsubsection{Plummer model}
-\label{subsubsec:PlummerCircularOrbit}
-
-(TODO)
-
-It is given by $\Ec(L)=\min_{r>0}\psieff(r;L)=\psieff(r_{*}^{L};L)$.
-To approximate this $r_{*}^{L}$, we may look for it using Newton's
-method applied to $\psieff'$, since $\psieff'(r_{*}^{L};L)=0$.
-Start at $r_{0}^{L}=L^{2/3}$ , where the evaluation yields
-\begin{equation}
-\psieff'(L^{2/3};L)=-1+\frac{L^{2/3}}{(1+L^{4/3})^{3/2}}\in[-1,\sqrt{4/27}-1]\simeq[-1,-0.615]
-\label{eq:start_recursion_Ec}
-\end{equation}
-in order not to be too far away from $\psieff'(r_{*}^{L};L)=0$,
-and apply the recursion
-\begin{equation}
-r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
-\label{eq:recursion_Ec}
-\end{equation}
-where
-
-\begin{equation}
-\begin{array}{ccl}
- \psieff'(r;L) & =& \displaystyle{\frac{r}{(1+r^{2})^{3/2}}-\frac{L^{2}}{r^{3}}} ,\\
-  
-  \psieff''(r_{n};L) & =&\displaystyle{\frac{(1+r^{2})^{3/2}-3r^{2}\sqrt{1+r^{2}}}{(1+r^{2})^{3}}+3\frac{L^{2}}{r^{4}}} .
-\end{array}
-\label{eq:psieff_derivatives}
-\end{equation}
-
-Then $r_{n}^{L}\rightarrow r_{*}^{L}$. We can show that $(r_{n}^{L})$
-is increasing since $\psieff'(r_{n}^{L};L)<0$ and $\psieff''(r_{n}^{L};L)>0$
-(and convexity of $\psieff'$ where it matters). Therefore
-a good stopping condition is to get the lowest $N$ such that $\psieff'(r_{N}^{L}+\epsilon)>0$
-for some precision $\epsilon>0$. Then, taking $\tilde{r}_{*}^{L}=(r_{N}^{L}+r_{N}^{L}+\epsilon)/2=r_{N}^{L}+\epsilon/2$
-we will have $\Ec(L)\simeq\psieff(\tilde{r}_{*}^{L};L)$,
-with precision 
-\begin{equation}
-\delta \Ec(L)\simeq|\psieff(r_{*}^{L};L)-\psieff(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psieff^{(2)}(r_{*}^{L})}_{>0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psieff^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
-\label{eq:precision_Ec}
-\end{equation}
-
-We can adapt the pevious method to compute the angular momentum of a circular orbit using the equation
-\begin{equation}
-L_{{\rm c}}^{2}(E)=z(r_{*}^{E};E)=\max_{r>0}z(r;E).
-\label{eq:angular_circular}
-\end{equation}
-where we defined $z(r;E)\doteqdot r^{2}(\psi(r)-E)$. Its derivatives are
-\begin{equation}
-\begin{array}{ccl}
-  z'(r;E) & =& \displaystyle{4r(\psi(r)-E)+2r^{2}\psi'(r)} ,\\
-  
-  z''(r;E) & =&\displaystyle{4(\psi(r)-E)+8r\psi'(r)+2r^{2}\psi''(r)} .
-\end{array}
-\label{eq:z_derivatives}
-\end{equation}
 
 \section{Diffusion equation and change of variables}
 \label{sec:diffEq_changeVar}
@@ -1251,7 +1298,7 @@ First, we compute the velocity dependency of the energy and the angular momentum
 \end{equation}
 Then we just apply the chain rule as many times as we need to to obtain the desire formulae.
 
-\section{Partial derivatives of $\Fq$}
+\section{Partial derivatives of $\Fq$ (Plummer)}
 \label{app:Fq_derivatives}
 We will need the derivatives of $\mH$, which are
 
@@ -1421,7 +1468,31 @@ Furthermore,
 (z^{2}-\Lc^{2}+E x)^{2}(1+x/2) &=x^{2} .
   \end{align*}
 
-This is a degree-3 polynomial equation, with at least the two positive-real solutions of $z^{2}=\Upsilon(x)$. There are no other positive real solutions, but because it is a degree-3 polynomial equation with real coefficients and strictly more than 1 real solution, it more have a third real solution, which must be negative. Viète's formulae give us analytical expressions for those solutions. 
+This is a degree-3 polynomial equation, with at least the two positive-real solutions of $z^{2}=\Upsilon(x)$. There are no other positive real solutions, but because it is a degree-3 polynomial equation with real coefficients and strictly more than 1 real solution, it more have a third real solution, which must be negative. Viète's formulae give us analytical expressions for those solutions.
+
+Defining
+\begin{align*}
+  a &= E^{2}/2, \\
+  b &= (z^{2}-\Lc^{2})E+E^{2}-1 ,\\
+  c &= 2(z^{2}-\Lc^{2})E + (z^{2}-\Lc^{2})^{2}/2 ,\\
+  d &= (z^{2}-\Lc^{2})^{2} .
+\end{align*}
+
+the equation becomes $a x^{2}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
+\begin{align*}
+  p &= (3ac -b^{2})/(3a^{2}), \\
+  q &= (2b^{3}-9abc+27a^{2}d)/(27a^{3}) ,
+  \end{align*}
+the equation to solve is $t^{3}+pt+q=0$, with the three roots given by
+
+\begin{equation}
+  t_{k} = 2\sqrt{-\frac{p}{3}} \cos\bigg[\frac{1}{3}\arccos\bigg(\frac{3q}{2p} \sqrt{-\frac{3}{p}}\bigg)-\frac{2\pi k}{3}\bigg] .
+  \label{eq:Viete_formula_varphi(z)}
+\end{equation}
+One must then order the three roots, discard the negative one, and select the smaller or the bigger root depending on the sign of $z$.
+
+
+
 
 \end{appendices}
 
