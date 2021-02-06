@@ -658,6 +658,7 @@ where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Using the change of va
   \label{eq:Lc_analytical_Plummer}
   \end{equation}
 
+Though in fact, we could obtain an analytical expression for $\Ec(L)$. Using the same change of variable $x=2r^{2}$, the condition $\psieff'(r;L)=0$ is equivalent to the degree-4 polynomial equation $x^{4}-2L^{4}(x+2)^{3}=0$. Using Ferrari's method, we can obtain the expression of its roots with respect to $L$. There isn't really a need to do that, as we won't explicitely need to compute $\Ec(L)$.
 
 \subsubsection{Isochrone model}
 \label{subsubsec:IsoCircularOrbit}
@@ -711,7 +712,7 @@ Defining $\ell^{2} = \Lc^{2}(E)-L^{2}$ and $z^{2}=Y(x)-(E x - \Lc^{2})$, we have
   \label{eq:I(D)ChgX_Z}
 \end{equation}
 
-The equation  $z^{2}=Y(x)-(E x - \Lc^{2})$ has two solutions in $[0,\xc]$ (for $(z<0)$) and $[\xc,+\infty[$ (for $z>0$). This defines a function $x=\varphi(z)$, which is $C^{1}$ and strictly increasing with $\varphi(\xc)=0$. This change of variable gives
+The equation  $z^{2}=Y(x)-(E x - \Lc^{2})$ has two solutions in $[0,\xc]$ (for $(z<0)$) and $[\xc,+\infty[$ (for $z>0$). This defines a function $x=\varphi(z)$, which is $C^{1}$ and strictly increasing with $\varphi(0)=\xc$ and is always strictly positive. This change of variable gives
 
 \begin{equation}
  I(D) = \frac{1}{4}\int_{-\ell}^{\ell}  \frac{D(r(z))\varphi'(z)\rd z}{\sqrt{\ell^{2}-z^{2}}} .
@@ -755,7 +756,37 @@ In particular, we obtain the following expressions
   \label{eq:periodAndOAD}
  \end{equation}
 
+A few things to highlight:
+\begin{itemize}
+\item Effective anomaly:
+  \begin{equation}
+  \phi(r)=\begin{cases}
+\displaystyle{ -\arcsin(\Upsilon(2r^{2})/\ell)} & {\rm{if}} \quad r\leq\rrc ,\\
+\displaystyle{ +\arcsin(\Upsilon(2r^{2})/\ell)} &{\rm{if}} \quad r\geq\rrc ,
+  \end{cases}
+  \label{eq:effective_anomaly}
+  \end{equation}
+  
+\item Radius w.r.t. effective anomaly:
+  \begin{equation}
+ r(\phi)=\sqrt{\varphi(\ell\sin\phi)/2} ,
+  \label{eq:r(effective_anomaly)}
+  \end{equation}
+  
+\item Gradient of radius:
+  \begin{equation}
+ r'(\phi)=\frac{\ell\cos\phi\varphi'(\ell\sin\phi)}{4\sqrt{\varphi(\ell\sin\phi)/2}} ,
+  \label{eq:Gradient_r(effective_anomaly)}
+  \end{equation}
+  
+\item Stable integrand:
+  \begin{equation}
+ \frac{r'(\phi)}{\vr(\phi)}=\varphi'(\ell\sin\phi) .
+  \label{eq:Gradient_r(effective_anomaly)_over_vr}
+  \end{equation}
+\end{itemize}
 
+All of those expression are analytical, without singularities and well-defined over their compact domain of definition.
 
 \subsubsection{Isochrone model}
 \label{subsubsec:IsochroneOrbitStudy}
