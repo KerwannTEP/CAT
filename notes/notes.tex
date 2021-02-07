@@ -36,6 +36,8 @@
 \newcommand{\rz}{\mathrm{z}}
 \newcommand{\rc}{\mathrm{c}}
 \newcommand{\ro}{\mathrm{o}}
+\newcommand{\ra}{\mathrm{a}}
+\newcommand{\rp}{\mathrm{p}}
 
 \newcommand{\Eo}{E_{\ro}}
 
@@ -57,7 +59,6 @@
 \newcommand{\hr}{\hat{\br}}
 \newcommand{\Fq}{F_{q}}
 \newcommand{\fq}{f_{q}}
-\newcommand{\ra}{\mathrm{a}}
 \newcommand{\va}{v_{\ra}}
 
 \newcommand{\vax}{v_{\ra \rx}}
@@ -142,6 +143,11 @@
 
 \newcommand{\xc}{x_{\rc}}
 \newcommand{\rrc}{r_{\rc}}
+
+\newcommand{\xa}{x_{\ra}}
+\newcommand{\xrp}{x_{\rp}}
+\newcommand{\sa}{s_{\ra}}
+\newcommand{\srp}{s_{\rp}}
 
 \author{Kerwann}
 \date{\today}
@@ -761,8 +767,8 @@ A few things to highlight:
 \item Effective anomaly:
   \begin{equation}
   \phi(r)=\begin{cases}
-\displaystyle{ -\arcsin(\Upsilon(2r^{2})/\ell)} & {\rm{if}} \quad r\leq\rrc ,\\
-\displaystyle{ +\arcsin(\Upsilon(2r^{2})/\ell)} &{\rm{if}} \quad r\geq\rrc ,
+\displaystyle{ -\arcsin(\sqrt{\Upsilon(2r^{2})}/\ell)} & {\rm{if}} \quad r\leq\rrc ,\\
+\displaystyle{ +\arcsin(\sqrt{\Upsilon(2r^{2})}/\ell)} &{\rm{if}} \quad r\geq\rrc ,
   \end{cases}
   \label{eq:effective_anomaly}
   \end{equation}
@@ -791,7 +797,47 @@ All of those expression are analytical, without singularities and well-defined o
 \subsubsection{Isochrone model}
 \label{subsubsec:IsochroneOrbitStudy}
 
-(TODO)
+The orbit-average of a quantity $D(r)$ is defined as
+$$\langle D\rangle = \frac{2}{T} \int_{0}^{T/2} D(r(t)) \rd t = \frac{2}{T} \int_{\rmin}^{\rmax} D(r) \frac{\rd r}{\vr(r)} .$$
+We must compute integrals of the form
+$$I(D) = \int_{\rmin}^{\rmax} D(r) \frac{\rd r}{\vr(r)} .$$
+Use the change of variable $r(u)=a(1+ef(u))$ with $f(u)=u(3/2-u^{2}/2)$, where we have defined the effective sma and eccentricity
+
+\begin{equation}
+  a=\frac{\rmin+\rmax}{2};\quad e = \frac{\rmin-\rmax}{\rmin+\rmax} .
+  \label{eq:effective_e_a_Iso}
+\end{equation}
+
+Then we can write (notes Fouvry)
+
+\begin{equation}
+  I(D) = \int_{-1}^{1} D(r(u)) \frac{ r'(u) \rd u}{\vr(r(u))} ,
+  \label{eq:Iso_chg_var_eff_anomaly}
+\end{equation}
+
+which is well-posed since
+
+\begin{equation}
+   \frac{ r'(u) }{\vr(r(u))} = \frac{3}{\sqrt{2}} \frac{\Omega_{1}}{\Omega_{o}} \frac{x}{\sqrt{4-u^{2}}} \sqrt{\frac{(s+\srp)(s+\sa)(\srp+\sa)}{(x+\xrp)(x+\xa)} } ,
+  \label{eq:dThdu_Iso}
+\end{equation}
+where $x=r/b$ and $s^{2}=1+x^{2}$. $\Omega_{o}$ and $\Omega_{1}$ are defined in section \ref{sec:Isochrone}, with their ratio being
+
+$$  \frac{\Omega_{1}}{\Omega_{o}} = \omega(a,e) = \bigg(\frac{E}{\Eo}\bigg)^{3/2} .$$
+
+Using the convention $b=1$ and $\Eo=-1$, this gives the expression
+
+\begin{equation}
+  \boxed{
+    \begin{array}{ccl}
+      \displaystyle{\frac{T}{2}} &=&  \displaystyle{\frac{3 (-E)^{3/2}}{\sqrt{2}} \int_{-1}^{1} \frac{r(u) }{\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
+    \langle D \rangle &=&  \displaystyle{\frac{2}{T}\frac{3 (-E)^{3/2}}{\sqrt{2}} \int_{-1}^{1} \frac{r(u)  D(r(u))}{\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
+    r(u) &=& \displaystyle{a\bigg[1+e u\bigg(\frac{3-u^{2}}{2}\bigg)\bigg] .}
+  \end{array}
+  }
+  \label{eq:Iso_chg_var_eff_anomaly_normalizedUnits}
+\end{equation}
+
 
 \section{Diffusion equation and change of variables}
 \label{sec:diffEq_changeVar}
@@ -954,6 +1000,15 @@ and in the extreme radially anisotropic $(q=2)$ to
 
 When $-E \leq 0$ or $L \leq 0$ then $\Fq(E,L) = 0$.
 
+We can compute the bounds of motion by solving $\vr(r)=0$. Using $b=1$ and $\Eo=-1$, we have
+
+$$E=-\frac{1}{\sqrt{1+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
+
+Using the change of variable $x=2r^{2}$, this equation reduces to the cubic equation
+$$(Ex-L^{2})^{2}(1+x/2) = x^{2},$$
+which has two positive solution and one negative solution (which is to be discarded). Those roots can be expressed analytically using Viète's cubic formula.
+  
+
 \section{Isochrone model}
 \label{sec:Isochrone}
 
@@ -1011,7 +1066,17 @@ The angles associated to the actions are (cf. main.pdf Fouvry eq (A3) : mistake 
 where $\varphi$ is the angle from the ascending node to the current location
 of the particle along the orbital motion.
 
+We can compute the bounds of motion by solving $\vr(r)=0$. Using $b=1$ and $\Eo=-1$, we have
 
+$$E=-\frac{2}{1+\sqrt{1+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
+  
+Using the change of variable $s^{2}=1+r^{2}$, this equation reduces to the quadratic equation
+
+$$E(s^{2}-1) = -2(s-1) + \frac{L^{2}}{2} ,$$
+
+with the roots
+
+$$s = \frac{-1 \pm \sqrt{1+E(E+L^{2}/2+2)}}{E}$$
 
 \begin{appendices}
 
@@ -1522,16 +1587,20 @@ Using the same method, we may also obtain an analytical expression for $\xc$, si
    2E^{2}(2+x)^{3} - (4+x)^{2} = 0 ,
   \label{eq:xcPlummer}
 \end{equation}
-which has only one real solution $(-1<E<0)$. Defining
+which has only one real solution $(-1<E<0)$ since its discriminant is $$\Delta=-64(27E^{4}+E^{2})<0$$. Defining
 \begin{align*}
   a &= E^{2}/2, \\
   b &= 12E^{2}-1 ,\\
   c &= 24E^{2}-8,\\
   d &= 16(E^{2}-1) ,
 \end{align*}
-and defining $p,q$ the same way, we can express the solution as
+and defining $p,q$ the same way, he discriminant of the corresponding depressed cubic is $$\Delta'=-(4p^{3}+27q^{2})=\frac{\Delta}{a^{4}}=-\frac{64(27E^{4}+E^{2})}{( E^{2}/2)^{4}}=-\frac{2^{10}(27E^{2}+1)}{E^{6}}$$  and we can express the solution as
 \begin{equation}
-  \xc(E) = -\frac{b}{3a} + \sqrt[3]{-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} + \sqrt[3]{-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} .
+  \begin{array}{ccl}
+    \xc(E) &=& \displaystyle{-\frac{b}{3a} + \sqrt[3]{-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} + \sqrt[3]{-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}}} , \\
+    {}&{}&{} \\
+    {} &=& \displaystyle{\frac{2(1-12E^{2})}{3E^{2}} + \sqrt[3]{-\frac{q}{2}+\frac{16}{E^{3}}\sqrt{E^{2}+\frac{1}{27}}} + \sqrt[3]{-\frac{q}{2}-\frac{16}{E^{3}}\sqrt{E^{2}+\frac{1}{27}}}} .
+    \end{array}
   \label{eq:xcPlummer}
   \end{equation}
 
