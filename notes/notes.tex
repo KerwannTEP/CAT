@@ -1007,7 +1007,26 @@ $$E=-\frac{1}{\sqrt{1+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
 Using the change of variable $x=2r^{2}$, this equation reduces to the cubic equation
 $$(Ex-L^{2})^{2}(1+x/2) = x^{2},$$
 which has two positive solution and one negative solution (which is to be discarded). Those roots can be expressed analytically using Viète's cubic formula.
-  
+
+Defining
+\begin{align*}
+  a &= E^{2}/2, \\
+  b &= E^{2}-EL^{2}-1 ,\\
+  c &= L^{4}/2-2EL^{2} ,\\
+  d &= L^{4} .
+\end{align*}
+the equation becomes $a x^{3}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
+\begin{align*}
+  p &= (3ac -b^{2})/(3a^{2}), \\
+  q &= (2b^{3}-9abc+27a^{2}d)/(27a^{3}) ,
+  \end{align*}
+the equation to solve is $t^{3}+pt+q=0$, with the three roots given by
+
+\begin{equation}
+  t_{k} = 2\sqrt{-\frac{p}{3}} \cos\bigg[\frac{1}{3}\arccos\bigg(\frac{3q}{2p} \sqrt{-\frac{3}{p}}\bigg)-\frac{2\pi k}{3}\bigg] .
+  \label{eq:Viete_formula_bounds_Plummer}
+\end{equation}
+
 
 \section{Isochrone model}
 \label{sec:Isochrone}
