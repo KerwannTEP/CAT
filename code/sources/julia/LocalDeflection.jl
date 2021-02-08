@@ -85,7 +85,7 @@ function d2fadvt2(r::Float64, vr::Float64, vt::Float64, vp::Float64,
              -r^2/La^3 *dFdL(Ea,La,q) + r^2/La^2 *d2FdL2(Ea,La,q)))
 end
 
-MAXEVAL = 10000
+MAXEVAL = 5000000
 
 # problem somewhere (fine tune?)
 # convergence issue ?
