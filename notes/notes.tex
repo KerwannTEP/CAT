@@ -77,6 +77,7 @@
 \newcommand{\sa}{s_{\ra}}
 \newcommand{\srp}{s_{\rp}}
 
+\newcommand{\tr}{\tilde{r}}
 \newcommand{\xp}{x'}
 \newcommand{\Fq}{F_{q}}
 \newcommand{\fq}{f_{q}}
@@ -124,7 +125,6 @@
 \newcommand{\dX}{D_{X}}
 \newcommand{\dXY}{D_{XY}}
 
-
 \author{Kerwann}
 \date{\today}
 \title{Notes}
@@ -140,10 +140,6 @@
 \maketitle
 
 \tableofcontents
-
-
-
-
 
 
 \section{Determination of the local diffusion coefficients}
@@ -460,11 +456,11 @@ Then according Binney \& Tremaine, eq. (L26),
 where
 \begin{equation}
 \begin{array}{ccl}
- K_{0}(r,v) & =&\displaystyle{\int_{0}^{E}{\rm d}E_{a}F(E_{a})} ,\\
+ K_{0}(r,v) & =&\displaystyle{\int_{E}^{0}{\rm d}E_{a}F(E_{a})} ,\\
   
-  K_{1}(r,v) & = &\displaystyle{\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}F(E_{a})}\\
+  K_{1}(r,v) & = &\displaystyle{\int_{\psi(r)}^{E}{\rm d}E_{a}v_{a}F(E_{a})}\\
   
-  K_{3}(r,v) & = &\displaystyle{\int_{E}^{\psi(r)}{\rm d}E_{a}v_{a}^{3}F(E_{a})}   
+  K_{3}(r,v) & = &\displaystyle{\int_{\psi(r)}^{E}{\rm d}E_{a}v_{a}^{3}F(E_{a})}   
 \end{array}
 \label{eq:K_Iso}
 \end{equation}
@@ -589,86 +585,67 @@ determines a circular orbit.
 \subsubsection{Plummer model}
 \label{subsubsec:PlummerCircularOrbit}
 
-(TODO)
+(TODO add GM a b)
 
-It is given by $\Ec(L)=\min_{r>0}\psieff(r;L)=\psieff(r_{*}^{L};L)$.
-To approximate this $r_{*}^{L}$, we may look for it using Newton's
-method applied to $\psieff'$, since $\psieff'(r_{*}^{L};L)=0$.
-Start at $r_{0}^{L}=L^{2/3}$ , where the evaluation yields
-\begin{equation}
-\psieff'(L^{2/3};L)=-1+\frac{L^{2/3}}{(1+L^{4/3})^{3/2}}\in[-1,\sqrt{4/27}-1]\simeq[-1,-0.615]
-\label{eq:start_recursion_Ec}
-\end{equation}
-in order not to be too far away from $\psieff'(r_{*}^{L};L)=0$,
-and apply the recursion
-\begin{equation}
-r_{n+1}^{L}=r_{n}^{L}-\frac{\psi'_{{\rm eff}}(r_{n}^{L};L)}{\psi''_{{\rm eff}}(r_{n}^{L};L)},
-\label{eq:recursion_Ec}
-\end{equation}
-where
-
+The effective potential is given by
+$$\psieff(r) = - \frac{GM}{\sqrt{a^{2}+r^{2}}} + \frac{L^{2}}{2r^{2}}.$$
+with its $r$-derivatives being
 \begin{equation}
 \begin{array}{ccl}
- \psieff'(r;L) & =& \displaystyle{\frac{r}{(1+r^{2})^{3/2}}-\frac{L^{2}}{r^{3}}} ,\\
+ \psieff'(r;L) & =& \displaystyle{\frac{GMr}{(a^{2}+r^{2})^{3/2}}-\frac{L^{2}}{r^{3}}} ,\\
   
-  \psieff''(r_{n};L) & =&\displaystyle{\frac{(1+r^{2})^{3/2}-3r^{2}\sqrt{1+r^{2}}}{(1+r^{2})^{3}}+3\frac{L^{2}}{r^{4}}} .
+  \psieff''(r_{n};L) & =&\displaystyle{\frac{GM(a^{2}-r^{2})}{(a^{2}+r^{2})^{5/2}}+3\frac{L^{2}}{r^{4}}} .
 \end{array}
 \label{eq:psieff_derivatives}
 \end{equation}
 
-Then $r_{n}^{L}\rightarrow r_{*}^{L}$. We can show that $(r_{n}^{L})$
-is increasing since $\psieff'(r_{n}^{L};L)<0$ and $\psieff''(r_{n}^{L};L)>0$
-(and convexity of $\psieff'$ where it matters). Therefore
-a good stopping condition is to get the lowest $N$ such that $\psieff'(r_{N}^{L}+\epsilon)>0$
-for some precision $\epsilon>0$. Then, taking $\tilde{r}_{*}^{L}=(r_{N}^{L}+r_{N}^{L}+\epsilon)/2=r_{N}^{L}+\epsilon/2$
-we will have $\Ec(L)\simeq\psieff(\tilde{r}_{*}^{L};L)$,
-with precision 
-\begin{equation}
-\delta \Ec(L)\simeq|\psieff(r_{*}^{L};L)-\psieff(\tilde{r}_{*}^{L};L)|\simeq\frac{1}{2}|\underbrace{\psieff^{(2)}(r_{*}^{L})}_{>0}|\cdot|r_{*}^{L}-\tilde{r}_{*}^{L}|^{2}\simeq|\psieff^{(2)}(r_{*}^{L})|\frac{\epsilon^{2}}{8}
-\label{eq:precision_Ec}
-\end{equation}
-
-However, there is no need to use an approximation method to compute $\Lc$, as we can obtain an analytical formula. Indeed, it is given by
+There is no need to use an approximation method to compute $\Lc$, as we can obtain an analytical formula. Indeed, it is given by
 \begin{equation}
 \Lc^{2}(E)=\eta(r_{*}^{E};E)=\max_{r>0}\eta(r;E).
 \label{eq:angular_circular}
 \end{equation}
-where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Using the change of variable $x=2r^{2}$, we obtain $\tilde{\eta}(x,L)=\eta(r,L)=x(E+1/\sqrt{1+x/2})$, whose maximum is equal to that of $\eta$. It is reached for $\xc(E)$ (defined in the next section), whose computation is done is the appendix and is given by eq\eqref{eq:xcPlummer}. Therefore, we have an analytical expression for $\Lc^{2}(E)$, given by
+where we defined $\eta(r;E)\doteqdot 2 r^{2}(E-\psi(r))$. Using the change of variable $x=2(r/a)^{2}$, we obtain 
+$$\tilde{\eta}(x,L)=\eta(r,L)=x\bigg(E+\frac{GM}{a}\frac{1}{\sqrt{1+x/2}}\bigg),$$
+ whose maximum is equal to that of $\eta$. It is reached for $\xc(E)$ (defined in the next section), whose computation is done is the appendix and is given by eq\eqref{eq:xcPlummer}. Therefore, we have an analytical expression for $\Lc^{2}(E)$, given by
 
 \begin{equation}
-  \Lc^{2}(E) =\tilde{\eta}(\xc(E),E) =\eta(\sqrt{\xc(E)/2},E) .
+  \Lc^{2}(E) =\tilde{\eta}(\xc(E),E)  .
   \label{eq:Lc_analytical_Plummer}
   \end{equation}
 
-Though in fact, we could obtain an analytical expression for $\Ec(L)$. Using the same change of variable $x=2r^{2}$, the condition $\psieff'(r;L)=0$ is equivalent to the degree-4 polynomial equation $x^{4}-2L^{4}(x+2)^{3}=0$. Using Ferrari's method, we can obtain the expression of its roots with respect to $L$. There isn't really a need to do that, as we won't explicitely need to compute $\Ec(L)$.
+We could obtain an analytical expression for $\Ec(L)$. Using the same change of variableß, the condition $\psieff'(r;L)=0$ is equivalent to the degree-4 polynomial equation $x^{4}-2L^{4}(x+2)^{3}=0$. Using Ferrari's method, we can obtain the expression of its roots with respect to $L$. There isn't really a need to do that, as we won't explicitely need to compute $\Ec(L)$.
 
 \subsubsection{Isochrone model}
 \label{subsubsec:IsoCircularOrbit}
 
-In this case, $\psieff(r,L)=-2/(1+\sqrt{1+r^{2}}) + L^{2}/(2r^{2})$. Its minimum value is given by
+In this case, 
+$$\psieff(r,L)=-\frac{GM}{b+\sqrt{b^{2}+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
+
+Its minimum value is given by
 
 \begin{equation}
-  \Ec(L) = \frac{1}{4} \bigg(-L^{2} + \sqrt{L^{2}(L^{2}+8)}-4\bigg).
+  \Ec(L) = \frac{GM}{4b} \bigg[-\frac{L^{2}}{GMb} + \sqrt{\frac{L^{2}}{GMb} \bigg(\frac{L^{2}}{GMb} +4\bigg)}-2\bigg].
   \label{eq:Ec_Isochronous}
 \end{equation}
 
-As for $\Lc^{2}$, we can deduces its expressions by inverting eq.\eqref{eq:Ec_Isochronous}. Letting $X=L^{2}$, we must solve for $X>0$ the equation
+As for $\Lc^{2}$, we can deduces its expressions by inverting eq.\eqref{eq:Ec_Isochronous}. Letting $X=(L^{2})/(GMb) $, we must solve for $X>0$ the equation
 
 \begin{equation}
-  4E=-X+\sqrt{X(X+8)}-4 = h(X) ,
+  \frac{4Eb}{GM} =-X+\sqrt{X(X+4)}-2= h(X) ,
   \label{eq:Lc2X}
 \end{equation}
-which is an increasing function such that $h(0)=-4$ and $h(+\infty)=0$. Therefore it has only one strictly positive solution. We can rewrite this equation as the degree-2 equation
+which is an increasing function such that $h(0)=-2$ and $h(+\infty)=0$. Therefore it has only one strictly positive solution. We can rewrite this equation as the degree-2 equation
 \begin{equation}
-  (4(E+1)+X)^{2}=X(X+8) ,
+  \bigg[2\bigg(\frac{2Eb}{GM}+1\bigg)+X\bigg]^{2}=X(X+4) ,
   \label{eq:Lc2X_poly2_equation}
 \end{equation}
-which simplifies a linear equation with the solution $X=-2(E+1)^{2}/E>0$. Therefore, the angular momentum of a circular orbit for the isochronous potential is given by
+which simplifies a linear equation with the solution $X=-((2Eb)/(GM)+1)^{2}/((2Eb)/(GM))>0$. Therefore, the angular momentum of a circular orbit for the isochronous potential is given by
 
 \begin{equation}
-  \Lc(E) = \sqrt{\frac{2(E+1)^{2}}{-E}} .
+  \Lc(E) = \sqrt{GMb}\sqrt{\frac{(\frac{2Eb}{GM}+1)^{2}}{-\frac{2Eb}{GM}}} ,
   \label{eq:Ec_Iso}
   \end{equation}
+  which is well-posed as the inside of the $\sqrt{.}$ is always positive.
 
 
 \subsubsection{Plummer model}
@@ -681,20 +658,20 @@ We need to compute orbit-averaged quantities of the form
   \label{eq:I(D)} 
 \end{equation}
 
-where $\vr(r)=\sqrt{2(E-\psi(r))-L^{2}/r^{2}}$. Letting $x=2r^{2}$ and $Y(x)=2r^{2}\psi(r)$ gives
+where $\vr(r)=\sqrt{2(E-\psi(r))-L^{2}/r^{2}}$. Letting $x=2(r/a)^{2}$ and $Y(x)=2(r/a)^{2}\psi(r)$ gives
 \begin{equation}
-  I(D) = \frac{1}{4}\int_{x_{\min}}^{x_{\max}}  \frac{D(r(x))\rd x}{\sqrt{E x - Y(x) -L^{2}}} .
+  I(D) = \frac{1}{4}\int_{x_{\min}}^{x_{\max}}  \frac{D(r(x))\rd x}{\sqrt{a^{2} E x - a^{2} Y(x) -L^{2}}} .
   \label{eq:I(D)ChgX}
 \end{equation}
 
-Defining $\ell^{2} = \Lc^{2}(E)-L^{2}$ and $z^{2}=Y(x)-(E x - \Lc^{2})$, we have
+Defining $\ell^{2} = \Lc^{2}(E)-L^{2}$ and $z^{2}=a^{2}Y(x)-(a^{2}E x - \Lc^{2})$, we have
 
 \begin{equation}
  I(D) = \frac{1}{4}\int_{x_{\min}}^{x_{\max}}  \frac{D(r(x))\rd x}{\sqrt{\ell^{2}-z^{2}(x)}} .
   \label{eq:I(D)ChgX_Z}
 \end{equation}
 
-The equation  $z^{2}=Y(x)-(E x - \Lc^{2})$ has two solutions in $[0,\xc]$ (for $(z<0)$) and $[\xc,+\infty[$ (for $z>0$). This defines a function $x=\varphi(z)$, which is $C^{1}$ and strictly increasing with $\varphi(0)=\xc$ and is always strictly positive. This change of variable gives
+The equation  $z^{2}=a^{2}Y(x)-(a^{2}E x - \Lc^{2})$ has two solutions in $[0,\xc]$ (for $(z<0)$) and $[\xc,+\infty[$ (for $z>0$). This defines a function $x=\varphi(z)$, which is $C^{1}$ and strictly increasing with $\varphi(0)=\xc$ and is always strictly positive. This change of variable gives
 
 \begin{equation}
  I(D) = \frac{1}{4}\int_{-\ell}^{\ell}  \frac{D(r(z))\varphi'(z)\rd z}{\sqrt{\ell^{2}-z^{2}}} .
@@ -707,7 +684,7 @@ I(D) = \frac{1}{4}\int_{-\pi/2}^{\pi/2}  D(r(\phi))\varphi'(\ell\sin\phi)\rd \ph
 \label{eq:I(D)Chgphi}
 \end{equation}
 
-where $r(\phi)=\sqrt{\varphi(\ell\sin\phi)/2}$. Computations given in the appendix gives the following. Define the function $\Upsilon(x)=z^{2}(x)=Y(x)-(E x-\Lc^{2})$. Then
+where $r(\phi)=a\sqrt{\varphi(\ell\sin\phi)/2}$. Computations given in the appendix gives the following. Define the function $\Upsilon(x)=z^{2}(x)=a^{2}Y(x)-(a^{2}E x-\Lc^{2})$. Then
 
 \begin{equation}
   z(x)=\begin{cases}
@@ -723,7 +700,22 @@ Since $z^{2}=\Upsilon(\varphi(z))$, we have that
   \label{eq:varphi'(z)}
 \end{equation}
 
-which is strictly positive for $z\neq0$ and evaluates to $\sqrt{2/\Upsilon''(\xc)}>0$ at $z=0$ (see appendix). A straighforward computation gives us that $x=\varphi(z)$ is solution to the degree-3 polynomial equation $z^{2}-\Lc^{2} + Ex)^{2}(1+x/2)=x^{2}$. This equation has at least the two real-positive solutions of $z^{2}=\Upsilon(x)$, to which it must have an additional root at some negative $x$. Cardan's formulae (and more precisely Viète's formulae) gives us analytical expressions for those solutions (in terms of its coefficients), hence analytical expressions in term of $z$. Using equation \eqref{eq:varphi'(z)}, we obtain an analytical expression of $\varphi'(z)$ which is regular along $z$, meaning that the orbit-averaged expression from eq. \eqref{eq:I(D)Chgphi} is nicely integrable.
+which is strictly positive for $z\neq0$ and evaluates to $\sqrt{2/\Upsilon''(\xc)}>0$ at $z=0$ (see appendix). We also have the Taylor expansion around $z=0$
+\begin{equation}
+  \varphi'(z) = \sqrt{\frac{2}{\Upsilon''(\xc)}} +\frac{2|\Upsilon^{(3)}(\xc)|}{3(\Upsilon''(\xc))^{2}} z + \varphi^{(3)}(0) \frac{z^{2}}{2}+ O(z^{3}) ,
+  \label{eq:TaylorVarphi'Plummer}
+  \end{equation}
+  which can help us avoid a $0/0$ ratio around $z=0$.
+A straightforward computation gives us that $x=\varphi(z)$ is solution to the degree-3 polynomial equation
+ $$(z^{2}-\Lc^{2} + a^{2}Ex)^{2}(1+x/2)=(GMa^{3})^{2}x^{2}.$$ 
+ This equation has at least the two real-positive solutions of $z^{2}=\Upsilon(x)$, to which it must have an additional root at some negative $x$. Cardan's formulae (and more precisely Viète's formulae) gives us analytical expressions for those solutions (in terms of its coefficients), hence analytical expressions in term of $z$. This expression involves $arccos(\pm 1)$ when there is a double root, i.e. when $z=0$, meaning that it may not be numerically stable. Therefore we could consider a Taylor expansion around $z=0$ 
+\begin{equation}
+  \varphi(z) = \xc + \sqrt{\frac{2}{\Upsilon''(\xc)}} z +\frac{|\Upsilon^{(3)}(\xc)|}{3(\Upsilon''(\xc))^{2}} z^{2} +  O(z^{3}) .
+  \label{eq:TaylorVarphiPlummer}
+  \end{equation}
+
+
+Using equation \eqref{eq:varphi'(z)}, we obtain an analytical expression of $\varphi'(z)$ which is regular along $z$, meaning that the orbit-averaged expression from eq. \eqref{eq:I(D)Chgphi} is nicely integrable.
 
 In particular, we obtain the following expressions
 
@@ -732,7 +724,7 @@ In particular, we obtain the following expressions
     \begin{array}{ccl}
       \displaystyle{\frac{T}{2}} &=& \displaystyle{\int_{-\pi/2}^{\pi/2}\varphi'(\ell\sin\phi)\rd \phi},\\
       \displaystyle{\langle D\rangle} &=& \displaystyle{\frac{2}{T}\int_{-\pi/2}^{\pi/2}D(r(\phi))\varphi'(\ell\sin\phi)\rd \phi}, \\
-      r(\phi) &=& \sqrt{\varphi(\ell\sin\phi)/2}.
+      r(\phi) &=& a\sqrt{\varphi(\ell\sin\phi)/2}.
     \end{array}
   }
   \label{eq:periodAndOAD}
@@ -743,21 +735,21 @@ A few things to highlight:
 \item Effective anomaly:
   \begin{equation}
   \phi(r)=\begin{cases}
-\displaystyle{ -\arcsin(\sqrt{\Upsilon(2r^{2})}/\ell)} & {\rm{if}} \quad r\leq\rrc ,\\
-\displaystyle{ +\arcsin(\sqrt{\Upsilon(2r^{2})}/\ell)} &{\rm{if}} \quad r\geq\rrc ,
+\displaystyle{ -\arcsin(\sqrt{\Upsilon(2(r/a)^{2})}/\ell)} & {\rm{if}} \quad r\leq\rrc ,\\
+\displaystyle{ +\arcsin(\sqrt{\Upsilon(2(r/a)^{2})}/\ell)} &{\rm{if}} \quad r\geq\rrc ,
   \end{cases}
   \label{eq:effective_anomaly}
   \end{equation}
   
 \item Radius w.r.t. effective anomaly:
   \begin{equation}
- r(\phi)=\sqrt{\varphi(\ell\sin\phi)/2} ,
+ r(\phi)=a \sqrt{\varphi(\ell\sin\phi)/2} ,
   \label{eq:r(effective_anomaly)}
   \end{equation}
   
 \item Gradient of radius:
   \begin{equation}
- r'(\phi)=\frac{\ell\cos\phi\varphi'(\ell\sin\phi)}{4\sqrt{\varphi(\ell\sin\phi)/2}} ,
+ r'(\phi)=\frac{a\ell\cos\phi\varphi'(\ell\sin\phi)}{4\sqrt{\varphi(\ell\sin\phi)/2}} ,
   \label{eq:Gradient_r(effective_anomaly)}
   \end{equation}
   
@@ -801,13 +793,13 @@ where $x=r/b$ and $s^{2}=1+x^{2}$. $\Omega_{o}$ and $\Omega_{1}$ are defined in 
 
 $$  \frac{\Omega_{1}}{\Omega_{o}} = \omega(a,e) = \bigg(\frac{E}{\Eo}\bigg)^{3/2} .$$
 
-Using the convention $b=1$ and $\Eo=-1$, this gives the expression
+This gives the expressions
 
 \begin{equation}
   \boxed{
     \begin{array}{ccl}
-      \displaystyle{\frac{T}{2}} &=&  \displaystyle{\frac{3 (-E)^{3/2}}{\sqrt{2}} \int_{-1}^{1} \frac{r(u) }{\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
-    \langle D \rangle &=&  \displaystyle{\frac{2}{T}\frac{3 (-E)^{3/2}}{\sqrt{2}} \int_{-1}^{1} \frac{r(u)  D(r(u))}{\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
+      \displaystyle{\frac{T}{2}} &=&  \displaystyle{\frac{3 }{\sqrt{2}} \bigg(\frac{E}{\Eo}\bigg)^{3/2}\int_{-1}^{1} \frac{r(u) }{b\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
+    \langle D \rangle &=&  \displaystyle{\frac{2}{T}\frac{3}{\sqrt{2}}\bigg(\frac{E}{\Eo}\bigg)^{3/2} \int_{-1}^{1} \frac{r(u)  D(r(u))}{b\sqrt{4-u^{2}}} \sqrt{\frac{(s(u)+\srp)(s(u)+\sa)(\srp+\sa)}{(r(u)+\rmin)(r(u)+\rmax)} }  \rd u ,} \\
     r(u) &=& \displaystyle{a\bigg[1+e u\bigg(\frac{3-u^{2}}{2}\bigg)\bigg] .}
   \end{array}
   }
@@ -872,28 +864,38 @@ The transformation $(E,L) \rightarrow (\Jr,L)$ yields (check that the relation i
 \label{sec:Plummer}
 
   Consider a Plummer model (Dejonghe, H.1987, MNRAS 224, 13) with potential
-with units $r_{\rs}$ the Plummer scale radius (which sets the size
+with units $a$ the Plummer scale radius (which sets the size
 of the cluster core), $M$ the total mass of the cluster and $\bar{\tau}$
 some unit time. Let $\psis$ be defined by
 \begin{equation}
-\psis = \frac{G M}{r_{\rs}} ,
+\psis = \frac{G M}{a} ,
 \label{eq:def_psi_s}
 \end{equation}
-
 for the central potential
 \begin{equation}
-\psi(r)=-\frac{\psis}{\sqrt{1+r^{2}}} .
-\label{eq:def_potential}
+\psi(r)=-\frac{\psis}{\sqrt{1+r^{2}}}=-\frac{GM}{\sqrt{a^{2}+r^{2}}} .
+\label{eq:def_potential_Plummer}
+\end{equation}
+and the isotropic density profile, letting $\rho_{0}=M/a^{3}$,
+\begin{equation}
+\rho(r)=\frac{3M}{4\pi a^{3}}\frac{1}{(1+(r/a)^{2})^{5/2}} =\frac{3}{4\pi} \rho_{0}\bigg(-\frac{\psi(r)}{\psis}\bigg)^{5},
+\label{eq:def_density_iso_Plummer}
+\end{equation}
+while an anisotropic density profile family is given by
+\begin{equation}
+\rho(r)=\frac{3}{4\pi} \rho_{0}\bigg(-\frac{\psi(r)}{\psis}\bigg)^{5-q} \bigg[1+\bigg(\frac{r}{a}\bigg)^{2}\bigg]^{-q/2}.
+\label{eq:def_density_aniso_Plummer}
 \end{equation}
 
-Let use fix $G=1\,r_{\rs}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}}$ in the
-new units so that $\psis=1\,r_{\rs}^{2}\cdot\bar{\tau}^{-2}$. This
-fixes the time unit $\bar{\tau}$, as we have the relation. Therefore, in
-those units the potential (per unit mass) is given by
-\begin{equation}
-\psi(r)=-\frac{1}{\sqrt{1+r^{2}}} .
-\label{eq:def_potential_new_units}
-\end{equation}
+
+%Let use fix $G=1\,r_{\rs}^{3}.M^{-1}.{\rm \bar{\tau}^{-2}}$ in the
+%new units so that $\psis=1\,r_{\rs}^{2}\cdot\bar{\tau}^{-2}$. This
+%fixes the time unit $\bar{\tau}$, as we have the relation. Therefore, in
+%those units the potential (per unit mass) is given by
+%\begin{equation}
+%\psi(r)=-\frac{1}{\sqrt{1+r^{2}}} .
+%\label{eq:def_potential_new_units}
+%\end{equation}
 
 Define, given a radius $r$, the angular momentum $L(r,\vr,\vt)$
 and energy per unit mass $E(r,\vr,\vt)$, functions of
@@ -948,28 +950,28 @@ parameter:
 Note that the DF has spherical symmetry in position. Its expression for $-E \geq 0, L \geq 0$
 is (for $q \neq0$):
 \begin{equation}
-  \Fq(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}(-E)^{7/2-q}\mH(0,\frac{q}{2},\frac{9}{2}-q,1;-\frac{L^{2}}{2E})
+  \Fq(E,L)=\frac{3\Gamma(6-q)}{2(2\pi)^{5/2}\Gamma(q/2)}\bigg(-\frac{E}{\psis}\bigg)^{7/2-q}\mH(0,\frac{q}{2},\frac{9}{2}-q,1;-\frac{L^{2}}{2a^{2}E})
   \label{eq:def_Fq}
 \end{equation}
 where
 \begin{equation}
-\mH(a,b,c,d;x)=\begin{cases}
-\displaystyle{\frac{\Gamma(a+b)}{\Gamma(c-a)\Gamma(a+d)}x^{a} \HG(a+b,1+a-c,a+d;x)} & {\rm{if}} \quad x\leq1 ,\\
-\displaystyle{\frac{\Gamma(a+b)}{\Gamma(d-b)\Gamma(b+c)}x^{-b} \HG(a+b,1+b-d,b+c;\frac{1}{x})} &{\rm{if}} \quad x\geq1 ,
+\mH(\alpha,\beta,c,d;x)=\begin{cases}
+\displaystyle{\frac{\Gamma(\alpha+\beta)}{\Gamma(\gamma-\alpha)\Gamma(\alpha+\delta)}x^{\alpha} \HG(\alpha+\beta,1+\alpha-\gamma,\alpha+\delta;x)} & {\rm{if}} \quad x\leq1 ,\\
+\displaystyle{\frac{\Gamma(\alpha+\beta)}{\Gamma(\delta-\beta)\Gamma(\beta+c)}x^{-\beta} \HG(\alpha+\beta,1+\beta-\delta,\beta+\gamma;\frac{1}{x})} &{\rm{if}} \quad x\geq1 ,
 \end{cases}
 \label{eq:def_H}
 \end{equation}
 which reduces in the isotropic case $(q=0)$ to
 \begin{equation}
-  F_{0}(E)=\frac{3}{7\pi^{3}}(-2E)^{7/2} ,
+  F_{0}(E)=\frac{3}{7\pi^{3}}\bigg(\frac{-2E}{\psis}\bigg)^{7/2} ,
   \label{eq:F_q=0}
 \end{equation}
 
 and in the extreme radially anisotropic $(q=2)$ to
 \begin{equation}
   F_{2}(E)=\begin{cases}
-\displaystyle{ \frac{6}{(2\pi)^{3}}(-2E-L)^{3/2}} & {\rm{if}} \quad -2 E\leq L^{2} ,\\
-0 &{\rm{if}} \quad - 2 E\geq L^{2} .
+\displaystyle{ \frac{6}{(2\pi)^{3}}\bigg(\frac{-2E-L^{2}/a^{2}}{\psis}\bigg)^{3/2}} & {\rm{if}} \quad -2 a^{2}E\leq L^{2} ,\\
+0 &{\rm{if}} \quad - 2a^{2} E\geq L^{2} .
 \end{cases}
   \label{eq:F_q=2}
 \end{equation}
@@ -978,17 +980,17 @@ When $-E \leq 0$ or $L \leq 0$ then $\Fq(E,L) = 0$.
 
 We can compute the bounds of motion by solving $\vr(r)=0$. Using $b=1$ and $\Eo=-1$, we have
 
-$$E=-\frac{1}{\sqrt{1+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
+$$E=-\frac{GM}{\sqrt{a^{2}+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
 
-Using the change of variable $x=2r^{2}$, this equation reduces to the cubic equation
-$$(Ex-L^{2})^{2}(1+x/2) = x^{2},$$
+Using the change of variable $x=2(r/a)^{2}$, this equation reduces to the cubic equation
+$$(a^{2}Ex-L^{2})^{2}(1+x/2) =(GMa^{2})^{2} x^{2},$$
 which has two positive solution and one negative solution (which is to be discarded). Those roots can be expressed analytically using Viète's cubic formula.
 
 Defining
 \begin{align*}
-  a &= E^{2}/2, \\
-  b &= E^{2}-EL^{2}-1 ,\\
-  c &= L^{4}/2-2EL^{2} ,\\
+  a &= a^{4}E^{2}/2, \\
+  b &= a^{4}E^{2}-a^{2}EL^{2}-(GMa^{2})^{2} ,\\
+  c &= L^{4}/2-2a^{2}EL^{2} ,\\
   d &= L^{4} .
 \end{align*}
 the equation becomes $a x^{3}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
@@ -1061,17 +1063,18 @@ The angles associated to the actions are (cf. main.pdf Fouvry eq (A3) : mistake 
 where $\varphi$ is the angle from the ascending node to the current location
 of the particle along the orbital motion.
 
-We can compute the bounds of motion by solving $\vr(r)=0$. Using $b=1$ and $\Eo=-1$, we have
+We can compute the bounds of motion by solving $\vr(r)=0$. We have
 
-$$E=-\frac{2}{1+\sqrt{1+r^{2}}} + \frac{L^{2}}{2r^{2}} .$$
+$$E=\frac{2\Eo}{1+\sqrt{1+(r/b)^{2}}} + \frac{L^{2}}{2r^{2}} .$$
   
-Using the change of variable $s^{2}=1+r^{2}$, this equation reduces to the quadratic equation
+Using the change of variable $s^{2}=1+(r/b)^{2}$, this equation reduces to the quadratic equation
 
-$$E(s^{2}-1) = -2(s-1) + \frac{L^{2}}{2} ,$$
+$$E(s^{2}-1) = 2\Eo(s-1) + \frac{L^{2}}{2b^{2}} ,$$
 
 with the roots
 
-$$s = \frac{-1 \pm \sqrt{1+E(E+L^{2}/2+2)}}{E}$$
+$$s = \frac{\Eo}{E} \bigg[1 \pm \sqrt{1+\frac{E}{\Eo}\bigg(\frac{E}{\Eo}+\frac{L^{2}}{2b^{2}\Eo 
+}-2\bigg)} \bigg]$$
 
 \begin{appendices}
 
@@ -1360,7 +1363,7 @@ and therefore
 The associated energy and angular momentum are
 \begin{equation}
   \begin{array}{ccl}
-  \Ea & =&\displaystyle{\psi(r)-\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}\left(\vr\cos\theta + \vt\sin\theta\cos\phi\right)\right]} ,\\
+  \Ea & =&\displaystyle{\psi(r)+\frac{1}{2}\left[v^{2}+V_{0}^{2}-2V_{0}\left(\vr\cos\theta + \vt\sin\theta\cos\phi\right)\right]} ,\\
 
   \La & =& \displaystyle{r\left(\vt^{2}+V_{0}^{2}\sin^{2}\theta-2\vt V_{0}\sin\theta\cos\phi\right)^{1/2}} .
   \end{array}
@@ -1424,6 +1427,10 @@ and
 \end{cases}
 \label{eq:d2Hdx2}
 \end{equation}
+
+
+
+(TODO: put back units)
 
 Then, for $q \notin \{0,2\}$, we have for first-order
 
@@ -1512,9 +1519,9 @@ By the same method,
 \section{Plummer model's orbit-averaging}
 \label{sec:OrbAvrPlummer}
 
-Consider the equation $z^{2}(x)=Y(x)-(Ex-\Lc^{2})=\Upsilon(x)$. From its definition, we have that
+Consider the equation $z^{2}(x)=a^{2}Y(x)-(a^{2}Ex-\Lc^{2})=\Upsilon(x)$. From its definition, we have that
 \begin{equation}
-  Y(x) = 2r^{2}\psi(r) = x \psi(\sqrt{x/2}) = - \frac{x}{\sqrt{1+x/2}} .
+  Y(x) = 2(r/a)^{2}\psi(r) = x \psi(\sqrt{x/2}) = - \frac{GMx}{\sqrt{1+x/2}} .
   \label{eq:Y(x)_Plummer}
 \end{equation}
 
@@ -1522,8 +1529,8 @@ Notice that by definition (see eq. \eqref{eq:angular_circular}), $\Upsilon(x)$ r
 
 Its derivatives are
 \begin{align*}
-  \Upsilon'(x)&=-\frac{4+x}{\sqrt{2}(2+x)^{3/2}}-E,\\
-  \Upsilon''(x)&= \frac{x+8}{2\sqrt{2}(2+x)^{5/2}}>0, 
+  \Upsilon'(x)&=-\frac{(GMa^{2})(4+x)}{\sqrt{2}(2+x)^{3/2}}-a^{2}E,\\
+  \Upsilon''(x)&= \frac{(GMa^{2})(x+8)}{2\sqrt{2}(2+x)^{5/2}}>0, 
 \end{align*}
 where $\Upsilon'(\xc)=0$. Therefore $\Upsilon'(x)$ is negative in $[0,\xc]$ and positive in $[\xc,+\infty[$, meaning that $\Upsilon(x)$ decreasing down to $0$ in $[0,\xc]$, then increases to infinity in $[\xc,+\infty[$.
 
@@ -1535,39 +1542,74 @@ By the bijection theorem $\varphi(z)$ is a continuous inverse bijection. Since $
   z(\xc+\epsilon) &= +\sqrt{\Upsilon(\xc+\epsilon)} = +\sqrt{0+\epsilon \Upsilon'(\xc)+\frac{\epsilon^{2}}{2} \Upsilon''(\xc)+o(\epsilon^{2})} =+ \epsilon\sqrt{\frac{\Upsilon''(\xc)}{2}} + o(\epsilon) ,\\
   z(\xc-\epsilon) &= -\sqrt{\Upsilon(\xc-\epsilon)} = -\sqrt{0-\epsilon \Upsilon'(\xc)+\frac{\epsilon^{2}}{2} \Upsilon''(\xc)+o(\epsilon^{2})} = -\epsilon\sqrt{\frac{\Upsilon''(\xc)}{2}} + o(\epsilon) ,
   \end{align*}
-hence the left and right derivatives coincide and $z'(\xc)=\sqrt{\Upsilon''(\xc)/2}>0$, which is non-zero. This means that the inversion bijection is differentiable at $z=0$, with derivative $\varphi'(0)=\sqrt{2/\Upsilon''(\xc)}>0$.
+hence the left and right derivatives coincide and $z'(\xc)=\sqrt{\Upsilon''(\xc)/2}>0$, which is non-zero. This means that the inversion bijection is differentiable at $z=0$, with derivative $\varphi'(0)=\sqrt{2/\Upsilon''(\xc)}>0$. We can write a higher order expansion to obtain a quadratic Taylor expansion for $\varphi'$.
+
+By definition,
+$$\varphi'(z) = \varphi'(0) + z \varphi''(0) + \frac{z^{2}}{2} \varphi^{(3)}(0) + O(z^{3}) $$
+and we also know that $\varphi'(z)=1/z'(\varphi(z))$. Therefore
+$$\varphi''(z) = -\frac{\varphi'(z)z''(\varphi(z))}{(z'(\varphi(z)))^{2}}
+= -(\varphi'(z))^{3} z''(\varphi(z)) $$
+and
+\begin{align*}
+  \varphi^{(3)}(z) &= -3 \varphi''(z)(\varphi'(z))^{2} z''(\varphi(z)) -(\varphi'(z))^{4} z^{(3)}(\varphi(z)) \\
+         {}&=3 (\varphi'(z))^{5} (z''(\varphi(z)))^{2} -(\varphi'(z))^{4} z^{(3)}(\varphi(z)) ,
+\end{align*}
+hence, using $\varphi'(0)=1/z'(\xc)$, 
+\begin{align*}
+  \varphi''(0) &= -\frac{z''(\xc)}{(z'(\xc))^{3}} ,\\
+  \varphi^{(3)}(0) &= \frac{3(z''(\xc))^{2}}{(z'(\xc))^{5}} - \frac{z^{(3)}(\xc)}{(z'(\xc))^{4}} .
+\end{align*}
+The Taylor expansion of $z$ around $\xc$ is, with $\epsilon>0$,
+
+\begin{align*}
+  z(\xc\pm\epsilon) &= \pm \sqrt{\frac{\epsilon^{2}}{2}\Upsilon''(\xc) \pm \frac{\epsilon^{3}}{3!}\Upsilon^{(3)}(\xc)+\frac{\epsilon^{4}}{4!}\Upsilon^{(4)}(\xc)+O(\epsilon^{5})} \\
+  {}&= \pm \epsilon \sqrt{\frac{\Upsilon''(\xc)}{2}} \sqrt{1 \pm \frac{\epsilon}{3}\frac{\Upsilon^{(3)}(\xc)}{\Upsilon''(\xc)}+\frac{\epsilon^{2}}{12}\frac{\Upsilon^{(4)}(\xc)}{\Upsilon''(\xc)}+O(\epsilon^{3})} \\
+  {}&= \pm \epsilon \sqrt{\frac{\Upsilon''(\xc)}{2}} \bigg[1 \pm \frac{\epsilon}{2}\bigg(\frac{1}{3}\frac{\Upsilon^{(3)}(\xc)}{\Upsilon''(\xc)}\pm\frac{\epsilon}{12}\frac{\Upsilon^{(4)}(\xc)}{\Upsilon''(\xc)}+O(\epsilon^{2})\bigg) -\frac{\epsilon^{2}}{8}\bigg(\frac{1}{3}\frac{\Upsilon^{(3)}(\xc)}{\Upsilon''(\xc)}+O(\epsilon)\bigg)^{2}\bigg] \\
+  {}&=  \sqrt{\frac{\Upsilon''(\xc)}{2}} \bigg(\pm \epsilon+\frac{\epsilon^{2}}{2}\frac{\Upsilon^{(3)}(\xc)}{3\Upsilon''(\xc)}\pm\frac{\epsilon^{3}}{6}\bigg[\frac{1}{4}\frac{\Upsilon^{(4)}(\xc)}{\Upsilon''(\xc)} -\frac{1}{12}\bigg(\frac{\Upsilon^{(3)}(\xc)}{\Upsilon''(\xc)}\bigg)^{2}\bigg] +O(\epsilon^{4})\bigg) \\
+\end{align*}
+meaning that
+\begin{align*}
+  z'(\xc) &= \sqrt{\frac{\Upsilon''(\xc)}{2}} > 0,\\
+  z''(\xc) &= \frac{\Upsilon^{(3)}(\xc)}{3\sqrt{2\Upsilon''(\xc)}} < 0,\\
+  z^{(3)}(\xc) &=  \sqrt{\frac{\Upsilon''(\xc)}{2}}\bigg[\frac{1}{4}\frac{\Upsilon^{(4)}(\xc)}{\Upsilon''(\xc)} -\frac{1}{12}\bigg(\frac{\Upsilon^{(3)}(\xc)}{\Upsilon''(\xc)}\bigg)^{2}\bigg] ,
+\end{align*}
+and
+\begin{align*}
+  \varphi'(0) &= \sqrt{\frac{2}{\Upsilon''(\xc)}} > 0,\\
+  \varphi''(0) &= -\frac{2\Upsilon^{(3)}(\xc)}{3(\Upsilon''(\xc))^{2}} > 0.
+\end{align*}
 
 Furthermore,
 \begin{align*}
-  z^{2} &= Y(x) - (E x-\Lc^{2})  ,
+  z^{2} &= a^{2}Y(x) - (a^{2}E x-\Lc^{2})  ,
 \end{align*}
 \begin{align*}
-  z^{2} &= -\frac{x}{\sqrt{1+x/2}}-E x + \Lc^{2} ,
+  z^{2} &= -\frac{GMa^{2}x}{\sqrt{1+x/2}}-a^{2}E x + \Lc^{2} ,
 \end{align*}
 \begin{align*}
- z^{2}-\Lc^{2} &= \bigg(-\frac{1}{\sqrt{1+x/2}}-E\bigg)x ,
+ z^{2}-\Lc^{2} &= \bigg(-\frac{GMa^{2}}{\sqrt{1+x/2}}-a^{2}E\bigg)x ,
   \end{align*}
 \begin{align*}
-\frac{z^{2}-\Lc^{2}+E x}{x} &= -\frac{1}{\sqrt{1+x/2}} ,
+\frac{z^{2}-\Lc^{2}+a^{2}E x}{x} &= -\frac{GMa^{2}}{\sqrt{1+x/2}} ,
   \end{align*}
 \begin{align*}
-(z^{2}-\Lc^{2}+E x)^{2}(1+x/2) &=x^{2} .
+(z^{2}-\Lc^{2}+a^{2}E x)^{2}(1+x/2) &=(GMa^{2})^{2}x^{2} .
   \end{align*}
 
 This is a degree-3 polynomial equation, with at least the two positive-real solutions of $z^{2}=\Upsilon(x)$. There are no other positive real solutions, but because it is a degree-3 polynomial equation with real coefficients and strictly more than 1 real solution, it more have a third real solution, which must be negative. Viète's formulae give us analytical expressions for those solutions.
 
 Defining
 \begin{align*}
-  a &= E^{2}/2, \\
-  b &= (z^{2}-\Lc^{2})E+E^{2}-1 ,\\
-  c &= 2(z^{2}-\Lc^{2})E + (z^{2}-\Lc^{2})^{2}/2 ,\\
-  d &= (z^{2}-\Lc^{2})^{2} .
+  \alpha &= a^{4}E^{2}/2, \\
+  \beta &= (z^{2}-\Lc^{2})a^{2}E+a^{4}E^{2}-(GMa^{2})^{2} ,\\
+  \gamma &= 2(z^{2}-\Lc^{2})a^{2}E + (z^{2}-\Lc^{2})^{2}/2 ,\\
+  \delta &= (z^{2}-\Lc^{2})^{2} .
 \end{align*}
 
-the equation becomes $a x^{3}+b x^{2}+c x+d = 0$. Setting $x=t-b/(3a)$ and
+the equation becomes $\alpha x^{3}+\beta x^{2}+\gamma x+\delta = 0$. Setting $x=t-\beta /(3\alpha)$ and
 \begin{align*}
-  p &= (3ac -b^{2})/(3a^{2}), \\
-  q &= (2b^{3}-9abc+27a^{2}d)/(27a^{3}) ,
+  p &= (3\alpha \gamma -\beta^{2})/(3\alpha^{2}), \\
+  q &= (2\beta^{3}-9\alpha \beta \gamma+27\alpha^{2}\delta)/(27\alpha^{3}) ,
   \end{align*}
 the equation to solve is $t^{3}+pt+q=0$, with the three roots given by
 
@@ -1579,17 +1621,22 @@ One must then order the three roots, discard the negative one, and select the sm
 
 Using the same method, we may also obtain an analytical expression for $\xc$, since the condition $\Upsilon'(\xc)=0$ (only one positive solution) is equivalent to the cubic equation
 \begin{equation}
-   2E^{2}(2+x)^{3} - (4+x)^{2} = 0 ,
+   2a^{4}E^{2}(2+x)^{3} - (GMa^{2})^{2} (4+x)^{2} = 0 ,
   \label{eq:xcPlummer}
 \end{equation}
-which has only one real solution $(-1<E<0)$ since its discriminant is $$\Delta=-64(27E^{4}+E^{2})<0$$. Defining
+which has only one real solution $(-1<E<0)$ since its discriminant is $$\Delta=-64a^{16}E^{2}(GM)^{4}(27E^{2}+(GM)^{2})<0. $$
+
+Defining
+
+(TODO correct the expression)
+
 \begin{align*}
-  a &= E^{2}/2, \\
-  b &= 12E^{2}-1 ,\\
-  c &= 24E^{2}-8,\\
-  d &= 16(E^{2}-1) ,
+   \alpha &= E^{2}/2, \\
+  \beta &= 12E^{2}-1 ,\\
+  \gamma &= 24E^{2}-8,\\
+  \delta &= 16(E^{2}-1) ,
 \end{align*}
-and defining $p,q$ the same way, he discriminant of the corresponding depressed cubic is $$\Delta'=-(4p^{3}+27q^{2})=\frac{\Delta}{a^{4}}=-\frac{64(27E^{4}+E^{2})}{( E^{2}/2)^{4}}=-\frac{2^{10}(27E^{2}+1)}{E^{6}}$$  and we can express the solution as
+and defining $p,q$ the same way, he discriminant of the corresponding depressed cubic is $$\Delta'=-(4p^{3}+27q^{2})=\frac{\Delta}{\alpha^{4}}=-\frac{64a^{16}E^{2}(GM)^{4}(27E^{2}+(GM)^{2})}{( E^{2}/2)^{4}}=-\frac{2^{10}(27E^{2}+1)}{E^{6}}$$  and we can express the solution as
 \begin{equation}
   \begin{array}{ccl}
     \xc(E) &=& \displaystyle{-\frac{b}{3a} + \sqrt[3]{-\frac{q}{2}+\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}} + \sqrt[3]{-\frac{q}{2}-\sqrt{\frac{q^{2}}{4}+\frac{p^{3}}{27}}}} , \\
