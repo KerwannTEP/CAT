@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.6)  10 FEB 2021 18:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.6)  11 FEB 2021 10:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -590,10 +590,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1652.
  ) 
 Here is how much of TeX's memory you used:
- 9370 strings out of 480608
- 134633 string characters out of 5903631
- 424205 words of memory out of 5000000
- 24882 multiletter control sequences out of 15000+600000
+ 9365 strings out of 480608
+ 134530 string characters out of 5903631
+ 424252 words of memory out of 5000000
+ 24877 multiletter control sequences out of 15000+600000
  574512 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,19n,31p,546b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -617,7 +617,7 @@ texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2
 ve/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/public/wasy-type1/wasy10.pfb>
-Output written on notes.pdf (23 pages, 285834 bytes).
+Output written on notes.pdf (23 pages, 285725 bytes).
 PDF statistics:
  460 PDF objects out of 1000 (max. 8388607)
  411 compressed objects within 5 object streams
