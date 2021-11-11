@@ -1,13 +1,45 @@
+using SpecialFunctions
+
+
+# Numerical Constants
+# Calculation done with with Julia
+
+const PI = 3.1415926535897
+
 ##################################################
 # Constants of the problem
 ##################################################
 
-const nbGlobularCluster = 10^5
+const nbGlobularCluster = 10^5 # Simulation NBody
 
-# Hamilton et al. (2018), eq. (B37)
-const parameterCoulomb = 0.059
+# Heggie et Hut (2003)
+const parameterCoulomb = 0.11
 
-
+# Coulomb logarithm
 const logCoulomb = log(parameterCoulomb*nbGlobularCluster)
 
-const G = 1
+# Physical units
+const _G = 1.0
+const _M = 1.0
+const _b = 1.0
+
+# Dimensional units (Plummer potential)
+const _v0 = sqrt(_G*_M/_b) # Velocity
+const _E0 = -_G*_M/_b # Energy
+const _L0 = sqrt(_G*_M*_b) # Action
+const _F0 = (_G*_M*_b)^(-3/2) # Distribution function
+const _Omega0 = sqrt(_G*_M/_b^3) # Frequency
+const _rho0 = _M/(4*PI*_b^3/3) # Density
+
+# Isochronous potential
+const _E0Isochronous = -_G*_M/(2*_b)
+const _L0Isochronous = sqrt(_G*_M*_b/2)
+const _F0Isochronous = (_G*_M*_b)^(-3/2)
+
+
+# Constant used to compute H(x,q) and the DF
+
+const GAMMA_ca = gamma(9/2 - qCalc)
+const GAMMA_db = gamma(1 - qCalc/2)
+const GAMMA_bc = gamma(9/2 - qCalc/2)
+const GAMMA_6q = gamma(6-qCalc)

@@ -1,205 +1,123 @@
 ##################################################
 # Orbit-averagering
 ##################################################
+using PolynomialRoots
 
-##################################################
-# Determine the nature of the orbit
-# Use positive binding energy
-##################################################
 
-# Returns "Unbounded orbit" if E<=0 and (rmin,rmax) if the parameters are allowed
-# Check beforehands that the parameters are allowed, i.e!
-# -> E,L are positive
-# -> E < Ec(L)
-function radiusBounds(E::Float64, L::Float64)
-    if (E <= 0.0)
-        return (0,"Unbounded orbit")
+function radius_s_bounds(E::Float64, L::Float64)
+    if (E >= 0.0)
+        return "Unbounded orbit"
+    elseif (L > Lc(_tE(E)))
+        return "Not a possible orbit"
     else
-        a = 4.0*E^2
-        b = 4.0*(E^2-1.0+E*L^2)
-        c = 4.0*E*L^2+L^4
-        d = L^4
-        solver = solveRealPoly3(a,b,c,d)
-
-        @assert (solver[1] == 3) "radiusBounds: Forbidden parameters (E,L)" 
-        rt1, rt2, rt3 = solver[2], solver[3], solver[4]
-        if (rt1 < 0.0)
-            rmin = rt2
-            rmax = rt3
+        tE = _tE(E)
+        tL = _tL(L)
+        if (L != 0.0)
+            rts = sort(real(roots([1,-(tE-tL^2/2),-1,tE])))
+            return Float64(rts[2]), Float64(rts[3])
         else
-            rmin = rt1
-            if (rt2 < 0.0)
-                rmax = rt3
-            else
-                rmax = rt2
-            end
+            return 1.0, 1/tE
         end
-        if (rmax < rmin)
-            rmin, rmax = rmax, rmin
-        end
-        rmin = sqrt(rmin)
-        rmax = sqrt(rmax)
-        return rmin, rmax
     end
 end
 
-##################################################
-# Compute the period of an orbit
-##################################################
 
-nbT = 100
-nbR = 100
+# does not check if orbit is correct
+# only use when sure the orbit is correct
+function radius_s_bounds_unsafe(E::Float64, L::Float64)
 
-function halfPeriodOrbit(E::Float64, L::Float64)
-    rmin, rmax = radiusBounds(E,L)
-    rc = maximizerPsiEff(L)
-    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
-    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))
-    dth1 = th1/nbT
-    dth2 = th2/nbT
-    dr = (r2-r1)/nbR
+    tE = _tE(E)
+    tL = _tL(L)
+    if (L != 0.0)
+        rts = sort(real(roots([1,-(tE-tL^2/2),-1,tE])))
+        return Float64(rts[2]), Float64(rts[3])
+    else
+        return 1.0, 1/tE
+    end
+
+end
+
+
+function sma_eff(sp::Float64, sa::Float64)
+    return (sa+sp)/2
+end
+
+function ecc_eff(sp::Float64, sa::Float64)
+    return (sa-sp)/(sa+sp)
+end
+
+#tr=r/b
+function tr_eff_anomaly(u::Float64, a::Float64, ecc::Float64)
+    s = a*(1+ecc*u*(1.5-u^2/2))
+
+    return sqrt(abs(s^2-1)) # use absolute value for when s->1
+
+
+end
+
+function r_eff_anomaly(u::Float64, a::Float64, ecc::Float64)
+    return _b*tr_eff_anomaly(u,a,ecc)
+end
+
+function dth1du(u::Float64, sp::Float64, sa::Float64)
+    num = sa*(-2+u)*(1+u)^2-sp*(2-3*u+u^3)
+    denumSq = ((sa^2*sp*(-2+u)*(1+u)^2-sp*(6-3*u+u^3)
+               +sa*(-6-3*u+u^3-sp^2*(2-3*u+u^3)))/
+               (sa*sp*(sa+sp)*(sa*(-2+u)*(1+u)^2-sp*(2-3*u+u^3))))
+    return -3/(4*sqrt(2))*1/sqrt(4-u^2)*num/sqrt(denumSq)
+end
+
+function halfperiod(E::Float64, L::Float64, nbAvr::Int64=nbAvr_default)
+    sp, sa = radius_s_bounds(E,L)
+    a = sma_eff(sp,sa)
+    ecc = ecc_eff(sp,sa)
+
     halfperiod = 0.0
-    for iTh=1:nbT
-        thp1 = (iTh-0.5)*dth1
-        thp2 = (iTh-0.5)*dth2
-        rp1 = _orbitRadius(thp1,E,L,true) # min value (left of rc)
-        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
-        halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))+dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
-    end
-    halfperiod *= sqrt(2)
 
-    for iR=1:nbR
-        rp = r1 + (iR-0.5)*dr
-        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
+    for iu=1:nbAvr
+        uloc = -1+2*(iu-0.5)/nbAvr
+        rloc = r_eff_anomaly(uloc,a,ecc)
+        jac_loc = dth1du(uloc,sp,sa)
+
+        halfperiod += jac_loc
     end
+    halfperiod *= (1/_Omega0)*(2/nbAvr)
+
     return halfperiod
 end
 
-##################################################
-# Compute the orbit-averaged NR diffusion coefficients
-##################################################
+function avr_orbit_coefficients(E::Float64, L::Float64, m_field::Float64,
+                                nbK::Int=nbK_default, nbAvr::Int64=nbAvr_default,
+                                m_test::Float64=m_field)
+    sp, sa = radius_s_bounds(E,L)
+    a = sma_eff(sp,sa)
+    ecc = ecc_eff(sp,sa)
 
-# Transformation theta->r(theta)
-function _orbitRadius(th::Float64, E::Float64, L::Float64, left::Bool)
-    a = 4.0*(E+sin(th)^2)^2
-    b = 4.0*((E+sin(th)^2)^2-1.0+(E+sin(th)^2)*L^2)
-    c = 4.0*(E+sin(th)^2)*L^2+L^4
-    d = L^4
-    solver = solveRealPoly3(a,b,c,d)
-    @assert (solver[1] == 3) "_orbitRadius: Forbidden angle theta" 
-    rt1, rt2, rt3 = solver[2], solver[3], solver[4]
-    if (rt1 < 0.0)
-        rmin = rt2
-        rmax = rt3
-    else
-        rmin = rt1
-        if (rt2 < 0.0)
-            rmax = rt3
-        else
-            rmax = rt2
-        end
-    end
-    if (rmax < rmin)
-        rmin, rmax = rmax, rmin
-    end
-    rmin = sqrt(rmin)
-    rmax = sqrt(rmax)
-    if (left)
-        return rmin
-    else
-        return rmax
-    end
-end
-
-function averageDiffCoeffs!(E::Float64, L::Float64, q::Float64, m_field::Float64,
-                           PlummerTable::IntTable = PlummerTable_serial)
-
-    @assert (E>0.0 && L>0.0) "averageDiffCoeffs: E and L must be non-negative"
-
-    IntTable_init!(PlummerTable)
-
-    local halfperiod, rmin, rmax, rc, r1, r2, th1, th2, nbT1, nbT2, nbr,
-          dE, dE2, dL, dL2, dEdL
-    let halfperiod, rmin, rmax, rc, r1, r2, th1, th2, nbT1, nbT2, nbr,
-        dE, dE2, dL, dL2, dEdL
-
+    avrDE = 0.0
+    avrDL = 0.0
+    avrDEE = 0.0
+    avrDEL = 0.0
+    avrDLL = 0.0
     halfperiod = 0.0
-    rmin, rmax = radiusBounds(E,L)
-    rc = maximizerPsiEff(L)
-    r1, r2 = (rmin+rc)/2, (rc+rmax)/2
-    th1, th2 = asin(sqrt(psiEff(r1,L)-E)), asin(sqrt(psiEff(r2,L)-E))   
 
-    nbT1 = 20
-    nbT2 = 20
-    nbr = 30
+    for iu=1:nbAvr
+        uloc = -1+2*(iu-0.5)/nbAvr
+        rloc = r_eff_anomaly(uloc,a,ecc)
+        jac_loc = dth1du(uloc,sp,sa)
+        dEloc, dE2loc, dLloc, dEdLloc, dL2loc = localOrbitChangeReg(rloc,E,L,m_field,nbK,m_test)
 
-    dth1 = th1/nbT1
-    dth2 = th2/nbT2
-    dr = (r2-r1)/nbr
-    dE, dE2, dL, dL2, dEdL = 0.0, 0.0, 0.0, 0.0, 0.0
-
-    # Orbit-average and computation of halfperiod
-    for iTh=1:nbT1
-        thp1 = (iTh-0.5)*dth1
-        rp1 = _orbitRadius(thp1,E,L,true)  # min value (left of rc)
-
-        halfperiod += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))
-
-        localOrbitChange!(rp1,E,L,q,m_field,PlummerTable)
-
-        dE   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE[] 
-        dE2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dE2[] 
-        dL   += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dL[]  
-        dL2  += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dL2[]
-        dEdL += dth1*cos(thp1)/abs(dpsiEffdr(rp1,L))*PlummerTable.dEdL[]
+        avrDE += jac_loc*dEloc
+        avrDL += jac_loc*dLloc
+        avrDEE += jac_loc*dE2loc
+        avrDEL += jac_loc*dEdLloc
+        avrDLL += jac_loc*dL2loc
+        halfperiod += jac_loc
     end
+    avrDE /= halfperiod
+    avrDL /= halfperiod
+    avrDEE /= halfperiod
+    avrDEL /= halfperiod
+    avrDLL /= halfperiod
 
-    for iTh=1:nbT2
-        thp2 = (iTh-0.5)*dth2
-        rp2 = _orbitRadius(thp2,E,L,false) # max value (right of rc)
-
-        halfperiod += dth2*cos(thp2)/abs(dpsiEffdr(rp2,L))
-        
-        localOrbitChange!(rp2,E,L,q,m_field,PlummerTable)
-
-        dE   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE[]  
-        dE2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dE2[]  
-        dL   += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dL[]  
-        dL2  += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dL2[] 
-        dEdL += dth1*cos(thp2)/abs(dpsiEffdr(rp2,L))*PlummerTable.dEdL[] 
-    end
-    halfperiod *= sqrt(2)
-
-    dE   *= sqrt(2)
-    dE2  *= sqrt(2)
-    dL   *= sqrt(2)
-    dL2  *= sqrt(2)
-    dEdL *= sqrt(2)
-
-    for iR=1:nbr
-        rp = r1 + (iR-0.5)*dr
-
-        halfperiod += dr/sqrt(2*(psiEff(rp,L)-E))
-
-        localOrbitChange!(rp,E,L,q,m_field,PlummerTable)
-
-        dE   += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE[] 
-        dE2  += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dE2[] 
-        dL   += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dL[] 
-        dL2  += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dL2[] 
-        dEdL += dr/sqrt(2*(psiEff(rp,L)-E))*PlummerTable.dEdL[] 
-    end
-    dE   /= halfperiod
-    dE2  /= halfperiod
-    dL   /= halfperiod
-    dL2  /= halfperiod
-    dEdL /= halfperiod
-
-    PlummerTable.dE[]   = dE
-    PlummerTable.dE2[]  = dE2
-    PlummerTable.dL[]   = dL
-    PlummerTable.dL2[]  = dL2
-    PlummerTable.dEdL[] = dEdL
-
-    end
+    return avrDE, avrDL, avrDEE, avrDEL, avrDLL
 end
