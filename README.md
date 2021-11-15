@@ -16,7 +16,12 @@ $ julia Install-pkg.jl
 to install the following packages:
 
 - `HDF5`
-- 
+- `ArgParse`
+- `HypergeometricFunctions`
+- `SpecialFunctions`
+- `StaticArrays`
+- `Interpolations`
+- `PolynomialRoots`
 
 (TODO)
 

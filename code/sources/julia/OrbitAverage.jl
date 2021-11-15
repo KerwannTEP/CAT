@@ -1,5 +1,6 @@
 ##################################################
-# Orbit-averagering
+# Orbit-averagering of the diffusion coefficients
+# In (E,L) space
 ##################################################
 using PolynomialRoots
 
@@ -69,18 +70,14 @@ end
 
 function halfperiod(E::Float64, L::Float64, nbAvr::Int64=nbAvr_default)
     sp, sa = radius_s_bounds(E,L)
-    a = sma_eff(sp,sa)
-    ecc = ecc_eff(sp,sa)
-
     halfperiod = 0.0
 
     for iu=1:nbAvr
         uloc = -1+2*(iu-0.5)/nbAvr
-        rloc = r_eff_anomaly(uloc,a,ecc)
         jac_loc = dth1du(uloc,sp,sa)
-
         halfperiod += jac_loc
     end
+
     halfperiod *= (1/_Omega0)*(2/nbAvr)
 
     return halfperiod

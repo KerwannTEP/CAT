@@ -2,10 +2,10 @@
 # Useful general functions
 ##################################################
 using StaticArrays # To have access to static arrays
-using Interpolations # To have access to interpolation functions
+
 using SpecialFunctions
 using HypergeometricFunctions
-using SphericalHarmonics # Legendre polynomial
+
 ##################################################
 # Compute normalized quantites
 ##################################################
@@ -90,7 +90,6 @@ end
 # Compute Lc(E) the angular momentum per unit mass of a circular orbit
 ##################################################
 
-
 function _tEta(s::Float64, tE::Float64)
     return (s^2-1)*(1/s - tE)
 end
@@ -133,6 +132,10 @@ end
 # Convert (E,L) to (vr,vt) at a given radius r
 # Convention vr >= 0
 ##################################################
+
+function radialVelocitySq(r::Float64,E::Float64, L::Float64)
+    return 2*(E-psiEff(r,L))
+end
 
 function radialVelocity(r::Float64,E::Float64, L::Float64)
     return sqrt(2*abs((E-psiEff(r,L))))
@@ -183,19 +186,9 @@ function sign(x::Float64)
 end
 
 ##################################################
-# Compute first n+1 Legendre polynomials by recursion
+# Bissection Algorithm to find zeroes of functions
+# Here, used to compute Ec(L)
 ##################################################
-
-function Legendre(xi::Float64, n::Int64=10)
-
-    th = acos(xi)
-    P = computePlmcostheta(th,lmax=n,m=0)
-    listP = zeros(Float64, n+1)
-    for k=0:n
-        listP[k+1] = sqrt(pi)*P[(k,0)]
-    end
-    return listP
-end
 
 """
     bisection(fun, xl, xu, <keyword arguments>)

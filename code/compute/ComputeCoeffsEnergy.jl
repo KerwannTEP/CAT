@@ -1,15 +1,21 @@
+##################################################
+# Compute the NR local diffusion coefficients in (E,L)
+##################################################
+
 include("../sources/julia/Main.jl")
 
-r = 1.0
-E = -0.5
-L = 0.1
-m = 0.1
+r = 1.0 # Radius
+E = -0.5 # Energy
+L = 0.1 # Angular momentum
+m = 0.1 # Mass of field star
 
 println("--------------------")
 
 println("Plummer potential")
 
 println("q = ", qCalc)
+println("m = ", m)
+println("r = ", r)
 println("E = ", E)
 println("L = ", L)
 
@@ -21,7 +27,7 @@ println("Coulomb log = ", logCoulomb)
 
 println("--------------------")
 
-@time dE, dE2, dL, dEdL, dL2 = localOrbitChange(r,E,L,m,qCalc,100,m)
+@time dE, dE2, dL, dEdL, dL2 = localOrbitChange(r,E,L,m,100,m)
 
 
 println("D_E  =  ", dE)

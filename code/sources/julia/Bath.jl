@@ -1,6 +1,7 @@
 using HypergeometricFunctions
 using SpecialFunctions
 using StaticArrays # To have access to static arrays
+using Interpolations # To have access to interpolation functions
 
 ##################################################
 # Distribution function in (E,L)
@@ -28,7 +29,7 @@ function _tF(tE::Float64, tL::Float64)
         # AT THE COMPILATION
         #
 
-        @static if (qCalc == 0.0) # Isotropic case
+        if (qCalc == 0.0) # Isotropic case
              return 3.0/(7.0*PI^3) * (2.0*tE)^(7/2)
         elseif (qCalc == 2.0) # Anisotropic case
             x = tL^2/(2*tE)
@@ -59,7 +60,6 @@ end
 # For flux computation
 ##################################################
 
-
 function _HdH(x::Float64, q::Float64=qCalc)
     if (x <= 1)
         pref = 1/(GAMMA_ca*GAMMA_ad)
@@ -77,7 +77,6 @@ function _HdH(x::Float64, q::Float64=qCalc)
         return H, dH
     end
 end
-
 
 # Returns tF, dtFdtE, dtFdtL
 function _tFdF(tE::Float64, tL::Float64, q::Float64=qCalc)

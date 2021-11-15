@@ -1,0 +1,7 @@
+import Pkg; Pkg.add("HDF5")
+import Pkg; Pkg.add("ArgParse")
+import Pkg; Pkg.add("HypergeometricFunctions")
+import Pkg; Pkg.add("SpecialFunctions")
+import Pkg; Pkg.add("StaticArrays")
+import Pkg; Pkg.add("Interpolations")
+import Pkg; Pkg.add("PolynomialRoots")

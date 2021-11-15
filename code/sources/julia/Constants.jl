@@ -1,5 +1,8 @@
-using SpecialFunctions
+##################################################
+# Useful constants
+##################################################
 
+using SpecialFunctions
 
 # Numerical Constants
 # Calculation done with with Julia
@@ -30,11 +33,6 @@ const _L0 = sqrt(_G*_M*_b) # Action
 const _F0 = (_G*_M*_b)^(-3/2) # Distribution function
 const _Omega0 = sqrt(_G*_M/_b^3) # Frequency
 const _rho0 = _M/(4*PI*_b^3/3) # Density
-
-# Isochronous potential
-const _E0Isochronous = -_G*_M/(2*_b)
-const _L0Isochronous = sqrt(_G*_M*_b/2)
-const _F0Isochronous = (_G*_M*_b)^(-3/2)
 
 
 # Constant used to compute H(x,q) and the DF

@@ -1,13 +1,10 @@
-# Compute numerical-gradient flux
-
+##################################################
+# Compute numerical-gradient flux and its divergence
+##################################################
 
 function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^(-5)*_L0 ,
                     nbK::Int=nbK_default, nbAvr::Int64=nbAvr_default,
                     m_test::Float64=m_field)
-
-    #eps = min(eps,Jr/(2*_L0),L/(2*_L0)) # Problem here for L very small ?
-
-    #eps = min(eps,Jr/(20*_L0),L/(20*_L0))
 
 
     Jr_p = Jr+eps
@@ -27,15 +24,10 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
     E_m_Lm = _E_from_Jr(Jr_m,L_m,nbAvr)
 
     # Distribution function
-
     Ftot = _F(E,L)
     dFtotdE, dFtotdL, d2FtotdE2, d2FtotdEL, d2FtotdL2 = _dF(E,L)
 
     # Compute dJr/dE and dJr/dL
-
-    dJrdE = 0.0
-    dJrdL = 0.0
-
     sp, sa = radius_s_bounds_action(Jr,L,nbAvr)
     a = sma_eff(sp,sa)
     ecc = ecc_eff(sp,sa)
@@ -71,7 +63,6 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
     d2JrdL2 *= (2/nbAvr)*(-1/PI)/_L0
 
     # Compute DFtot/DJr and DFtot/DL
-
     dEdL = -dJrdL/dJrdE
     dEdJr = 1/dJrdE
 
@@ -87,18 +78,11 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
     D2FtotDL2 = d2EdL2*dFtotdE + dEdL*(dEdL*d2FtotdE2+d2FtotdEL)+dEdL*d2FtotdEL+d2FtotdL2
 
     # Diffusion coefficients
-
-
-
-
     DJr, DL, DJrJr, DJrL, DLL = avr_action_coefficients(Jr,L,m_field,nbK,nbAvr,m_test)
-
     DJr_p, _, DJrJr_p, DJrL_Jrp, _ = avr_action_coefficients(Jr_p,L,m_field,nbK,nbAvr,m_test)
     DJr_m, _, DJrJr_m, DJrL_Jrm, _ = avr_action_coefficients(Jr_m,L,m_field,nbK,nbAvr,m_test)
-
     _, DL_p, _, DJrL_Lp, DLL_p = avr_action_coefficients(Jr,L_p,m_field,nbK,nbAvr,m_test)
     _, DL_m, _, DJrL_Lm, DLL_m = avr_action_coefficients(Jr,L_m,m_field,nbK,nbAvr,m_test)
-
     _, _, _, DJrL_pp, _ = avr_action_coefficients(Jr_p,L_p,m_field,nbK,nbAvr,m_test)
     _, _, _, DJrL_mm, _ = avr_action_coefficients(Jr_m,L_m,m_field,nbK,nbAvr,m_test)
     _, _, _, DJrL_pm, _ = avr_action_coefficients(Jr_p,L_m,m_field,nbK,nbAvr,m_test)
@@ -138,9 +122,6 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
 end
 
 
-
-
-
 function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^(-5)*_L0,
                     nbK::Int=nbK_default, nbAvr::Int64=nbAvr_default,
                     m_test::Float64=m_field)
@@ -156,10 +137,6 @@ function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^
         Ftot, dFtotdE, dFtotdL = _FdF(E,L)
 
         # Compute dJr/dE and dJr/dL
-
-        dJrdE = 0.0
-        dJrdL = 0.0
-
         sp, sa = radius_s_bounds_action(Jr,L,nbAvr)
         a = sma_eff(sp,sa)
         ecc = ecc_eff(sp,sa)
@@ -180,24 +157,19 @@ function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^
         dJrdL *= (2/nbAvr)*(-L/PI)*(1/_Omega0)
 
         # Compute DFtot/DJr and DFtot/DL
-
         DFtotDJr = (1/dJrdE)*dFtotdE
 
         dEdL = -dJrdL/dJrdE
         DFtotDL = dEdL*dFtotdE + dFtotdL
 
         # Compute diffusion coefficients
-
-
         DJr, DL, DJrJr, DJrL, DLL = avr_action_coefficients(Jr,L,m_field,nbK,nbAvr,m_test) #
-
         _, _, DJrJr_Jrp, DJrL_Jrp, _ = avr_action_coefficients(Jr_p,L,m_field,nbK,nbAvr,m_test) #
         _, _, DJrJr_Jrm, DJrL_Jrm, _ = avr_action_coefficients(Jr_m,L,m_field,nbK,nbAvr,m_test) #
-
         _, _, _, DJrL_Lp, DLL_Lp = avr_action_coefficients(Jr,L_p,m_field,nbK,nbAvr,m_test) #
         _, _, _, DJrL_Lm, DLL_Lm = avr_action_coefficients(Jr,L_m,m_field,nbK,nbAvr,m_test) #
 
-        # Flur Jr
+        # Flux Jr
         termJr1 = 2*L*DJr*Ftot
         termJr2 = -0.5*((2*L*DJrJr_Jrp-2*L*DJrJr_Jrm)/(2*eps))*Ftot
         termJr3 = -L*DJrJr*DFtotDJr
@@ -206,7 +178,7 @@ function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^
 
         FJr = termJr1+termJr2+termJr3+termJr4+termJr5
 
-        # Flur Jr
+        # Flux Jr
         termL1 = 2*L*DL*Ftot
         termL2 = -0.5*((2*L*DJrL_Jrp-2*L*DJrL_Jrm)/(2*eps))*Ftot
         termL3 = -L*DJrL*DFtotDJr
@@ -216,7 +188,5 @@ function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^
         FL = termL1+termL2+termL3+termL4+termL5
 
         return FJr, FL
-
-
 
 end
