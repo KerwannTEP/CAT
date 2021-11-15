@@ -2,8 +2,25 @@
 # Compute numerical-gradient flux and its divergence
 ##################################################
 
+"""
+    divflux_NR_num(Jr,L,m_field,[eps=10^(-5)*_L0,nbK=nbK_default,nbAvr=nbAvr_default,m_test=m_field])
+
+Computes the divergence of the flux in action space.
+
+# Remarks
+- `dF/dt = -div(flux)`.
+
+# Arguments
+- `Jr::Float64`: Radial action parameter.
+- `L::Float64`: Angular momentum parameter.
+- `m_field::Float64`: Mass of field star.
+- `eps::Float64`: Finite difference used in numerical gradient.
+- `nbK::Int64`: Sampling number of Rosenbluth integrals.
+- `nbAvr::Int64`: Sampling number of orbit average.
+- `m_test::Float64`: Mass of test star.
+"""
 function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^(-5)*_L0 ,
-                    nbK::Int=nbK_default, nbAvr::Int64=nbAvr_default,
+                    nbK::Int64=nbK_default, nbAvr::Int64=nbAvr_default,
                     m_test::Float64=m_field)
 
 
@@ -121,9 +138,22 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
     return termJr+termL-0.5*termJrJr-0.5*termLL-termJrL
 end
 
+"""
+    flux_NR_num(Jr,L,m_field,[eps=10^(-5)*_L0,nbK=nbK_default,nbAvr=nbAvr_default,m_test=m_field])
 
+Computes the flux in action space.
+
+# Arguments
+- `Jr::Float64`: Radial action parameter.
+- `L::Float64`: Angular momentum parameter.
+- `m_field::Float64`: Mass of field star.
+- `eps::Float64`: Finite difference used in numerical gradient.
+- `nbK::Int64`: Sampling number of Rosenbluth integrals.
+- `nbAvr::Int64`: Sampling number of orbit average.
+- `m_test::Float64`: Mass of test star.
+"""
 function flux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=10^(-5)*_L0,
-                    nbK::Int=nbK_default, nbAvr::Int64=nbAvr_default,
+                    nbK::Int64=nbK_default, nbAvr::Int64=nbAvr_default,
                     m_test::Float64=m_field)
 
         Jr_p = Jr+eps

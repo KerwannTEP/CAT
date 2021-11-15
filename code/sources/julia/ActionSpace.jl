@@ -14,8 +14,8 @@ Bounds are in the variable `s`, defined as `s^2 = 1 + x^2`, where `x = r/b`.
 
 # Arguments
 - `Jr::Float64`: Radial action parameter.
-- `L ::Float64`: Angular momentum parameter.
-- `nbAvr ::Int64`: Orbit average sampling number.
+- `L::Float64`: Angular momentum parameter.
+- `nbAvr::Int64`: Orbit average sampling number.
 """
 function radius_s_bounds_action(Jr::Float64, L::Float64, nbAvr::Int64=nbAvr_default)
 
@@ -42,8 +42,8 @@ Computes half the radial period of the orbit with action parameters `(L, Jr)`.
 
 # Arguments
 - `Jr::Float64`: Radial action parameter.
-- `L ::Float64`: Angular momentum parameter.
-- `nbAvr ::Int64`: Orbit average sampling number.
+- `L::Float64`: Angular momentum parameter.
+- `nbAvr::Int64`: Orbit average sampling number.
 """
 function halfperiod_action(Jr::Float64, L::Float64, nbAvr::Int64=nbAvr_default)
 
@@ -70,7 +70,7 @@ Variable `s` is defined as `s^2 = 1 + x^2`, where `x = r/b`.
 
 # Arguments
 - `s::Float64`: Radial parameter.
-- `L ::Float64`: Angular momentum parameter.
+- `L::Float64`: Angular momentum parameter.
 """
 function PHIeff(s::Float64, L::Float64)
     return _E0/s + L^2/(2*_b^2*(s^2-1))
@@ -84,7 +84,7 @@ Return a tuple `(dPHIeff/ds, dPHIeff/dL)`.
 
 # Arguments
 - `s::Float64`: Radial parameter.
-- `L ::Float64`: Angular momentum parameter.
+- `L::Float64`: Angular momentum parameter.
 """
 function dPHIeff(s::Float64, L::Float64)
     ds = -_E0/s^2 - s*L^2/(_b^2*(s^2-1)^2)
@@ -332,8 +332,6 @@ Computes the energy of an orbit with radial action `Jr` and angular momentum `L`
 - `nbAvr::Tnt64`: Sampling number of orbit average.
 - `eps::Tnt64`: Required precision for the dichotomy.
 """
-# returns E(Jr,L)
-# unstable for very small L>0
 function _E_from_Jr(Jr::Float64, L::Float64, nbAvr::Int64=nbAvr_default, eps::Float64=4.0*10^(-15))
     En = -0.5 # E0
     delta = 0.5 # initial precision

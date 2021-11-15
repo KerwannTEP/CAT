@@ -7,27 +7,44 @@ using Interpolations # To have access to interpolation functions
 # Distribution function in (E,L)
 ##################################################
 
+"""
+    _H(x,[q=qCalc])
+
+Computes the `H(x,q)` function used in the distribution function.
+
+# Remarks
+- Uses pre-computed interpolated functions when using `₂F₁`.
+
+# Arguments
+- `x::Float64`: `x` parameter.
+- `q ::Float64`: Anisotropy parameter.
+"""
 function _H(x::Float64, q::Float64=qCalc)
     if (x <= 1)
         pref = 1/(GAMMA_ca)
-        HG   = H_1(x) #tabHyperGeoInt[1](x)#_₂F₁(q/2,q-3.5,1.0,x)
+        HG   = H_1(x)
         return pref*HG
     else
         pref = 1/(GAMMA_db*GAMMA_bc)
-        HG   = H_3(1/x) #tabHyperGeoInt[3](1/x)#_₂F₁(q/2,q/2,4.5-q/2,1/x)
+        HG   = H_3(1/x)
         return pref*x^(-q/2)*HG
     end
 end
 
+"""
+    _tF(tE,tL)
+
+Non-dimensional distribution function of a Plummer sphere.
+
+# Arguments
+- `tE::Float64`: Reduced energy `tE = E/E0`.
+- `tL::Float64`: Reduced energy `tL = L/L0`.
+"""
 function _tF(tE::Float64, tL::Float64)
 
     if (tE < 0.0 || tL < 0.0) # If E or L are negative, the DF vanishes
         return 0.0
     else # If E and L are positive
-
-        # FIND A WAY TO ONLY SELECT ONE PART OF THE CODE
-        # AT THE COMPILATION
-        #
 
         if (qCalc == 0.0) # Isotropic case
              return 3.0/(7.0*PI^3) * (2.0*tE)^(7/2)
@@ -47,6 +64,16 @@ function _tF(tE::Float64, tL::Float64)
     end
 end
 
+"""
+    _F(E,L)
+
+Distribution function of a Plummer sphere.
+Normalized to the total mass of the cluster `_M`.
+
+# Arguments
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function _F(E::Float64, L::Float64)
     tE = _tE(E)
     tL = _tL(L)
@@ -60,25 +87,47 @@ end
 # For flux computation
 ##################################################
 
+"""
+    _HdH(x,[q=qCalc])
+
+Computes the `H(x,q)` function used in the distribution function and its derivative.
+Returns a tuple `(H, dH/dx)`.
+
+# Remarks
+- Uses pre-computed interpolated functions when using `₂F₁`.
+
+# Arguments
+- `x::Float64`: `x` parameter.
+- `q ::Float64`: Anisotropy parameter.
+"""
 function _HdH(x::Float64, q::Float64=qCalc)
     if (x <= 1)
-        pref = 1/(GAMMA_ca*GAMMA_ad)
-        HG   = tabHyperGeoInt[1](x) #_₂F₁(q/2,q-3.5,1.0,x)
-        HGp  = tabHyperGeoInt[2](x) #_₂F₁(q/2+1,q-2.5,2.0,x)
+        pref = 1/(GAMMA_ca)
+        HG   = H_1(x)
+        HGp  = H_2(x)
         H = pref*HG
         dH = pref*x^(-1)*((q/2)*(q-3.5)*x*HGp)
         return H, dH
     else
         pref = 1/(GAMMA_db*GAMMA_bc)
-        HG   = tabHyperGeoInt[3](1/x) #_₂F₁(q/2,q/2,4.5-q/2,1/x)
-        HGp  = tabHyperGeoInt[4](1/x) #_₂F₁(q/2+1,q/2+1,5.5-q/2,1/x)
+        HG   = H_3(1/x)
+        HGp  = H_4(1/x)
         H = pref*x^(-q/2)*HG
         dH = pref*x^(-q/2-1)*((-q/2)*HG - (1/x)*HGp*(q/2)*(q/2)/(4.5-q/2))
         return H, dH
     end
 end
 
-# Returns tF, dtFdtE, dtFdtL
+"""
+    _tFdF(tE,tL)
+
+Non-dimensional distribution function of a Plummer sphere and its gradient.
+Returns a tuple `(F, dtF/dtE, dtF/dtL)`.
+
+# Arguments
+- `tE::Float64`: Reduced energy `tE = E/E0`.
+- `tL::Float64`: Reduced energy `tL = L/L0`.
+"""
 function _tFdF(tE::Float64, tL::Float64, q::Float64=qCalc)
     if (tE <= 0.0 || tL <= 0.0) # If E or L are negative, the DF vanishes
         DF = 0.0
@@ -122,6 +171,17 @@ function _tFdF(tE::Float64, tL::Float64, q::Float64=qCalc)
     end
 end
 
+"""
+    _F(E,L)
+
+Distribution function of a Plummer sphere and its gradient.
+Normalized to the total mass of the cluster `_M`.
+Returns a tuple `(F, dF/dE, dF/dL)`.
+
+# Arguments
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function _FdF(E::Float64, L::Float64, q::Float64=qCalc)
     tE = _tE(E)
     tL = _tL(L)
@@ -149,6 +209,23 @@ end
 # HGp2  = _₂F₁(qCalc/2+1,qCalc/2+1,5.5-qCalc/2,1) = gamma(5.5-qCalc/2)gamma(3.5-1.5*qCalc)/(gamma(4.5-qCalc)gamma(4.5-qCalc))
 ##################################################
 
+"""
+    getHGInt(nbxInt=1000)
+
+Interpolate the following hypergeometric function :
+- `HG1   = _₂F₁(qCalc/2,qCalc-3.5,1.0,x)`
+- `HGp1  = _₂F₁(qCalc/2+1,qCalc-2.5,2.0,x)`
+- `HG2   = _₂F₁(qCalc/2,qCalc/2,4.5-qCalc/2,1/x)`
+- `HGp2  = _₂F₁(qCalc/2+1,qCalc/2+1,5.5-qCalc/2,1/x)`
+
+# Remarks
+- Manually sets the values at x=0 and x=1.
+- `₂F₁(a,b,c,0) = 1.0` .
+- `₂F₁(a,b,c,1) = gamma(c)gamma(c-a-b)/(gamma(c-a)gamma(c-b))`.
+
+# Arguments
+- `nbxInt::Int64`: Number of interpolation sampling points.
+"""
 function getHGInt(nbxInt::Int64=1000)
     xminInt = 0.0
     xmaxInt = 1.0
@@ -192,8 +269,47 @@ function getHGInt(nbxInt::Int64=1000)
     return [intHG1, intHGp1, intHG2, intHGp2]
 end
 
+"""
+    tabHyperGeoInt
 
+Interpolate the following hypergeometric function :
+- `HG1   = _₂F₁(qCalc/2,qCalc-3.5,1.0,x)`
+- `HGp1  = _₂F₁(qCalc/2+1,qCalc-2.5,2.0,x)`
+- `HG2   = _₂F₁(qCalc/2,qCalc/2,4.5-qCalc/2,1/x)`
+- `HGp2  = _₂F₁(qCalc/2+1,qCalc/2+1,5.5-qCalc/2,1/x)`
+
+Interpolations are put inside a StaticArrays of size 4.
+"""
 const tabHyperGeoInt = SVector{4}(getHGInt())
 
+"""
+    H_1
+
+Interpolate the following hypergeometric function :
+- `HG1   = _₂F₁(qCalc/2,qCalc-3.5,1.0,x)`
+"""
 const H_1 = tabHyperGeoInt[1]
+
+"""
+    H_2
+
+Interpolate the following hypergeometric function :
+- `HGp1  = _₂F₁(qCalc/2+1,qCalc-2.5,2.0,x)`
+"""
+const H_2 = tabHyperGeoInt[2]
+
+"""
+    H_3
+
+Interpolate the following hypergeometric function :
+- `HG2   = _₂F₁(qCalc/2,qCalc/2,4.5-qCalc/2,1/x)`
+"""
 const H_3 = tabHyperGeoInt[3]
+
+"""
+    H_4
+
+Interpolate the following hypergeometric function :
+- `HGp2  = _₂F₁(qCalc/2+1,qCalc/2+1,5.5-qCalc/2,1/x)`
+"""
+const H_4 = tabHyperGeoInt[4]

@@ -7,81 +7,236 @@ using SpecialFunctions
 using HypergeometricFunctions
 
 ##################################################
-# Compute normalized quantites
+# Compute normalized variables
 ##################################################
 
+"""
+    _tr(r)
+
+Computes the non-dimensional radius `x = r/b`.
+
+# Arguments
+- `r::Float64`: Radius.
+"""
 function _tr(r::Float64)
     return r/_b
 end
 
+"""
+    _tE(E)
+
+Computes the non-dimensional energy `tE = E/E0`.
+
+# Arguments
+- `E::Float64`: Energy.
+"""
 function _tE(E::Float64)
     return E/_E0
 end
 
+"""
+    _tL(L)
+
+Computes the non-dimensional angular momentum `tL = L/L0`.
+
+# Arguments
+- `L::Float64`: Angular momentum.
+"""
 function _tL(L::Float64)
     return L/_L0
 end
 
+##################################################
+# Compute the normalized Plummer potential
+##################################################
+
+"""
+    _tpsi(tr)
+
+Computes the non-dimensional Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+"""
 function _tpsi(tr::Float64)
     return 1/sqrt(1.0+tr^2)
 end
 
+"""
+    _tdpsidr(tr)
+
+Computes the derivative of the non-dimensional Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+"""
 function _tdpsidr(tr::Float64)
     return -tr/(1.0+tr^2)^(3/2)
 end
 
+"""
+    _td2psidr2(tr)
+
+Computes the second derivative of the non-dimensional Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+"""
 function _td2psidr2(tr::Float64)
     return -(1.0-tr^2)/(1.0+tr^2)^(5/2)
 end
 
+##################################################
+# Compute the normalized effective Plummer potential
+##################################################
+
+"""
+    _tpsiEff(tr,tL)
+
+Computes the non-dimensional effective Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+- `tL::Float64`: Non-dimensional angular momentum.
+"""
 function _tpsiEff(tr::Float64, tL::Float64)
     return _tpsi(tr) - tL^2/(2*tr^2)
 end
 
+"""
+    _tdpsiEffdr(tr,tL)
+
+Computes the tr-derivative of the non-dimensional effective Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+- `tL::Float64`: Non-dimensional angular momentum.
+"""
 function _tdpsiEffdr(tr::Float64, tL::Float64)
     return _tdpsidr(tr) + tL^2/(tr^3)
 end
 
+"""
+    _td2psiEffdr2(tr,tL)
+
+Computes the second tr-derivative of the non-dimensional effective Plummer potential.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+- `tL::Float64`: Non-dimensional angular momentum.
+"""
 function _td2psiEffdr2(tr::Float64, tL::Float64)
     return _td2psidr2(tr) - 3* tL^2/(tr^4)
 end
 
+
 ##################################################
-# Compute Ec(L) the binding energy per unit mass of a circular orbit
+# Compute the Plummer potential
 ##################################################
 
-# Potential
+"""
+    psi(r)
+
+Computes the Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+"""
 function psi(r::Float64)
     return _E0*_tpsi(_tr(r))
 end
 
+"""
+    dpsidr(r)
+
+Computes the derivative of the Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+"""
 function dpsidr(r::Float64)
     return (_E0/_b)*_tdpsidr(_tr(r))
 end
 
+"""
+    d2psidr2(r)
+
+Computes the second derivative of the Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+"""
 function d2psidr2(r::Float64)
     return (_E0/_b^2)*_td2psidr2(_tr(r))
 end
 
-# Effective potential
+##################################################
+# Compute the effective Plummer potential
+##################################################
+
+"""
+    psiEff(r,L)
+
+Computes the effective Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+- `L::Float64`: Angular momentum.
+"""
 function psiEff(r::Float64, L::Float64)
     return _E0*_tpsiEff(_tr(r),_tL(L))
 end
 
+"""
+    dpsiEffdr(r,L)
 
+Computes the r-derivative of the effective Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+- `L::Float64`: Angular momentum.
+"""
 function dpsiEffdr(r::Float64, L::Float64)
     return (_E0/_b)*_tdpsiEffdr(_tr(r),_tL(L))
 end
 
+"""
+    d2psiEffdr2(r,L)
 
+Computes the second r-derivative of the effective Plummer potential.
+
+# Arguments
+- `r::Float64`: Radius.
+- `L::Float64`: Angular momentum.
+"""
 function d2psiEffdr2(r::Float64, L::Float64)
     return (_E0/_b^2)*_td2psiEffdr2(_tr(r),_tL(L))
 end
 
+##################################################
+# Compute the Plummer density
+##################################################
+
+"""
+    _trho(tr)
+
+Computes the non-dimensional Plummer density.
+
+# Arguments
+- `tr::Float64`: Non-dimensional radius.
+"""
 function _trho(tr::Float64)
     return 1/(1+tr^2)^(5/2)
 end
 
+"""
+    rho(r)
+
+Computes the Plummer density.
+
+# Arguments
+- `r::Float64`: Radius.
+"""
 function rho(r::Float64)
     return _rho0*_trho(_tr(r))
 end
@@ -90,10 +245,32 @@ end
 # Compute Lc(E) the angular momentum per unit mass of a circular orbit
 ##################################################
 
+"""
+    _tEta(s,tE)
+
+Function used to compute the maximal, circular angular momentum of an orbit with non-dimensional energy `tE`.
+Uses the radius parameter `s` defined by `s^2 = 1 + x^2` where `x = r/b`.
+
+# Arguments
+- `s::Float64`: Radius parameter.
+- `tE::Float64`: Non-dimensional energy.
+"""
 function _tEta(s::Float64, tE::Float64)
     return (s^2-1)*(1/s - tE)
 end
 
+"""
+    _sc(tE)
+
+Compute the s-radius of the circular orbit with non-dimensional energy `tE`.
+Uses the radius parameter `s` defined by `s^2 = 1 + x^2` where `x = r/b`.
+
+# Remarks
+- Uses an analytical expression (cubic root).
+
+# Arguments
+- `tE::Float64`: Non-dimensional energy.
+"""
 function _sc(tE::Float64)
     t1 = 1/(6*tE)
     t2 = (1+54*tE^2)/(216*tE^3)
@@ -101,13 +278,33 @@ function _sc(tE::Float64)
     return t1+cbrt(t2+t3)+cbrt(t2-t3)
 end
 
-# circular radius
+"""
+    _rc(tE)
+
+Compute the radius of the circular orbit with non-dimensional energy `tE`.
+
+# Remarks
+- Uses an analytical expression (cubic root).
+
+# Arguments
+- `tE::Float64`: Non-dimensional energy.
+"""
 function _rc(tE::Float64)
     sc = _sc(tE)
     return _b*sqrt(sc^2-1)
 end
 
-# Circular angular momentum
+"""
+    Lc(tE)
+
+Compute the angular momentum of the circular orbit with non-dimensional energy `tE`.
+
+# Remarks
+- Uses an analytical expression (cubic root).
+
+# Arguments
+- `tE::Float64`: Non-dimensional energy.
+"""
 function Lc(tE::Float64)
     if (tE == 1.0)
         return 0.0
@@ -120,10 +317,30 @@ end
 # Convert (vr,vt) to (E,L) at a given radius r
 ##################################################
 
+"""
+    energy(r,vr,vt)
+
+Compute the energy of a star at position `r` and velocity `(vr,vt)`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `vr::Float64`: Radial velocity.
+- `vt::Float64`: Tangential velocity.
+"""
 function energy(r::Float64, vr::Float64, vt::Float64)
     return psi(r) + vr^2/(2.0) + vt^2/(2.0)
 end
 
+"""
+    momentum(r,vr,vt)
+
+Compute the angular momentum of a star at position `r` and velocity `(vr,vt)`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `vr::Float64`: Radial velocity.
+- `vt::Float64`: Tangential velocity.
+"""
 function momentum(r::Float64, vr::Float64, vt::Float64)
     return r*vt
 end
@@ -133,60 +350,67 @@ end
 # Convention vr >= 0
 ##################################################
 
+"""
+    radialVelocitySq(r,E,L)
+
+Compute the square radial velocity of a star at position `r` of an orbit with parameters `(E,L)`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function radialVelocitySq(r::Float64,E::Float64, L::Float64)
     return 2*(E-psiEff(r,L))
 end
 
+"""
+    radialVelocity(r,E,L)
+
+Compute the radial velocity of a star at position `r` of an orbit with parameters `(E,L)`.
+Uses the convention `vr >= 0`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function radialVelocity(r::Float64,E::Float64, L::Float64)
     return sqrt(2*abs((E-psiEff(r,L))))
 end
 
+"""
+    tangentVelocity(r,E,L)
+
+Compute the tangential velocity of a star at position `r` of an orbit with parameters `(E,L)`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function tangentVelocity(r::Float64,E::Float64, L::Float64)
     return L/r
 end
 
+"""
+    velocity(r,E,L)
+
+Compute the velocity of a star at position `r` of an orbit with parameters `(E,L)`.
+
+# Arguments
+- `r::Float64`: Radius.
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+"""
 function velocity(r::Float64,E::Float64, L::Float64)
     return sqrt(2*abs((E-psi(r,L))))
 end
 
-##################################################
-# Solve the degree-3 polynomial equation aX^3 + bX^2 + cX + d = 0
-# Gives the real roots
-##################################################
 
-function solveRealPoly3(a::Float64, b::Float64, c::Float64, d::Float64)
-    p = (3*a*c - b^2)/(3*a^2)
-    q = (2*b^3 - 9*a*b*c + 27*a^2*d)/(27*a^3)
-    disc = -(4*p^3 + 27*q^2)
-    if (disc < 0.0)
-        rt1 = cbrt(-q/2 + sqrt((q^2)/4 + (p^3)/27)) + cbrt(-q/2 - sqrt((q^2)/4 + (p^3)/27))
-        rt1 -= b/(3*a)
-        nbRoot = 1
-        return nbRoot, rt1
-    else
-        rt1 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)))
-        rt2 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 2*PI/3)
-        rt3 = 2*sqrt(-p/3)*cos((1/3)*acos((3*q)/(2*p) * sqrt(-3/p)) - 4*PI/3)
-        rt1 -= b/(3*a)
-        rt2 -= b/(3*a)
-        rt3 -= b/(3*a)
-        nbRoot = 3
-        return nbRoot, rt1, rt2, rt3
-    end
-end
-
-function sign(x::Float64)
-    if (x > 0.0)
-        return 1.0
-    elseif (x < 0.0)
-        return -1.0
-    else
-        return 0.0
-    end
-end
 
 ##################################################
-# Bissection Algorithm to find zeroes of functions
+# Bisection algorithm to find zeroes of functions
 # Here, used to compute Ec(L)
 ##################################################
 
@@ -244,9 +468,18 @@ function bisection(fun, xl::Float64, xu::Float64, tolx::Float64=4.0*10^(-15), to
     end
 end
 
-# Computes numerically rc(L)
-# Use bissection
-# circular radius
+
+"""
+    _rc_L(L)
+
+Compute the radius of the circular orbit with angular momentum `L`.
+
+# Remarks
+- Uses a bisection algorithm.
+
+# Arguments
+- `L::Float64`: Angular momentum.
+"""
 function _rc_L(L::Float64)
     tL = _tL(L)
     fct = (tr->_tdpsiEffdr(tr,tL))
@@ -261,7 +494,17 @@ function _rc_L(L::Float64)
     return _b*troot
 end
 
-# Energy of circular orbit
+"""
+    Ec(L)
+
+Compute the energy of the circular orbit with angular momentum `L`.
+
+# Remarks
+- Uses a bisection algorithm.
+
+# Arguments
+- `L::Float64`: Angular momentum.
+"""
 function Ec(L::Float64)
     rc = _rc_L(L)
     return psiEff(rc,L)

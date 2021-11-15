@@ -2,6 +2,23 @@
 # Computation of the local velocity deflections
 ##################################################
 
+"""
+    _vmax(r,vr,vt,sinth,costh,cosph)
+
+Computes the maximum allowed velocity in Rosenbluth integrals, for a test star at position `r` and velocity `(vr,vt)`.
+At fixed integration variable (over field) `(θ,φ)` such that `sin(θ)=sinth`, `cos(θ)=costh` and `cos(φ)=cosph`.
+
+# Remarks
+- Integrands in Rosenbluth integrals vanishes for v > _vmax.
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `vr::Float64`: Radial velocity of the test star.
+- `vt::Float64`: Tangential velocity of the test star.
+- `sinth::Float64`: Value `sin(θ)=sinth` corresponding to `θ` integration variable.
+- `costh::Float64`: Value `cos(θ)=costh` corresponding to `θ` integration variable.
+- `cosph::Float64`: Value `cos(φ)=cosph` corresponding to `φ` integration variable.
+"""
 function _vmax(r::Float64, vr::Float64, vt::Float64,
     sinth::Float64,costh::Float64,cosph::Float64)
 
@@ -17,13 +34,39 @@ function _vmax(r::Float64, vr::Float64, vt::Float64,
 
 end
 
+"""
+    _EaLa(r,var2,vat2)
+
+Computes the energy and angular momentum used in Rosenbluth integrands.
+
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `var2::Float64`: Square radial velocity in Rosenbluth integrand.
+- `vat2::Float64`: Square tangential velocity in Rosenbluth integrand.
+"""
 function _EaLa(r::Float64, var2::Float64, vat2::Float64)
     Ea = psi(r) + (1/2)*(var2+vat2)
     La = r*sqrt(vat2)
     return Ea, La
 end
 
+"""
+    _fa(r,vr,vt,vp,snth,csth,snph,csph)
 
+Distribution function used in Rosenbluth integrand
+
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `vr::Float64`: Radial velocity of the test star.
+- `vt::Float64`: Tangential velocity of the test star.
+- `vp::Float64`: Velocity integration variable.
+- `snth::Float64`: Value `sin(θ)=snth` corresponding to `θ` integration variable.
+- `csth::Float64`: Value `cos(θ)=csth` corresponding to `θ` integration variable.
+- `snph::Float64`: Value `sin(φ)=snph` corresponding to `φ` integration variable.
+- `csph::Float64`: Value `cos(φ)=csph` corresponding to `φ` integration variable.
+"""
 function _fa(r::Float64, vr::Float64, vt::Float64, vp::Float64,
                 snth::Float64,csth::Float64,snph::Float64,csph::Float64)
 
@@ -40,8 +83,19 @@ function _fa(r::Float64, vr::Float64, vt::Float64, vp::Float64,
 end
 
 
+"""
+    RosenbluthPotentials(r,vr,vt,[nbK=nbK_default])
 
-function RosenbluthPotentialsSum(r::Float64, vr::Float64, vt::Float64, nbK::Int=nbK_default)
+Computation of the Rosenbluth potential and its derivatives.
+Returns a tuple `(dh/dvr, dh/dvt, dg/dvt, d2g/dvr2, d2g/dvrdvt, d2g/dvt2)`.
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `vr::Float64`: Radial velocity of the test star.
+- `vt::Float64`: Tangential velocity of the test star.
+- `nbK::Int64`: Sampling number of Rosenbluth integrals.
+"""
+function RosenbluthPotentials(r::Float64, vr::Float64, vt::Float64, nbK::Int64=nbK_default)
     #X = (v',x,phi)
 
     sumhr = 0
@@ -123,11 +177,25 @@ function RosenbluthPotentialsSum(r::Float64, vr::Float64, vt::Float64, nbK::Int=
     return sumhr, sumht, sumgt, sumh+sumgrrInt, sumgrt, sumh+sumgttInt
 end
 
+"""
+    localVelChange(r,vr,vt,m_field,[nbK=nbK_default,m_test=m_field])
+
+Computation of the local velocity deflections along and perpendicular to the trajectory of the test star.
+Returns a tuple `(dvPar, dvPar2, dvPerp2)`.
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `vr::Float64`: Radial velocity of the test star.
+- `vt::Float64`: Tangential velocity of the test star.
+- `m_field::Float64`: Mass of field star.
+- `nbK::Int64`: Sampling number of Rosenbluth integrals.
+- `m_test::Float64`: Mass of test star.
+"""
 function localVelChange(r::Float64, vr::Float64, vt::Float64,
-                        m_field::Float64, nbK::Int=nbK_default,
+                        m_field::Float64, nbK::Int64=nbK_default,
                         m_test::Float64=m_field)
 
-    dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2 = RosenbluthPotentialsSum(r,vr,vt,nbK)
+    dhdvr, dhdvt, dgdvt, d2gdvr2, d2gdvrdvt, d2gdvt2 = RosenbluthPotentials(r,vr,vt,nbK)
 
     cst       = 4.0*PI*_G^2*logCoulomb
     v         = sqrt(vr^2+vt^2)
@@ -152,9 +220,22 @@ function localVelChange(r::Float64, vr::Float64, vt::Float64,
     return dvPar, dvPar2, dvPerp2
 end
 
+"""
+    localOrbitChange(r,E,L,m_field,[nbK=nbK_default,m_test=m_field])
 
+Computation of the local energy and angular momentum deflections.
+Returns a tuple `(dE, dE2, dL, dEdL, dL2)`.
+
+# Arguments
+- `r::Float64`: Radial position of the test star.
+- `E::Float64`: Energy of the test star.
+- `L::Float64`: Angular momentum of the test star.
+- `m_field::Float64`: Mass of field star.
+- `nbK::Int64`: Sampling number of Rosenbluth integrals.
+- `m_test::Float64`: Mass of test star.
+"""
 function localOrbitChange(r::Float64, E::Float64, L::Float64,
-                           m_field::Float64, nbK::Int=nbK_default,
+                           m_field::Float64, nbK::Int64=nbK_default,
                            m_test::Float64=m_field)
 
     vr = radialVelocity(r,E,L)
