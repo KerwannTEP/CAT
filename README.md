@@ -1,5 +1,5 @@
-# ChAD
-Chandrasekhar Anisotropic Diffusion
+# CAT
+Chandrasekhar Anisotropic Theory
 
 ## Aim of the code
 
