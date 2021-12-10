@@ -2,11 +2,16 @@
 # Computation of the local velocity deflections
 ##################################################
 
+### Todo
+# change vmax by wmax
+# for coherence with notes and paper
+
 """
     _vmax(r,vr,vt,sinth,costh,cosph)
 
 Computes the maximum allowed velocity in Rosenbluth integrals, for a test star at position `r` and velocity `(vr,vt)`.
 At fixed integration variable (over field) `(θ,φ)` such that `sin(θ)=sinth`, `cos(θ)=costh` and `cos(φ)=cosph`.
+Returns false if no such vmax exists (i.e. non-positive discriminant).
 
 # Remarks
 - Integrands in Rosenbluth integrals vanishes for v > _vmax.
@@ -29,7 +34,7 @@ function _vmax(r::Float64, vr::Float64, vt::Float64,
     if (deltav > 0.0)
         return (vr*costh+vt*sinth*cosph) + sqrt(deltav)
     else
-        return 0.0
+        return false # in order to test whether the discriminant is positive or not
     end
 
 end
@@ -121,42 +126,64 @@ function RosenbluthPotentials(r::Float64, vr::Float64, vt::Float64, nbK::Int64=n
             sinphtemp, cosphtemp = sincos(2*PI*phtemp)
             vmax = _vmax(r,vr,vt,sinthtemp,costhtemp,cosphtemp)
 
-            sumhr_v = 0
-            sumht_v = 0
-            sumgt_v = 0
-            sumh_v = 0
-            sumgrrInt_v = 0
-            sumgrt_v = 0
-            sumgttInt_v = 0
+            if (vmax != false)
+                # if discriminant > 0 (i.e there exists an acceptable w-range where E'<0)
+                # this is always the case for bound stars
 
-            for iv=1:nbK
-                vtemp = (2*iv-1)/(2*nbK)
-                floc = _fa(r,vr,vt,vmax*vtemp,sinthtemp,costhtemp,sinphtemp,cosphtemp)
-                sumhr_v += -floc
-                sumht_v += -floc
-                sumgt_v += vtemp^2*floc
+                if (vmax > 0)
+                    # if acceptable range has some part where w>0
+                    # always the case for bounds stars
+                    # happens for some unbound stars (in that case, one can optimize this code as vmin>0)
 
-                # compute h and the other integrals separately
-                sumh_v += vtemp*floc
-                sumgrrInt_v += -vtemp*floc
-                sumgrt_v += -vtemp*floc
-                sumgttInt_v += -vtemp*floc
+                    sumhr_v = 0
+                    sumht_v = 0
+                    sumgt_v = 0
+                    sumh_v = 0
+                    sumgrrInt_v = 0
+                    sumgrt_v = 0
+                    sumgttInt_v = 0
+
+                    for iv=1:nbK
+                        vtemp = (2*iv-1)/(2*nbK)
+                        floc = _fa(r,vr,vt,vmax*vtemp,sinthtemp,costhtemp,sinphtemp,cosphtemp)
+                        sumhr_v += -floc
+                        sumht_v += -floc
+                        sumgt_v += vtemp^2*floc
+
+                        # compute h and the other integrals separately
+                        sumh_v += vtemp*floc
+                        sumgrrInt_v += -vtemp*floc
+                        sumgrt_v += -vtemp*floc
+                        sumgttInt_v += -vtemp*floc
+                    end
+                    sumhr_v *= vmax
+                    sumht_v *= vmax
+                    sumgt_v *= vmax^3
+                    sumh_v *= vmax^2
+                    sumgrrInt_v *= vmax^2
+                    sumgrt_v *= vmax^2
+                    sumgttInt_v *= vmax^2
+
+                    sumhr_ph += sumhr_v
+                    sumht_ph += sumht_v*cosphtemp
+                    sumgt_ph += sumgt_v*cosphtemp
+                    sumh_ph += sumh_v
+                    sumgrrInt_ph += sumgrrInt_v
+                    sumgrt_ph += sumgrt_v*cosphtemp
+                    sumgttInt_ph += sumgttInt_v*cosphtemp^2
+                end
+
+                # when (vmax <= 0), there is no positive w-range, hence w-integral yields 0
+                # sometimes happens for unbound stars
+                # in that case, add nothing
+
             end
-            sumhr_v *= vmax
-            sumht_v *= vmax
-            sumgt_v *= vmax^3
-            sumh_v *= vmax^2
-            sumgrrInt_v *= vmax^2
-            sumgrt_v *= vmax^2
-            sumgttInt_v *= vmax^2
 
-            sumhr_ph += sumhr_v
-            sumht_ph += sumht_v*cosphtemp
-            sumgt_ph += sumgt_v*cosphtemp
-            sumh_ph += sumh_v
-            sumgrrInt_ph += sumgrrInt_v
-            sumgrt_ph += sumgrt_v*cosphtemp
-            sumgttInt_ph += sumgttInt_v*cosphtemp^2
+            # if discriminant < 0 (i.e for all w, E'>=0)
+            # sometimes happens for unbound stars
+            # hence w-integral yields 0
+            # in that case, add nothing
+
         end
         sumhr += sinthtemp*costhtemp*sumhr_ph
         sumht += sinthtemp^2*sumht_ph
