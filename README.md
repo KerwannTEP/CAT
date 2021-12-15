@@ -3,7 +3,7 @@ Chandrasekhar Anisotropic Theory
 
 ## Aim of the code
 
-Computation of the NR diffusion coefficients used in the FP equation for an anisotropic Plummer model.
+Computation of the non-resonant (NR) diffusion coefficients used in the orbit-averaged Fokker-Planck equation for an anisotropic Plummer model.
 
 ## Installation
 
@@ -55,9 +55,9 @@ Foundation.
 
 
 
-## Compute the *LOCAL* diffusion coefficients in energy-angular momentum space
+## Compute the **local** diffusion coefficients in energy-angular momentum space
 
-To compute the *LOCAL* NR diffusion coefficients in energy-momentum, one needs to open 
+To compute the **local** NR diffusion coefficients in energy-momentum, one needs to open 
 `code/compute/ComputeCoeffsEnergy.jl`.
 
 Then, one needs to write for which radius `r`, energy `E`, angular momentum `L` and field star mass `m` one wants 
@@ -84,3 +84,61 @@ $ julia ComputeCoeffsAction.jl --q 0.0
 ```
 
 where `--q 0.0` sets the cluster's anisotropy to `q=0.0`. This parameter needs to be a `Float64`.
+
+
+
+## Compute a diffusion coefficients map in action space
+
+To compute an space space map of the NR diffusion coefficients,
+one needs to access the `code/compute` folder and run the following command in 
+the terminal:
+
+```
+$ julia ActionOrbitalMap.jl --parallel no --q 0.0
+```
+
+where `--q 0.0` sets the cluster's anisotropy to `q=0.0` and `parallel=no` runs the code without parallelisation.
+
+If one wants to run this with parallelisation, one needs to run the following 
+commands (supposing one is using bash)
+
+```
+$ export JULIA_NUM_THREADS=12
+$ export JULIA_CPU_THREADS=12
+$ julia -p 12 ActionOrbitalMap.jl --parallel yes --q 0.0
+```
+	
+where 12 is the number of parallelised threads. One can check the number of 
+threads by opening the Julia terminal and by running the command
+
+```
+julia> Threads.nthreads()
+```
+
+The resulting file will be created in the folder `code/data` under the name 
+`Dump_Diffusion_Coefficients_Action_Orbital_Map_q_0.0.hf5`, where the suffix `_q_0.0.` depends
+on the anisotropy parameter given in argument `--q`.
+
+This `.hf5` files contains the following tables:
+
+- `q` : value of the anisotropy parameter of the cluster.
+- `nbJrMeasure`: number of sampling loci in radial action.
+- `nbLMeasure`: number of sampling loci in angular momentum.
+- `tabL` : 1D-table of angular momentum values used for the evaluation of the coefficients.
+- `tabJr` : 1D-table of radial action values used for the evaluation of the coefficients.
+- `tabLJr`: 1D-table of the action space loci `(L,Jr)` used for the evaluation of the coefficients.
+- `tabDNRJr`: 1D-table of the coefficients DNR_Jr corresponding to the action space loci `(L,Jr)` in table `tabLJr`.
+- `tabDNRJr`: 1D-table of the coefficients DNR_L corresponding to the action space loci `(L,Jr)` in table `tabL`.
+- `tabDNRJrJr`: 1D-table of the coefficients DNR_JrJr corresponding to the action space loci `(L,Jr)` in table `tabLJr`.
+- `tabDNRJrL`: 1D-table of the coefficients DNR_JrL corresponding to the action space loci `(L,Jr)` in table `tabLJr`.
+- `tabDNRLL`: 1D-table of the coefficients DNR_LL corresponding to the action space loci `(L,Jr)` in table `tabLJr`.
+
+
+Note that the sampling in action space is done is log-log. One can modify the region of sampling by differently modifying the section `Action space parameter` in the file `ActionOrbitalMap.jl`.
+
+Those files can be recovered using, for example, `Mathematica`, through the command
+
+```
+Import[NotebookDirectory[] <> StringJoin["data/Dump_Diffusion_Coefficients_Action_Orbital_Map_q_0.0.hf5"], {"Datasets", "tabDNRJr"}]
+```
+here for the (already computed )table `tabDNRJr` for a cluster with anisotropy `q=0.0`.
