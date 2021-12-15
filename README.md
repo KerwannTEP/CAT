@@ -139,7 +139,7 @@ Note that the sampling in action space is done in log-log. One can modify the re
 Those files can be recovered using, for example, `Mathematica`, through the command
 
 ```
-Import[NotebookDirectory[] <> StringJoin["data/Dump_Diffusion_Coefficients_Action_Orbital_Map_q_0.0.hf5"], {"Datasets", "tabDNRJr"}]
+Import[NotebookDirectory[] <> "data/Dump_Diffusion_Coefficients_Action_Orbital_Map_q_0.0.hf5", {"Datasets", "tabDNRJr"}]
 ```
 here for the (already computed )table `tabDNRJr` for a cluster with anisotropy `q=0.0`.
 
@@ -212,7 +212,7 @@ Note that the sampling in action space is done linearly. One can modify the regi
 Those files can be recovered using, for example, `Mathematica`, through the command
 
 ```
-Import[NotebookDirectory[] <> StringJoin["data/Dump_dFdt_Map_q_0.0.hf5"], {"Datasets", "tabdFdt"}]
+Import[NotebookDirectory[] <> "data/Dump_dFdt_Map_q_0.0.hf5", {"Datasets", "tabdFdt"}]
 ```
 here for the (already computed )table `tabdFdt` for a cluster with anisotropy `q=0.0`.
 
