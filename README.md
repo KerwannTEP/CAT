@@ -217,4 +217,4 @@ Import[NotebookDirectory[] <> "data/Dump_dFdt_Map_q_0.0.hf5", {"Datasets", "tabd
 here for the (already computed )table `tabdFdt` for a cluster with anisotropy `q=0.0`.
 
 
-![`dF/dt` for a tangentially anisotropic cluster `q=-6`](graphs/dFdt_NR_q_-6.png)
+![`dF/dt` for a tangentially anisotropic cluster `q=-6`](graphs/dFdt_NR_q_-6.png  | width=100)
