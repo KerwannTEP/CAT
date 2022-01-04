@@ -172,7 +172,7 @@ function _tFdF(tE::Float64, tL::Float64, q::Float64=qCalc)
 end
 
 """
-    _F(E,L)
+    _FdF(E,L)
 
 Distribution function of a Plummer sphere and its gradient.
 Normalized to the total mass of the cluster `_M`.

@@ -1,4 +1,135 @@
 ##################################################
+# Test star DF
+##################################################
+
+"""
+    _HdHTest(a,b,c,d,x)
+
+Computes the `H(a,b,c,d;x)` function used in the distribution function and its derivative.
+Returns a tuple `(H, dH/dx, d2H/dx2)`.
+
+
+# Arguments
+- `x::Float64`: `x` parameter.
+"""
+function _HdHTest(a::Float64, b::Float64, c::Float64, d::Float64, x::Float64)
+    if (x <= 1)
+        pref = 1/(GAMMA_ca*GAMMA_ad)
+        HG   = _₂F₁(a+b,1+a-c,a+d,x)#tabHGInt[1](x) #
+        HGp  = _₂F₁(a+b+1,a-c+2,a+d+1,x)#tabHGInt[3](x) #
+        HGpp = _₂F₁(a+b+2,a-c+3,a+d+2,x)#tabHGInt[5](x) #
+        H = pref*x^a*HG
+        dH = pref*x^(a-1)*(a*HG + (a+b)*(1+a-c)*x*HGp/(a+d))
+        d2H = (pref*x^(a-2)*(a*(a-1)*HG + (2*a)*(a+b)*(1+a-c)*x*HGp/(a+d)
+               + ((a+b)*(1+a-c)/(a+d))*((a+b+1)*(2+a-c)/(a+d+1)) *x^2*HGpp))
+        return H, dH, d2H
+    else
+        pref = 1/(GAMMA_db*GAMMA_bc)
+        HG   = _₂F₁(a+b,1+b-d,b+c,1/x)#tabHGInt[2](1/x) #
+        HGp  = _₂F₁(a+b+1,b-d+2,b+c+1,1/x)#tabHGInt[4](1/x) #
+        HGpp = _₂F₁(a+b+2,b-d+3,b+c+2,1/x)#tabHGInt[6](1/x) #
+        H = pref*x^(-b)*HG
+        dH = pref*x^(-b-1)*((-b)*HG - (1/x)*HGp*(a+b)*(1+b-d)/(b+c))
+        d2H = (pref*x^(-b-2)*(b*(b+1)*HG + (2*b+2)*(a+b)*(1+b-d)*(1/x)*HGp/(b+c)
+               + ((a+b)*(1+b-d)/(b+c))*((a+b+1)*(2+b-d)/(b+c+1)) *(1/x^2)*HGpp))
+        return H, dH, d2H
+    end
+end
+
+
+
+
+"""
+    _tFdF(tE,tL,[q=qCalc])
+
+Gradients of the non-dimensional distribution function of a Plummer sphere.
+Returns a tuple `(dtF/dtE, dtF/dtL, d2tF/dtE2, d2tF/dtEtL, d2tF/dtL2)`.
+
+# Arguments
+- `tE::Float64`: Reduced energy `tE = E/E0`.
+- `tL::Float64`: Reduced energy `tL = L/L0`.
+- `q ::Float64`: Anisotropy parameter.
+"""
+function _tdFTest(tE::Float64, tL::Float64, q::Float64=qCalc)
+    if (tE <= 0.0 || tL <= 0.0) # If E or L are negative, the DF vanishes
+        dE = 0.0
+        dL = 0.0
+        dEE = 0.0
+        dEL = 0.0
+        dLL = 0.0
+        return dE, dL, dEE, dEL, dLL
+    else
+        x = tL^2/(2*tE)
+        if (q == 0.0) # Isotropic case
+            dE = 3/(PI^3) * (2*tE)^(5/2)
+            dL = 0.0
+            dEE = 15/(PI^3) * (2*tE)^(3/2)
+            dEL = 0.0
+            dLL = 0.0
+            return dE, dL, dEE, dEL, dLL
+        else
+            if (q == 2.0)
+                if (x <= 1.0)
+                    pref = 18/(2*PI)^3
+                    dE = pref * (2*tE-tL^2)^(1/2)
+                    dL = -pref*tL * (2*tE-tL^2)^(1/2)
+                    dEE = pref* (2*tE-tL^2)^(-1/2)
+                    dEL = -pref*tL * (2*tE-tL^2)^(-1/2)
+                    dLL = -pref*((2*tE-tL^2)^(1/2) - tL^2*(2*tE-tL^2)^(-1/2))
+                    # here L ???
+                    return dE, dL, dEE, dEL, dLL
+                else
+                    dE = 0.0
+                    dL = 0.0
+                    dEE = 0.0
+                    dEL = 0.0
+                    dLL = 0.0
+                    return dE, dL, dEE, dEL, dLL
+                end
+            else
+                pref = 3*GAMMA_6q/(2*(2*PI)^(5/2))
+                pref1 = pref*tE^(5/2-q)
+                pref2 = pref*tE^(3/2-q)
+                H, dH, d2H = _HdHTest(0.0,q/2,9/2-q,1.0,x)
+                dE = pref1*((7/2-q)*H - x*dH)
+                dL = pref1*(tL*dH)
+                dEE = pref2*((7/2-q)*(5/2-q)*H - (5-2*q)*x*dH + x^2*d2H)
+                dEL = pref2*tL*((5/2-q)*dH - x*d2H)
+                dLL = pref2*(tE*dH +tL^2*d2H)
+                return dE, dL, dEE, dEL, dLL
+            end
+        end
+    end
+end
+
+
+"""
+    _dTestF(E,L,[q=qCalc])
+
+Gradients of the distribution function of a Plummer sphere.
+Normalized to the total mass of the cluster `_M`.
+Returns a tuple `(dF/dE, dF/dL, d2F/dE2, d2F/dEL, d2F/dL2)`.
+
+# Arguments
+- `E::Float64`: Energy.
+- `L::Float64`: Angular momentum.
+- `q ::Float64`: Anisotropy parameter.
+"""
+function _dFTest(E::Float64, L::Float64, q::Float64=qCalc)
+    tE = _tE(E)
+    tL = _tL(L)
+    tdE, tdL, tdEE, tdEL, tdLL = _tdFTest(tE,tL,q)
+    dE = (_M*_F0/_E0)*tdE
+    dL = (_M*_F0/_L0)*tdL
+    dEE = (_M*_F0/(_E0^2))*tdEE
+    dEL = (_M*_F0/(_E0*_L0))*tdEL
+    dLL = (_M*_F0/(_L0^2))*tdLL
+    return dE, dL, dEE, dEL, dLL
+end
+
+
+
+##################################################
 # Compute numerical-gradient flux and its divergence
 ##################################################
 
@@ -42,7 +173,7 @@ function divflux_NR_num(Jr::Float64, L::Float64, m_field::Float64, eps::Float64=
 
     # Distribution function
     Ftot = _F(E,L)
-    dFtotdE, dFtotdL, d2FtotdE2, d2FtotdEL, d2FtotdL2 = _dF(E,L)
+    dFtotdE, dFtotdL, d2FtotdE2, d2FtotdEL, d2FtotdL2 = _dFTest(E,L)
 
     # Compute dJr/dE and dJr/dL
     sp, sa = radius_s_bounds_action(Jr,L,nbAvr)
