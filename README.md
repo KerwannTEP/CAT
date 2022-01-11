@@ -35,8 +35,6 @@ to install the following packages:
 - `Interpolations`
 - `PolynomialRoots`
 
-(TODO)
-
 ### !! WARNING !!
 
 **DO NOT INTERRUPT THE DOWNLOADING OF THE PACKAGES !!!!**
