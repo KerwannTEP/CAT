@@ -103,7 +103,7 @@ commands (supposing one is using bash)
 ```
 $ export JULIA_NUM_THREADS=12
 $ export JULIA_CPU_THREADS=12
-$ julia -p 12 ActionOrbitalMap.jl --parallel yes --q 0.0
+$ julia -t 12 ActionOrbitalMap.jl --parallel yes --q 0.0
 ```
 	
 where 12 is the number of parallelised threads. One can check the number of 
@@ -178,7 +178,7 @@ commands (supposing one is using bash)
 ```
 $ export JULIA_NUM_THREADS=12
 $ export JULIA_CPU_THREADS=12
-$ julia -p 12 MappingdFdt.jl --parallel yes --q 0.0
+$ julia -t 12 MappingdFdt.jl --parallel yes --q 0.0
 ```
 	
 where 12 is the number of parallelised threads. One can check the number of 
