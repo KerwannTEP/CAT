@@ -17,7 +17,7 @@ On MacOS, we must create a link in `/usr/local/bin` (here for Julia 1.5):
 $ sudo ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 ```
 
-## Julia packages (TODO)
+## Julia packages
 
 Open the terminal in the folder `packages` and type
 
