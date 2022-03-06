@@ -5,7 +5,7 @@
 using HDF5
 ########################################
 include("../sources/julia/Main.jl") # Loading the main code
-include("../sources/julia/test/OldFunctions.jl")
+#include("../sources/julia/test/OldFunctions.jl")
 ########################################
 
 m_field  = _M/nbGlobularCluster # Mass of field star
@@ -53,7 +53,8 @@ function tabdFdt!()
             LMeasure, JrMeasure = tabLJrGrid[1,iGrid], tabLJrGrid[2,iGrid]
             eps = min(epsRef,JrMeasure*10^(-3),LMeasure*10^(-3))
 
-            dfdt = -divflux_NR_num_expand(JrMeasure,LMeasure,m_field,eps)
+            #dfdt = -divflux_NR_num_expand(JrMeasure,LMeasure,m_field,eps)
+            dfdt = -divflux_NR_num(JrMeasure,LMeasure,m_field,eps)
             tabdFdt[iGrid] = dfdt
         end
     else # Computation is not made in parallel
@@ -61,7 +62,8 @@ function tabdFdt!()
             LMeasure, JrMeasure = tabLJrGrid[1,iGrid], tabLJrGrid[2,iGrid]
             eps = min(epsRef,JrMeasure*10^(-3),LMeasure*10^(-3))
 
-            dfdt = -divflux_NR_num_expand(JrMeasure,LMeasure,m_field,eps)
+            #dfdt = -divflux_NR_num_expand(JrMeasure,LMeasure,m_field,eps)
+            dfdt = -divflux_NR_num(JrMeasure,LMeasure,m_field,eps)
             tabdFdt[iGrid] = dfdt
         end
     end
