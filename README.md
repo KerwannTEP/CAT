@@ -5,6 +5,8 @@ Chandrasekhar Anisotropic Theory
 
 Computation of the non-resonant (NR) diffusion coefficients used in the orbit-averaged Fokker-Planck equation for an anisotropic Plummer model.
 
+![`dF/dt` for a tangentially anisotropic cluster `q=-6`](graphs/dFdt_NR_q_-6.png)
+
 ## Installation
 
 Install Julia by following the instruction at `https://julialang.org/downloads/platform/`.
@@ -17,7 +19,7 @@ On MacOS, we must create a link in `/usr/local/bin` (here for Julia 1.5):
 $ sudo ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 ```
 
-## Julia packages (TODO)
+## Julia packages
 
 Open the terminal in the folder `packages` and type
 
@@ -34,8 +36,6 @@ to install the following packages:
 - `StaticArrays`
 - `Interpolations`
 - `PolynomialRoots`
-
-(TODO)
 
 ### !! WARNING !!
 
@@ -105,7 +105,7 @@ commands (supposing one is using bash)
 ```
 $ export JULIA_NUM_THREADS=12
 $ export JULIA_CPU_THREADS=12
-$ julia -p 12 ActionOrbitalMap.jl --parallel yes --q 0.0
+$ julia -t 12 ActionOrbitalMap.jl --parallel yes --q 0.0
 ```
 	
 where 12 is the number of parallelised threads. One can check the number of 
@@ -180,7 +180,7 @@ commands (supposing one is using bash)
 ```
 $ export JULIA_NUM_THREADS=12
 $ export JULIA_CPU_THREADS=12
-$ julia -p 12 MappingdFdt.jl --parallel yes --q 0.0
+$ julia -t 12 MappingdFdt.jl --parallel yes --q 0.0
 ```
 	
 where 12 is the number of parallelised threads. One can check the number of 
@@ -217,4 +217,4 @@ Import[NotebookDirectory[] <> "data/Dump_dFdt_Map_q_0.0.hf5", {"Datasets", "tabd
 here for the (already computed )table `tabdFdt` for a cluster with anisotropy `q=0.0`.
 
 
-![`dF/dt` for a tangentially anisotropic cluster `q=-6`](graphs/dFdt_NR_q_-6.png)
+
